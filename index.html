@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Index</title>
+	<link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../assets/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="../assets/css/navbar.css">
+	
+	<script type="text/javascript" src="../assets/js/json-formatter.js"></script>
+	
+	<script src="../assets/js/jquery-3.1.1.min.js"></script>
+	<script src="../assets/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
+
+	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+	<!--<script type="text/javascript" src="elements.js"></script>-->
+	<!--<script type="text/javascript" src="responseHandling.js"></script>-->
+	<script type="text/javascript" src="test_treemap(2).js"></script>
+	<script type="text/javascript" src="patient.js"></script>
+
+	<style>
+		.d3-tip {
+			line-height: 1;
+			font-weight: bold;
+			padding: 12px;
+			background: rgba(0, 0, 0, 0.8);
+			/*color: #fff;*/
+			border-radius: 2px;
+		}
+		.bar {
+			fill: steelblue;
+			shape-rendering: crispEdges;
+		}
+		.bar:hover{
+			fill: brown;
+		}
+		.pie-slice:hover{
+			fill: brown;
+		}
+		.axis path, .axis line {
+			fill: none;
+			stroke: #000;
+			shape-rendering: crispEdges;
+		}
+		rect {
+			stroke: #fff;
+			hover: brown;
+		}
+		rect.treemap{
+			fill: none;
+		}
+		text {
+			font: 15px sans-serif;
+			z-index: 100;
+			fill: black;
+			/*text-decoration: underline;*/
+		}
+		.titel {
+			font-size: 20px;
+			text-decorate:underline;
+		}
+		.fa {
+			font-size: 30px;
+		}
+		/*.fa-circle-o {
+			font-size: 20px;
+		}*/
+		legend {
+			font-size: 12px;
+		}
+		rect {
+			stroke-width: 2;
+		}
+		.fa-rotate-140 {
+			filter: progid: DXImageTransform.Microsoft.BasicImage(rotation=0.5);
+			-webkit-transform: rotate(140deg);
+			-moz-transform: rotate(140deg);
+			-ms-transform: rotate(140deg);
+			-o-transform: rotate(140deg);
+			transform: rotate(140deg);
+			display: inline-block;
+		}
+		.fa-normal {
+			font-size: 20px;
+		}
+		.center {
+			text-align: center;
+		}
+		.box {
+			position: absolute;
+			height: auto; width: auto;
+			opacity: 0.7;
+			filter: alpha(opacity=70); /* For IE8 and earlier */
+			background-color: black;
+			color: white;
+			padding-left:10px;
+			padding-right:10px;
+			padding-top:8px;
+			padding-bottom:8px;
+		}
+	</style>
+	
+</head>
+<body>
+
+	<nav class="navbar navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">CarePlan Viewer</a>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-3 col-md-2 sidebar navbar-inverse">
+				<ul class="nav nav-sidebar">
+					<li class="active">
+						<a href="#">Care Plan Centric</a>
+					</li>
+					<li>
+						<a href="#" style="color: rgb(255,255,255)">Patient Centric</a>
+					</li>
+				</ul>
+				<ul class="nav nav-sidebar">
+					<li>
+						<a href="#" style="color: rgb(255,255,255)">Calendar Centric</a>
+					</li>
+				</ul>
+				<div id="patientInfo" style="margin-top:350px;">
+					<label id="name" style="font-size:20px;color:white;padding-bottom:5px;">Patient Name</label>
+					<!-- Trigger the modal with a button -->
+					<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">O</button><br>
+					<div class="row">
+						<div class="col-sm-2">
+							<span class="fa fa-gift fa-inverse fa-normal"></span>
+						</div>
+						<div class="col-sm-10">
+							<p id="birthdate" style="color:white;"></p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-2">
+							<span class="fa fa-venus-mars fa-inverse fa-normal"></span>
+						</div>
+						<div class="col-sm-10">
+							<p id="gender" style="color:white;"></p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-2">
+							<span class="fa fa-phone fa-inverse fa-normal"></span>
+						</div>
+						<div class="col-sm-10">
+							<p id="phone" style="color:white;"></p>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			<div class="col-sm-9 coll-sm-offset-3 col-md-10 col-md-offset-2 main" id="content">
+
+				<div class="alert alert-danger" id='error-alert-content' style="display: none;"></div>
+				<div class="alert alert-info" id="res">Please choose a Patient.</div>
+				<div class="container" id="results"></div>
+
+				<div class='box' id='hover' style="display:none;"></div>
+
+			</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div id="myModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Modal Header</h4>
+				</div>
+				<div class="modal-body">
+					<form id="selectionForm" name="selectionForm" method="POST">
+						<select class="form-control attributeSelect" id="attributeSelect_1" name="attributeSelect_1" data-attr="1">
+							<option>Patient 1</option>
+						</select>
+						<input id="submit" type="submit" class="btn btn-default">Submit</input>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+	<script>
+
+		var loggedUser = ""; //format: Patient/234643 or Practitioner/316480
+
+        $(document).ready(function(){
+            $('#selectionForm').on('click', "#submit", function() {
+			    console.log("fired");
+                $('#results').html("");
+                $("#error-alert-content").fadeOut();
+                $('#error-alert-content').html('');
+                var $button = $(this);
+                $button.button('loading');
+
+				//var newUrl = "http://fhirtest.uhn.ca/baseDstu3/CarePlan?subject=5024";
+				//var newUrl = "http://localhost/jsonExamples/largeCareplan.json";
+				var newUrl = "http://localhost/jsonExamples/manyCareplans.json";
+
+                $.ajax({
+                    url: 'scriptUrl.php',
+                    type: 'POST',
+                    dataType: 'JSON',
+                    data: {
+                        "data": newUrl
+                    },
+                    success: function (response) {
+                        $button.button('reset');
+                        //Error Handling
+                        if (typeof response.result.issue !== 'undefined') {
+                            console.log(response);
+                            if(response.result.issue["0"].severity === "error") {
+                                $('#error-alert-content').append(response.result.issue["0"].diagnostics);
+                                $("#error-alert-content").fadeIn();
+                            }
+                        }else {
+                            $('#res').hide();
+                            console.log(response);
+
+                            if ("entry" in response['result']) {
+                                buildCarePlanMap(response['result']['entry']);
+                            } else {
+                                $('#res').html("No results found for this query.");
+                                $('#res').fadeIn();
+                            }
+                        }
+
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        $button.button('reset');
+                        alert(xhr.status + " " + thrownError);
+                        moreToSearch = false;
+                    }
+                });
+
+                newUrl = "http://fhirtest.uhn.ca/baseDstu3/Patient?_id=5024";
+                $.ajax({
+                    url: 'scriptUrl.php',
+                    type: 'POST',
+                    dataType: 'JSON',
+                    data: {
+                        "data": newUrl
+                    },
+                    success: function (response) {
+                        $button.button('reset');
+                        //Error Handling
+                        if (typeof response.result.issue !== 'undefined') {
+                            console.log(response);
+                            if(response.result.issue["0"].severity === "error") {
+                                $('#error-alert-content').append(response.result.issue["0"].diagnostics);
+                                $("#error-alert-content").fadeIn();
+                            }
+                        }else {
+                            $('#res').hide();
+                            console.log(response);
+
+                            if ("entry" in response['result']) {
+								displayPatientInfo(response['result']['entry'][0]['resource']);
+                            } else {
+                                $('#res').html("No results found for this query.");
+                                $('#res').fadeIn();
+                            }
+                        }
+
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        $button.button('reset');
+                        alert(xhr.status + " " + thrownError);
+                        moreToSearch = false;
+                    }
+                });
+            });
+
+            $('#content').on("click",".icon", function(){
+                //TODO
+				console.log("click");
+			});
+
+		});
+	</script>
+
+
+</body>
+</html>
