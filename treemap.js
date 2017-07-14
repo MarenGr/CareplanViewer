@@ -561,6 +561,9 @@ function performer(data){
     '<i class="fa fa-user-md fa-stack-1x fa-inverse"></i>' +
     '</span><br></p>'];
 
+    var urlArray = [];
+    var cpToUrlIndex = [];
+    var careplanArray = [];
     for(var i = 0; i < data["children"].length; i++){ //parse through performers
         var performer = data["children"][i]["name"];
         for(var j = 0; j < data["children"][i]["children"].length; j++){ //parse through categories
@@ -568,40 +571,53 @@ function performer(data){
                 var careplan = data["children"][i]["children"][j]["children"][k]["name"];
                 careplan = careplan.replace(/ /g, "");
                 $("#"+careplan).append(icon);
+                careplanArray.push(careplan);
 
-                if(performer == "n/a"){
-                    $('#'+careplan)[0].firstChild.append(performer);
-                }else {
-                    var url = "http://fhirtest.uhn.ca/baseDstu3/" + performer;
-                    $.ajax({
-                        url: 'scriptUrl.php',
-                        type: 'POST',
-                        dataType: 'JSON',
-                        cp: careplan,
-                        data: {
-                            "data": url
-                        },
-                        success: function (response) {
-                            //Error Handling
-                            if (typeof response.result.issue !== 'undefined') {
-                                if (response.result.issue["0"].severity === "error") {
-                                    $('#'+this.cp)[0].firstChild.append("not found");
-                                }
-                            } else {
-                                var name = getName(response['result']);
-                                $('#'+this.cp)[0].firstChild.append(name);
-                            }
-
-                        },
-                        error: function (xhr, ajaxOptions, thrownError) {
-                            alert(xhr.status + " " + thrownError);
-                        }
-                    });
+                var url = performer;
+                var index = jQuery.inArray(url, urlArray);
+                if(index < 0){  //if url not yet in array
+                    urlArray.push(url);
+                    cpToUrlIndex.push(urlArray.length -1);
+                }else{
+                    cpToUrlIndex.push(index);
                 }
             }
         }
     }
+
+    $.ajax({
+        url: 'scriptManyUrls.php',
+        type: 'POST',
+        dataType: 'JSON',
+        data: {
+            "data": urlArray
+        },
+        mapper: cpToUrlIndex,
+        careplans: careplanArray,
+        success: function (response) {
+            fillPerformer(response['result'], this.mapper, this.careplans);
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            alert(xhr.status + " " + thrownError);
+        }
+    });
 }
+
+function fillPerformer(result, mapper, careplans){
+    console.log(careplans);
+    for(var i = 0; i < careplans.length; i++){
+        var urlIndex = mapper[i];
+        if(typeof result[urlIndex].issue !== 'undefined'){
+            $('#'+careplans[i])[0].firstChild.append("not found");
+        }else if(result[urlIndex] == "n/a"){
+            $('#'+careplans[i])[0].firstChild.append("n/a");
+        }else{
+            var name = getName(result[urlIndex]);
+            $('#'+careplans[i])[0].firstChild.append(name);
+        }
+    }
+}
+
 
 function getName(resource){
     var name = 'n/a';

@@ -19,7 +19,7 @@
 
 	<!--<script type="text/javascript" src="elements.js"></script>-->
 	<!--<script type="text/javascript" src="responseHandling.js"></script>-->
-	<script type="text/javascript" src="test_treemap(2).js"></script>
+	<script type="text/javascript" src="treemap.js"></script>
 	<script type="text/javascript" src="patient.js"></script>
 
 	<style>
@@ -208,7 +208,7 @@
 
         $(document).ready(function(){
             $('#submit').on('click', function() {
-			    console.log("fired");
+                $('#myModal').modal('toggle');
                 $('#results').html("");
                 $("#error-alert-content").fadeOut();
                 $('#error-alert-content').html('');
