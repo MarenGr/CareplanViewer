@@ -186,12 +186,12 @@
 					<h4 class="modal-title">Modal Header</h4>
 				</div>
 				<div class="modal-body">
-					<form id="selectionForm" name="selectionForm" method="POST">
+					<div id="selectionForm" name="selectionForm" method="POST">
 						<select class="form-control attributeSelect" id="attributeSelect_1" name="attributeSelect_1" data-attr="1">
 							<option>Patient 1</option>
 						</select>
-						<input id="submit" type="submit" class="btn btn-default">Submit</input>
-					</form>
+						<button id="submit" type="submit" class="btn btn-default">Submit</button>
+					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -207,7 +207,7 @@
 		var loggedUser = ""; //format: Patient/234643 or Practitioner/316480
 
         $(document).ready(function(){
-            $('#selectionForm').on('click', "#submit", function() {
+            $('#submit').on('click', function() {
 			    console.log("fired");
                 $('#results').html("");
                 $("#error-alert-content").fadeOut();

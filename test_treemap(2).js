@@ -457,7 +457,7 @@ function fillEvenly(height, width, array){
         limitW = limitW - 3.725, limitH = limitH - 1;
         horizontalCount = Math.floor(width/limitW);
         verticalCount = Math.floor(height/limitH);
-        fontSize[0] = fontSize-1;
+        fontSize = fontSize-1;
     }
     var ratioWH = width/height;
     var curRatio = ratio/ratioWH;
