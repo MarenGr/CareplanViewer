@@ -299,9 +299,6 @@ function buildTreeMap(data){
 
     d3.selectAll("#row1").append("xhtml:div")
         .attr("class", "col-sm-4")
-        .attr("id", function(d){
-            return d.name.replace(/ /g, "");
-        })
         .attr("style", "height:68px;")
         .html(function(d){
             if(!d.children) {
@@ -574,22 +571,26 @@ function applyFontSize(string, fontSize){
 }
 
 function performer(array, urlArray){
-    $.ajax({
-        url: 'scriptManyUrls.php',
-        type: 'POST',
-        dataType: 'JSON',
-        async: false,
-        data: {
-            "data": urlArray
-        },
-        success: function (response) {
-            gPerformer = response['result'];
-            fillPerformer(array, response['result']);
-        },
-        error: function (xhr, ajaxOptions, thrownError) {
-            alert(xhr.status + " " + thrownError);
-        }
-    });
+    if(gPerformer.length !== 0){
+        fillPerformer(array, gPerformer);
+    }else {
+        $.ajax({
+            url: 'scriptManyUrls.php',
+            type: 'POST',
+            dataType: 'JSON',
+            async: false,
+            data: {
+                "data": urlArray
+            },
+            success: function (response) {
+                gPerformer = response['result'];
+                fillPerformer(array, response['result']);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + " " + thrownError);
+            }
+        });
+    }
 }
 
 function fillPerformer(data, result){

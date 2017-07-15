@@ -205,9 +205,11 @@
 	<script>
 
 		var gLoggedUser = ""; //format: Patient/234643 or Practitioner/316480
-        var gCareplans, gPerformer;
+        var gCareplans, gPatient, gPerformer = [];
 
         $(document).ready(function(){
+            gCareplans = null;
+            gPerformer = [];
             $('#submit').on('click', function() {
                 $('#myModal').modal('toggle');
                 $('#results').html("");
@@ -278,9 +280,10 @@
                             console.log(response);
 
                             if ("entry" in response['result']) {
+                                gPatient = response['result']['entry'][0]['resource'];
 								displayPatientInfo(response['result']['entry'][0]['resource']);
                             } else {
-                                $('#res').html("No results found for this query.");
+                                $('#res').html("No patient info found for this query.");
                                 $('#res').fadeIn();
                             }
                         }
