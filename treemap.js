@@ -13,13 +13,21 @@ function parseData(entries){
     //TODO sort bundle automatically by performer --> url input (What happens for no performer?)
     // all -> practitioners -> type -> care plans
     //var data = {"name": bundle["link"][0]["url"], "children": []};
-    var data = {"name": "test", "children": [], "number": 0};
+    var data = {"name": "test", "children": [], "numberCP": 0};
 
     for(var i = 0; i < entries.length; i++){
         var indexPerformer = insertPerformer(data, entries, i);
         var indexCategory = insertCategory(data, entries, i, indexPerformer);
         insertCarePlan(data, entries, i, indexPerformer, indexCategory);
     }
+
+
+    var urlArray = [];
+    for(var j = 0; j < data['children'].length; j++){
+        urlArray.push(data['children'][j]['reference']);
+    }
+    performer(data, urlArray);
+    //copyInParseData = jQuery.extend(true, {}, data);
     return data;
 }
 
@@ -79,14 +87,15 @@ function insertPerformer(data, rawdata, index){
     var i = 0;
     var length = data["children"].length;
     find:while(i < length){
-        if(performer == data["children"][i]["name"]){
+        if(performer == data["children"][i]["reference"]){
             break find;
         }
         i++;
     }
+
     if(i == length){
         i = length;
-        data["children"].push({"name": performer, "children": []});
+        data["children"].push({"reference": performer, "children": []});
     }
     return i;
 }
@@ -106,7 +115,7 @@ function insertCategory(data, rawdata, index, performer){
         }
         i++;
     }
-    if(i == length){
+    if(i == length){ //means that performer is not yet in array
         i = length;
         data["children"][performer]["children"].push({"name": category, "children": []});
     }
@@ -114,7 +123,7 @@ function insertCategory(data, rawdata, index, performer){
 }
 
 function insertCarePlan(data, rawdata, index, performer, category){
-    var name, size, end;
+    var name, size, end, specialty;
     if("title" in rawdata[index]["resource"]){
         name = rawdata[index]["resource"]["title"];
     }else{
@@ -129,11 +138,20 @@ function insertCarePlan(data, rawdata, index, performer, category){
     }else{
         end = "unknown";
     }
+    if("performer" in rawdata[index]['resource']){
+        if("specialty" in rawdata[index]['resource']['performer']){
+            specialty = rawdata[index]['resource']['performer']['specialty'];
+        }else{
+            specialty = "n/a";
+        }
+    }else{
+        specialty = "n/a";
+    }
     size = calculatePriority(rawdata[index]["resource"]); //Todo param logged User
 
-    var object = {"name": name, "size": size, "id": rawdata[index]["resource"]["id"], "activity": rawdata[index]["resource"]["activity"], "end": end};
+    var object = {"name": name, "size": size, "id": rawdata[index]["resource"]["id"], "activity": rawdata[index]["resource"]["activity"], "end": end, "specialty": specialty};
     data["children"][performer]["children"][category]["children"].push(object);
-    data["number"]++;
+    data["numberCP"]++;
 }
 
 /**Calculates Priority btwn 1 and 5 for specific care plan, depending on
@@ -201,18 +219,19 @@ function buildTreeMap(data){
     var number = 0;
     var rects = [];
 
-    var i = data["number"]/7;
+    var i = data["numberCP"]/7;
     if(i < 1) i=1;
 
+    var legendRectSize = 18, legendSpacing = 4;
     var margin = {top: 10, right: 10, bottom: 10, left: 0},
-        legendwidth = 250;
-        width = $('#results').width() - margin.left - margin.right - legendwidth,
+        legendHeight = 220,
+        width = $('#results').width() - margin.left - margin.right,
         height = width/3*2*i,
         color = d3.scale.category20c();
 
     var svg = d3.select("#content").append("svg")
-            .attr("width", width + margin.left + margin.right + legendwidth)
-            .attr("height", height + margin.top + margin.bottom)
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom + legendHeight)
             .attr("xmlns", "http://www.w3.org/2000/svg")
         .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -283,18 +302,21 @@ function buildTreeMap(data){
         .attr("id", function(d){
             return d.name.replace(/ /g, "");
         })
-        .attr("style", "height:68px;");
-        /*.html(function(d){
+        .attr("style", "height:68px;")
+        .html(function(d){
             if(!d.children) {
-                var div = $(this);
-                var string =  getPerformerName(d.name, d.parent.parent.name);
-                console.log(string);
+                var icon = ['<p class="center performer" data-specialty="', '">' +
+                '<span class="fa-stack fa-lg center">'+
+                '<i class="fa fa-square fa-stack-1x"></i>' +
+                '<i class="fa fa-user-md fa-stack-1x fa-inverse"></i>' +
+                '</span><br>', '</p>'];
+
+                var string =  icon[0] + d.specialty + icon[1] + d.parent.parent.name + icon[2];
                 return string;
-                //return null;
             }else{return null;}
-        })*/;
-    performer(data);
-    //fillPerformerName(0);
+        });
+
+
 
     var row2 = content.append("xhtml:div")
         .attr("class", "row")
@@ -340,22 +362,19 @@ function buildTreeMap(data){
             var width = row.parent("foreignObject").width() - 20;
             return fillEvenly(height, width, listElements);
         }else{return null;}
-    })
+    });
 
-    var legendRectSize = 18;
-    var legendSpacing = 4;
+
 
     var legend = svg.selectAll('.legend')
-        .data(color.domain().slice(1, color.domain().length))
+        .data(color.domain().slice(0, color.domain().length))
         .enter()
         .append('g')
         .attr('class', 'legend')
-        .attr('transform', function(d, i) {
-            var height = legendRectSize + legendSpacing;
-            var offset =  height * color.domain().length;
-            var horz = width + legendRectSize;
-            var vert = i * height +10; // + offset;
-            return 'translate(' + horz + ',' + vert + ')';
+        .attr('transform', function(d, i){
+            var vert = i * (legendRectSize+legendSpacing) + 10 + height;
+            var vert = i * (legendRectSize+legendSpacing) + 10 + height;
+            return 'translate( 0,' + vert + ')';
         });
 
 
@@ -554,48 +573,18 @@ function applyFontSize(string, fontSize){
     //}
 }
 
-function performer(data){
-    var icon = ['<p class="center performer">' +
-    '<span class="fa-stack fa-lg center">' +
-    '<i class="fa fa-square fa-stack-1x"></i>' +
-    '<i class="fa fa-user-md fa-stack-1x fa-inverse"></i>' +
-    '</span><br></p>'];
-
-    var urlArray = [];
-    var cpToUrlIndex = [];
-    var careplanArray = [];
-    for(var i = 0; i < data["children"].length; i++){ //parse through performers
-        var performer = data["children"][i]["name"];
-        for(var j = 0; j < data["children"][i]["children"].length; j++){ //parse through categories
-            for(var k = 0; k < data["children"][i]["children"][j]["children"].length; k++){ //parse through individual careplans
-                var careplan = data["children"][i]["children"][j]["children"][k]["name"];
-                careplan = careplan.replace(/ /g, "");
-                $("#"+careplan).append(icon);
-                careplanArray.push(careplan);
-
-                var url = performer;
-                var index = jQuery.inArray(url, urlArray);
-                if(index < 0){  //if url not yet in array
-                    urlArray.push(url);
-                    cpToUrlIndex.push(urlArray.length -1);
-                }else{
-                    cpToUrlIndex.push(index);
-                }
-            }
-        }
-    }
-
+function performer(array, urlArray){
     $.ajax({
         url: 'scriptManyUrls.php',
         type: 'POST',
         dataType: 'JSON',
+        async: false,
         data: {
             "data": urlArray
         },
-        mapper: cpToUrlIndex,
-        careplans: careplanArray,
         success: function (response) {
-            fillPerformer(response['result'], this.mapper, this.careplans);
+            gPerformer = response['result'];
+            fillPerformer(array, response['result']);
         },
         error: function (xhr, ajaxOptions, thrownError) {
             alert(xhr.status + " " + thrownError);
@@ -603,18 +592,17 @@ function performer(data){
     });
 }
 
-function fillPerformer(result, mapper, careplans){
-    console.log(careplans);
-    for(var i = 0; i < careplans.length; i++){
-        var urlIndex = mapper[i];
-        if(typeof result[urlIndex].issue !== 'undefined'){
-            $('#'+careplans[i])[0].firstChild.append("not found");
-        }else if(result[urlIndex] == "n/a"){
-            $('#'+careplans[i])[0].firstChild.append("n/a");
+function fillPerformer(data, result){
+    for(var i = 0; i < result.length; i++){
+        if(typeof result[i].issue !== 'undefined'){
+            data['children'][i]['name'] = "not found";
+        }else if(result[i] === "n/a"){
+            data['children'][i]['name'] = "n/a";
         }else{
-            var name = getName(result[urlIndex]);
-            $('#'+careplans[i])[0].firstChild.append(name);
+            var name = getName(result[i]);
+            data['children'][i]['name'] = name;
         }
+
     }
 }
 
@@ -622,7 +610,6 @@ function fillPerformer(result, mapper, careplans){
 function getName(resource){
     var name = 'n/a';
     if( 'name' in resource){
-        console.log(jQuery.type(resource['name']));
         if(jQuery.type(resource['name']) == "array"){
             if('text' in resource['name']['0']){
                 name = resource['name']['0']['text'];
@@ -652,8 +639,9 @@ function insertDetails(listElements, index, detail){
 
 
 function addHover(){
-    var icons = $('.icon');
-    icons.on("mouseover", function(){
+    var hover = $('#hover');
+
+    $('.icon').on("mouseover", function(){
         var current = $(this);
         var coords = current.offset();
         var details = "";
@@ -662,15 +650,26 @@ function addHover(){
             details += "<br>";
         }
         if(details.length > 0){
-            $('#hover').html("");
-            $('#hover').html(details);
-            $('#hover').show();
-            $('#hover').offset({left: coords.left+30, top: coords.top});
+            hover.show()
+                .html(details)
+                .offset({left: coords.left+30, top: coords.top});
         }
     });
-    icons.on("mouseleave", function(){
-        $('#hover').hide();
-    })
+    $('.icon').on("mouseleave", function(){
+        hover.hide();
+    });
+
+    $('.performer').on("mouseover", function(){
+        var current = $(this);
+        var coords = current.offset();
+        var width = current.width();
+        hover.show()
+            .html(current.data('specialty'));
+        hover.offset({left: coords.left+width/2-hover.width()/2, top: coords.top});
+    });
+    $('.performer').on("mouseleave", function(){
+        hover.hide();
+    });
 }
 
 

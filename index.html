@@ -117,7 +117,7 @@
 
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-sm-3 col-md-2 sidebar navbar-inverse">
+			<div class="col-sm-3 col-md-2 sidebar navbar-inverse" style="display:flex;flex-direction:column;">
 				<ul class="nav nav-sidebar">
 					<li class="active">
 						<a href="#">Care Plan Centric</a>
@@ -131,7 +131,7 @@
 						<a href="#" style="color: rgb(255,255,255)">Calendar Centric</a>
 					</li>
 				</ul>
-				<div id="patientInfo" style="margin-top:350px;">
+				<div id="patientInfo" style="margin-top:auto;">
 					<label id="name" style="font-size:20px;color:white;padding-bottom:5px;">Patient Name</label>
 					<!-- Trigger the modal with a button -->
 					<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">O</button><br>
@@ -204,7 +204,8 @@
 
 	<script>
 
-		var loggedUser = ""; //format: Patient/234643 or Practitioner/316480
+		var gLoggedUser = ""; //format: Patient/234643 or Practitioner/316480
+        var gCareplans, gPerformer;
 
         $(document).ready(function(){
             $('#submit').on('click', function() {
