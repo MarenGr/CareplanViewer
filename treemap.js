@@ -13,7 +13,7 @@ function parseData(entries){
     //TODO sort bundle automatically by performer --> url input (What happens for no performer?)
     // all -> practitioners -> type -> care plans
     //var data = {"name": bundle["link"][0]["url"], "children": []};
-    var data = {"name": "test", "children": [], "numberCP": 0};
+    var data = {"name": "all", "children": [], "numberCP": 0, "categories": []};
 
     for(var i = 0; i < entries.length; i++){
         var indexPerformer = insertPerformer(data, entries, i);
@@ -131,6 +131,9 @@ function insertCategory(data, rawdata, index, performer){
     if(i == length){ //means that performer is not yet in array
         i = length;
         data["children"][performer]["children"].push({"name": category, "children": []});
+        if(jQuery.inArray(category, data['categories']) < 0){
+            data['categories'].push(category);
+        }
     }
     return i;
 }
@@ -343,11 +346,22 @@ function buildTreeMap(data){
 
     var legendRectSize = 18, legendSpacing = 4;
     var margin = {top: 10, right: 10, bottom: 10, left: 0},
-        legendHeight = 220,
+        legendHeight = data['categories'].length * (legendRectSize+legendSpacing)+10,
         width = $('#content').width() - margin.left - margin.right,
         height = width/4*2*i,
         //color = ownColorScale();
-        color = d3.scale.category20c();
+        domainCode = [  288832002, 395082007, 401276009, 412774003, 412775002,
+                        412776001, 412777005, 412778000, 412779008, 412780006,
+                        412781005, 414672009, 415213008, 698358001, 698359009,
+                        698360004, 698361000, 704127004, 3911000175103 /*, default*/ ],
+        domainName = [  'CPA care plan', 'Cancer care plan', 'Mental health crisis plan', 'Clinical management plan',
+                        'Asthma clinical management plan', 'Chronic obstructive pulmonary disease clinical management plan',
+                        'Diabetes clinical management plan', 'Hyperlipidemia clinical management plan', 'Hypertension clinical management plan',
+                        'Hypothyroidism clinical management plan', 'Coronary heart disease risk clinical management plan',
+                        'Mental health personal health plan', 'Psychiatry care plan', 'Angina self management plan',
+                        'Ankle brachial pressure index management plan', 'Diabetes self management plan', 'Heart failure self management plan',
+                        'Transient ischemic attack clinical management plan', 'Patient written birth plan' /*,default*/],
+        color = d3.scale.category20c().domain(domainName);
 
     var svg = d3.select("#content").append("svg")
             .attr("id", "careplanMap")
@@ -505,10 +519,12 @@ function buildTreeMap(data){
         }else{return null;}
     });
 
+    console.log(data['categories']);
 
 
     var legend = svg.selectAll('.legend')
-        .data(color.domain().slice(0, color.domain().length))
+        //.data(color.domain().slice(0, color.domain().length))
+        .data(data['categories'])
         .enter()
         .append('g')
         .attr('class', 'legend')
