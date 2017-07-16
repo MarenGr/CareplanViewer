@@ -27,8 +27,21 @@ function parseData(entries){
         urlArray.push(data['children'][j]['reference']);
     }
     performer(data, urlArray);
-    //copyInParseData = jQuery.extend(true, {}, data);
+    //sort(data['children']);
+    console.log(data['children']);
     return data;
+}
+
+function sort(performer){
+    var i = 0;
+    for(i; i < performer.length; i++){
+        if(performer[i]['reference'] === gLoggedUser){
+            break;
+        }
+    }
+    var temp = performer[i];
+    performer.splice(i, 1);
+    performer.push(temp);
 }
 
 function parseCarePlanData(entries){
@@ -147,7 +160,7 @@ function insertCarePlan(data, rawdata, index, performer, category){
     }else{
         specialty = "n/a";
     }
-    size = calculatePriority(rawdata[index]["resource"]); //Todo param logged User
+    size = calculatePriority(rawdata[index]["resource"], data['children'][performer]['reference']);
 
     var object = {"name": name, "size": size, "id": rawdata[index]["resource"]["id"], "activity": rawdata[index]["resource"]["activity"], "end": end, "specialty": specialty};
     data["children"][performer]["children"][category]["children"].push(object);
@@ -163,7 +176,7 @@ function insertCarePlan(data, rawdata, index, performer, category){
  * @param loggedUser the user who is logged in (physician or patient)
  * @returns priority
  */
-function calculatePriority(careplan /*, loggedUser*/){
+function calculatePriority(careplan, performer){
     var priority = 0;
     var weights = {"user": 0.2, "status": 0.3, "activities": 0.2, "period": 0.3}; //TODO play with weights
     switch(careplan["status"]){
@@ -189,7 +202,7 @@ function calculatePriority(careplan /*, loggedUser*/){
      .range([1, 10]);
      priority += weights["activities"] * scale(careplan["activity"].length);*/
     if("activity" in careplan) {
-        priority += weights["activities"] * (careplan["activity"].length / 2 );
+        priority += weights["activities"] * (careplan["activity"].length / 4 );
     }else{
         priority += weights["activities"] * 5;
     }
@@ -210,9 +223,115 @@ function calculatePriority(careplan /*, loggedUser*/){
         priority += weights["period"]*7;
     }
 
-    //TODO logged User:
-    priority += weights["user"] * 10;
+    if(gLoggedUser == performer){
+        priority += weights["user"]*5;
+    }
+
     return Math.round(priority)*100;
+}
+
+function ownColorScale(d){
+    switch(d) {
+        case '288832002':
+        case 'CPA care plan': {
+            return '#1f77b4';
+            break;
+        }
+        case '395082007':
+        case 'Cancer care plan': {
+            return '#aec7e8';
+            break;
+        }
+        case '401276009':
+        case 'Mental health crisis plan': {
+            return '#ff7f0e';
+            break;
+        }
+        case '412774003':
+        case 'Clinical management plan': {
+            return '#ffbb78';
+            break;
+        }
+        case '412775002':
+        case 'Asthma clinical management plan': {
+            return '#2ca02c';
+            break;
+        }
+        case '412776001':
+        case 'Chronic obstructive pulmonary disease clinical management plan': {
+            return '#98df8a';
+            break;
+        }
+        case '412777005':
+        case 'Diabetes clinical management plan': {
+            return '#d62728';
+            break;
+        }
+        case '412778000':
+        case 'Hyperlipidemia clinical management plan': {
+            return '#ff9896';
+            break;
+        }
+        case '412779008':
+        case 'Hypertension clinical management plan': {
+            return '#9467bd';
+            break;
+        }
+        case '412780006':
+        case 'Hypothyroidism clinical management plan': {
+            return '#c5b0d5';
+            break;
+        }
+        case '412781005':
+        case 'Coronary heart disease risk clinical management plan': {
+            return '#8c564b';
+            break;
+        }
+        case '414672009':
+        case 'Mental health personal health plan': {
+            return '#c49c94';
+            break;
+        }
+        case '415213008':
+        case 'Psychiatry care plan': {
+            return '#e377c2';
+            break;
+        }
+        case '698358001':
+        case 'Angina self management plan': {
+            return '#f7b6d2';
+            break;
+        }
+        case '698359009':
+        case 'Ankle brachial pressure index management plan': {
+            return '#7f7f7f';
+            break;
+        }
+        case '698360004':
+        case 'Diabetes self management plan': {
+            return '#c7c7c7';
+            break;
+        }
+        case '698361000':
+        case 'Heart failure self management plan': {
+            return '#bcbd22';
+            break;
+        }
+        case '704127004':
+        case 'Transient ischemic attack clinical management plan': {
+            return '#dbdb8d';
+            break;
+        }
+        case '3911000175103':
+        case 'Patient written birth plan': {
+            return '#17becf';
+            break;
+        }
+        default: {
+            return '#9edae5';
+            break;
+        }
+    }
 }
 
 function buildTreeMap(data){
@@ -225,11 +344,13 @@ function buildTreeMap(data){
     var legendRectSize = 18, legendSpacing = 4;
     var margin = {top: 10, right: 10, bottom: 10, left: 0},
         legendHeight = 220,
-        width = $('#results').width() - margin.left - margin.right,
-        height = width/3*2*i,
+        width = $('#content').width() - margin.left - margin.right,
+        height = width/4*2*i,
+        //color = ownColorScale();
         color = d3.scale.category20c();
 
     var svg = d3.select("#content").append("svg")
+            .attr("id", "careplanMap")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom + legendHeight)
             .attr("xmlns", "http://www.w3.org/2000/svg")
@@ -237,7 +358,24 @@ function buildTreeMap(data){
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     var treemap = d3.layout.treemap()
-        .padding(3)
+        .padding(function(d){
+            if(d.parent && !d.parent.parent){
+                if(d.reference === gLoggedUser){
+                    return 10;
+                }
+            }
+            return 0;
+        })
+        .sort(function(a,b){
+            if(a.parent && !a.parent.parent && b.parent && !b.parent.parent){
+                if(a.reference === gLoggedUser && b.referennce !== gLoggedUser){
+                    return 1;
+                }else if(b.reference === gLoggedUser && a.referennce !== gLoggedUser){
+                    return -1;
+                }
+            }
+            return 0;
+        })
         .size([width, height])
         .value(function(d){return d.size;});
 
@@ -258,7 +396,13 @@ function buildTreeMap(data){
             return d.dy;
         })
         .style("fill", function (d) {
-            return d.children ? color(d.name) : null;
+            if(d.children && d.parent && d.parent.parent){
+                return color(d.name);
+            }else if(d.reference === gLoggedUser){
+                return 'black';
+            }else{
+                return null;
+            }
             //return "none";
         })
         .attr("data-id", function(d){
