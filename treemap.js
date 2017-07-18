@@ -10,7 +10,6 @@ function buildCarePlanMap(entries){
 }
 
 function parseData(entries){
-    //TODO sort bundle automatically by performer --> url input (What happens for no performer?)
     // all -> practitioners -> type -> care plans
     //var data = {"name": bundle["link"][0]["url"], "children": []};
     var data = {"name": "all", "children": [], "numberCP": 0, "categories": []};
@@ -547,69 +546,6 @@ function buildTreeMap(data){
         .text(function(d) { return d; });
 
     addHover();
-}
-
-function getGlyphicon(code){
-    switch(code){
-        //inline Codes
-        case "diet": return "fa fa-apple";
-        case "exercise": return "fa fa-soccer-ball-o";
-        case "drug": return "fa fa-minus-circle fa-rotate-140 fa-inverse";
-        case "encounter": return "fa fa-calendar";
-        case "observation": return "fa fa-eye";
-        case "procedure": return "fa fa-stethoscope";
-        case "supply": return "fa fa-shopping-cart";
-        case "plus": return "glyphicon glyphicon-plus";
-        case "other": return "fa fa-circle-o";
-        //references
-        case "Task": return "fa fa-soccer-ball-o";
-        case "Appointment": return "fa fa-calendar";
-        case "NutritionOrder": return "fa fa-apple";
-        default: return "fa fa-circle-o";
-    }
-}
-
-function wrapper(type){
-    return "<xhtml:span class='icon "+type+"'></xhtml:span><br>";
-}
-
-function wrapperAndInserter(type, text){
-    return "<xhtml:span class='"+type+"'> "+text+"</xhtml:span><br>";
-}
-
-
-function getActivityType(reference, input){
-    var type;
-    if(reference){
-        type = [getRescoure(input), ""];
-    }else{ //inline definition
-        if("category" in input){
-            type = [input["category"]["code"]];
-            if("code" in input){
-                type.push(input["code"]["coding"][0]["display"])
-            }else{type.push("");}
-        }else if("code" in input){
-            type = input["code"]["coding"][0]["display"];
-            type = checkContent(type);
-        }
-    }
-    return type;
-}
-
-function checkContent(display){
-    var list = ["diet", "exercise", "drug", "medication", "immunization", "encounter", "appointment", "observation", "procedure", "supply"];
-    for(var i = 0; i < list.length; i++){
-        if(display.toLowerCase().indexOf(list[i]) >= 0){
-            return [list[i], display];
-        }
-    }
-    return ["", display];
-}
-
-
-function getResource(input){
-    var array = input.split("/");
-    return array[array.length -2];
 }
 
 

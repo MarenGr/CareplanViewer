@@ -9,6 +9,7 @@
             'result' => ""
         );
 
+        //TODO sort bundle automatically by performer --> url input (What happens for no performer?)
         $result = file_get_contents($_POST['data'], false,
             stream_context_create(
                 array(

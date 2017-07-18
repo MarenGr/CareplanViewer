@@ -21,89 +21,10 @@
 	<!--<script type="text/javascript" src="elements.js"></script>-->
 	<!--<script type="text/javascript" src="responseHandling.js"></script>-->
 	<script type="text/javascript" src="helper.js"></script>
-	<script type="text/javascript" src="treemap.js"></script>
+	<script type="text/javascript" src="activityList.js"></script>
 	<script type="text/javascript" src="patient.js"></script>
 
 	<style>
-		.d3-tip {
-			line-height: 1;
-			font-weight: bold;
-			padding: 12px;
-			background: rgba(0, 0, 0, 0.8);
-			/*color: #fff;*/
-			border-radius: 2px;
-		}
-		.bar {
-			fill: steelblue;
-			shape-rendering: crispEdges;
-		}
-		.bar:hover{
-			fill: brown;
-		}
-		.pie-slice:hover{
-			fill: brown;
-		}
-		.axis path, .axis line {
-			fill: none;
-			stroke: #000;
-			shape-rendering: crispEdges;
-		}
-		rect {
-			stroke: #fff;
-			hover: brown;
-		}
-		rect.treemap{
-			fill: none;
-		}
-		text {
-			font: 15px sans-serif;
-			z-index: 100;
-			fill: black;
-			/*text-decoration: underline;*/
-		}
-		.titel {
-			font-size: 20px;
-			text-decorate:underline;
-		}
-		.fa {
-			font-size: 30px;
-		}
-		/*.fa-circle-o {
-			font-size: 20px;
-		}*/
-		legend {
-			font-size: 12px;
-		}
-		rect {
-			stroke-width: 2;
-		}
-		.fa-rotate-140 {
-			filter: progid: DXImageTransform.Microsoft.BasicImage(rotation=0.5);
-			-webkit-transform: rotate(140deg);
-			-moz-transform: rotate(140deg);
-			-ms-transform: rotate(140deg);
-			-o-transform: rotate(140deg);
-			transform: rotate(140deg);
-			display: inline-block;
-		}
-		.fa-normal {
-			font-size: 20px;
-		}
-		.center {
-			text-align: center;
-		}
-		.box {
-			position: absolute;
-			height: auto; width: auto;
-			opacity: 0.7;
-			filter: alpha(opacity=70); /* For IE8 and earlier */
-			background-color: black;
-			color: white;
-			padding-left:10px;
-			padding-right:10px;
-			padding-top:8px;
-			padding-bottom:8px;
-		}
 	</style>
 	
 </head>
@@ -217,10 +138,11 @@
         var gCareplans = null, gPatient = null, gPerformer = [];
 
         function init(){
+            //TODO clicked action from other page
             if(gCareplans == null || gPatient == null){
                 $('#patientSelect').modal('toggle');
 			}else{
-                buildCarePlanMap(gCareplans);
+                makeList(gCareplans, clicked);
                 displayPatientInfo(gPatient);
 			}
 		}
@@ -266,7 +188,7 @@
                             console.log(response);
 
                             if ("entry" in response['result']) {
-                                buildCarePlanMap(response['result']['entry']);
+                                makeList(response['result']['entry'], null);
                                 gCareplans = response['result']['entry'];
                             } else {
                                 $('#res').html("No results found for this query.");
