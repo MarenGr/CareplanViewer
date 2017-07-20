@@ -140,7 +140,7 @@
 						</div>
 					<!-- Trigger the modal with a button -->
 						<div class="col-sm-3">
-							<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#patientSelect" style="height:35px;font-size:15px;">
+							<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#patientSelectModal" style="height:35px;font-size:15px;">
 								<span class="fa fa-random fa-inverse" style="font-size:15px;"></span>
 							</button><br>
 						</div>
@@ -185,7 +185,7 @@
 	</div>
 
 	<!-- Modal -->
-	<div id="patientSelect" class="modal fade" role="dialog">
+	<div id="patientSelectModal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 
 			<!-- Modal content-->
@@ -196,8 +196,7 @@
 				</div>
 				<div class="modal-body">
 					<div id="selectionForm" name="selectionForm" method="POST">
-						<select class="form-control attributeSelect" id="attributeSelect_1" name="attributeSelect_1" data-attr="1">
-							<option>Patient 1</option>
+						<select class="form-control attributeSelect" id="patientSelect" name="patientSelect" data-attr="1">
 						</select>
 						<button id="submit" type="submit" class="btn btn-default">Submit</button>
 					</div>
@@ -217,8 +216,9 @@
         var gCareplans = null, gPatient = null, gPerformer = [];
 
         function init(){
+            fillPatientSelector();
             if(gCareplans == null || gPatient == null){
-                $('#patientSelect').modal('toggle');
+                $('#patientSelectModal').modal('toggle');
 			}else{
                 buildCarePlanMap(gCareplans);
                 displayPatientInfo(gPatient);
@@ -235,22 +235,31 @@
                 gCareplans = null;
                 gPatient = null;
                 gPerformer = [];
-                $('#patientSelect').modal('toggle');
                 $("#error-alert-content").fadeOut();
                 $('#error-alert-content').html('');
                 var $button = $(this);
                 $button.button('loading');
 
-				//var newUrl = "http://fhirtest.uhn.ca/baseDstu3/CarePlan?subject=5024";
-				//var newUrl = "http://localhost/jsonExamples/largeCareplan.json";
-				var newUrl = "http://localhost/jsonExamples/manyCareplans.json";
+                var id = $('#patientSelect').find("option:selected").data("id");
+
+                $('#patientSelectModal').modal('toggle');
+
+                var url = [];
+                if(id == "many"){
+                    url.push("manyCareplans.json");
+                }else if(id == "large"){
+                    url.push("largeCareplan.json");
+                }else{
+                    url.push("CarePlan?subject=5024");
+                }
+                url.push("Patient?_id=5024");
 
                 $.ajax({
-                    url: 'scriptUrl.php',
+                    url: 'scriptManyUrls.php',
                     type: 'POST',
                     dataType: 'JSON',
                     data: {
-                        "data": newUrl
+                        "data": url
                     },
                     success: function (response) {
                         $button.button('reset');
@@ -265,49 +274,13 @@
                             $('#res').hide();
                             console.log(response);
 
-                            if ("entry" in response['result']) {
-                                buildCarePlanMap(response['result']['entry']);
-                                gCareplans = response['result']['entry'];
+                            if ("entry" in response['result'][0] && "entry" in response['result'][1]) {
+                                buildCarePlanMap(response['result'][0]['entry'], null);
+                                gCareplans = response['result'][0]['entry'];
+                                gPatient = response['result'][1]['entry'][0]['resource'];
+                                displayPatientInfo(response['result'][1]['entry'][0]['resource']);
                             } else {
                                 $('#res').html("No results found for this query.");
-                                $('#res').fadeIn();
-                            }
-                        }
-
-                    },
-                    error: function (xhr, ajaxOptions, thrownError) {
-                        $button.button('reset');
-                        alert(xhr.status + " " + thrownError);
-                        moreToSearch = false;
-                    }
-                });
-
-                newUrl = "http://fhirtest.uhn.ca/baseDstu3/Patient?_id=5024";
-                $.ajax({
-                    url: 'scriptUrl.php',
-                    type: 'POST',
-                    dataType: 'JSON',
-                    data: {
-                        "data": newUrl
-                    },
-                    success: function (response) {
-                        $button.button('reset');
-                        //Error Handling
-                        if (typeof response.result.issue !== 'undefined') {
-                            console.log(response);
-                            if(response.result.issue["0"].severity === "error") {
-                                $('#error-alert-content').append(response.result.issue["0"].diagnostics);
-                                $("#error-alert-content").fadeIn();
-                            }
-                        }else {
-                            $('#res').hide();
-                            console.log(response);
-
-                            if ("entry" in response['result']) {
-                                gPatient = response['result']['entry'][0]['resource'];
-								displayPatientInfo(response['result']['entry'][0]['resource']);
-                            } else {
-                                $('#res').html("No patient info found for this query.");
                                 $('#res').fadeIn();
                             }
                         }

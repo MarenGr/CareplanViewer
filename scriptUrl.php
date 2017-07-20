@@ -4,6 +4,7 @@
         /*$input = array();
         parse_str($_POST['data'], $input);
         echo $input['data'];*/
+
         $response = array(
             'url' => $_POST['data'],
             'result' => ""
