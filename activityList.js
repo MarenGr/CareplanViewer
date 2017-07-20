@@ -6,6 +6,7 @@ function makeList(entries, clicked){
     sortData(data, clicked);
     console.log(data);
     buildList(data);
+    addHoverList();
 }
 
 function parseData(rawdata){
@@ -39,6 +40,7 @@ function parseData(rawdata){
             }
         }
     }
+    performer(data, performerArray);
     return data;
 }
 
@@ -183,8 +185,7 @@ function buildActivityRow(activity, category){
 
     string +=  elements[index] + activity["end"];
     index++;
-    /*TODO performer name */
-    string += elements[index] + activity["performer"]["specialty"] + elements[index+1] + activity["performer"]["reference"];
+    string += elements[index] + activity["performer"]["specialty"] + elements[index+1] + activity["performer"]["name"];
     index = index+2;
     /*TODO activity["note"] */
     string += elements[index] + elements[index+1];
@@ -210,3 +211,57 @@ function getActivityRow(category){
     return all;
 }
 
+function addHoverList(){
+    var hover = $('#hover');
+
+    $('.title').on("mouseover", function(){
+        var current = $(this);
+        var coords = current.offset();
+        var details = current.data("purpose");
+        if(details.length > 0){
+            hover.show()
+                .html(details)
+                .offset({left: coords.left+100, top: coords.top-8});
+        }
+    });
+    $('.title').on("mouseleave", function(){
+        hover.hide();
+    });
+
+    $('.performer').on("mouseover", function(){
+        var current = $(this);
+        var coords = current.offset();
+        var details = current.data("specialty");
+        if(details.length > 0){
+            hover.show()
+                .html(details)
+                .offset({left: coords.left+100, top: coords.top-8});
+        }
+    });
+    $('.performer').on("mouseleave", function(){
+        hover.hide();
+    });
+}
+
+
+function fillPerformer2(data, response){
+    var urlLookup = {};
+    for(var p = 0; p < response.result.length; p++){
+        if(typeof response.result[p].issue !== 'undefined'){
+            urlLookup[response.url[p]] = "not found";
+        }else if(response.result[p] === "n/a"){
+            urlLookup[response.url[p]] = "n/a";
+        }else{
+            var name = getName(response.result[p]);
+            urlLookup[response.url[p]] = name;
+        }
+
+    }
+
+    for(var i = 0; i < data.length; i++){
+        for(var j = 0; j < data[i]["children"].length; j++){
+            data[i]["children"][j]["performer"]["name"] = urlLookup[data[i]["children"][j]["performer"]["reference"]];
+        }
+    }
+
+}

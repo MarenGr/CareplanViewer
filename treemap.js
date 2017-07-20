@@ -666,30 +666,9 @@ function applyFontSize(string, fontSize){
     //}
 }
 
-function performer(array, urlArray){
-    if(gPerformer.length !== 0){
-        fillPerformer(array, gPerformer);
-    }else {
-        $.ajax({
-            url: 'scriptManyUrls.php',
-            type: 'POST',
-            dataType: 'JSON',
-            async: false,
-            data: {
-                "data": urlArray
-            },
-            success: function (response) {
-                gPerformer = response['result'];
-                fillPerformer(array, response['result']);
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-                alert(xhr.status + " " + thrownError);
-            }
-        });
-    }
-}
 
-function fillPerformer(data, result){
+function fillPerformer(data, response){
+    var result = response["result"];
     for(var i = 0; i < result.length; i++){
         if(typeof result[i].issue !== 'undefined'){
             data['children'][i]['name'] = "not found";
@@ -701,27 +680,6 @@ function fillPerformer(data, result){
         }
 
     }
-}
-
-
-function getName(resource){
-    var name = 'n/a';
-    if( 'name' in resource){
-        if(jQuery.type(resource['name']) == "array"){
-            if('text' in resource['name']['0']){
-                name = resource['name']['0']['text'];
-            } else {
-                name = resource['name']['0']['family'];
-            }
-        }else{
-            if('text' in resource['name']){
-                name = resource['name']['text'];
-            } else {
-                name = resource['name']['family'];
-            }
-        }
-    }
-    return name;
 }
 
 function insertDetails(listElements, index, detail){

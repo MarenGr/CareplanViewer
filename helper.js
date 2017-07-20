@@ -109,4 +109,48 @@ function fillPatientSelector(){
     $('#patientSelect').append(patients);
 }
 
+function performer(array, urlArray){
+    if(gPerformer.length !== 0){
+        fillPerformer(array, gPerformer);
+    }else {
+        $.ajax({
+            url: 'scriptManyUrls.php',
+            type: 'POST',
+            dataType: 'JSON',
+            async: false,
+            data: {
+                "data": urlArray
+            },
+            success: function (response) {
+                gPerformer = response['result'];
+                //TODO page distinction
+                //fillPerformer(array, response['result']);
+                fillPerformer2(array, response);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + " " + thrownError);
+            }
+        });
+    }
+}
+
+function getName(resource){
+    var name = 'n/a';
+    if( 'name' in resource){
+        if(jQuery.type(resource['name']) == "array"){
+            if('text' in resource['name']['0']){
+                name = resource['name']['0']['text'];
+            } else {
+                name = resource['name']['0']['family'];
+            }
+        }else{
+            if('text' in resource['name']){
+                name = resource['name']['text'];
+            } else {
+                name = resource['name']['family'];
+            }
+        }
+    }
+    return name;
+}
 

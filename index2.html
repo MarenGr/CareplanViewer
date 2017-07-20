@@ -32,6 +32,19 @@
 			padding-top:10px;
 			padding-bottom:10px;
 		}
+		.box {
+			position: absolute;
+			height: auto; width: auto;
+			opacity: 0.9;
+			filter: alpha(opacity=90); /* For IE8 and earlier */
+			background-color: black;
+			color: white;
+			padding-left:10px;
+			padding-right:10px;
+			padding-top:8px;
+			padding-bottom:8px;
+			z-index:100;
+		}
 	</style>
 	
 </head>
@@ -49,16 +62,16 @@
 		<div class="row">
 			<div class="col-sm-3 col-md-2 sidebar navbar-inverse" style="display:flex;flex-direction:column;">
 				<ul class="nav nav-sidebar">
-					<li class="active">
-						<a href="#">Care Plan Centric</a>
-					</li>
 					<li>
-						<a href="#" style="color: rgb(255,255,255)">Patient Centric</a>
+						<a href="#" style="color: rgb(255,255,255)">Care Plan Centric</a>
+					</li>
+					<li class="active">
+						<a href="#">Patient Centric</a>
 					</li>
 				</ul>
 				<ul class="nav nav-sidebar">
 					<li>
-						<a href="#" style="color: rgb(255,255,255)">Calendar Centric</a>
+						<a href="#" style="color:rgb(255,255,255); pointer-events: none; cursor: default;">Calendar Centric</a>
 					</li>
 				</ul>
 				<div id="patientInfo" style="margin-top:auto;">
