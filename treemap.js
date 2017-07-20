@@ -25,7 +25,7 @@ function parseData(entries){
     for(var j = 0; j < data['children'].length; j++){
         urlArray.push(data['children'][j]['reference']);
     }
-    //performer(data, urlArray);
+    performer(data, urlArray);
     //sort(data['children']);
     console.log(data['children']);
     return data;

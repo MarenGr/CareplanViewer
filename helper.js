@@ -33,7 +33,7 @@ function checkContent(display){
 function getGlyphicon(code){
     switch(code){
         //inline Codes
-        case "diet": return "fa fa-apple";
+        case "diet": return "fa fa-cutlery";
         case "exercise": return "fa fa-soccer-ball-o";
         case "drug": return "fa fa-minus-circle fa-rotate-140 fa-inverse";
         case "encounter": return "fa fa-calendar";
@@ -45,14 +45,14 @@ function getGlyphicon(code){
         //references
         case "Task": return "fa fa-soccer-ball-o";
         case "Appointment": return "fa fa-calendar";
-        case "NutritionOrder": return "fa fa-apple";
+        case "NutritionOrder": return "fa fa-cutlery";
         default: return "fa fa-circle-o";
     }
 }
 
 function getCategory(code){
     switch(code){
-        case "fa fa-apple": return "Diet";
+        case "fa fa-cutlery": return "Diet";
         case "fa fa-soccer-ball-o": return "Exercise";
         case "fa fa-minus-circle fa-rotate-140 fa-inverse": return "Medicine";
         case "fa fa-calendar": return "Apppointment";

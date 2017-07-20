@@ -150,14 +150,15 @@ function sortData(data, clicked){
 }
 
 function buildList(data){
+    $('.list').remove();
     var categoryElement = [
-        '<div class="row"><div class="col-sm-2">',  //Spot for icon
-        '</div><div class="col-sm-10">',            //Spot for List of Acitivity Details
+        '<div class="row list"><div class="col-sm-1">',  //Spot for icon
+        '</div><div class="col-sm-11">',            //Spot for List of Acitivity Details
         '</div></div>'];
 
     for(var i = 0; i < data.length; i++){
         var build = categoryElement[0];
-        build += '<span class="'+data[i]["category"]+'"></span>';
+        build += '<span class="'+data[i]["category"]+' fa-3x"></span>';
         build += categoryElement[1];
         for(var j = 0; j < data[i]["children"].length; j++){
             build += buildActivityRow(data[i]["children"][j], data[i]["name"]);
@@ -169,21 +170,34 @@ function buildList(data){
 
 function buildActivityRow(activity, category){
     var elements = getActivityRow(category);
-
     var string = '';
+    string += elements[0] + activity["purpose"] + elements[1] + activity["title"] + elements[2];
+    var index = 4;
+    if(activity["specific"].length > 0){
+        string += elements[index++];
+    }
+    for(var i = 0; i < activity["specific"].length; i++){
+        string += activity["specific"][i] +elements[4+i];
+        index++;
+    }
 
+    string +=  elements[index] + activity["end"];
+    index++;
+    /*TODO performer name */
+    string += elements[index] + activity["performer"]["specialty"] + elements[index+1] + activity["performer"]["reference"];
+    index = index+2;
+    /*TODO activity["note"] */
+    string += elements[index] + elements[index+1];
     return string;
 }
 
 function getActivityRow(category){
     var all = ['<div class="row">'+
-        '<div class="col-sm-1 title">, </div>'+
-        '<div class="col-sm-7 specific">', '</div>'+
-        '<div class="col-sm-1 purpose">, </div>'+
-        '<div class="col-sm-1 end">, </div>'+
-        '<div class="col-sm-1 performer" data-specialty="', '">, </div>'+
-        '<div class="col-sm-1 note" data-details="', '"><span class="fa fa-sticky-note-o"></span></div>'+
-        '</div>'];
+        '<div class="col-sm-2 title" data-purpose="', '">' , '</div>'+
+        '<div class="col-sm-6 specific">', '</div>'+
+        '<div class="col-sm-1 end">', '</div>'+
+        '<div class="col-sm-2 performer" data-specialty="', '">',' </div>'+
+        '<div class="col-sm-1 note" data-details="', '"><span class="fa fa-sticky-note-o"></span></div></div>'];
     var specific;
     switch(category){
         case "Medicine": specific = '';
@@ -192,6 +206,7 @@ function getActivityRow(category){
         case "Blood Measurement": specific = '';
         case "Weight Measurement": specific = '';
     }
-    return all.splice(2, 0, specific);
+    all.splice(3, 0, specific);
+    return all;
 }
 
