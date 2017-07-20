@@ -101,9 +101,10 @@ function getResource(input){
 }
 
 function fillPatientSelector(){
-    var patients = '<option data-id="5024">Patient 1 (normal)</option>' +
-        '<option data-id="large">Patient 2 (large)</option>' +
-        '<option data-id="many">Patient 3(many)</option>';
+    var patients = '<option data-id="local">Patient 1 (medium local)</option>' +
+        '<option data-id="5024">Patient 2 (medium)</option>' +
+        '<option data-id="large">Patient 3 (large)</option>' +
+        '<option data-id="many">Patient 4(many)</option>';
 
     $('#patientSelect').append(patients);
 }

@@ -19,7 +19,7 @@
         foreach ($_POST['data'] as $key => $value) {
             if($value == "n/a") {
                 $response['result'][] = "n/a";
-            }else if($value == "manyCareplans.json" || $value == "largeCareplan.json"){
+            }else if($value == "manyCareplans.json" || $value == "largeCareplan.json" || $value == "patientLocal.json"){
                 $result = file_get_contents("http://localhost/jsonExamples/".$value, false,
                     stream_context_create(
                         array(

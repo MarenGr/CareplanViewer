@@ -168,14 +168,19 @@
                 $('#patientSelectModal').modal('toggle');
 
                 var url = [];
-                if(id == "many"){
+                if(id == "local"){
                     url.push("manyCareplans.json");
-                }else if(id == "large"){
-                    url.push("largeCareplan.json");
-                }else{
-                    url.push("CarePlan?subject=5024");
+                    url.push("patientLocal.json");
+                }else {
+                    if (id == "many") {
+                        url.push("manyCareplans.json");
+                    } else if (id == "large") {
+                        url.push("largeCareplan.json");
+                    } else {
+                        url.push("CarePlan?subject=5024");
+                    }
+                    url.push("Patient?_id=5024");
                 }
-                url.push("Patient?_id=5024");
 
                 $.ajax({
                     url: 'scriptManyUrls.php',
