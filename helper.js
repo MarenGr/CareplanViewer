@@ -111,7 +111,11 @@ function fillPatientSelector(){
 
 function performer(array, urlArray){
     if(gPerformer.length !== 0){
-        fillPerformer(array, gPerformer);
+        if(layout === 'cpCentric'){
+            fillPerformer(array, gPerformer['result']);
+        }else{
+            fillPerformer2(array, gPerformer);
+        }
     }else {
         $.ajax({
             url: 'scriptManyUrls.php',
@@ -122,10 +126,13 @@ function performer(array, urlArray){
                 "data": urlArray
             },
             success: function (response) {
-                gPerformer = response['result'];
+                gPerformer = response;
                 //TODO page distinction
-                //fillPerformer(array, response['result']);
-                fillPerformer2(array, response);
+                if(layout === "cpCentric") {
+                    fillPerformer(array, response['result']);
+                }else {
+                    fillPerformer2(array, response);
+                }
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 alert(xhr.status + " " + thrownError);

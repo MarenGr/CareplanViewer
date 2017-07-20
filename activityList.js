@@ -1,15 +1,15 @@
 /**
  * Created by Maren on 18.07.2017.
  */
-function makeList(entries, clicked){
-    var data = parseData(entries);
-    sortData(data, clicked);
+function makeList(entries){
+    var data = parseDataL(entries);
+    sortData(data);
     console.log(data);
     buildList(data);
     addHoverList();
 }
 
-function parseData(rawdata){
+function parseDataL(rawdata){
     var data = [];
     var typeList = [];
     var performerArray = [];
@@ -94,22 +94,18 @@ function insertActivity(data, index, rawdata, resCount, actIndex, category, perf
         "performer": {"reference": performer, "specialty": specialty},
         "end": end, "purpose": name, "specific": specificData});
 
-    console.log(data[index]["children"][0]);
 }
 
 
 
-function sortData(data, clicked){
-    console.log(data[0]["children"][0]);
+function sortData(data){
     //sort activity types by their priority
     data.sort(function(a,b){
         return getPriority(a["name"]) - getPriority(b["name"]);
     });
 
-    console.log(data[0]["children"][0]);
     //push clicked category to first position on site
-    if(clicked !== null){
-        console.log("clicked != null");
+    /*if(clicked !== null){
         var index = 0;
         for(var i = 0; i<data.length; i++){
             if(data[i]['category'] === clicked){
@@ -120,20 +116,17 @@ function sortData(data, clicked){
         var temp = data[index];
         data.splice(index, 1);
         data.splice(0, 0, temp);
-    }
+    }*/
 
-    console.log(data[0]["children"][0]);
     //sort entries of each list by performer
     for(var j = 0; j < data.length; j++){
         var index = [];
         for(var k = 0; k < data[j]['children'].length; k++){
             if(data[j]['children'][k]['performer']['reference'] === gLoggedUser){
-                console.log(j + ' '+ k);
                 index.push(k);
             }
         }
         if(index.length !== 0) {
-            console.log("here");
             var temp = [];
             var length = index.length -1;
             for(var p = length; p >= 0 ; p--) {
@@ -143,12 +136,10 @@ function sortData(data, clicked){
             for(var q = 0; q < temp.length; q++ ){
                 data[j]['children'].splice(0, 0, temp[q]);
 
-                console.log(data[0]["children"][0]);
             }
         }
     }
 
-    console.log(data[0]["children"][0]);
 }
 
 function buildList(data){
@@ -166,7 +157,7 @@ function buildList(data){
             build += buildActivityRow(data[i]["children"][j], data[i]["name"]);
         }
         build += categoryElement[2];
-        $('#content').append(build);
+        $('#patientCentric').append(build);
     }
 }
 

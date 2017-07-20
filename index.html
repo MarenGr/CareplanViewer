@@ -21,6 +21,7 @@
 	<!--<script type="text/javascript" src="elements.js"></script>-->
 	<!--<script type="text/javascript" src="responseHandling.js"></script>-->
 	<script type="text/javascript" src="helper.js"></script>
+	<script type="text/javascript" src="activityList.js"></script>
 	<script type="text/javascript" src="treemap.js"></script>
 	<script type="text/javascript" src="patient.js"></script>
 
@@ -92,17 +93,25 @@
 		.center {
 			text-align: center;
 		}
+		.list {
+			background-color:lightgrey;
+			margin-top:15px;
+			margin-bottom:15px;
+			padding-top:10px;
+			padding-bottom:10px;
+		}
 		.box {
 			position: absolute;
 			height: auto; width: auto;
-			opacity: 0.8;
-			filter: alpha(opacity=80); /* For IE8 and earlier */
+			opacity: 0.9;
+			filter: alpha(opacity=90); /* For IE8 and earlier */
 			background-color: black;
 			color: white;
 			padding-left:10px;
 			padding-right:10px;
 			padding-top:8px;
 			padding-bottom:8px;
+			z-index:100;
 		}
 	</style>
 	
@@ -121,15 +130,15 @@
 		<div class="row">
 			<div class="col-sm-3 col-md-2 sidebar navbar-inverse" style="display:flex;flex-direction:column;">
 				<ul class="nav nav-sidebar">
-					<li class="active">
+					<li id="cpCentric">
 						<a href="#">Care Plan Centric</a>
 					</li>
-					<li>
+					<li id="pCentric" class="active">
 						<a href="#">Patient Centric</a>
 					</li>
 				</ul>
 				<ul class="nav nav-sidebar">
-					<li>
+					<li id="calendar">
 						<a href="#" style="pointer-events: none; cursor: default;">Calendar Centric</a>
 					</li>
 				</ul>
@@ -177,6 +186,9 @@
 				<div class="alert alert-danger" id='error-alert-content' style="display: none;"></div>
 				<div class="alert alert-info" id="res">Please choose a Patient.</div>
 
+				<div id="careplanCentric" style="display:none;"></div>
+				<div id="patientCentric"></div>
+
 				<div class='box' id='hover' style="display:none;"></div>
 
 			</div>
@@ -214,15 +226,12 @@
 
 		var gLoggedUser = "Practitioner/29223"; //format: Patient/234643 or Practitioner/316480
         var gCareplans = null, gPatient = null, gPerformer = [];
+        var layout;
 
         function init(){
             fillPatientSelector();
-            if(gCareplans == null || gPatient == null){
-                $('#patientSelectModal').modal('toggle');
-			}else{
-                buildCarePlanMap(gCareplans);
-                displayPatientInfo(gPatient);
-			}
+			$('#patientSelectModal').modal('toggle');
+			layout = 'pCentric';
 		}
 
         $(document).ready(function(){
@@ -235,6 +244,7 @@
                 gCareplans = null;
                 gPatient = null;
                 gPerformer = [];
+
                 $("#error-alert-content").fadeOut();
                 $('#error-alert-content').html('');
                 var $button = $(this);
@@ -248,7 +258,7 @@
                 if(id == "local"){
                     url.push("manyCareplans.json");
                     url.push("patientLocal.json");
-				}else {
+                }else {
                     if (id == "many") {
                         url.push("manyCareplans.json");
                     } else if (id == "large") {
@@ -280,7 +290,8 @@
                             console.log(response);
 
                             if ("entry" in response['result'][0] && "entry" in response['result'][1]) {
-                                buildCarePlanMap(response['result'][0]['entry'], null);
+                                makeList(response['result'][0]['entry']);
+                                buildCarePlanMap(response['result'][0]['entry']);
                                 gCareplans = response['result'][0]['entry'];
                                 gPatient = response['result'][1]['entry'][0]['resource'];
                                 displayPatientInfo(response['result'][1]['entry'][0]['resource']);
@@ -299,9 +310,23 @@
                 });
             });
 
-            $('#content').on("click",".icon", function(){
-                //TODO
-				console.log("click");
+            $('li').on("click", function(){
+				var current = $(this);
+				if(current.attr("class") !== "active" && current.attr('id') !== "calendar") {
+                    current.addClass("active");
+
+                    if (layout === "cpCentric") {
+                        layout = 'pCentric';
+                        $('#cpCentric').removeClass("active");
+                        $('#patientCentric').show();
+                        $('#careplanCentric').hide();
+                    } else {
+                        layout = 'cpCentric';
+                        $('#pCentric').removeClass("active");
+                        $('#careplanCentric').show();
+                        $('#patientCentric').hide();
+                    }
+                }
 			});
 
 		});

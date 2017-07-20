@@ -4,12 +4,12 @@
 
 function buildCarePlanMap(entries){
     if(entries.length > 0) {
-        var json = parseData(entries);
+        var json = parseDataT(entries);
         buildTreeMap(json);
     }
 }
 
-function parseData(entries){
+function parseDataT(entries){
     // all -> practitioners -> type -> care plans
     //var data = {"name": bundle["link"][0]["url"], "children": []};
     var data = {"name": "all", "children": [], "numberCP": 0, "categories": []};
@@ -362,7 +362,7 @@ function buildTreeMap(data){
                         'Transient ischemic attack clinical management plan', 'Patient written birth plan' /*,default*/],
         color = d3.scale.category20c().domain(domainName);
 
-    var svg = d3.select("#content").append("svg")
+    var svg = d3.select("#careplanCentric").append("svg")
             .attr("id", "careplanMap")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom + legendHeight)
@@ -422,6 +422,7 @@ function buildTreeMap(data){
             return d.id;
         });
 
+    $('#careplanCentric').show();
     var oMarginTop = 10, oMarginLeft = 10, oMarginBottom = 15, oMarginRight = 10;
     var content = cell.append("foreignObject")
         .attr("x", oMarginLeft)
@@ -434,7 +435,6 @@ function buildTreeMap(data){
         })
         .attr("dy", ".35em")
         .attr("text-anchor", "start")
-        .attr("id", "content");
     content.append("xhtml:div")
         .attr("class", "row")
         .attr("id", "row1")
@@ -452,7 +452,7 @@ function buildTreeMap(data){
                     }else{return null;}
                     //return d.children ? null : d.name;
                 });
-
+    $('#careplanCentric').hide();
 
     d3.selectAll("#row1").append("xhtml:div")
         .attr("class", "col-sm-4")
@@ -489,6 +489,7 @@ function buildTreeMap(data){
         });
 
 
+    $('#careplanCentric').show();
     row2.html(function (d) {
         var row = $(this);
         if(!d.children) {
@@ -517,6 +518,7 @@ function buildTreeMap(data){
             return fillEvenly(height, width, listElements);
         }else{return null;}
     });
+    $('#careplanCentric').hide();
 
     console.log(data['categories']);
 
