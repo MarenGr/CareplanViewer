@@ -26,6 +26,9 @@
 	<script type="text/javascript" src="patient.js"></script>
 
 	<style>
+		div.row > #effect {
+			background: orangered;
+		}
 		.d3-tip {
 			line-height: 1;
 			font-weight: bold;
@@ -234,13 +237,13 @@
 			layout = 'pCentric';
 		}
 
-        $(document).ready(function(){
+        $(document).ready(function() {
 
             init();
 
 
-            $('#submit').on('click', function() {
-				$('#careplanMap').remove();
+            $('#submit').on('click', function () {
+                $('#careplanMap').remove();
                 gCareplans = null;
                 gPatient = null;
                 gPerformer = [];
@@ -255,10 +258,10 @@
                 $('#patientSelectModal').modal('toggle');
 
                 var url = [];
-                if(id == "local"){
+                if (id == "local") {
                     url.push("manyCareplans.json");
                     url.push("patientLocal.json");
-                }else {
+                } else {
                     if (id == "many") {
                         url.push("manyCareplans.json");
                     } else if (id == "large") {
@@ -281,11 +284,11 @@
                         //Error Handling
                         if (typeof response.result.issue !== 'undefined') {
                             console.log(response);
-                            if(response.result.issue["0"].severity === "error") {
+                            if (response.result.issue["0"].severity === "error") {
                                 $('#error-alert-content').append(response.result.issue["0"].diagnostics);
                                 $("#error-alert-content").fadeIn();
                             }
-                        }else {
+                        } else {
                             $('#res').hide();
                             console.log(response);
 
@@ -310,9 +313,9 @@
                 });
             });
 
-            $('li').on("click", function(){
-				var current = $(this);
-				if(current.attr("class") !== "active" && current.attr('id') !== "calendar") {
+            $('li').on("click", function () {
+                var current = $(this);
+                if (current.attr("class") !== "active" && current.attr('id') !== "calendar") {
                     current.addClass("active");
 
                     if (layout === "cpCentric") {
@@ -327,9 +330,24 @@
                         $('#patientCentric').hide();
                     }
                 }
-			});
+            });
 
-		});
+            $('#careplanCentric').on("click", ".icon", function () {
+                var current = $(this);
+                console.log(current);
+                var iconClass = current.attr("class").replace("icon ", "");
+                var category = getCategory(iconClass);
+                console.log(iconClass);
+                var details = [];
+                for(var i = 0; jQuery.type(current.data(""+i)) !== "undefined"; i++){
+                    details.push(current.data(""+i));
+                }
+                $('#pCentric').click();
+				//$('#'+category).effect("highlight", {}, 3000);
+
+
+            });
+        });
 	</script>
 
 

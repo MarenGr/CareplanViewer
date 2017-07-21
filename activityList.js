@@ -145,18 +145,20 @@ function sortData(data){
 function buildList(data){
     $('.list').remove();
     var categoryElement = [
-        '<div class="row list"><div class="col-sm-1">',  //Spot for icon
+        '<div class="row list" id="', //Spot for Category
+        '"><div class="col-sm-1">',  //Spot for icon
         '</div><div class="col-sm-11">',            //Spot for List of Acitivity Details
         '</div></div>'];
 
     for(var i = 0; i < data.length; i++){
         var build = categoryElement[0];
+        build += data[i]["name"]+ categoryElement[1];
         build += '<span class="'+data[i]["category"]+' fa-3x"></span>';
-        build += categoryElement[1];
+        build += categoryElement[2];
         for(var j = 0; j < data[i]["children"].length; j++){
             build += buildActivityRow(data[i]["children"][j], data[i]["name"]);
         }
-        build += categoryElement[2];
+        build += categoryElement[3];
         $('#patientCentric').append(build);
     }
 }
