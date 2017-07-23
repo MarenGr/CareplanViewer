@@ -81,19 +81,64 @@ function insertActivity(data, index, rawdata, resCount, actIndex, category, perf
         performerArray.push(performer);
     }
 
-    var specificData = [];
-    /*TODO: switch(category){
+    var specificData;
+    var resource;
+
+    if("detail" in rawdata['activity'][actIndex]){
+        resource = rawdata['activity'][actIndex]["detail"];
+    }else if("reference" in rawdata['activity'][actIndex]) {
+        resource = getActResource(rawdata['activity'][actIndex]["reference"]);
+    }
+    switch(category){
         case "Medicine": specificData = getMedicineData(rawdata['activity'][actIndex]);
-        case "Exercise": specificData = getMedicineData(rawdata['activity'][actIndex]);
-        case "Diet": specificData = getMedicineData(rawdata['activity'][actIndex]);
-        case "Blood Measurement": specificData = getMedicineData(rawdata['activity'][actIndex]);
-        case "Weight Measurement": specificData = getMedicineData(rawdata['activity'][actIndex]);
-    }*/
+        case "Exercise": specificData = getExerciseData(rawdata['activity'][actIndex]);
+        case "Diet": specificData = getDietData(rawdata['activity'][actIndex]);
+        case "Blood Measurement": specificData = getBloodMData(rawdata['activity'][actIndex]);
+        case "Weight Measurement": specificData = getWeightMData(rawdata['activity'][actIndex]);
+        default: specificData = {};
+    }
 
     data[index]['children'].push({"title": title,
         "performer": {"reference": performer, "specialty": specialty},
         "end": end, "purpose": name, "specific": specificData});
 
+}
+
+function getActResource(reference){
+    $.ajax({
+        url: 'scriptUrl.php',
+        type: 'POST',
+        dataType: 'JSON',
+        data: {
+            "data": reference
+        },
+        async: false,
+        success: function (response) {
+            $button.button('reset');
+            //Error Handling
+            if (typeof response.result.issue !== 'undefined') {
+                console.log(response);
+                /*if (response.result.issue["0"].severity === "error") {
+                    $('#error-alert-content').append(response.result.issue["0"].diagnostics);
+                    $("#error-alert-content").fadeIn();
+                }*/
+                return null;
+            } else {
+                console.log(response);
+                if ("entry" in response['result']) {
+                    return response['result']['entry'][0]['resource'];
+                } else {
+                    $('#res').html("No results found for this query.");
+                    $('#res').fadeIn();
+                }
+            }
+
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            alert(xhr.status + " " + thrownError);
+            moreToSearch = false;
+        }
+    });
 }
 
 
@@ -144,6 +189,17 @@ function sortData(data){
 
 function buildList(data){
     $('.list').remove();
+    $('#patientCentric').append('<div class="row head">' +
+        '<div class="col-sm-1"></div>' +
+        '<div class="col-sm-11">' +
+        '<div class="row">' +
+            '<div class="col-sm-2">TITLE</div>' +
+            '<div class="col-sm-6">SPECIFIC DATA</div>' +
+            '<div class="col-sm-1"><span class="fa fa-bullseye" style="font-size:20px;"></span> END</div>' +
+            '<div class="col-sm-2"><span class="fa fa-user-md" style="font-size:20px;"></span> PERFORMER </div>' +
+            '<div class="col-sm-1">NOTES</span></div>' +
+        '</div></div></div>');
+
     var categoryElement = [
         '<div class="row list" id="', //Spot for Category
         '"><div class="col-sm-1">',  //Spot for icon
@@ -156,6 +212,7 @@ function buildList(data){
         build += '<span class="'+data[i]["category"]+' fa-3x"></span>';
         build += categoryElement[2];
         for(var j = 0; j < data[i]["children"].length; j++){
+            console.log(i + " " + j);
             build += buildActivityRow(data[i]["children"][j], data[i]["name"]);
         }
         build += categoryElement[3];
@@ -164,43 +221,138 @@ function buildList(data){
 }
 
 function buildActivityRow(activity, category){
-    var elements = getActivityRow(category);
+    var withDetails = false;
+    if(activity["specific"].length > 0){
+        withDetails = true;
+    }
+    var elements = getActivityRow(category, withDetails);
     var string = '';
     string += elements[0] + activity["purpose"] + elements[1] + activity["title"] + elements[2];
-    var index = 4;
-    if(activity["specific"].length > 0){
-        string += elements[index++];
+    var index = 3;
+    if(activity.specific.length > 0) {
+        console.log("here");
+        switch (category) {
+            case "Medicine": {
+                string += elements[index++];
+                if ("status" in activity["specific"][i]) {
+                    string += activity["specific"][i]["status"];
+                }
+                string += elements[index++];
+                if ("priority" in activity["specific"][i]) {
+                    string += activity["specific"][i]["priority"];
+                }
+                string += elements[index++];
+                if ("intent" in activity["specific"][i]) {
+                    string += activity["specific"][i]["intent"];
+                }
+                string += elements[index++];
+                if ("timing" in activity["specific"][i]) {
+                    string += activity["specific"][i]["timing"];
+                }
+                string += elements[index++];
+                if ("dose" in activity["specific"][i]) {
+                    string += activity["specific"][i]["dose"];
+                }
+                string += elements[index++];
+                break;
+            }
+            case "Exercise": case "Blood Measurement": case "Weight Measurement": {
+                string += elements[index++];
+                if ("status" in activity["specific"][i]) {
+                    string += activity["specific"][i]["status"];
+                }
+                string += elements[index++];
+                if ("priority" in activity["specific"][i]) {
+                    string += activity["specific"][i]["priority"];
+                }
+                string += elements[index++];
+                if ("intent" in activity["specific"][i]) {
+                    string += activity["specific"][i]["intent"];
+                }
+                string += elements[index++];
+                if ("occurrence" in activity["specific"][i]) {
+                    string += activity["specific"][i]["occurrence"];
+                }
+                string += elements[index++];
+                break;
+            }
+            case "Diet": {
+                for (var i = 0; i < activity["specific"].length; i++) {
+                    string += elements[index + 1];
+                    if ("status" in activity["specific"][i]) {
+                        string += activity["specific"][i]["status"];
+                    }
+                    string += elements[index + 2];
+                    if ("type" in activity["specific"][i]) {
+                        string += activity["specific"][i]["type"];
+                    }
+                    string += elements[index + 3];
+                    if ("schedule" in activity["specific"][i]) {
+                        string += activity["specific"][i]["schedule"];
+                    }
+                    string += elements[index + 4];
+                    if ("nutrient" in activity["specific"][i]) {
+                        string += activity["specific"][i]["nutrient"];
+                    } else if ("quantity" in activity["specific"][i]) {
+                        string += activity["specific"][i]["quantity"];
+                    }
+                    string += elements[index + 5];
+                    if ("texture" in activity["specific"][i]) {
+                        string += activity["specific"][i]["texture"];
+                    }
+                    string += elements[index + 6];
+                }
+                index = index + (6 * activity.specific.length);
+                break;
+            }
+        }
     }
-    for(var i = 0; i < activity["specific"].length; i++){
-        string += activity["specific"][i] +elements[4+i];
-        index++;
-    }
-
-    string +=  elements[index] + activity["end"];
-    index++;
-    string += elements[index] + activity["performer"]["specialty"] + elements[index+1] + activity["performer"]["name"];
-    index = index+2;
+    string +=  elements[index++] + activity["end"];
+    string += elements[index++] + activity["performer"]["specialty"] + elements[index++] + activity["performer"]["name"];
     /*TODO activity["note"] */
-    string += elements[index] + elements[index+1];
+    string += elements[index++] + elements[index++];
     return string;
 }
 
-function getActivityRow(category){
-    var all = ['<div class="row">'+
-        '<div class="col-sm-2 title" data-purpose="', '">' , '</div>'+
-        '<div class="col-sm-6 specific">', '</div>'+
-        '<div class="col-sm-1 end">', '</div>'+
-        '<div class="col-sm-2 performer" data-specialty="', '">',' </div>'+
-        '<div class="col-sm-1 note" data-details="', '"><span class="fa fa-sticky-note-o"></span></div></div>'];
-    var specific;
-    switch(category){
-        case "Medicine": specific = '';
-        case "Exercise": specific = '';
-        case "Diet": specific = '';
-        case "Blood Measurement": specific = '';
-        case "Weight Measurement": specific = '';
+function getActivityRow(category, withDetails){
+    var all = ['<div class="row"><div class="col-sm-2 title" data-purpose="',
+                '">',
+                '</div><div class="col-sm-6 specific">',
+                '</div><div class="col-sm-1 end">',
+                '</div><div class="col-sm-2 performer" data-specialty="',
+                '">',
+                '</div><div class="col-sm-1 note" data-details="',
+                '"><span class="fa fa-sticky-note-o"></span></div></div>'];
+    if(withDetails) {
+        var specific = [];
+        switch (category) {
+            case "Medicine":
+            case "Diet": {
+                specific.push('<div class="row">' +
+                    '<div class="col-sm-2">');
+                specific.push('</div><div class="col-sm-2">');
+                specific.push('</div><div class="col-sm-2">');
+                specific.push('</div><div class="col-sm-3">');
+                specific.push('</div><div class="col-sm-3">');
+                specific.push('</div></div>');
+                break;
+            }
+            case "Exercise":
+            case "Blood Measurement":
+            case "Weight Measurement": {
+                specific.push('<div class="row">' +
+                    '<div class="col-sm-2">');
+                specific.push('</div><div class="col-sm-2">');
+                specific.push('</div><div class="col-sm-2">');
+                specific.push('</div><div class="col-sm-6">');
+                specific.push('</div></div>');
+                break;
+            }
+        }
+        for (var i = 0; i < specific.length; i++) {
+            all.splice(3 + i, 0, specific[i]);
+        }
     }
-    all.splice(3, 0, specific);
     return all;
 }
 
@@ -257,4 +409,182 @@ function fillPerformer2(data, response){
         }
     }
 
+}
+
+function getMedicineData(activity){
+    var specific = {};
+    if("status" in activity){
+        specific["status"] = activity["status"];
+    }
+    if("priority" in activity){
+        specific["priority"] = activity["priority"];
+    }
+    if("intent" in activity){
+        specific["intent"] = activity["intent"];
+    }
+    if("dosageInstruction" in activity){
+        if("timing" in activity["dosageInstruction"]){
+            specific["timing"] = activity["dosageInstruction"]["timing"];
+        }else if("asNeededBoolean"){
+            specific["timing"] = "as Needed";
+        }
+        if("dose" in activity["dosageInstruction"]) {
+            if ("doseQuantity" in activity["dosageInstruction"]["dose"]) {
+                specific["dose"] = activity["dosageInstruction"]["dose"]["doseQuantity"];
+            } else if ("doseRate" in activity["dosageInstruction"]["dose"]) {
+                specific["dose"] = activity["dosageInstruction"]["dose"]["doseRate"];
+            }
+        }
+    }
+    return specific;
+}
+
+function getExerciseData(activity){
+    var specific = {};
+    if("status" in activity){
+        specific["status"] = activity["status"];
+    }
+    if("priority" in activity){
+        specific["priority"] = activity["priority"];
+    }
+    if("intent" in activity){
+        specific["intent"] = activity["intent"];
+    }
+    if("occurrenceDateTime" in activity){
+        specific["occurrence"] = activity["occurrenceDateTime"];
+    }else if("occurrencePeriod" in activity){
+        specific["occurrence"] = c
+    }else if("occurrencTiming" in activity){
+        //TODO: https://www.hl7.org/fhir/datatypes.html#Timing
+        specific["occurrence"] = activity["occurrencTiming"];
+    }
+    return specific;
+}
+
+function getDietData(activity){
+    var specific = [];
+    var status;
+    if("status" in activity){
+        status = activity["status"];
+    }
+    if("oralDiet" in activity){
+        specific.push({"status": status});
+        if("type" in activity["oralDiet"]){
+            specific[0]["type"] = activity["oralDiet"]["type"];
+        }
+        if("schedule" in activity["oralDiet"]){
+            specific[0]["schedule"] = activity["oralDiet"]["schedule"];
+        }
+        if("nutrient" in activity["oralDiet"]){
+            var nutrientList = "";
+            var nutrients = activity["oralDiet"]["nutrient"];
+            for(var i = 0; i < nutrients.length; i++){
+                var string = "";
+                if("amount" in nutrients[i] && "modifier" in nutrients[i]){
+                    string += nutrients[i]["amount"]+ " of ";
+                    string += nutrients[i]["modifier"]["coding"][0]["display"];
+                }
+                nutrientList += string + ", ";
+            }
+            if(nutrientList.length > 0){
+                specific[0]["nutrient"] = nutrientList.substring(0, nutrientList.length - 2);
+            }
+        }
+        if("texture" in activity["oralDiet"]){
+            var textureList = "";
+            var textures = activity["oralDiet"]["nutrient"];
+            for(var i = 0; i < textures.length; i++){
+                if("modifier" in textures[i]){
+                    textureList += textures[i]["modifier"]["coding"][0]["display"] + ", ";
+                }
+            }
+            if(textureList.length > 0){
+                specific[0]["texture"] = textureList.substring(0, textureList.length - 2);
+            }
+        }else if("fluidConsistencyType" in activity["oralDiet"]){
+            specific[0]["texture"] = activity["oralDiet"]["fluidConsistencyType"]["coding"][0]["display"];
+        }
+    }
+    if("supplement" in activity){
+        var index = specific.length;
+        specific.push({"status": status});
+        if("productName" in activity["supplement"]){
+            specific[index]["type"] = activity["supplement"]["productName"];
+        }else if("type" in activity["supplement"]){
+            specific[index]["type"] = activity["supplement"]["type"]["coding"][0]["display"];
+        }
+        if("schedule" in activity["supplemennt"]){
+            specific[index]["schedule"] = activity["supplemennt"]["schedule"];
+        }
+        if("quantity" in activity["supplement"]){
+            specific[index]["quantity"] = activity["supplemennt"]["quantity"];
+        }
+    }
+    if("enteralFormular" in activity){
+        var index = specific.length;
+        specific.push({"status": status});
+        if("baseFormularProductName" in activity["enteralFormular"]){
+            specific[index]["type"] = activity["enteralFormular"]["baseFormularProductName"];
+        }else if("baseFormularType" in activity["enteralFormular"]){
+            specific[index]["type"] = activity["enteralFormular"]["baseFormularType"]["coding"][0]["display"];
+        }else if("additiveProductName" in activity["enteralFormular"]){
+            specific[index]["type"] = activity["enteralFormular"]["additiveProductName"];
+        }else if("additiveType" in activity["enteralFormular"]){
+            specific[index]["type"] = activity["enteralFormular"]["additiveType"]["coding"][0]["display"];
+        }
+        if("administration" in activity["enteralFormular"]) {
+            var administration = activity["enteralFormular"]["administration"];
+            if ("schedule" in administration) {
+                specific[index]["schedule"] = administration["schedule"];
+            }
+            if ("quantity" in administration) {
+                specific[index]["quantity"] = administration["quantity"];
+            }
+        }
+    }
+    return specific;
+}
+
+function getBloodMData(activity){
+    var specific = {};
+    if("status" in activity){
+        specific["status"] = activity["status"];
+    }
+    if("priority" in activity){
+        specific["priority"] = activity["priority"];
+    }
+    if("intent" in activity){
+        specific["intent"] = activity["intent"];
+    }
+    if("occurrenceDateTime" in activity){
+        specific["occurrence"] = activity["occurrenceDateTime"];
+    }else if("occurrencePeriod" in activity){
+        specific["occurrence"] = activity["occurrencePeriod"]["start"] +" - "+ activity["occurrencePeriod"]["end"];
+    }else if("occurrencTiming" in activity){
+        //TODO: https://www.hl7.org/fhir/datatypes.html#Timing
+        specific["occurrence"] = activity["occurrencTiming"];
+    }
+    return specific;
+}
+
+function getWeightMData(activity){
+    var specific = {};
+    if("status" in activity){
+        specific["status"] = activity["status"];
+    }
+    if("priority" in activity){
+        specific["priority"] = activity["priority"];
+    }
+    if("intent" in activity){
+        specific["intent"] = activity["intent"];
+    }
+    if("occurrenceDateTime" in activity){
+        specific["occurrence"] = activity["occurrenceDateTime"];
+    }else if("occurrencePeriod" in activity){
+        specific["occurrence"] = activity["occurrencePeriod"]["start"] +" - "+ activity["occurrencePeriod"]["end"];
+    }else if("occurrencTiming" in activity){
+        //TODO: https://www.hl7.org/fhir/datatypes.html#Timing
+        specific["occurrence"] = activity["occurrencTiming"];
+    }
+    return specific;
 }

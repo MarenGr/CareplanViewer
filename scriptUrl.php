@@ -11,7 +11,7 @@
         );
 
         //TODO sort bundle automatically by performer --> url input (What happens for no performer?)
-        $result = file_get_contents($_POST['data'], false,
+        $result = file_get_contents("http://fhirtest.uhn.ca/baseDstu3/".$_POST['data'], false,
             stream_context_create(
                 array(
                     'http' => array(

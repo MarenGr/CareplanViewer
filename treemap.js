@@ -460,10 +460,7 @@ function buildTreeMap(data){
         .html(function(d){
             if(!d.children) {
                 var icon = ['<p class="center performer" data-specialty="', '">' +
-                '<span class="fa-stack fa-lg center">'+
-                '<i class="fa fa-square fa-stack-1x"></i>' +
-                '<i class="fa fa-user-md fa-stack-1x fa-inverse"></i>' +
-                '</span><br>', '</p>'];
+                            getPerformerIcon() +'<br>', '</p>'];
 
                 var string =  icon[0] + d.specialty + icon[1] + d.parent.parent.name + icon[2];
                 return string;

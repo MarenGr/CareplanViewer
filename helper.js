@@ -161,3 +161,10 @@ function getName(resource){
     return name;
 }
 
+function getPerformerIcon(){
+    return '<span class="fa-stack fa-lg center">'+
+        '<i class="fa fa-square fa-stack-1x"></i>' +
+        '<i class="fa fa-user-md fa-stack-1x fa-inverse"></i>' +
+        '</span>';
+}
+
