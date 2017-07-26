@@ -62,14 +62,14 @@ function insertActivity(data, index, rawdata, resCount, actIndex, category, perf
         end = "unknown";
     }
 
-    if("performer" in rawdata){
-        if("specialty" in rawdata['performer']){
-            specialty = rawdata['performer']['specialty'];
+    if("author" in rawdata){
+        if("specialty" in rawdata['author'][0]){
+            specialty = rawdata['author'][0]['specialty'];
         }else{
             specialty = "n/a";
         }
-        if("reference" in rawdata["performer"]){
-            performer = rawdata["performer"]["reference"];
+        if("reference" in rawdata["author"][0]){
+            performer = rawdata["author"][0]["reference"];
         }else{
             performer = "n/a";
         }

@@ -91,8 +91,8 @@ function parseCarePlanData(entries){
 
 function insertPerformer(data, rawdata, index){
     var performer;
-    if("performer" in rawdata[index]["resource"]){
-        performer = rawdata[index]["resource"]["performer"]["reference"];
+    if("author" in rawdata[index]["resource"]){
+        performer = rawdata[index]["resource"]["author"][0]["reference"];
     }else{
         performer = "n/a";
     }

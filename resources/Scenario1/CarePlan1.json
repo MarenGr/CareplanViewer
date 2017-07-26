@@ -1,0 +1,48 @@
+{
+  "resourceType": "CarePlan",
+  "id": "cpvCar1",
+  "author": [
+    {
+      "reference": "Practitioner/cpvPra1"
+    }
+  ],
+  "subject": {
+    "reference": "Patient/cpvPat1"
+  },
+  "status": "entered-in-error",
+  "period": {
+    "start": "2016-10-12", //TODO
+    "end": "2016-11-24"
+  },
+  "addresses": [
+    {
+      "reference": "cpvCon1"
+    }
+  ],
+  "goal": //TODO
+  "description": "CP description",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Template 1</p></div>"
+  },
+  "activity": [
+    {
+      "reference": //TODO
+    },
+    {
+      "reference": //TODO
+    },
+    {
+      "reference": //TODO
+    },
+    {
+      "reference": //TODO
+    },
+    {
+      "reference": //TODO
+    },
+    {
+      "reference": //TODO
+    }
+  ]
+}

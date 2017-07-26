@@ -1,0 +1,57 @@
+{
+  "resourceType": "Practitioner",
+  "id": "cpvPra1",
+  "meta": {
+    "versionId": "1"
+  },
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"></div>"
+  },
+  "active": true,
+  "name": [
+    {
+      "use": "official",
+      "text": "Doctor Valder",
+      "family": "Valder",
+      "given": [
+        "Evelyn"
+      ],
+      "prefix": [
+        "Dr."
+      ]
+    }
+  ],
+  "telecom": [
+    {
+      "system": "phone",
+      "value": "+317176843966",
+      "use": "work"
+    }
+  ],
+  "address": [
+    {
+      "use": "work",
+      "line": [
+        "Commonroad 112"
+      ],
+      "city": "Chicago",
+      "postalCode": "60601 IL"
+    }
+  ],
+  "gender": "female",
+  "birthDate": "1949-04-21",
+  "qualification": [
+    {
+      "code": {
+        "coding": [
+          {
+            "system": "http://snomed.info/sct",
+            "code": //TODO,
+            "display": //TODO
+          }
+        ]
+      }
+    }
+  ]
+}

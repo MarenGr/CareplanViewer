@@ -1,0 +1,64 @@
+{
+  "resourceType": "CarePlan",
+  "id": "CP Template 2",
+  "author": [
+    {
+      "reference": //TODO
+    }
+  ],
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>2nd careplan</b></p></div>"
+  },
+  "subject": {
+    "reference": //TODO
+  },
+  "status": "draft",
+  "period": {
+    "start": "2016-10-12", //TODO
+    "end": "2016-11-24"
+  },
+  "addresses": [
+    {
+      "reference": //TODO
+    }
+  ],
+  "careTeam": [
+    {
+      "reference": //TODO
+    }
+  ],
+  "goal": [
+    {
+      "reference": //TODO
+    }
+  ],
+  "note": [
+    {
+      "text": "",
+      "author": {
+        "reference": ""
+      }
+    }
+  ],
+  "activity": [
+    {
+      "reference": //TODO
+    },
+    {
+      "reference": //TODO
+    },
+    {
+      "reference": //TODO
+    },
+    {
+      "reference": //TODO
+    },
+    {
+      "reference": //TODO
+    },
+    {
+      "reference": //TODO
+    }
+  ]
+}
