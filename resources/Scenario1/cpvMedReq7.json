@@ -1,0 +1,88 @@
+{
+  "resourceType" : "MedicationRequest",
+  "id": "cpvMedReq7",
+  "basedOn" : [{
+    "reference": "CarePlan/cpvCar1"
+  }],
+  "status": "active", // active | on-hold | cancelled | completed | entered-in-error | stopped | draft | unknown
+  "intent" : "instance-order", //  proposal | plan | order | instance-order
+  "priority" : "routine", // routine | urgent | stat | asap
+  // medication[x]: Medication to be taken. One of these 2:
+  "medicationCodeableConcept" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "116601002",
+      "display": "Prednisolone"
+    }],
+    "text": "Prednisolone"
+  },
+  "subject" : {
+    "reference": "Patient/cpvPat1"
+  },
+  "requester" : { // Who/What requested the Request
+    "agent" : {
+      "reference": "Practitioner/cpvPra1"
+    }
+  },
+  "reasonCode": [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "69896004",
+      "display": "Rheumatoid arthritis"
+    }],
+    "text": "Rheumatoid arthritis"
+  }],
+  // Reason or indication for writing the prescription
+  "dosageInstruction" : [
+    {
+      "resourceType" : "Dosage",
+      "text" : "<string>", // Free text dosage instructions e.g. SIG
+      "additionalInstruction" : [{
+        "text": "initial dosage"
+      }],
+      // Supplemental instruction - e.g. "with meals"
+      "timing" : {
+        "resourceType" : "Timing",
+        "repeat" : { // When the event is to occur
+          // bounds[x]: Length/Range of lengths, or (Start and/or end) limits. One of these 3:
+          "boundsPeriod" : {
+            "start" : "2016-05-12", // C? Starting time with inclusive boundary
+            "end" : "ongoing" // C? End time with inclusive boundary, if not ongoing
+          },
+          "frequency" : 1, // Event occurs frequency times per period
+          "period" : 1, // Event occurs frequency times per period
+          "periodUnit" : "d", // s | min | h | d | wk | mo | a - unit of time (UCUM)
+          "when" : ["Morning"] // Regular life events the event is tied to
+          },
+        "code" : {
+          "coding": [{
+            "system": "http://snomed.info/sct",
+            "code": "229797004",
+            "display": "OD" //BID | TID | QID | AM | PM | QD | QOD | Q4H | Q6H +
+          }],
+          "text": "Once a day, in the morning"
+        }
+      },
+      "asNeededBoolean" : "false",
+      // How drug should enter body
+      "route" : {
+        "coding": [{
+          "system": "http://snomed.info/sct",
+          "code": "263887005",
+          "display": "Subcutaneous"
+        }],
+        "text": "Subcutaneous"
+      },
+      // dose[x]: Amount of medication per dose. One of these 2:
+      "doseQuantity" : {
+        "value" : 75, // Numerical value (with implicit precision)
+        "unit" : "mg", // Unit representation
+        "system" : "http://snomed.info/sct", // C? System that defines coded unit form
+        "code" : "258684004" // Coded form of the unit
+      }
+    }
+  ],
+  "priorPrescription" : {
+    "reference": "MedicationRequest/cpvMedReq5"
+  }
+}

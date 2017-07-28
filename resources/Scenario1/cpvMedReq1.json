@@ -1,0 +1,97 @@
+{
+  "resourceType" : "MedicationRequest",
+  "id": "cpvMedReq1",
+  "basedOn" : [{
+    "reference": "CarePlan/cpvCar1"
+  }],
+  "status": "draft", // active | on-hold | cancelled | completed | entered-in-error | stopped | draft | unknown
+  "intent" : "order", // R!  proposal | plan | order | instance-order
+  "priority" : "routine", // routine | urgent | stat | asap
+  // medication[x]: Medication to be taken. One of these 2:
+  "medicationCodeableConcept" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "395279009",
+      "display": "Anakinra"
+     }],
+    "text": "<string>"
+  },
+  "medicationReference" : {
+    "reference": "Medication/cpvMed"
+  },
+  "subject" : {
+    "reference": "Patient/cpvPat1"
+  },
+  "requester" : { // Who/What requested the Request
+    "agent" : {
+      "reference": "Practitioner/cpvPra1"
+    }
+  },
+  "reasonCode": [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "69896004",
+      "display": "Rheumatoid arthritis"
+     }],
+    "text": "Rheumatoid arthritis"
+  }],
+  // Reason or indication for writing the prescription
+  "dosageInstruction" : [
+    {
+      "resourceType" : "Dosage",
+      "text" : "", // Free text dosage instructions e.g. SIG
+      "additionalInstruction" : [{
+        "coding": [{
+          "system": "http://snomed.info/sct",
+          "code": "", //TODO
+          "display": "" //TODO
+        }],
+        "text": "<string>"
+      }],
+      // Supplemental instruction - e.g. "with meals"
+      "timing" : {
+        "resourceType" : "Timing",
+        // from Element: extension
+        "event" : ["<dateTime>"], // When the event occurs
+        "repeat" : { // When the event is to occur
+          // bounds[x]: Length/Range of lengths, or (Start and/or end) limits. One of these 3:
+          "boundsDuration" : {
+            "value" : 6, // Numerical value (with implicit precision)
+            "unit" : "months", // Unit representation
+            "system" : "http://snomed.info/sct", // C? System that defines coded unit form
+            "code" : "258706009" // Coded form of the unit
+          },
+          "frequency" : 1, // Event occurs frequency times per period
+          "period" : 1, // Event occurs frequency times per period
+          "periodUnit" : "d", // s | min | h | d | wk | mo | a - unit of time (UCUM)
+          "when" : ["Evening"] // Regular life events the event is tied to
+        },
+        "code" : {
+          "coding": [{
+            "system": "http://snomed.info/sct",
+            "code": "396147000",
+            "display": "QPM" //BID | TID | QID | AM | PM | QD | QOD | Q4H | Q6H +
+           }],
+          "text": "Once a day, in the evening"
+        }
+      },
+      "asNeededBoolean" : "false",
+      // How drug should enter body
+      "route" : {
+        "coding": [{
+          "system": "http://snomed.info/sct",
+          "code": "", //TODO
+          "display": "" //TODO
+         }],
+        "text": "<string>"
+      },
+      // dose[x]: Amount of medication per dose. One of these 2:
+      "doseRange" : { Range },
+      "doseQuantity" : { Quantity(SimpleQuantity) },
+      // rate[x]: Amount of medication per unit of time. One of these 3:
+      "rateRatio" : { Ratio }
+      "rateRange" : { Range }
+      "rateQuantity" : { Quantity(SimpleQuantity)}
+    }
+  ]
+}

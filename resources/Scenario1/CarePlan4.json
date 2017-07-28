@@ -10,39 +10,40 @@
     "reference": "Patient/cpvPat1"
   },
   "status": "cancelled",
+  "category": "",//TODO
   "period": {
-    "start": "2016-10-12", //TODO
-    "end": "2016-11-24"
+    "start": "2016-02-12",
+    "end": "ongoing"
   },
   "addresses": [
     {
       "reference": "cpvCon4"
     }
   ],
-  "goal": //TODO
-  "description": "CP description",
+  "goal": "Remission of Rheumatoic Arthritis Activity",
+  "description": "Classical DMARD for Rheumatoic Arthritis",
   "text": {
     "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Template 1</p></div>"
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Classical DMARD</p></div>"
   },
   "activity": [
     {
-      "reference": //TODO
+      "reference": "MedicationRequest/cpvMedReq2" //TODO MTX
     },
     {
-      "reference": //TODO
+      "reference": "Appointment/cpvApp5"  //TODO monitoring appointments
     },
     {
-      "reference": //TODO
+      "reference": "Appointment/cpvApp6"  //TODO radiological controling appointments
     },
     {
-      "reference": //TODO
+      "reference": "MedicationRequest/cpvMedReq4"   //Glucocorticoids initial
     },
     {
-      "reference": //TODO
+      "reference": "MedicationRequest/cpvMedReq5"   //Glucocorticoids continueing
     },
     {
-      "reference": //TODO
+      "reference": "NutritionOrder/cvpNut1"   //Folic acid / folacin Substitution
     }
   ]
 }

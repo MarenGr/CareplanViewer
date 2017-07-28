@@ -1,0 +1,110 @@
+{
+  "resourceType" : "NutritionOrder",
+  "id": "cpvNut2",
+  "status" : "requested", // proposed | draft | planned | requested | active | on-hold | completed | cancelled | entered-in-error
+  "patient" : {
+    "reference": "Patient/cvpPat1"
+  }, // R!  The person who requires the diet, formula or nutritional supplement
+  "orderer" : {
+    "reference": "Practitioner/cpvPra1"
+  }, // Who ordered the diet, formula or nutritional supplement
+  "excludeFoodModifier" : [
+    {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "29263009",
+        "display" : "Coffee"
+      }],
+      "text" : "Coffee"
+    },
+    {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "16313001",
+        "display" : "Tea"
+      }],
+      "text" : "Tea"
+    },
+    {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "70813002",
+        "display" : "Milk"
+      }],
+      "text" : "Milk"
+    },
+    {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "34208006",
+        "display" : "Oxalate"
+      }],
+      "text" : "Oxalate"
+    },
+    {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "259296007",
+        "display" : "Phosphate"
+      }],
+      "text" : "Phosphate"
+    },
+    {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "372794006",
+        "display" : "Antacid"
+      }],
+      "text" : "Antacid"
+    }
+  ], // Order-specific modifier about the type of food that should not be given
+  "supplement" : [{ // C? Supplement components
+    "type" : {
+      // Type of supplement product requested
+      "coding": [
+        {
+          "system": "http://snomed.info/sct",
+          "code": "6247001",
+          "display": "  Folic acid product"
+        }
+      ],
+      "text": "  Folic acid product"
+    },
+    "schedule" : [{
+      "resourceType": "Timing",
+      "repeat": {
+        // When the event is to occur
+        // bounds[x]: Length/Range of lengths, or (Start and/or end) limits. One of these 3:
+        "boundsPeriod": {
+          "start": "2015-06-04",
+          "end": "2017-10-01"
+        },
+        "frequency": 1, // Event occurs frequency times per period
+        "period": 1, // Event occurs frequency times per period
+        "periodUnit": "d"   // s | min | h | d | wk | mo | a - unit of time (UCUM)
+      },
+      "code": {
+        "coding": [
+          {
+            "system": "http://snomed.info/sct",
+            "code": "69620002",
+            "display": "Daily"
+            //BID | TID | QID | AM | PM | QD | QOD | Q4H | Q6H +
+          }
+        ],
+        "text": "Daily"
+      }
+    }], // Scheduled frequency of supplement
+    "quantity" : {
+      // Amount of the nutritional supplement
+      "value": 10,
+      // Numerical value (with implicit precision)
+      "unit": "mg",
+      // Unit representation
+      "system": "http://snomed.info/sct",
+      // C? System that defines coded unit form
+      "code": "258684004"// Coded form of the unit }, // Amount of the nutritional supplement
+    },
+    "instruction" : "To be taken on an empty stomach, at least 30 to 60 minutes before or after the meal." // Instructions or additional information about the oral supplement
+  }]
+}

@@ -1,0 +1,113 @@
+{
+  "resourceType" : "MedicationRequest",
+  "id": "cpvMedReqTemplate",
+  "basedOn" : [{
+    "reference": "CarePlan/cpvCar" //TODO What request fulfills
+  }],
+  "status": "", // active | on-hold | cancelled | completed | entered-in-error | stopped | draft | unknown
+  "intent" : "", // R!  proposal | plan | order | instance-order
+  "priority" : "", // routine | urgent | stat | asap
+  // medication[x]: Medication to be taken. One of these 2:
+  "medicationCodeableConcept" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "", //TODO
+      "display": "" //TODO
+    }],
+    "text": "<string>"
+  },
+  "medicationReference" : {
+    "reference": "Medication/cpvMed"
+  },
+  "subject" : {
+    "reference": "Patient/cpvPat" //TODO
+  }, //  Who or group medication request is for
+  "requester" : { // Who/What requested the Request
+    "agent" : {
+      "reference": "Practitioner/cpvPra" //TODO
+    } // Who ordered the initial medication(s)
+  },
+  "reasonCode": [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "", //TODO
+      "display": "" //TODO
+    }],
+    "text": "<string>"
+  }],
+  // Reason or indication for writing the prescription
+  "reasonReference" : [{ Reference(Condition|Observation) }], // Condition or Observation that supports why the prescription is being written
+  "note" : [{ Annotation }], // Information about the prescription
+  "dosageInstruction" : [
+    {
+      "resourceType" : "Dosage",
+      "text" : "<string>", // Free text dosage instructions e.g. SIG
+      "additionalInstruction" : [{
+        "coding": [{
+          "system": "http://snomed.info/sct",
+          "code": "", //TODO
+          "display": "" //TODO
+        }],
+        "text": "<string>"
+      }],
+      // Supplemental instruction - e.g. "with meals"
+      "timing" : {
+        "resourceType" : "Timing",
+        // from Element: extension
+        "event" : ["<dateTime>"], // When the event occurs
+        "repeat" : { // When the event is to occur
+          // bounds[x]: Length/Range of lengths, or (Start and/or end) limits. One of these 3:
+          "boundsDuration" : { Duration },
+          "boundsRange" : { Range },
+          "boundsPeriod" : { Period },
+          "count" : <integer>, // Number of times to repeat
+          "countMax" : <integer>, // Maximum number of times to repeat
+          "duration" : <decimal>, // How long when it happens
+          "durationMax" : <decimal>, // How long when it happens (Max)
+          "durationUnit" : "<code>", // s | min | h | d | wk | mo | a - unit of time (UCUM)
+          "frequency" : <integer>, // Event occurs frequency times per period
+          "frequencyMax" : <integer>, // Event occurs up to frequencyMax times per period
+          "period" : <decimal>, // Event occurs frequency times per period
+          "periodMax" : <decimal>, // Upper limit of period (3-4 hours)
+          "periodUnit" : "<code>", // s | min | h | d | wk | mo | a - unit of time (UCUM)
+          "dayOfWeek" : ["<code>"], // mon | tue | wed | thu | fri | sat | sun
+          "timeOfDay" : ["<time>"], // Time of day for action
+          "when" : ["<code>"], // Regular life events the event is tied to
+          "offset" : "<unsignedInt>" // Minutes from event (before or after)
+        },
+        "code" : {
+          "coding": [{
+            "system": "http://snomed.info/sct",
+            "code": "", //TODO
+            "display": "" //TODO  BID | TID | QID | AM | PM | QD | QOD | Q4H | Q6H +
+          }],
+          "text": "<string>"
+        }
+      },
+      "asNeededBoolean" : <boolean>,
+      // How drug should enter body
+      "route" : {
+        "coding": [{
+          "system": "http://snomed.info/sct",
+          "code": "", //TODO
+          "display": "" //TODO
+        }],
+        "text": "<string>"
+      },
+      // dose[x]: Amount of medication per dose. One of these 2:
+      "doseRange" : { Range },
+      "doseQuantity" : { Quantity(SimpleQuantity) },
+      // rate[x]: Amount of medication per unit of time. One of these 3:
+      "rateRatio" : { Ratio }
+      "rateRange" : { Range }
+      "rateQuantity" : { Quantity(SimpleQuantity)}
+    }
+  ], // How the medication should be taken
+  "dispenseRequest" : { // Medication supply authorization
+    "validityPeriod" : { Period }, // Time period supply is authorized for
+    "numberOfRepeatsAllowed" : "<positiveInt>", // Number of refills authorized
+    "quantity" : { Quantity(SimpleQuantity) }, // Amount of medication to supply per dispense
+    "expectedSupplyDuration" : { Duration } // Number of days supply per dispense
+  },
+  "priorPrescription" : { Reference(MedicationRequest) } // An order/prescription that is being replaced
+}
