@@ -1,0 +1,79 @@
+{
+  "resourceType" : "ProcedureRequest",
+  "id": "cpvPro2",
+  "basedOn" : [{ // What request fulfills
+    "reference": "CarePlan/cpvCar2"
+  }],
+  "status" : "completed", // R!  draft | active | suspended | completed | entered-in-error | cancelled
+  "intent" : "order", // R!  proposal | plan | order +
+  "priority" : "routine", // routine | urgent | asap | stat
+  "category" : [{
+    "coding": [{// Classification of procedure
+      "system": "http://snomed.info/sct",
+      "code": "103693007",
+      "display": "Diagnostic procedure"
+    }],
+    "text": "Diagnostic procedure"
+  }],
+  "code" : { // What is being requested/ordered
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "165197003",
+      "display": "Diagnostic assessment"
+    }],
+    "text": "Diagnostic assessment (assessment of treatment effect)"
+  },
+  "subject" : {  //  Individual the service is ordered for
+    "reference": "Patient/cpvPat1"
+  },
+ "occurrenceTiming" : {
+    "resourceType" : "Timing",
+    // from Element: extension
+    "repeat" : { // When the event is to occur
+      // bounds[x]: Length/Range of lengths, or (Start and/or end) limits. One of these 3:
+      "boundsPeriod" : {
+        "start": "2015-04-02",
+        "end": "ongoing"
+      },
+     "frequency" : 1, // Event occurs frequency times per period
+      "period" : "month", // Event occurs frequency times per period
+      "periodUnit" : "mo" // s | min | h | d | wk | mo | a - unit of time (UCUM)
+      },
+    "code" : {
+      "coding": [{
+        "system": "http://snomed.info/sct",
+        "code": "396134005",
+        "display": "q4wk"
+      }],
+      "text": "Every four weeks"
+
+    }
+  },
+  "requester" : { // Who/what is requesting procedure or diagnostic
+    "agent" : {
+      "reference": "Practitioner/cpvPra1"
+    }
+  },
+  "performerType" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "40204001",
+      "display": "Hematologist"
+    }],
+    "text": "Hematologist"
+  }, // Performer role
+  "performer" : {  // Requested perfomer
+    "reference": "Practitioner/cpvPra1" //TODO
+  },
+  "reasonCode" : [{// Explanation/Justification for test
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "87522002",
+      "display": " Iron deficiency anemia"
+    }],
+    "text": " Iron deficiency anemia"
+  }],
+  "note" : [{
+    "text" : "Last appointment 4 weeks after last iron substitution intake"
+  }]
+}

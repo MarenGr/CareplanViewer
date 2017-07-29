@@ -64,11 +64,11 @@
       "coding": [
         {
           "system": "http://snomed.info/sct",
-          "code": "6247001",
-          "display": "  Folic acid product"
+          "code": "3829006",
+          "display": "Iron"
         }
       ],
-      "text": "  Folic acid product"
+      "text": "Iron"
     },
     "schedule" : [{
       "resourceType": "Timing",

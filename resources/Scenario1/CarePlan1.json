@@ -34,10 +34,10 @@
       "reference": "MedicationRequest/cpvMedReq2" //TODO MTX
     },
     {
-      "reference": "Appointment/cpvApp5"  //TODO monitoring appointments
+      "reference": "ProcedureRequest/cpvPro4"  // monitoring appointments
     },
     {
-      "reference": "Appointment/cpvApp6"  //TODO radiological controling appointments
+      "reference": "ProcedureRequest/cpvPro5"  //radiological controling appointments
     },
     {
       "reference": "MedicationRequest/cpvMedReq3"   //Glucocorticoids

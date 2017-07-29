@@ -1,0 +1,54 @@
+{
+  "resourceType" : "ProcedureRequest",
+  "id": "cpvPro1",
+  "basedOn" : [{ // What request fulfills
+    "reference": "CarePlan/cpvCar2"
+  }],
+  "status" : "completed", // R!  draft | active | suspended | completed | entered-in-error | cancelled
+  "intent" : "order", // R!  proposal | plan | order +
+  "priority" : "stat", // routine | urgent | asap | stat
+  "category" : [{
+    "coding": [{// Classification of procedure
+      "system": "http://snomed.info/sct",
+      "code": "103693007",
+      "display": "Diagnostic procedure"
+    }],
+    "text": "Diagnostic procedure"
+  }],
+  "code" : { // What is being requested/ordered
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "79536006",
+      "display": "Physical medicine, initial examination, evaluation and treatment program planning"
+    }],
+    "text": "Physical medicine, initial examination, evaluation and treatment program planning"
+  },
+  "subject" : {  //  Individual the service is ordered for
+    "reference": "Patient/cpvPat1"
+  },
+  "occurrenceDateTime" : "c",
+  "requester" : { // Who/what is requesting procedure or diagnostic
+    "agent" : {
+      "reference": "Practitioner/cpvPra1"
+    }
+  },
+  "performerType" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "40204001",
+      "display": "Hematologist"
+    }],
+    "text": "Hematologist"
+  }, // Performer role
+  "performer" : {  // Requested perfomer
+    "reference": "Practitioner/cpvPra1" //TODO
+  },
+  "reasonCode" : [{// Explanation/Justification for test
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "87522002",
+      "display": " Iron deficiency anemia"
+    }],
+    "text": " Iron deficiency anemia"
+  }]
+}

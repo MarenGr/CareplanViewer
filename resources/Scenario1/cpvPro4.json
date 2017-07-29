@@ -1,0 +1,76 @@
+{
+  "resourceType" : "ProcedureRequest",
+  "id": "cpvPro4",
+  "basedOn" : [{ // What request fulfills
+    "reference": "CarePlan/cpvCar4"
+  }],
+  "status" : "active", // R!  draft | active | suspended | completed | entered-in-error | cancelled
+  "intent" : "order", // R!  proposal | plan | order +
+  "priority" : "routine", // routine | urgent | asap | stat
+  "category" : [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "103693007",
+      "display": "Diagnostic procedure"
+    }],
+    "text": "Diagnostic procedure"
+  }], // Classification of procedure
+  "code" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "7922000",
+      "display": "General treatment"
+    }],
+    "text": "General treatment"
+  }, // R!  What is being requested/ordered
+  "subject" : {  //  Individual the service is ordered for
+    "reference": "Patient/cpvPat1"
+  },
+  "occurrenceTiming" : {
+    "resourceType" : "Timing",
+    // from Element: extension
+    "repeat" : { // When the event is to occur
+      // bounds[x]: Length/Range of lengths, or (Start and/or end) limits. One of these 3:
+      "boundsPeriod" : {
+        "start": "2016-02-12",
+        "end": "ongoing"
+      },
+      "frequency" : 1, // Event occurs frequency times per period
+      "period" : "month", // Event occurs frequency times per period
+      "periodUnit" : "mo" // s | min | h | d | wk | mo | a - unit of time (UCUM)
+    },
+    "code" : {
+      "coding": [{
+        "system": "http://snomed.info/sct",
+        "code": "89185003",
+        "display": "Monthly"
+      }],
+      "text": "Monthly"
+
+    }
+  },
+  "requester" : { // Who/what is requesting procedure or diagnostic
+    "agent" : {
+      "reference": "Practitioner/cpvPra1"
+    }
+  },
+  "performerType" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "45440000",
+      "display": "Rheumatologist"
+    }],
+    "text": "Rheumatologist"
+  }, // Performer role
+  "performer" : {  // Requested perfomer
+    "reference": "Practitioner/cpvPra1" //TODO
+  },
+  "reasonCode" : [{// Explanation/Justification for test
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "69896004",
+      "display": "Chronic rheumatic arthritis"
+    }],
+    "text": "Chronic rheumatic arthritis"
+  }]
+}

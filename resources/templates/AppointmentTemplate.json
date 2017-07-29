@@ -1,19 +1,55 @@
 {
   "resourceType" : "Appointment",
   "id": "cpvAppTemplate",
-  "status" : "<code>", // R!  proposed | pending | booked | arrived | fulfilled | cancelled | noshow | entered-in-error
-  "serviceCategory" : { CodeableConcept }, // A broad categorisation of the service that is to be performed during this appointment
-  "appointmentType" : { CodeableConcept }, // The style of appointment or patient that has been booked in the slot (not service type)
+  "status" : "<code>", // proposed | pending | booked | arrived | fulfilled | cancelled | noshow | entered-in-error
+  "serviceCategory" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "", //TODO
+      "display": ""
+    }],
+    "text": ""
+  }, // A broad categorisation of the service that is to be performed during this appointment
+  "appointmentType" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "", //TODO
+      "display": ""
+    }],
+    "text": ""
+  }, // The style of appointment or patient that has been booked in the slot (not service type)
   "priority" : "<unsignedInt>", // Used to make informed decisions if needing to re-prioritize
   "description" : "<string>", // Shown on a subject line in a meeting request, or appointment list
   "start" : "<instant>", // When appointment is to take place
   "end" : "<instant>", // When appointment is to conclude
   "minutesDuration" : "<positiveInt>", // Can be less than start/end (e.g. estimate)
   "comment" : "<string>", // Additional comments
-  "incomingReferral" : [{ Reference(ReferralRequest) }], // The ReferralRequest provided as information to allocate to the Encounter
-  "participant" : [{ // R!  Participants involved in appointment
-    "type" : [{ CodeableConcept }], // Role of participant in the appointment
-    "actor" : { Reference(Patient|Practitioner|RelatedPerson|Device|
-      HealthcareService|Location) }, // Person, Location/HealthcareService or Device
-  }]
+  "participant" : [//  Participants involved in appointment
+    {
+    "type" : [{// Role of participant in the appointment
+      "coding": [{
+        "system": "http://snomed.info/sct",
+        "code": "", //TODO
+        "display": ""
+      }],
+      "text": ""
+    }],
+    "actor" : {
+      "reference": "Patient/cpvPat" //TODO Reference(Patient|Practitioner|RelatedPerson|Device|
+    } // Person, Location/HealthcareService or Device
+  },
+    {
+      "type" : [{// Role of participant in the appointment
+        "coding": [{
+          "system": "http://snomed.info/sct",
+          "code": "", //TODO
+          "display": ""
+        }],
+        "text": ""
+      }],
+      "actor" : {
+        "reference": "Patient/cpvPra" //TODO
+      }
+    }
+  ]
 }

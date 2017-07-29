@@ -1,0 +1,98 @@
+{
+  "resourceType" : "ProcedureRequest",
+  "id": "ProcedureRequestTemplate",
+  "basedOn" : [{ // What request fulfills
+    "reference": "CarePlan/cpvCar" //TODO
+  }],
+  "replaces" : [{ // Request(s) replaced by this request
+    "reference": "ProcedureRequest/cpvPro" //TODO
+  }],
+  "status" : "<code>", // R!  draft | active | suspended | completed | entered-in-error | cancelled
+  "intent" : "<code>", // R!  proposal | plan | order +
+  "priority" : "<code>", // routine | urgent | asap | stat
+  "category" : [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "", //TODO
+      "display": ""
+    }],
+    "text": ""
+  }], // Classification of procedure
+  "code" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "", //TODO
+      "display": ""
+    }],
+    "text": ""
+  }, // R!  What is being requested/ordered
+  "subject" : {  //  Individual the service is ordered for
+    "reference": "Patient/cpvPat" //TODO
+  },
+  "occurrenceDateTime" : "<dateTime>",
+  "occurrencePeriod" : {
+    "start": "",
+    "end": ""
+  },
+  "occurrenceTiming" : {
+    "resourceType" : "Timing",
+    // from Element: extension
+    "event" : ["<dateTime>"], // When the event occurs
+    "repeat" : { // When the event is to occur
+      // bounds[x]: Length/Range of lengths, or (Start and/or end) limits. One of these 3:
+      "boundsDuration" : {
+        "value" : <decimal>, // Numerical value (with implicit precision)
+        "unit" : "<string>", // Unit representation
+        "system" : "<uri>", // C? System that defines coded unit form
+        "code" : "<code>" // Coded form of the unit
+      },
+      "boundsPeriod" : {
+        "start": "",
+        "end": ""
+      },
+      "count" : <integer>, // Number of times to repeat
+      "duration" : <decimal>, // How long when it happens
+      "durationUnit" : "<code>", // s | min | h | d | wk | mo | a - unit of time (UCUM)
+      "frequency" : <integer>, // Event occurs frequency times per period
+      "period" : <decimal>, // Event occurs frequency times per period
+      "periodUnit" : "<code>", // s | min | h | d | wk | mo | a - unit of time (UCUM)
+      "dayOfWeek" : ["<code>"], // mon | tue | wed | thu | fri | sat | sun
+      "timeOfDay" : ["<time>"], // Time of day for action
+      "when" : ["<code>"], // Regular life events the event is tied to
+    },
+    "code" : {
+      "coding": [{
+        "system": "http://snomed.info/sct",
+        "code": "", //TODO
+        "display": "" // BID | TID | QID | AM | PM | QD | QOD | Q4H | Q6H +
+      }],
+      "text": ""
+
+    }
+  },
+  "requester" : { // Who/what is requesting procedure or diagnostic
+    "agent" : {
+      "reference": "Practitioner/cpvPra" //TODO
+    }
+  },
+  "performerType" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "", //TODO
+      "display": ""
+    }],
+    "text": ""
+  }, // Performer role
+  "performer" : {  // Requested perfomer
+    "reference": "Practitioner/cpvPra" //TODO
+  },
+  "reasonCode" : [{// Explanation/Justification for test
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "", //TODO
+      "display": ""
+    }],
+    "text": ""
+  }],
+  "note" : [{ Annotation }] // Comments
+}
