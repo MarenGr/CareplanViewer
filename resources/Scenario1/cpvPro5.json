@@ -36,7 +36,7 @@
         "end": "ongoing"
       },
       "frequency" : 1, // Event occurs frequency times per period
-      "period" : "year", // Event occurs frequency times per period
+      "period" : 1, // Event occurs frequency times per period
       "periodUnit" : "a" // s | min | h | d | wk | mo | a - unit of time (UCUM)
     },
     "code" : {

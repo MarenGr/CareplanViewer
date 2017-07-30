@@ -38,9 +38,9 @@
         "start": "2016-11-05",
         "end": "2017-11-05"
       },
-      "frequency" : 4, // Event occurs frequency times per period
-      "period" : "year", // Event occurs frequency times per period
-      "periodUnit" : "a" // s | min | h | d | wk | mo | a - unit of time (UCUM)
+      "frequency" : 1, // Event occurs frequency times per period
+      "period" : "3", // Event occurs frequency times per period
+      "periodUnit" : "mo" // s | min | h | d | wk | mo | a - unit of time (UCUM)
     },
     "code" : {
       "coding": [{

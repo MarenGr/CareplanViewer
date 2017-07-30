@@ -1,0 +1,68 @@
+{
+  "resourceType": "DeviceRequest",
+  "id": "cpvDev1",
+  "status": "active",
+  "intent": "plan",
+  "priority": "routine",
+  "text": {
+    "status": "generated",
+    "div": "Daily weight measurements"
+  },
+  "codeCodeableConcept": {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "19892000",
+      "display" : "Scale"
+    }],
+    "text" : ""
+  },
+  "subject": {
+    "reference": "Patient/cpvPat3"
+  },
+  "requester": {
+    "agent": {
+      "reference": "Practitioner/cpvPra2"
+    }
+  },
+  "performer": {
+    "reference": "Patient/cpvPat3"
+  },
+  "performerType": {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "116154003",
+      "display" : "Patient"
+    }],
+    "text" : "Patient"
+  },
+  "occurrenceTiming": {
+    "repeat" : { // When the event is to occur
+      // bounds[x]: Length/Range of lengths, or (Start and/or end) limits. One of these 3:
+      "boundsPeriod" : {
+        "start": "", //TODO
+        "end": "ongoing"
+      },
+      "frequency" : 1, // Event occurs frequency times per period
+      "period" : 1, // Event occurs frequency times per period
+      "periodUnit" : "d", // s | min | h | d | wk | mo | a - unit of time (UCUM)
+      "when": ["before Breakfast"] // Regular life events the event is tied to
+    },
+    "code" : {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "69620002",
+        "display" : "Daily"
+      }],
+      "text" : "Daily"
+    }
+  },
+  "reasonCode" : [{
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "84114007",
+      "display" : "Cardiac insufficiency"
+    }],
+    "text" : "Cardiac insufficiency"
+  }],
+  "note": "Inform Practitioner in case of unusual increase of weight (1kg/night, >2kg/2-3 days, >2.5kg/week)"
+}

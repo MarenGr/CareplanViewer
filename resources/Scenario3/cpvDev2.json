@@ -1,0 +1,66 @@
+{
+  "resourceType": "DeviceRequest",
+  "id": "cpvDev2",
+  "status": "draft",
+  "intent": "plan",
+  "priority": "routine",
+  "text": {
+    "status": "generated",
+    "div": "Daily weight measurements"
+  },
+  "codeCodeableConcept": {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "19892000",
+      "display" : "Scale"
+    }],
+    "text" : ""
+  },
+  "subject": {
+    "reference": "Patient/cpvPat3"
+  },
+  "requester": {
+    "agent": {
+      "reference": "Practitioner/cpvPra2"
+    }
+  },
+  "performer": {
+     "reference": "Patient/cpvPat3"
+  },
+  "performerType": {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "116154003",
+      "display" : "Patient"
+    }],
+    "text" : "Patient"
+  },
+  "occurrenceTiming": {
+    "repeat" : { // When the event is to occur
+      // bounds[x]: Length/Range of lengths, or (Start and/or end) limits. One of these 3:
+      "boundsPeriod" : {
+        "start": "", //TODO
+        "end": "ongoing"
+      },
+      "frequency" : 1, // Event occurs frequency times per period
+      "period" : 1, // Event occurs frequency times per period
+      "periodUnit" : "d" // s | min | h | d | wk | mo | a - unit of time (UCUM)
+      },
+    "code" : {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "69620002",
+        "display" : "Daily"
+      }],
+      "text" : "Daily"
+    }
+  },
+  "reasonCode" : [{
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "44054006", //TODO
+      "display" : "Diabetes mellitus type 2"
+    }],
+    "text" : "Diabetes mellitus type 2"
+  }],
+}

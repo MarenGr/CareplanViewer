@@ -26,7 +26,7 @@
   "subject" : {  //  Individual the service is ordered for
     "reference": "Patient/cpvPat1"
   },
-  "occurrenceDateTime" : "c",
+  "occurrenceDateTime" : "2015-04-02",
   "requester" : { // Who/what is requesting procedure or diagnostic
     "agent" : {
       "reference": "Practitioner/cpvPra1"

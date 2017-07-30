@@ -9,17 +9,29 @@
     "div": "" //TODO e.g. "Use activity meter at home"
   },
   "codeCodeableConcept": {
-    //TODO
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "", //TODO
+      "display" : ""
+    }],
+    "text" : ""
   },
   "subject": {
-    "reference": "Patient/" //TODO
+    "reference": "Patient/cpvPat" //TODO
   },
   "performer": {
-     "reference": "Practitioner/" //TODO
+     "reference": "Practitioner/cpvPra" //TODO
   },
   "performerType": {
-      //TODO codeable concept
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "", //TODO
+      "display" : ""
+    }],
+    "text" : ""
   },
+  "occurrenceDateTime" : "<dateTime>",
+  "occurrencePeriod" : { Period },
   "occurrenceTiming": {
     "event" : ["<dateTime>"], // When the event occurs
     "repeat" : { // When the event is to occur
@@ -42,7 +54,27 @@
       "when" : ["<code>"], // Regular life events the event is tied to
       "offset" : "<unsignedInt>" // Minutes from event (before or after)
     },
-    "code" : { CodeableConcept } // BID | TID | QID | AM | PM | QD | QOD | Q4H | Q6H +
+    "code" : {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "", //TODO
+        "display" : ""
+      }],
+      "text" : ""
+    }
   },
+  "requester": {
+    "agent": {
+      "reference": "Practitioner/cpvPra2"
+    }
+  },
+  "reasonCode" : [{
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "", //TODO
+      "display" : ""
+    }],
+    "text" : ""
+  }],
   "note": "" //TODO
 }

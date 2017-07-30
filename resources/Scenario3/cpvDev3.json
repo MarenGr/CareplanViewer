@@ -1,0 +1,45 @@
+{
+  "resourceType": "DeviceRequest",
+  "id": "cpvDevReqTemplate",
+  "status": "completed",
+  "intent": "instance-order",
+  "priority": "asap",
+  "text": {
+    "status": "generated",
+    "div": "Measurement of oxygen absorption in order to adjust exercises"
+  },
+  "codeCodeableConcept": {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "303501006",
+      "display" : "Spirometer"
+    }],
+    "text" : "Spirometer"
+  },
+  "subject": {
+    "reference": "Patient/cpvPat3"
+  },
+  "requester": {
+    "agent": {
+      "reference": "Practitioner/cpvPra2"
+    }
+  },
+  "performerType": {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "6816002",
+      "display" : "Specialised nurse"
+    }],
+    "text" : "Specialised nurse"
+  },
+  "occurrenceDateTime" : "", //TODO,
+  "reasonCode" : [{
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "84114007",
+      "display" : "Cardiac insufficiency"
+    }],
+    "text" : "Cardiac insufficiency"
+  }],
+  "note": "Measurement of oxygen absorption in order to adjust exercises"
+}
