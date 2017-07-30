@@ -1,0 +1,43 @@
+{
+  "resourceType" : "ProcedureRequest",
+  "id": "cpvPro7",
+  "basedOn" : [{ // What request fulfills
+    "reference": "CarePlan/cpvCar11"
+  }],
+  "status" : "completed", // R!  draft | active | suspended | completed | entered-in-error | cancelled
+  "intent" : "instance-order", // R!  proposal | plan | order +
+  "priority" : "asap", // routine | urgent | asap | stat
+  "category" : [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "103693007",
+      "display": "Diagnostic procedure"
+    }],
+    "text": "Diagnostic procedure"
+  }], // Classification of procedure
+  "code" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "252478000",
+      "display": "6-minute walk test"
+    }],
+    "text": "6-minute walk test"
+  }, // R!  What is being requested/ordered
+  "subject" : {  //  Individual the service is ordered for
+    "reference": "Patient/cpvPat3"
+  },
+  "occurrenceDateTime" : "2016-10-15",
+  "requester" : { // Who/what is requesting procedure or diagnostic
+    "agent" : {
+      "reference": "Practitioner/cpvPra2"
+    }
+  },
+  "reasonCode" : [{// Explanation/Justification for test
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "84114007",
+      "display": "Cardiac insufficiency"
+    }],
+    "text": "Cardiac insufficiency"
+  }]
+}

@@ -1,0 +1,55 @@
+{
+  "resourceType" : "ProcedureRequest",
+  "id": "cpvPro12",
+  "basedOn" : [{ // What request fulfills
+    "reference": "CarePlan/cpvCar9"
+  }],
+  "status" : "completed", // R!  draft | active | suspended | completed | entered-in-error | cancelled
+  "intent" : "order", // R!  proposal | plan | order +
+  "priority" : "asap", // routine | urgent | asap | stat
+  "category" : [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "409073007",
+      "display": "Education"
+    }],
+    "text": "Education"
+  }], // Classification of procedure
+  "code" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "385805005",
+      "display": "Diabetic care education"
+    }],
+    "text": "Diabetic care education"
+  }, // R!  What is being requested/ordered
+  "subject" : {  //  Individual the service is ordered for
+    "reference": "Patient/cpvPat3"
+  },
+  "occurrenceDateTime" : "2017-06-20",
+
+  "requester" : { // Who/what is requesting procedure or diagnostic
+    "agent" : {
+      "reference": "Practitioner/cpvPra3"
+    }
+  },
+  "performerType" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "309350005",
+      "display": "Diabetologist"
+    }],
+    "text": "Diabetologist"
+  }, // Performer role
+  "performer" : {
+    "reference" : "Practitioner/cpvPra3"
+  },
+  "reasonCode" : [{
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "44054006",
+      "display" : "Diabetes mellitus type 2"
+    }],
+    "text" : "Diabetes mellitus type 2"
+  }]
+}

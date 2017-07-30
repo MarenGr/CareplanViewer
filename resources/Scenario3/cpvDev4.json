@@ -1,0 +1,80 @@
+{
+  "resourceType": "DeviceRequest",
+  "id": "cpvDev4",
+  "status": "active",
+  "intent": "proposal",
+  "priority": "routine",
+  "text": {
+    "status": "generated",
+    "div": "Use body elastic exerciser at home"
+  },
+  "codeCodeableConcept": {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "467120005",
+      "display" : "Body elastic exerciser"
+    }],
+    "text" : "Body elastic exerciser"
+  },
+  "subject": {
+    "reference": "Patient/cpvPat3"
+  },
+  "performer": {
+     "reference": "Patient/cpvPat3"
+  },
+  "performerType": {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "116154003",
+      "display" : "Patient"
+    }],
+    "text" : "Patient"
+  },
+  "occurrenceTiming": {
+    "event": [
+      "<dateTime>"
+    ],
+    // When the event occurs
+    "repeat": {
+      // When the event is to occur
+      "boundsPeriod": {
+        "start": "2016-10-12",
+        "end": "ongoing"
+      },
+      "duration": 30,
+      // How long when it happens
+      "durationUnit": "min",
+      // s | min | h | d | wk | mo | a - unit of time (UCUM)
+      "frequency": 3,
+      // Event occurs frequency times per period
+      "period": 1,
+      // Event occurs frequency times per period
+      "periodUnit": "wk"
+      // s | min | h | d | wk | mo | a - unit of time (UCUM)
+    },
+    "code": {
+      "coding": [
+        {
+          "system": "http://snomed.info/sct",
+          "code": "396113003",
+          "display": "3-4x /wk"
+          // BID | TID | QID | AM | PM | QD | QOD | Q4H | Q6H +
+        }
+      ],
+      "text": "Three to four times a week"
+    }
+  },
+  "requester": {
+    "agent": {
+      "reference": "Practitioner/cpvPra2"
+    }
+  },
+  "reasonCode" : [{// Explanation/Justification for test
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "84114007",
+      "display": "Cardiac insufficiency"
+    }],
+    "text": "Cardiac insufficiency"
+  }]
+}

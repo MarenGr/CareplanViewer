@@ -10,17 +10,17 @@
     "reference": "Patient/cpvPat3"
   },
   "status": "active",
-  "category": //TODO
+  "category": "",//TODO
   "period": {
-    "start": "2016-10-12", //TODO
-    "end": "2016-11-24"
+    "start": "2017-06-10",
+    "end": "" //TODO: as long as smoking cessation assistance takes
   },
   "addresses": [
     {
       "reference": "cpvCon8"
     }
   ],
-  "goal": //TODO
+  "goal": {},//TODO
   "description": "CP description",
   "text": {
     "status": "generated",
@@ -28,22 +28,16 @@
   },
   "activity": [
     {
-      "reference": //TODO
+      "reference": "ProcedureRequest/cpvPro8"  //active physical exercise
     },
     {
-      "reference": //TODO
+      "reference": "ProcedureRequest/cpvPro10"  //smoking cessation assistance
     },
     {
-      "reference": //TODO
+      "reference": "ProcedureRequest/cpvPro12"  //dietary education
     },
     {
-      "reference": //TODO
-    },
-    {
-      "reference": //TODO
-    },
-    {
-      "reference": //TODO
+      "reference": "ProcedureRequest/cpvPro13"  //diabetic care education
     }
   ]
 }

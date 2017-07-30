@@ -1,6 +1,6 @@
 {
   "resourceType": "CarePlan",
-  "id": "cpvCar2",
+  "id": "cpvCar11",
   "author": [
     {
       "reference": "Practitioner/cpvPra2"
@@ -10,17 +10,12 @@
     "reference": "Patient/cpvPat3"
   },
   "status": "active",
-  "category": //TODO
+  "category": "",//TODO
   "period": {
-    "start": "2016-10-12", //TODO
-    "end": "2016-11-24"
+    "start": "2016-10-12",
+    "end": "2017-10-12"
   },
-  "addresses": [
-    {
-      "reference": "cpvCon8"
-    }
-  ],
-  "goal": //TODO
+  "goal": {},//TODO
   "description": "CP description",
   "text": {
     "status": "generated",
@@ -28,22 +23,28 @@
   },
   "activity": [
     {
-      "reference": //TODO
+      "reference": "DeviceRequest/cpvDev1" //daily weight measurements
     },
     {
-      "reference": //TODO
+      "reference": "DeviceRequest/cpvDev3" //spirometer to measure oxygen intake
     },
     {
-      "reference": //TODO
+      "reference": "DeviceRequest/cpvDev4" //body elastic exerciser
     },
     {
-      "reference": //TODO
+      "reference": "NutritionOrder/cpvNut4" //avoid excessive fluid intatke (+alcohol restriction)
     },
     {
-      "reference": //TODO
+      "reference": "ProcedureRequest/cpvPro6" //Counselling about alcohol consumption
     },
     {
-      "reference": //TODO
+      "reference": "ProcedureRequest/cpvPro7" //6-minute walk test
+    },
+    {
+      "reference": "ProcedureRequest/cpvPro11" //active physical exercise
+    },
+    {
+      "reference": "ProcedureRequest/cpvPro9" //smoking cessation assistance
     }
   ]
 }

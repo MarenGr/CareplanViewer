@@ -32,7 +32,7 @@
     }],
     "text" : "Specialised nurse"
   },
-  "occurrenceDateTime" : "", //TODO,
+  "occurrenceDateTime" : "2016-10-15",
   "reasonCode" : [{
     "coding" : [{
       "system" : "http://snomed.info/sct",
