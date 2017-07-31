@@ -42,7 +42,7 @@
         "repeat" : { // When the event is to occur
           // bounds[x]: Length/Range of lengths, or (Start and/or end) limits. One of these 3:
           "boundsPeriod" : {
-            "start" : "", //TODO (4 weeks after start of Careplan
+            "start" : "2014-04-09",
             "end" : "ongoing"
           },
           "frequency" : 1, // Event occurs frequency times per period

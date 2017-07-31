@@ -10,40 +10,58 @@
     "reference": "Patient/cpvPat3"
   },
   "status": "active",
-  "category": //TODO
+  "category": "",//TODO
   "period": {
-    "start": "2016-10-12", //TODO
-    "end": "2016-11-24"
+    "start": "2014-03-12",
+    "end": "ongoing"
   },
   "addresses": [
     {
       "reference": "cpvCon9"
     }
   ],
-  "goal": //TODO
-  "description": "CP description",
+  "goal": {},//TODO
+  "description": "Clinical treatment for heart insufficiency",
   "text": {
     "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Template 1</p></div>"
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Clinical treatment for heart insufficiency</p></div>"
   },
   "activity": [
     {
-      "reference": //TODO
+      "reference": "ProcedureRequest/cpvPro17" //labortatoy controls (initial)
     },
     {
-      "reference": //TODO
+      "reference": "ProcedureRequest/cpvPro18" //labortatoy controls (continueing)
     },
     {
-      "reference": //TODO
+      "reference": "ProcedureRequest/cpvPro15" //physical examinations (initial)
     },
     {
-      "reference": //TODO
+      "reference": "ProcedureRequest/cpvPro16" //physical examinations (continueing)
     },
     {
-      "reference": //TODO
+      "reference": "ProcedureRequest/cpvPro14" //quality of life questionnaire
     },
     {
-      "reference": //TODO
+      "reference": "MedicationRequest/cpvMedReq9" //Lisinopril (initial)
+    },
+    {
+      "reference": "MedicationRequest/cpvMedReq10" //Lisinopril (increased dosis)
+    },
+    {
+      "reference": "MedicationRequest/cpvMedReq11" //Lisinopril (longterm)
+    },
+    {
+      "reference": "MedicationRequest/cpvMedReq12" //Bisoprolol (initial)
+    },
+    {
+      "reference": "MedicationRequest/cpvMedReq13" //Bisoprolol (increased dosis)
+    },
+    {
+      "reference": "MedicationRequest/cpvMedReq14" //Bisoprolol (further increased dosis)
+    },
+    {
+      "reference": "MedicationRequest/cpvMedReq15" //Bisoprolol (longterm)
     }
   ]
 }

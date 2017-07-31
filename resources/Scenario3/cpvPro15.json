@@ -1,12 +1,12 @@
 {
   "resourceType" : "ProcedureRequest",
-  "id": "cpvPro14",
+  "id": "cpvPro15",
   "basedOn" : [{ // What request fulfills
     "reference": "CarePlan/cpvCar12"
   }],
-  "status" : "active", // R!  draft | active | suspended | completed | entered-in-error | cancelled
-  "intent" : "plan", // R!  proposal | plan | order +
-  "priority" : "routine", // routine | urgent | asap | stat
+  "status" : "completed", // R!  draft | active | suspended | completed | entered-in-error | cancelled
+  "intent" : "instance-order", // R!  proposal | plan | order +
+  "priority" : "urgent", // routine | urgent | asap | stat
   "category" : [{
     "coding": [{
       "system": "http://snomed.info/sct",
@@ -18,32 +18,34 @@
   "code" : {
     "coding": [{
       "system": "http://snomed.info/sct",
-      "code": "273446001",
-      "display": "EORTC - Quality of life questionnaire"
+      "code": "5880005",
+      "display": "Physical examination"
     }],
-    "text": "EORTC - Quality of life questionnaire"
+    "text": "Physical examination"
   }, // R!  What is being requested/ordered
   "subject" : {  //  Individual the service is ordered for
     "reference": "Patient/cpvPat3"
   },
   "occurrenceTiming" : {
     "resourceType" : "Timing",
+    // from Element: extension
     "repeat" : { // When the event is to occur
+      // bounds[x]: Length/Range of lengths, or (Start and/or end) limits. One of these 3:
       "boundsPeriod" : {
-        "start": "2014-03-12",
-        "end": "ongoing"
+        "start" : "2014-03-12",
+        "end" : "2014-06-12"
       },
-      "frequency" : 2, // Event occurs frequency times per period
+      "frequency" : 1, // Event occurs frequency times per period
       "period" : 1, // Event occurs frequency times per period
-      "periodUnit" : "a" // s | min | h | d | wk | mo | a - unit of time (UCUM)
-      },
+      "periodUnit" : "wk" // s | min | h | d | wk | mo | a - unit of time (UCUM)
+    },
     "code" : {
       "coding": [{
         "system": "http://snomed.info/sct",
-        "code": "307456009",
-        "display": "Twice per year" // BID | TID | QID | AM | PM | QD | QOD | Q4H | Q6H +
+        "code": "14497002",
+        "display": "Weekly" // BID | TID | QID | AM | PM | QD | QOD | Q4H | Q6H +
       }],
-      "text": "Twice per year"
+      "text": "Weekly"
 
     }
   },
@@ -55,10 +57,13 @@
   "performerType" : {
     "coding": [{
       "system": "http://snomed.info/sct",
-      "code": "224577009",
-      "display": "Healthcare assistant"
+      "code": "22515006",
+      "display": "Medical assistant"
     }],
-    "text": "Healthcare assistant"
+    "text": "Medical assistant"
+  }, // Performer role
+  "performer" : {  // Requested perfomer
+    "reference": "Practitioner/cpvPra3"
   },
   "reasonCode" : [{
     "coding" : [{

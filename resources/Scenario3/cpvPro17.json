@@ -1,0 +1,70 @@
+{
+  "resourceType" : "ProcedureRequest",
+  "id": "cpvPro17",
+  "basedOn" : [{ // What request fulfills
+    "reference": "CarePlan/cpvCar12"
+  }],
+  "status" : "completed", // R!  draft | active | suspended | completed | entered-in-error | cancelled
+  "intent" : "instance-order", // R!  proposal | plan | order +
+  "priority" : "urgent", // routine | urgent | asap | stat
+  "category" : [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "103693007",
+      "display": "Diagnostic procedure"
+    }],
+    "text": "Diagnostic procedure"
+  }], // Classification of procedure
+  "code" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "15220000",
+      "display": "Laboratory test"
+    }],
+    "text": "Laboratory test"
+  }, // R!  What is being requested/ordered
+  "subject" : {  //  Individual the service is ordered for
+    "reference": "Patient/cpvPat3"
+  },
+  "occurrenceTiming" : {
+    "resourceType" : "Timing",
+    "repeat" : { // When the event is to occur
+      // bounds[x]: Length/Range of lengths, or (Start and/or end) limits. One of these 3:
+      "boundsDuration" : {
+        "value" : 3, // Numerical value (with implicit precision)
+        "unit" : "months", // Unit representation
+        "system" : "http://snomed.info/sct", // C? System that defines coded unit form
+        "code" : "months" // Coded form of the unit
+      },
+      "frequency" : 1, // Event occurs frequency times per period
+      "period" : 2, // Event occurs frequency times per period
+      "periodUnit" : "wk", // s | min | h | d | wk | mo | a - unit of time (UCUM)
+      "dayOfWeek" : ["wed"] // mon | tue | wed | thu | fri | sat | sun
+      },
+    "code" : {
+      "coding": [{
+        "system": "http://snomed.info/sct",
+        "code": "20050000",
+        "display": "Biweekly" // BID | TID | QID | AM | PM | QD | QOD | Q4H | Q6H +
+      }],
+      "text": "Biweekly"
+
+    }
+  },
+  "requester" : { // Who/what is requesting procedure or diagnostic
+    "agent" : {
+      "reference": "Practitioner/cpvPra3"
+    }
+  },
+  "reasonCode" : [{
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "84114007",
+      "display" : "Cardiac insufficiency"
+    }],
+    "text" : "Cardiac insufficiency"
+  }],
+  "note" : [{
+    "text" : "1-2 weeks after every dosage increase"
+  }] // Comments
+}

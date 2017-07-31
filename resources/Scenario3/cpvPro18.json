@@ -1,11 +1,14 @@
 {
   "resourceType" : "ProcedureRequest",
-  "id": "cpvPro14",
+  "id": "cpvPro17",
   "basedOn" : [{ // What request fulfills
     "reference": "CarePlan/cpvCar12"
   }],
+  "replaces" : [{ // Request(s) replaced by this request
+    "reference": "ProcedureRequest/cpvPro17"
+  }],
   "status" : "active", // R!  draft | active | suspended | completed | entered-in-error | cancelled
-  "intent" : "plan", // R!  proposal | plan | order +
+  "intent" : "instance-order", // R!  proposal | plan | order +
   "priority" : "routine", // routine | urgent | asap | stat
   "category" : [{
     "coding": [{
@@ -18,10 +21,10 @@
   "code" : {
     "coding": [{
       "system": "http://snomed.info/sct",
-      "code": "273446001",
-      "display": "EORTC - Quality of life questionnaire"
+      "code": "15220000",
+      "display": "Laboratory test"
     }],
-    "text": "EORTC - Quality of life questionnaire"
+    "text": "Laboratory test"
   }, // R!  What is being requested/ordered
   "subject" : {  //  Individual the service is ordered for
     "reference": "Patient/cpvPat3"
@@ -29,13 +32,15 @@
   "occurrenceTiming" : {
     "resourceType" : "Timing",
     "repeat" : { // When the event is to occur
+      // bounds[x]: Length/Range of lengths, or (Start and/or end) limits. One of these 3:
       "boundsPeriod" : {
-        "start": "2014-03-12",
-        "end": "ongoing"
+        "start" : "2014-06-12",
+        "end" : ""
       },
-      "frequency" : 2, // Event occurs frequency times per period
-      "period" : 1, // Event occurs frequency times per period
-      "periodUnit" : "a" // s | min | h | d | wk | mo | a - unit of time (UCUM)
+      "frequency" : 1, // Event occurs frequency times per period
+      "period" : 6, // Event occurs frequency times per period
+      "periodUnit" : "mo", // s | min | h | d | wk | mo | a - unit of time (UCUM)
+      "dayOfWeek" : ["wed"] // mon | tue | wed | thu | fri | sat | sun
       },
     "code" : {
       "coding": [{
@@ -51,14 +56,6 @@
     "agent" : {
       "reference": "Practitioner/cpvPra3"
     }
-  },
-  "performerType" : {
-    "coding": [{
-      "system": "http://snomed.info/sct",
-      "code": "224577009",
-      "display": "Healthcare assistant"
-    }],
-    "text": "Healthcare assistant"
   },
   "reasonCode" : [{
     "coding" : [{
