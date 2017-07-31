@@ -1,0 +1,71 @@
+{
+  "resourceType" : "ProcedureRequest",
+  "id": "cpvPro14",
+  "basedOn" : [{ // What request fulfills
+    "reference": "CarePlan/cpvCar12"
+  }],
+  "status" : "active", // R!  draft | active | suspended | completed | entered-in-error | cancelled
+  "intent" : "plan", // R!  proposal | plan | order +
+  "priority" : "routine", // routine | urgent | asap | stat
+  "category" : [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "103693007",
+      "display": "Diagnostic procedure"
+    }],
+    "text": "Diagnostic procedure"
+  }], // Classification of procedure
+  "code" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "273446001",
+      "display": "EORTC - Quality of life questionnaire"
+    }],
+    "text": "EORTC - Quality of life questionnaire"
+  }, // R!  What is being requested/ordered
+  "subject" : {  //  Individual the service is ordered for
+    "reference": "Patient/cpvPat3"
+  },
+  "occurrenceTiming" : {
+    "resourceType" : "Timing",
+    "repeat" : { // When the event is to occur
+      "boundsPeriod" : {
+        "start": "",
+        "end": ""
+      },
+      "frequency" : 2, // Event occurs frequency times per period
+      "period" : 1, // Event occurs frequency times per period
+      "periodUnit" : "a" // s | min | h | d | wk | mo | a - unit of time (UCUM)
+      },
+    "code" : {
+      "coding": [{
+        "system": "http://snomed.info/sct",
+        "code": "307456009",
+        "display": "Twice per year" // BID | TID | QID | AM | PM | QD | QOD | Q4H | Q6H +
+      }],
+      "text": "Twice per year"
+
+    }
+  },
+  "requester" : { // Who/what is requesting procedure or diagnostic
+    "agent" : {
+      "reference": "Practitioner/cpvPra3"
+    }
+  },
+  "performerType" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "224577009",
+      "display": "Healthcare assistant"
+    }],
+    "text": "Healthcare assistant"
+  },
+  "reasonCode" : [{
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "84114007",
+      "display" : "Cardiac insufficiency"
+    }],
+    "text" : "Cardiac insufficiency"
+  }]
+}

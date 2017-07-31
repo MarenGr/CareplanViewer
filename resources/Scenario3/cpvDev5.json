@@ -1,28 +1,23 @@
 {
   "resourceType": "DeviceRequest",
-  "id": "cpvDev2",
-  "status": "draft",
-  "intent": "plan",
+  "id": "cpvDev5",
+  "status": "active",
+  "intent": "order",
   "priority": "routine",
   "text": {
     "status": "generated",
-    "div": "Daily weight measurements"
+    "div": "Self monitoring of blood sugar"
   },
   "codeCodeableConcept": {
     "coding" : [{
       "system" : "http://snomed.info/sct",
-      "code" : "19892000",
-      "display" : "Scale"
+      "code" : "337414009",
+      "display" : "Blood glucose meters"
     }],
-    "text" : ""
+    "text" : "Blood glucose meters"
   },
   "subject": {
     "reference": "Patient/cpvPat3"
-  },
-  "requester": {
-    "agent": {
-      "reference": "Practitioner/cpvPra3"
-    }
   },
   "performer": {
      "reference": "Patient/cpvPat3"
@@ -36,23 +31,30 @@
     "text" : "Patient"
   },
   "occurrenceTiming": {
+    "event" : ["<dateTime>"], // When the event occurs
     "repeat" : { // When the event is to occur
       // bounds[x]: Length/Range of lengths, or (Start and/or end) limits. One of these 3:
       "boundsPeriod" : {
-        "start": "2017-08-01",
-        "end": "ongoing"
+        "start" : "2017-08-01",
+        "end" : "ongoing"
       },
-      "frequency" : 1, // Event occurs frequency times per period
+      "frequency" : 3, // Event occurs frequency times per period
       "period" : 1, // Event occurs frequency times per period
-      "periodUnit" : "d" // s | min | h | d | wk | mo | a - unit of time (UCUM)
+      "periodUnit" : "d", // s | min | h | d | wk | mo | a - unit of time (UCUM)
+      "when" : ["before Breakfast", "before Lunch", "before Sleep"] // Regular life events the event is tied to
       },
     "code" : {
       "coding" : [{
         "system" : "http://snomed.info/sct",
-        "code" : "69620002",
-        "display" : "Daily"
+        "code" : "229798009",
+        "display" : "3x /day"
       }],
-      "text" : "Daily"
+      "text" : "Three times daily"
+    }
+  },
+  "requester": {
+    "agent": {
+      "reference": "Practitioner/cpvPra3"
     }
   },
   "reasonCode" : [{

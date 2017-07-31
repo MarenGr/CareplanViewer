@@ -1,0 +1,80 @@
+{
+  "resourceType" : "MedicationRequest",
+  "id": "cpvMedReq12",
+  "basedOn" : [{
+    "reference": "CarePlan/cpvCar12"
+  }],
+  "status": "completed", // active | on-hold | cancelled | completed | entered-in-error | stopped | draft | unknown
+  "intent" : "instance-order", // R!  proposal | plan | order | instance-order
+  "priority" : "urgent", // routine | urgent | stat | asap
+  // medication[x]: Medication to be taken. One of these 2:
+  "medicationCodeableConcept" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "386868003",
+      "display": "Bisoprolol"
+    }],
+    "text": "Bisoprolol"
+  },
+  "subject" : {
+    "reference": "Patient/cpvPat3"
+  }, //  Who or group medication request is for
+  "requester" : { // Who/What requested the Request
+    "agent" : {
+      "reference": "Practitioner/cpvPra3"
+    } // Who ordered the initial medication(s)
+  },
+  "reasonCode" : [{
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "84114007",
+      "display" : "Cardiac insufficiency"
+    }],
+    "text" : "Cardiac insufficiency"
+  }],
+  // Reason or indication for writing the prescription
+  "note" : [{ "text" : "Dosage to be increased in thriweekly intervals" }], // Information about the prescription
+  "dosageInstruction" : [
+    {
+      "resourceType" : "Dosage",
+      // Supplemental instruction - e.g. "with meals"
+      "timing" : {
+        "resourceType" : "Timing",
+        "repeat" : { // When the event is to occur
+          // bounds[x]: Length/Range of lengths, or (Start and/or end) limits. One of these 3:
+          "boundsDuration" : {
+            "value" : 3, // Numerical value (with implicit precision)
+            "unit" : "weeks", // Unit representation
+            "system" : "http://snomed.info/sct", // C? System that defines coded unit form
+            "code" : "258705008" // Coded form of the unit
+          },
+          "frequency" : 1, // Event occurs frequency times per period
+          "period" : 1, // Event occurs frequency times per period
+          "periodUnit" : "d" // s | min | h | d | wk | mo | a - unit of time (UCUM)
+          },
+        "code" : {
+          "coding": [{
+            "system": "http://snomed.info/sct",
+            "code": "229797004",
+            "display": "OD"
+          }],
+          "text": "Once daily"
+        }
+      },
+      "route" : {
+        "coding": [{
+          "system": "http://snomed.info/sct",
+          "code": "260548002",
+          "display": "Oral"
+        }],
+        "text": "Oral"
+      },
+      "doseQuantity" : {
+        "value" : 2.5,
+        "unit" : "mg", // Unit representation
+        "system" : "http://snomed.info/sct", // C? System that defines coded unit form
+        "code" : "258684004" // Coded form of the unit
+      }
+    }
+  ]
+}

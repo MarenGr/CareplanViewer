@@ -1,0 +1,123 @@
+{
+  "resourceType" : "MedicationRequest",
+  "id": "cpvMedReq8",
+  "basedOn" : [{
+    "reference": "CarePlan/cpvCar10"
+  }],
+  "status": "active", // active | on-hold | cancelled | completed | entered-in-error | stopped | draft | unknown
+  "intent" : "order", // R!  proposal | plan | order | instance-order
+  "priority" : "routine", // routine | urgent | stat | asap
+  // medication[x]: Medication to be taken. One of these 2:
+  "medicationCodeableConcept" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "714599005",
+      "display": "Oral form metformin"
+    }],
+    "text": "Oral form metformin"
+  },
+  "subject" : {
+    "reference": "Patient/cpvPat3"
+  }, //  Who or group medication request is for
+  "requester" : { // Who/What requested the Request
+    "agent" : {
+      "reference": "Practitioner/cpvPra3"
+    } // Who ordered the initial medication(s)
+  },
+  "reasonCode" : [{
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "44054006",
+      "display" : "Diabetes mellitus type 2"
+    }],
+    "text" : "Diabetes mellitus type 2"
+  }],
+  "dosageInstruction" : [
+    {
+      "resourceType" : "Dosage",
+      "text" : "with or directly after meal",
+      "timing" : {
+        "resourceType" : "Timing",
+        // from Element: extension
+        "repeat" : { // When the event is to occur
+          // bounds[x]: Length/Range of lengths, or (Start and/or end) limits. One of these 3:
+          "boundsPeriod" : {
+            "start" : "2017-08-01",
+            "end" : "ongoing"
+          },
+          "frequency" : 1, // Event occurs frequency times per period
+          "period" : 1, // Event occurs frequency times per period
+          "periodUnit" : "d", // s | min | h | d | wk | mo | a - unit of time (UCUM)
+          "when" : ["breakfast"] // Regular life events the event is tied to
+          },
+        "code" : {
+          "coding": [{
+            "system": "http://snomed.info/sct",
+            "code": "1751000175104",
+            "display": "Daily with breakfast"
+          }],
+          "text": "Daily with breakfast"
+        }
+      },
+      // How drug should enter body
+      "route" : {
+        "coding": [{
+          "system": "http://snomed.info/sct",
+          "code": "260548002",
+          "display": "Oral"
+        }],
+        "text": "Oral"
+      },
+      // dose[x]: Amount of medication per dose. One of these 2:
+      "doseQuantity" : {
+        "value" : 500,
+        "unit" : "mg", // Unit representation
+        "system" : "http://snomed.info/sct", // C? System that defines coded unit form
+        "code" : "258684004" // Coded form of the unit
+      }
+    },
+    {
+      "resourceType" : "Dosage",
+      "text" : "with or directly after meal",
+      "timing" : {
+        "resourceType" : "Timing",
+        // from Element: extension
+        "repeat" : { // When the event is to occur
+          // bounds[x]: Length/Range of lengths, or (Start and/or end) limits. One of these 3:
+          "boundsPeriod" : {
+            "start" : "2017-08-01",
+            "end" : "ongoing"
+          },
+          "frequency" : 1, // Event occurs frequency times per period
+          "period" : 1, // Event occurs frequency times per period
+          "periodUnit" : "d", // s | min | h | d | wk | mo | a - unit of time (UCUM)
+          "when" : ["dinner"] // Regular life events the event is tied to
+        },
+        "code" : {
+          "coding": [{
+            "system": "http://snomed.info/sct",
+            "code": "1771000175105",
+            "display": " Daily with dinner"
+          }],
+          "text": " Daily with dinner"
+        }
+      },
+      // How drug should enter body
+      "route" : {
+        "coding": [{
+          "system": "http://snomed.info/sct",
+          "code": "260548002",
+          "display": "Oral"
+        }],
+        "text": "Oral"
+      },
+      // dose[x]: Amount of medication per dose. One of these 2:
+      "doseRange" : {
+        "value" : 250,
+        "unit" : "mg", // Unit representation
+        "system" : "http://snomed.info/sct", // C? System that defines coded unit form
+        "code" : "258684004" // Coded form of the unit
+      }
+    }
+  ]
+}

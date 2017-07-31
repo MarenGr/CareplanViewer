@@ -98,9 +98,11 @@
       "doseRange" : { Range },
       "doseQuantity" : { Quantity(SimpleQuantity) },
       // rate[x]: Amount of medication per unit of time. One of these 3:
-      "rateRatio" : { Ratio }
-      "rateRange" : { Range }
-      "rateQuantity" : { Quantity(SimpleQuantity)}
+      "rateRatio" : {
+        // from Element: extension
+        "numerator" : { Quantity }, // Numerator value
+        "denominator" : { Quantity } // Denominator value
+      }
     }
   ], // How the medication should be taken
   "dispenseRequest" : { // Medication supply authorization

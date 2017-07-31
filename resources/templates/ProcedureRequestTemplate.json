@@ -59,6 +59,7 @@
       "dayOfWeek" : ["<code>"], // mon | tue | wed | thu | fri | sat | sun
       "timeOfDay" : ["<time>"], // Time of day for action
       "when" : ["<code>"], // Regular life events the event is tied to
+      "offset" : "<unsignedInt>"
     },
     "code" : {
       "coding": [{

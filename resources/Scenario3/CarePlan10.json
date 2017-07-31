@@ -10,40 +10,31 @@
     "reference": "Patient/cpvPat3"
   },
   "status": "active",
-  "category": //TODO
+  "category": "",//TODO
   "period": {
-    "start": "2016-10-12", //TODO
-    "end": "2016-11-24"
+    "start": "2017-08-01",
+    "end": "ongoing"
   },
   "addresses": [
     {
       "reference": "cpvCon8"
     }
   ],
-  "goal": //TODO
-  "description": "CP description",
+  "goal": {}, //TODO
+  "description": "Basic Diabetes Mellitus Type 2 Therapy",
   "text": {
     "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Template 1</p></div>"
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Basic Diabetes Mellitus Type 2 Therapy</p></div>"
   },
   "activity": [
     {
-      "reference": //TODO
+      "reference": "MedicationRequest/cpvMedReq8" //Metformin
     },
     {
-      "reference": //TODO
+      "reference": "DeviceRequest/cpvDev2" //daily weight measurements
     },
     {
-      "reference": //TODO
-    },
-    {
-      "reference": //TODO
-    },
-    {
-      "reference": //TODO
-    },
-    {
-      "reference": //TODO
+      "reference": "DeviceRequest/cpvDev5" //self monitoring of blood sugar
     }
   ]
 }
