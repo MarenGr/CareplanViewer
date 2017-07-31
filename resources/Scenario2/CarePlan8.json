@@ -9,41 +9,29 @@
   "subject": {
     "reference": "Patient/cpvPat2"
   },
-  "status": "active",
-  "category": //TODO
+  "status": "draft",
+  "category": {},//TODO
   "period": {
-    "start": "2016-10-12", //TODO
-    "end": "2016-11-24"
+    "start": "2017-07-14",
+    "end": "2018-09-15"
   },
   "addresses": [
     {
       "reference": "cpvCon7"
     }
   ],
-  "goal": //TODO
-  "description": "CP description",
+  "goal": {},//TODO
+  "description": "Psychiatric therapy due to Parkinson's disease",
   "text": {
     "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Template 1</p></div>"
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Psychiatric therapy due to Parkinson's disease</p></div>"
   },
   "activity": [
     {
-      "reference": //TODO
+      "reference": "ProcedureRequest/cpvPro21" //Acceptance of illness Questionnaire
     },
     {
-      "reference": //TODO
-    },
-    {
-      "reference": //TODO
-    },
-    {
-      "reference": //TODO
-    },
-    {
-      "reference": //TODO
-    },
-    {
-      "reference": //TODO
+      "reference": "ProcedureRequest/cpvPro22" //Regular appointments
     }
   ]
 }

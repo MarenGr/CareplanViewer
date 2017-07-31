@@ -1,0 +1,81 @@
+{
+  "resourceType" : "MedicationRequest",
+  "id": "cpvMedReq16",
+  "basedOn" : [{
+    "reference": "CarePlan/cpvCar7"
+  }],
+  "status": "draft", // active | on-hold | cancelled | completed | entered-in-error | stopped | draft | unknown
+  "intent" : "instance-order", // R!  proposal | plan | order | instance-order
+  "priority" : "routine", // routine | urgent | stat | asap
+  // medication[x]: Medication to be taken. One of these 2:
+  "medicationCodeableConcept" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "713435009",
+      "display": "Piribedil"
+    }],
+    "text": "Piribedil"
+  },
+  "subject" : {
+    "reference": "Patient/cpvPat2"
+  }, //  Who or group medication request is for
+  "requester" : { // Who/What requested the Request
+    "agent" : {
+      "reference": "Practitioner/cpvPra2"
+    } // Who ordered the initial medication(s)
+  },
+  "reasonCode": [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "49049000",
+      "display": "Parkinson's disease"
+    }],
+    "text": "Parkinson's disease"
+  }],
+  "note" : [{ "text" : "Long-term dosis. Maximum of 150mg/day" }], // Information about the prescription
+  "dosageInstruction" : [
+    {
+      "resourceType" : "Dosage",
+      // Supplemental instruction - e.g. "with meals"
+      "timing" : {
+        "resourceType" : "Timing",
+        "repeat" : {
+          "boundsPeriod" : {
+            "start" : "2017-08-12",
+            "end" : "ongoing"
+          },
+          "frequency" : 3, // Event occurs frequency times per period
+          "period" : 1, // Event occurs frequency times per period
+          "periodUnit" : "d", // s | min | h | d | wk | mo | a - unit of time (UCUM)
+          "timeOfDay" : ["18:00:00", "19:00:00", "20:00:00"], // Time of day for action
+          "when" : ["Evening"] // Regular life events the event is tied to
+        },
+        "code" : {
+          "coding": [{
+            "system": "http://snomed.info/sct",
+            "code": "229798009",
+            "display": "TD"
+          }],
+          "text": "Three times daily"
+        }
+      },
+      "route" : {
+        "coding": [{
+          "system": "http://snomed.info/sct",
+          "code": "260548002",
+          "display": "Oral"
+        }],
+        "text": "Oral"
+      },
+      "doseQuantity" : {
+        "value" : 50, // Numerical value (with implicit precision)
+        "unit" : "mg", // Unit representation
+        "system" : "http://snomed.info/sct", // C? System that defines coded unit form
+        "code" : "258684004" // Coded form of the unit
+      }
+    }
+  ],
+  "priorPrescription" : {
+    "reference" : "MedicationRequest/cpvMedReq6"
+  } // An order/prescription that is being replaced
+}

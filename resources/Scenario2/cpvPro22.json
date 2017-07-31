@@ -1,0 +1,60 @@
+{
+  "resourceType" : "ProcedureRequest",
+  "id": "cpvPro22",
+  "basedOn" : [{ // What request fulfills
+    "reference": "CarePlan/cpvCar8"
+  }],
+  "status" : "draft", // R!  draft | active | suspended | completed | entered-in-error | cancelled
+  "intent" : "proposal", // R!  proposal | plan | order +
+  "priority" : "routine", // routine | urgent | asap | stat
+  "category" : [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "24642003",
+      "display": "Psychiatry procedure or service	"
+    }],
+    "text": "Psychiatry procedure or service	"
+  }], // Classification of procedure
+  "code" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "31205005",
+      "display": "Psychiatric therapy"
+    }],
+    "text": "Psychiatric therapy"
+  }, // R!  What is being requested/ordered
+  "subject" : {  //  Individual the service is ordered for
+    "reference": "Patient/cpvPat2"
+  },
+  "occurrencePeriod" : {
+    "start": "2017-09-15",
+    "end": "2018-09-15"
+  },
+  "requester" : { // Who/what is requesting procedure or diagnostic
+    "agent" : {
+      "reference": "Practitioner/cpvPra4"
+    }
+  },
+  "performerType" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "80584001",
+      "display": "Psychiatrist"
+    }],
+    "text": "Psychiatrist"
+  }, // Performer role
+  "performer" : {  // Requested perfomer
+    "reference": "Practitioner/cpvPra3"
+  },
+  "reasonCode": [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "49049000",
+      "display": "Parkinson's disease"
+    }],
+    "text": "Parkinson's disease"
+  }],
+  "note" : [{
+    "text" : "Regular appointments strongly recommended"
+  }] // Comments
+}

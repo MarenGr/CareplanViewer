@@ -3,7 +3,7 @@
   "id": "cpvCar6",
   "author": [
     {
-      "reference": "Practitioner/cpvPra6"
+      "reference": "Practitioner/cpvPra2"
     }
   ],
   "subject": {
@@ -21,10 +21,10 @@
     }
   ],
   "goal": {},//TODO
-  "description": "CP description",
+  "description": "Fracture prophylaxis",
   "text": {
     "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Template 1</p></div>"
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Fracture prophylaxis</p></div>"
   },
   "activity": [
     {

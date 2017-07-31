@@ -1,0 +1,80 @@
+{
+  "resourceType" : "MedicationRequest",
+  "id": "cpvMedReq2",
+  "basedOn" : [{
+    "reference": "CarePlan/cpvCar7"
+  }],
+  "status": "completed", // active | on-hold | cancelled | completed | entered-in-error | stopped | draft | unknown
+  "intent" : "instance-order", // R!  proposal | plan | order | instance-order
+  "priority" : "urgent", // routine | urgent | stat | asap
+  // medication[x]: Medication to be taken. One of these 2:
+  "medicationCodeableConcept" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "713435009",
+      "display": "Piribedil"
+    }],
+    "text": "Piribedil"
+  },
+  "subject" : {
+    "reference": "Patient/cpvPat2"
+  }, //  Who or group medication request is for
+  "requester" : { // Who/What requested the Request
+    "agent" : {
+      "reference": "Practitioner/cpvPra2"
+    } // Who ordered the initial medication(s)
+  },
+  "reasonCode": [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "49049000",
+      "display": "Parkinson's disease"
+    }],
+    "text": "Parkinson's disease"
+  }],
+  "note" : [{ "text" : "Initial dosage. To be increased every 2 weeks" }], // Information about the prescription
+  "dosageInstruction" : [
+    {
+      "resourceType" : "Dosage",
+      // Supplemental instruction - e.g. "with meals"
+      "timing" : {
+        "resourceType" : "Timing",
+        "repeat" : {
+          "boundsDuration" : {
+            "value" : 2, // Numerical value (with implicit precision)
+            "unit" : "wk", // Unit representation
+            "system" : "http://snomed.info/sct", // C? System that defines coded unit form
+            "code" : "258705008" // Coded form of the unit
+          },
+          "frequency" : 1, // Event occurs frequency times per period
+          "period" : 1, // Event occurs frequency times per period
+          "periodUnit" : "d", // s | min | h | d | wk | mo | a - unit of time (UCUM)
+          "timeOfDay" : ["19:00:00"], // Time of day for action
+          "when" : ["Evening"] // Regular life events the event is tied to
+        },
+        "code" : {
+          "coding": [{
+            "system": "http://snomed.info/sct",
+            "code": "396147000",
+            "display": "qPM"
+          }],
+          "text": "Once a day, in the evening"
+        }
+      },
+      "route" : {
+        "coding": [{
+          "system": "http://snomed.info/sct",
+          "code": "260548002",
+          "display": "Oral"
+        }],
+        "text": "Oral"
+      },
+      "doseQuantity" : {
+        "value" : 50, // Numerical value (with implicit precision)
+        "unit" : "mg", // Unit representation
+        "system" : "http://snomed.info/sct", // C? System that defines coded unit form
+        "code" : "258684004" // Coded form of the unit
+      }
+    }
+  ]
+}
