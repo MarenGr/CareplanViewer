@@ -1,0 +1,71 @@
+{
+  "resourceType" : "ProcedureRequest",
+  "id": "cpvPro19",
+  "basedOn" : [{ // What request fulfills
+    "reference": "CarePlan/cpvCar6"
+  }],
+  "status" : "active", // R!  draft | active | suspended | completed | entered-in-error | cancelled
+  "intent" : "plan", // R!  proposal | plan | order +
+  "priority" : "routine", // routine | urgent | asap | stat
+  "category" : [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "103693007",
+      "display": "Diagnostic procedure"
+    }],
+    "text": "Diagnostic procedure"
+  }], // Classification of procedure
+  "code" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "414191008",
+      "display": "Fall risk assessment"
+    }],
+    "text": "Fall risk assessment"
+  }, // R!  What is being requested/ordered
+  "subject" : {  //  Individual the service is ordered for
+    "reference": "Patient/cpvPat2"
+  },
+  "occurrenceTiming" : {
+    "resourceType" : "Timing",
+    "repeat" : {
+      "boundsPeriod" : {
+        "start": "2004-01-13",
+        "end": "ongoing"
+      },
+      "frequency" : 1, // Event occurs frequency times per period
+      "period" : 1, // Event occurs frequency times per period
+      "periodUnit" : "a" // s | min | h | d | wk | mo | a - unit of time (UCUM)
+    },
+    "code" : {
+      "coding": [{
+        "system": "http://snomed.info/sct",
+        "code": "53281000",
+        "display": "Annual"
+      }],
+      "text": "Annual"
+
+    }
+  },
+  "requester" : { // Who/what is requesting procedure or diagnostic
+    "agent" : {
+      "reference": "Practitioner/cpvPra4"
+    }
+  },
+  "performerType" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "62247001",
+      "display": "General practitioner"
+    }],
+    "text": "General practitioner"
+  },
+  "reasonCode" : [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "64859006",
+      "display": "Osteoporosis"
+    }],
+    "text": "Osteoporosis"
+  }]
+}

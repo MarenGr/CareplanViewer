@@ -84,8 +84,46 @@
       "text" : ""
     }, // Type of supplement product requested
     "productName" : "<string>", // Product or brand name of the nutritional supplement
-    "schedule" : [{ Timing }], // Scheduled frequency of supplement
-    "quantity" : { Quantity(SimpleQuantity) }, // Amount of the nutritional supplement
+    "schedule" : [{
+      "resourceType" : "Timing",
+      // from Element: extension
+      "event" : ["<dateTime>"], // When the event occurs
+      "repeat" : { // When the event is to occur
+        // bounds[x]: Length/Range of lengths, or (Start and/or end) limits. One of these 3:
+        "boundsDuration" : { Duration },
+        "boundsRange" : { Range },
+        "boundsPeriod" : { Period },
+        "count" : <integer>, // Number of times to repeat
+        "countMax" : <integer>, // Maximum number of times to repeat
+        "duration" : <decimal>, // How long when it happens
+        "durationMax" : <decimal>, // How long when it happens (Max)
+        "durationUnit" : "<code>", // s | min | h | d | wk | mo | a - unit of time (UCUM)
+        "frequency" : <integer>, // Event occurs frequency times per period
+        "frequencyMax" : <integer>, // Event occurs up to frequencyMax times per period
+        "period" : <decimal>, // Event occurs frequency times per period
+        "periodMax" : <decimal>, // Upper limit of period (3-4 hours)
+        "periodUnit" : "<code>", // s | min | h | d | wk | mo | a - unit of time (UCUM)
+        "dayOfWeek" : ["<code>"], // mon | tue | wed | thu | fri | sat | sun
+        "timeOfDay" : ["<time>"], // Time of day for action
+        "when" : ["<code>"], // Regular life events the event is tied to
+        "offset" : "<unsignedInt>" // Minutes from event (before or after)
+      },
+      "code" : {
+        "coding": [{
+          "system": "http://snomed.info/sct",
+          "code": "", //TODO
+          "display": "" //TODO  BID | TID | QID | AM | PM | QD | QOD | Q4H | Q6H +
+        }],
+        "text": "<string>"
+      }
+    }], // Scheduled frequency of supplement
+    "quantity" : {
+      "value" : <decimal>, // Numerical value (with implicit precision)
+      "comparator" : "<code>", // < | <= | >= | > - how to understand the value
+      "unit" : "<string>", // Unit representation
+      "system" : "http://snomed.info/sct", // C? System that defines coded unit form
+      "code" : "<code>" // Coded form of the unit
+    }, // Amount of the nutritional supplement
     "instruction" : "<string>" // Instructions or additional information about the oral supplement
   }],
   "enteralFormula" : { // C? Enteral formula components

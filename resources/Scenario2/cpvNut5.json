@@ -1,0 +1,60 @@
+{
+  "resourceType" : "NutritionOrder",
+  "id": "cpvNut5",
+  "status" : "active", // proposed | draft | planned | requested | active | on-hold | completed | cancelled | entered-in-error
+  "patient" : {
+    "reference": "Patient/cvpPat2"
+  }, // R!  The person who requires the diet, formula or nutritional supplement
+  "orderer" : {
+    "reference": "Practitioner/cpvPra4"
+  }, // Who ordered the diet, formula or nutritional supplement
+  "foodPreferenceModifier" : [{
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "228026001",
+      "display" : "High calcium food"
+    }],
+    "text" : "High calcium food"
+  }], // Order-specific modifier about the type of food that should be given
+  "supplement" : [{ // C? Supplement components
+    "type" : {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "430128005",
+        "display" : "Oral form calcium"
+      }],
+      "text" : "Oral form calcium"
+    }, // Type of supplement product requested
+    "schedule" : [{
+      "resourceType" : "Timing",
+      // from Element: extension
+      "event" : ["<dateTime>"], // When the event occurs
+      "repeat" : { // When the event is to occur
+        // bounds[x]: Length/Range of lengths, or (Start and/or end) limits. One of these 3:
+        "boundsPeriod" : {
+          "start" : "2004-01-13",
+          "end" : "ongoing"
+        },
+        "frequency" : 1, // Event occurs frequency times per period
+        "period" : 1, // Event occurs frequency times per period
+        "periodUnit" : "d" // s | min | h | d | wk | mo | a - unit of time (UCUM)
+        },
+      "code" : {
+        "coding": [{
+          "system": "http://snomed.info/sct",
+          "code": "229797004",
+          "display": "OD"
+        }],
+        "text": "Once daily"
+      }
+    }], // Scheduled frequency of supplement
+    "quantity" : {
+      "value" : 200, // Numerical value (with implicit precision)
+      "comparator" : ">=", // < | <= | >= | > - how to understand the value
+      "unit" : "mg", // Unit representation
+      "system" : "http://snomed.info/sct", // C? System that defines coded unit form
+      "code" : "258684004" // Coded form of the unit
+    }, // Amount of the nutritional supplement
+    "instruction" : "At least 1000 mg Calcium daily, including intake through meals" // Instructions or additional information about the oral supplement
+  }]
+}

@@ -1,0 +1,57 @@
+{
+  "resourceType": "NutritionOrder",
+  "id": "cpvNut6",
+  "status": "active",// proposed | draft | planned | requested | active | on-hold | completed | cancelled | entered-in-error
+  "patient": { // R!  The person who requires the diet, formula or nutritional supplement
+    "reference": "Patient/cvpPat2"
+  },
+  "orderer": {
+    "reference": "Practitioner/cpvPra4"
+  },
+  "supplement": [
+    {
+      "type": {
+        "coding": [
+          {
+            "system": "http://snomed.info/sct",
+            "code": "714607006",
+            "display": "Oral form cholecalciferol"
+          }
+        ],
+        "text": "Oral form cholecalciferol"
+      },
+      "schedule": [
+        {
+          "resourceType": "Timing",
+          "repeat": {
+            "boundsPeriod": {
+              "start": "2004-01-13",
+              "end" : "ongoing"
+            },
+            "frequency": 1,
+            "period": 1,
+            "periodUnit": "d"
+          },
+          "code": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "229797004",
+                "display": "OD"
+              }
+            ],
+            "text": "Once daily"
+          }
+        }
+      ],
+      // Scheduled frequency of supplement
+      "quantity": {
+        "value": 800,
+        "unit": "IU",
+        "system": "http://snomed.info/sct",
+        "code": "258997004"
+      },
+      "instruction": "During times of low sunlight exposure"
+    }
+  ]
+}

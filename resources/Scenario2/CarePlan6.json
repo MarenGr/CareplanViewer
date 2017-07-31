@@ -10,17 +10,17 @@
     "reference": "Patient/cpvPat2"
   },
   "status": "active",
-  "category": //TODO
+  "category": {},//TODO
   "period": {
-    "start": "2016-10-12", //TODO
-    "end": "2016-11-24"
+    "start": "2004-01-13",
+    "end": "ongoing"
   },
   "addresses": [
     {
       "reference": "cpvCon5"
     }
   ],
-  "goal": //TODO
+  "goal": {},//TODO
   "description": "CP description",
   "text": {
     "status": "generated",
@@ -28,22 +28,19 @@
   },
   "activity": [
     {
-      "reference": //TODO
+      "reference": "NutritionOrder/cpvNut5" //calcium supplement
     },
     {
-      "reference": //TODO
+      "reference": "NutritionOrder/cpvNut6" //Vitamin D3 supplement
     },
     {
-      "reference": //TODO
+      "reference": "ProcedureRequest/cpvPro19" //annual fall risk anamnesis
     },
     {
-      "reference": //TODO
+      "reference": "ProcedureRequest/cpvPro19" //physical exercise
     },
     {
-      "reference": //TODO
-    },
-    {
-      "reference": //TODO
+      "reference": //TODO no nikotin
     }
   ]
 }
