@@ -10,21 +10,22 @@
     "reference": "Patient/cpvPat1"
   },
   "status": "entered-in-error",
-  "category": [],//TODO
+  "category": {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "412774003",
+      "display" : "Clinical management plan"
+    }],
+    "text" : "Clinical management plan"
+  },
   "period": {
     "start": "2017-07-01",
     "end": "ongoing"
   },
-  "addresses": [
-    {
-      "reference": "cpvCon1"
-    }
-  ],
-  "goal": "Biological Therapy",
   "description": "Biological Therapy for Rheumatoic Arthritis",
   "text": {
     "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Biological Therapy</p></div>"
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Biological Therapy for Rheumatoic Arthritis</p></div>"
   },
   "activity": [
     {

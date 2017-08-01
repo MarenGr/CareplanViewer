@@ -10,17 +10,18 @@
     "reference": "Patient/cpvPat3"
   },
   "status": "active",
-  "category": "",//TODO
+  "category": {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "412774003",
+      "display" : "Clinical management plan"
+    }],
+    "text" : "Clinical management plan"
+  },
   "period": {
     "start": "2014-03-12",
     "end": "ongoing"
   },
-  "addresses": [
-    {
-      "reference": "cpvCon9"
-    }
-  ],
-  "goal": {},//TODO
   "description": "Clinical treatment for heart insufficiency",
   "text": {
     "status": "generated",

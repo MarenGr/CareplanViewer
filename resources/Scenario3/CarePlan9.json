@@ -10,21 +10,22 @@
     "reference": "Patient/cpvPat3"
   },
   "status": "active",
-  "category": "",//TODO
+  "category": {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "698360004",
+      "display" : "Diabetes self management plan"
+    }],
+    "text" : "Diabetes self management plan"
+  },
   "period": {
     "start": "2017-06-10",
     "end": "" //TODO: as long as smoking cessation assistance takes
   },
-  "addresses": [
-    {
-      "reference": "cpvCon8"
-    }
-  ],
-  "goal": {},//TODO
-  "description": "CP description",
+  "description": "Lifestyle changes",
   "text": {
     "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Template 1</p></div>"
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Lifestyle changes</p></div>"
   },
   "activity": [
     {

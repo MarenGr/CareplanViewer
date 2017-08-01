@@ -10,18 +10,18 @@
     "reference": "Patient/cpvPat1"
   },
   "status": "active",
-  "category": "",//TODO
+  "category": {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "288832002",
+      "display" : "CPA care plan"
+    }],
+    "text" : "CPA care plan"
+  },
   "period": {
     "start": "2015-03-05",
     "end": "2018-03-05"
   },
-  "addresses": [
-    {
-      "reference": "cpvCon2"
-    }
-  ],
-
-  "goal": "Medicamentous Substitution",//TODO
   "description": "Substitution for Iron Deficiency Anemia",
   "text": {
     "status": "generated",

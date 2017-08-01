@@ -10,17 +10,18 @@
     "reference": "Patient/cpvPat2"
   },
   "status": "active",
-  "category": {},//TODO
+  "category": {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "288832002",
+      "display" : "CPA care plans"
+    }],
+    "text" : "CPA care plan"
+  },
   "period": {
     "start": "2004-01-13",
     "end": "ongoing"
   },
-  "addresses": [
-    {
-      "reference": "cpvCon5"
-    }
-  ],
-  "goal": {},//TODO
   "description": "Fracture prophylaxis",
   "text": {
     "status": "generated",
@@ -40,7 +41,7 @@
       "reference": "ProcedureRequest/cpvPro19" //physical exercise
     },
     {
-      "reference": //TODO no nikotin
+      "reference": "Task/cpvTask1" //nicotine ban
     }
   ]
 }

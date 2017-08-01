@@ -63,7 +63,7 @@
     "text": "Rheumatologist"
   }, // Performer role
   "performer" : {  // Requested perfomer
-    "reference": "Practitioner/cpvPra1" //TODO
+    "reference": "Practitioner/cpvPra1"
   },
   "reasonCode" : [{// Explanation/Justification for test
     "coding": [{

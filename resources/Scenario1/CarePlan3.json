@@ -10,17 +10,18 @@
     "reference": "Patient/cpvPat1"
   },
   "status": "completed",
-  "category": "",//TODO
+  "category": {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "412774003",
+      "display" : "Clinical management plan"
+    }],
+    "text" : "Clinical management plan"
+  },
   "period": {
     "start": "2015-03-05",
     "end": "2016-03-05"
   },
-  "addresses": [
-    {
-      "reference": "cpvCon3"
-    }
-  ],
-  "goal": "Improvement of Iron Resorption",
   "description": "Improvement of Iron Resorption because of Iron Deficiency Anemia",
   "text": {
     "status": "generated",

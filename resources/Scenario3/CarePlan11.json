@@ -10,16 +10,22 @@
     "reference": "Patient/cpvPat3"
   },
   "status": "active",
-  "category": "",//TODO
+  "category": {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "698361000",
+      "display" : "Heart failure self management plan"
+    }],
+    "text" : "Heart failure self management plan"
+  },
   "period": {
     "start": "2016-10-12",
     "end": "2017-10-12"
   },
-  "goal": {},//TODO
-  "description": "CP description",
+  "description": "Lifestyle changes",
   "text": {
     "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Template 1</p></div>"
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Lifestyle changes</p></div>"
   },
   "activity": [
     {
@@ -45,6 +51,9 @@
     },
     {
       "reference": "ProcedureRequest/cpvPro9" //smoking cessation assistance
+    },
+    {
+      "reference": "Task/cpvTask1" //smoking ban
     }
   ]
 }

@@ -10,17 +10,18 @@
     "reference": "Patient/cpvPat2"
   },
   "status": "active",
-  "category": {},//TODO,
+  "category": {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "412774003",
+      "display" : "Clinical management plan"
+    }],
+    "text" : "Clinical management plan"
+  },
   "period": {
     "start": "2017-06-30",
     "end": "ongoing"
   },
-  "addresses": [
-    {
-      "reference": "cpvCon6"
-    }
-  ],
-  "goal": {},//TODO
   "description": "Medicinal Treatment of Parkinson's disease",
   "text": {
     "status": "generated",

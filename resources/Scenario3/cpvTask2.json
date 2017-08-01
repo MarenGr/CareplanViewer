@@ -1,0 +1,39 @@
+{
+  "resourceType" : "Task",
+  "id" : "cpvTask1",
+  "basedOn" : [{
+    "reference" : "CarePlan/cpvCar11"
+  }], // Request fulfilled by this task
+  "status" : "accepted", //  draft | requested | received | accepted |
+  "intent" : "order", // R!  proposal | plan | order +
+  "priority" : "urgent", // normal | urgent | asap | stat
+  "description" : "Smoking Ban", // Human-readable explanation of task
+  "executionPeriod" : {
+    "start" : "2016-10-12",
+    "end" : "ongoing"
+  }, // Start and end time of execution
+  "requester" : { // Who is asking for task to be done
+    "agent" : {
+      "reference": "Practitioner/cpvPra2"
+    }
+  },
+  "performerType" : [{// requester | dispatcher | scheduler | performer | monitor | manager | acquirer | reviewer TODO
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "116154003",
+      "display" : "Patient"
+    }],
+    "text" : "Patient"
+  }],
+  "owner" : {  // Responsible individual
+    "reference" : "Patient/cpvPat3"
+  },
+  "reasonCode" : [{// Explanation/Justification for test
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "84114007",
+      "display": "Cardiac insufficiency"
+    }],
+    "text": "Cardiac insufficiency"
+  }]
+}

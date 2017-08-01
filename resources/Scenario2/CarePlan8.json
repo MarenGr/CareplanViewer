@@ -10,17 +10,18 @@
     "reference": "Patient/cpvPat2"
   },
   "status": "draft",
-  "category": {},//TODO
+  "category": {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "415213008",
+      "display" : "Psychiatry care plan"
+    }],
+    "text" : "Psychiatry care plan"
+  },
   "period": {
     "start": "2017-07-14",
     "end": "2018-09-15"
   },
-  "addresses": [
-    {
-      "reference": "cpvCon7"
-    }
-  ],
-  "goal": {},//TODO
   "description": "Psychiatric therapy due to Parkinson's disease",
   "text": {
     "status": "generated",

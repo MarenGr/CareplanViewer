@@ -14,7 +14,7 @@
       "code": "395279009",
       "display": "Anakinra"
      }],
-    "text": "<string>"
+    "text": "Anakinra"
   },
   "medicationReference" : {
     "reference": "Medication/cpvMed"
@@ -39,15 +39,6 @@
   "dosageInstruction" : [
     {
       "resourceType" : "Dosage",
-      "text" : "", // Free text dosage instructions e.g. SIG
-      "additionalInstruction" : [{
-        "coding": [{
-          "system": "http://snomed.info/sct",
-          "code": "", //TODO
-          "display": "" //TODO
-        }],
-        "text": "<string>"
-      }],
       // Supplemental instruction - e.g. "with meals"
       "timing" : {
         "resourceType" : "Timing",
