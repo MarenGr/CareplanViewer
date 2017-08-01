@@ -13,7 +13,7 @@
   "category": "",//TODO
   "period": {
     "start": "2015-03-05",
-    "end": "" //TODO
+    "end": "2016-03-05"
   },
   "addresses": [
     {
@@ -28,7 +28,7 @@
   },
   "activity": [
     {
-      "reference": ""//TODO
+      "reference": "ProcedureRequest/cpvPro23" //Helicobacter eradication therapy
     }
   ]
 }

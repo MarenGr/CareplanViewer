@@ -1,0 +1,57 @@
+{
+  "resourceType" : "Task",
+  "id" : "cpvTaskTemplate",
+  "basedOn" : [{
+    "reference" : "CarePlan/cpvCar" //TODO
+  }], // Request fulfilled by this task
+  "status" : "<code>", //  draft | requested | received | accepted | TODO
+  "statusReason" : {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "", //TODO
+      "display" : ""
+    }],
+    "text" : ""
+  }, // Reason for current status
+  "intent" : "<code>", // R!  proposal | plan | order +
+  "priority" : "<code>", // normal | urgent | asap | stat
+  "code" : {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "", //TODO
+      "display" : ""
+    }],
+    "text" : ""
+  }, // Task Type
+  "description" : "<string>", // Human-readable explanation of task
+  "executionPeriod" : {
+    "start" : "", //TODO
+    "end" : ""
+  }, // Start and end time of execution
+  "requester" : { // Who is asking for task to be done
+    "agent" : {
+      "reference": "Practitioner/cpvPra"
+      //TODO
+    }
+  },
+  "performerType" : [{// requester | dispatcher | scheduler | performer | monitor | manager | acquirer | reviewer
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "", //TODO
+      "display" : ""
+    }],
+    "text" : ""
+  }],
+  "owner" : {  // Responsible individual
+    "reference" : "" //TODO
+  },
+  "reason" : {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "", //TODO
+      "display" : ""
+    }],
+    "text" : ""
+  }, // Why task is needed
+  "note" : [{ "text" : "<string>" }]
+}

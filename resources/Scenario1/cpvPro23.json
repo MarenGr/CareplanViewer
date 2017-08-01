@@ -1,0 +1,38 @@
+{
+  "resourceType" : "ProcedureRequest",
+  "id": "ProcedureRequestTemplate",
+  "basedOn" : [{ // What request fulfills
+    "reference": "CarePlan/cpvCar3"
+  }],
+  "status" : "completed", // R!  draft | active | suspended | completed | entered-in-error | cancelled
+  "intent" : "plan", // R!  proposal | plan | order +
+  "priority" : "asap", // routine | urgent | asap | stat
+  "code" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "281897000",
+      "display": "Helicobacter eradication therapy"
+    }],
+    "text": "Helicobacter eradication therapy"
+  }, // R!  What is being requested/ordered
+  "subject" : {  //  Individual the service is ordered for
+    "reference": "Patient/cpvPat" //TODO
+  },
+  "occurrencePeriod" : {
+    "start": "2015-03-05",
+    "end": "2016-03-05"
+  },
+  "requester" : { // Who/what is requesting procedure or diagnostic
+    "agent" : {
+      "reference": "Practitioner/cpvPra1" //TODO
+    }
+  },
+  "reasonCode" : [{// Explanation/Justification for test
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "721730009",
+      "display": "Infection caused by Helicobacter pylori"
+    }],
+    "text": "Infection caused by Helicobacter pylori"
+  }]
+}
