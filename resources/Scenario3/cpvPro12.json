@@ -26,17 +26,17 @@
   "subject" : {  //  Individual the service is ordered for
     "reference": "Patient/cpvPat3"
   },
-  "occurrenceDateTime" : "2017-07-24", //TODO
+  "occurrenceDateTime" : "2017-07-24",
 
   "requester" : { // Who/what is requesting procedure or diagnostic
     "agent" : {
-      "reference": "Practitioner/cpvPra3" //TODO
+      "reference": "Practitioner/cpvPra3"
     }
   },
   "performerType" : {
     "coding": [{
       "system": "http://snomed.info/sct",
-      "code": "159033005", //TODO
+      "code": "159033005",
       "display": "Dietitian"
     }],
     "text": "Dietitian"
@@ -44,7 +44,7 @@
   "reasonCode" : [{
     "coding" : [{
       "system" : "http://snomed.info/sct",
-      "code" : "44054006", //TODO
+      "code" : "44054006",
       "display" : "Diabetes mellitus type 2"
     }],
     "text" : "Diabetes mellitus type 2"

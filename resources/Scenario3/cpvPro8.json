@@ -60,7 +60,7 @@
   "reasonCode" : [{
     "coding" : [{
       "system" : "http://snomed.info/sct",
-      "code" : "44054006", //TODO
+      "code" : "44054006",
       "display" : "Diabetes mellitus type 2"
     }],
     "text" : "Diabetes mellitus type 2"
