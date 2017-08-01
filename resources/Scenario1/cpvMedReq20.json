@@ -1,0 +1,81 @@
+{
+  "resourceType" : "MedicationRequest",
+  "id": "cpvMedReqTemplate",
+  "basedOn" : [{
+    "reference": "CarePlan/cpvCar4"
+  }],
+  "status": "completed", // active | on-hold | cancelled | completed | entered-in-error | stopped | draft | unknown
+  "intent" : "instance-order", // R!  proposal | plan | order | instance-order
+  "priority" : "urgent", // routine | urgent | stat | asap
+  // medication[x]: Medication to be taken. One of these 2:
+  "medicationCodeableConcept" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "326875008",
+      "display": "Methotrexate 10mg tablet"
+    }],
+    "text": "Methotrexate 10mg tablet"
+  },
+  "subject" : {
+    "reference": "Patient/cpvPat1"
+  }, //  Who or group medication request is for
+  "requester" : { // Who/What requested the Request
+    "agent" : {
+      "reference": "Practitioner/cpvPra1"
+    } // Who ordered the initial medication(s)
+  },
+  "reasonCode": [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "69896004",
+      "display": "Rheumatoid arthritis"
+    }],
+    "text": "Rheumatoid arthritis"
+  }],
+  "note" : [{ "text" : "Initial Dose. To be adjusted after 5 weeks" }], // Information about the prescription
+  "dosageInstruction" : [
+    {
+      "resourceType" : "Dosage",
+      // Supplemental instruction - e.g. "with meals"
+      "timing" : {
+        "resourceType" : "Timing",
+        "repeat" : { // When the event is to occur
+          // bounds[x]: Length/Range of lengths, or (Start and/or end) limits. One of these 3:
+          "boundsDuration" : {
+            "value" : 5, // Numerical value (with implicit precision)
+            "unit" : "wk", // Unit representation
+            "system" : "http://snomed.info/sct", // C? System that defines coded unit form
+            "code" : "258705008" // Coded form of the unit
+          },
+          "frequency" : 1, // Event occurs frequency times per period
+          "period" : 1, // Event occurs frequency times per period
+          "periodUnit" : "wk" // s | min | h | d | wk | mo | a - unit of time (UCUM)
+        },
+        "code" : {
+          "coding": [{
+            "system": "http://snomed.info/sct",
+            "code": "Once weekly",
+            "display": "Once weekly"
+          }],
+          "text": "Once weekly"
+        }
+      },
+      "route" : {
+        "coding": [{
+          "system": "http://snomed.info/sct",
+          "code": "260548002",
+          "display": "Oral"
+        }],
+        "text": "Oral"
+      },
+      // dose[x]: Amount of medication per dose. One of these 2:
+
+      "doseQuantity" : {
+        "value" : 1, // Numerical value (with implicit precision)
+        "unit" : "Tablet", // Unit representation
+        "system" : "http://snomed.info/sct", // C? System that defines coded unit form
+        "code" : "428673006" // Coded form of the unit
+      }
+    }
+  ]
+}

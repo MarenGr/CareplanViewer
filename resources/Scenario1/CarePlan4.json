@@ -28,7 +28,10 @@
   },
   "activity": [
     {
-      "reference": "MedicationRequest/cpvMedReq2" //TODO MTX
+      "reference": "MedicationRequest/cpvMedReq20" //MTX initial (oral)
+    },
+    {
+      "reference": "MedicationRequest/cpvMedReq22" //MTX further (parenteral)
     },
     {
       "reference": "ProcedureRequest/cpvPro4"  // monitoring appointments

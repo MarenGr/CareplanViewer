@@ -1,0 +1,84 @@
+{
+  "resourceType" : "MedicationRequest",
+  "id": "cpvMedReqTemplate",
+  "basedOn" : [
+    {
+      "reference": "CarePlan/cpvCar5"
+    }
+  ],
+  "status": "active", // active | on-hold | cancelled | completed | entered-in-error | stopped | draft | unknown
+  "intent" : "instance-order", // R!  proposal | plan | order | instance-order
+  "priority" : "routine", // routine | urgent | stat | asap
+  // medication[x]: Medication to be taken. One of these 2:
+  "medicationCodeableConcept" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "326879002",
+      "display": " Methotrexate 25mg/mL injection solution 2mL vial"
+    }],
+    "text": " Methotrexate 25mg/mL injection solution 2mL vial"
+  },
+  "subject" : {
+    "reference": "Patient/cpvPat1"
+  }, //  Who or group medication request is for
+  "requester" : { // Who/What requested the Request
+    "agent" : {
+      "reference": "Practitioner/cpvPra1"
+    } // Who ordered the initial medication(s)
+  },
+  "reasonCode": [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "69896004",
+      "display": "Rheumatoid arthritis"
+    }],
+    "text": "Rheumatoid arthritis"
+  }],
+  "note" : [{ "text" : "Dosage adjustment" }], // Information about the prescription
+  "dosageInstruction" : [
+    {
+      "resourceType" : "Dosage",
+      // Supplemental instruction - e.g. "with meals"
+      "timing" : {
+        "resourceType" : "Timing",
+        "repeat" : { // When the event is to occur
+          // bounds[x]: Length/Range of lengths, or (Start and/or end) limits. One of these 3:
+          "boundsDuration" : {
+            "value" : 3, // Numerical value (with implicit precision)
+            "unit" : "month", // Unit representation
+            "system" : "http://snomed.info/sct", // C? System that defines coded unit form
+            "code" : "258706009" // Coded form of the unit
+          },
+          "frequency" : 1, // Event occurs frequency times per period
+          "period" : 1, // Event occurs frequency times per period
+          "periodUnit" : "wk" // s | min | h | d | wk | mo | a - unit of time (UCUM)
+        },
+        "code" : {
+          "coding": [{
+            "system": "http://snomed.info/sct",
+            "code": "Once weekly",
+            "display": "Once weekly"
+          }],
+          "text": "Once weekly"
+        }
+      },
+      "route" : {
+        "coding": [{
+          "system": "http://snomed.info/sct",
+          "code": "447202000",
+          "display": "Parenteral route"
+        }],
+        "text": "Parenteral route"
+      },
+      "doseQuantity" : {
+        "value" : 1, // Numerical value (with implicit precision)
+        "unit" : "vial", // Unit representation
+        "system" : "http://snomed.info/sct", // C? System that defines coded unit form
+        "code" : "415818006" // Coded form of the unit
+      }
+    }
+  ],
+  "priorPrescription" : {
+    "reference" : "MedicationRequest/cpvMedReq22"
+  }
+}

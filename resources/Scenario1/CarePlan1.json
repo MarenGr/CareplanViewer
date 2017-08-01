@@ -31,7 +31,7 @@
       "reference": "MedicationRequest/cpvMedReq1" //Anakinra
     },
     {
-      "reference": "MedicationRequest/cpvMedReq2" //TODO MTX
+      "reference": "MedicationRequest/cpvMedReq23" //MTX
     },
     {
       "reference": "ProcedureRequest/cpvPro4"  // monitoring appointments
