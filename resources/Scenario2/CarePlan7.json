@@ -12,7 +12,7 @@
   "status": "active",
   "category": {},//TODO,
   "period": {
-    "start": "2017-07-14",
+    "start": "2017-06-30",
     "end": "ongoing"
   },
   "addresses": [
@@ -28,22 +28,22 @@
   },
   "activity": [
     {
-      "reference": //TODO
+      "reference": "MedicationRequest/cpvMedReq2" //inital dosage Piribedil
     },
     {
-      "reference": //TODO
+      "reference": "MedicationRequest/cpvMedReq6" //continueing dosage Piribedil
     },
     {
-      "reference": //TODO
+      "reference": "MedicationRequest/cpvMedReq16" //longterm dosage Piribedil
     },
     {
-      "reference": //TODO
+      "reference": "MedicationRequest/cpvMedReq17" //Levodopa
     },
     {
-      "reference": //TODO
+      "reference": "MedicationRequest/cpvMedReq18" //Tolcapone
     },
     {
-      "reference": //TODO
+      "reference": "MedicationRequest/cpvMedReq19" //Selegiline
     }
   ]
 }

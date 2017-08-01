@@ -1,0 +1,75 @@
+{
+  "resourceType" : "MedicationRequest",
+  "id": "cpvMedReq17",
+  "basedOn" : [{
+    "reference": "CarePlan/cpvCar7"
+  }],
+  "status": "active", // active | on-hold | cancelled | completed | entered-in-error | stopped | draft | unknown
+  "intent" : "instance-order", // R!  proposal | plan | order | instance-order
+  "priority" : "routine", // routine | urgent | stat | asap
+  // medication[x]: Medication to be taken. One of these 2:
+  "medicationCodeableConcept" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "108466000",
+      "display": "Selegiline"
+    }],
+    "text": "Selegiline"
+  },
+  "subject" : {
+    "reference": "Patient/cpvPat2"
+  }, //  Who or group medication request is for
+  "requester" : { // Who/What requested the Request
+    "agent" : {
+      "reference": "Practitioner/cpvPra5"
+    } // Who ordered the initial medication(s)
+  },
+  "reasonCode": [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "49049000",
+      "display": "Parkinson's disease"
+    }],
+    "text": "Parkinson's disease"
+  }],
+  "dosageInstruction" : [
+    {
+      "resourceType" : "Dosage",
+      "text" : "1.25mg per dose",
+      "timing" : {
+        "resourceType" : "Timing",
+        "repeat" : {
+          "boundsPeriod" : {
+            "start" : "2017-06-30",
+            "end" : "ongoing"
+          },
+          "frequency" : 1, // Event occurs frequency times per period
+          "period" : 1, // Event occurs frequency times per period
+          "periodUnit" : "d" // s | min | h | d | wk | mo | a - unit of time (UCUM)
+        },
+        "code" : {
+          "coding": [{
+            "system": "http://snomed.info/sct",
+            "code": "229797004",
+            "display": "OD"
+          }],
+          "text": "Once daily"
+        }
+      },
+      "route" : {
+        "coding": [{
+          "system": "http://snomed.info/sct",
+          "code": "225780003",
+          "display": "Sublingual"
+        }],
+        "text": "Sublingual"
+      },
+      "doseQuantity" : {
+        "value" : 1.25, // Numerical value (with implicit precision)
+        "unit" : "mg", // Unit representation
+        "system" : "http://snomed.info/sct", // C? System that defines coded unit form
+        "code" : "258684004" // Coded form of the unit
+      }
+    }
+  ]
+}
