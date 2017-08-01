@@ -56,7 +56,7 @@ function parseCarePlanData(entries){
     array.push(period);
 
     for(var i = 0; i < entries.length; i++){
-        var current = entries[i]["resource"]
+        var current = entries[i]["resource"];
         var temp;
         if("status" in current){
             temp = current["status"];
@@ -100,7 +100,7 @@ function insertPerformer(data, rawdata, index){
     var length = data["children"].length;
     find:while(i < length){
         if(performer == data["children"][i]["reference"]){
-            break find;
+            break;
         }
         i++;
     }
@@ -123,7 +123,7 @@ function insertCategory(data, rawdata, index, performer){
     var length = data["children"][performer]["children"].length;
     find:while(i < length){
         if(category == data["children"][performer]["children"][i]){
-            break find;
+            break;
         }
         i++;
     }
@@ -434,7 +434,7 @@ function buildTreeMap(data){
             return jQuery(this).parent("g").width() - oMarginLeft - oMarginRight;
         })
         .attr("dy", ".35em")
-        .attr("text-anchor", "start")
+        .attr("text-anchor", "start");
     content.append("xhtml:div")
         .attr("class", "row")
         .attr("id", "row1")
