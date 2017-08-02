@@ -2,19 +2,24 @@
   "resourceType": "DeviceRequest",
   "id": "cpvDev2",
   "status": "draft",
-  "intent": "plan",
+  "intent": {
+    "coding" : [{
+      "system" : "http://hl7.org/fhir/request-intent",
+      "code" : "plan",
+      "display" : "Plan"
+    }]
+  },
   "priority": "routine",
   "text": {
     "status": "generated",
-    "div": "Daily weight measurements"
+    "div": "<div xmlns='http://www.w3.org/1999/xhtml'>Daily weight measurements</div>"
   },
   "codeCodeableConcept": {
     "coding" : [{
       "system" : "http://snomed.info/sct",
       "code" : "19892000",
       "display" : "Scale"
-    }],
-    "text" : ""
+    }]
   },
   "subject": {
     "reference": "Patient/cpvPat3"
@@ -47,11 +52,11 @@
       },
     "code" : {
       "coding" : [{
-        "system" : "http://snomed.info/sct",
-        "code" : "69620002",
-        "display" : "Daily"
+        "system" : "http://hl7.org/fhir/v3/GTSAbbreviation",
+        "code" : "QD",
+        "display" : "QD"
       }],
-      "text" : "Daily"
+      "text" : "Every Day at institution specified time"
     }
   },
   "reasonCode" : [{

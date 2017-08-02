@@ -2,19 +2,24 @@
   "resourceType": "DeviceRequest",
   "id": "cpvDev4",
   "status": "active",
-  "intent": "proposal",
+  "intent": {
+    "coding" : [{
+      "system" : "http://hl7.org/fhir/request-intent",
+      "code" : "plan",
+      "display" : "Plan"
+    }]
+  },
   "priority": "routine",
   "text": {
     "status": "generated",
-    "div": "Use body elastic exerciser at home"
+    "div": "<div xmlns='http://www.w3.org/1999/xhtml'>Use body elastic exerciser at home</div>"
   },
   "codeCodeableConcept": {
     "coding" : [{
       "system" : "http://snomed.info/sct",
       "code" : "467120005",
       "display" : "Body elastic exerciser"
-    }],
-    "text" : "Body elastic exerciser"
+    }]
   },
   "subject": {
     "reference": "Patient/cpvPat3"
@@ -51,16 +56,13 @@
       "periodUnit": "wk"
 
     },
-    "code": {
-      "coding": [
-        {
-          "system": "http://snomed.info/sct",
-          "code": "396113003",
-          "display": "3-4x /wk"
-
-        }
-      ],
-      "text": "Three to four times a week"
+    "code" : {
+      "coding" : [{
+        "system" : "http://hl7.org/fhir/v3/GTSAbbreviation",
+        "code" : "TID",
+        "display" : "TID"
+      }],
+      "text" : "Three times a day at institution specified times"
     }
   },
   "requester": {

@@ -2,19 +2,24 @@
   "resourceType": "DeviceRequest",
   "id": "cpvDev5",
   "status": "active",
-  "intent": "order",
+  "intent": {
+    "coding" : [{
+      "system" : "http://hl7.org/fhir/request-intent",
+      "code" : "order",
+      "display" : "Order"
+    }]
+  },
   "priority": "routine",
   "text": {
     "status": "generated",
-    "div": "Self monitoring of blood sugar"
+    "div": "<div xmlns='http://www.w3.org/1999/xhtml'>Self monitoring of blood sugar</div>"
   },
   "codeCodeableConcept": {
     "coding" : [{
       "system" : "http://snomed.info/sct",
       "code" : "337414009",
       "display" : "Blood glucose meters"
-    }],
-    "text" : "Blood glucose meters"
+    }]
   },
   "subject": {
     "reference": "Patient/cpvPat3"
@@ -43,11 +48,11 @@
     },
     "code" : {
       "coding" : [{
-        "system" : "http://snomed.info/sct",
-        "code" : "229798009",
-        "display" : "3x /day"
+        "system" : "http://hl7.org/fhir/v3/GTSAbbreviation",
+        "code" : "TID",
+        "display" : "TID"
       }],
-      "text" : "Three times daily"
+      "text" : "Three times a day at institution specified times"
     }
   },
   "requester": {

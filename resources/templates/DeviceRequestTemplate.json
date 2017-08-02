@@ -2,7 +2,13 @@
   "resourceType": "DeviceRequest",
   "id": "cpvDevReqTemplate",
   "status": "", //TODO
-  "intent": "", //TODO
+  "intent": {
+    "coding" : [{
+      "system" : "http://hl7.org/fhir/request-intent",
+      "code" : "",
+      "display" : ""
+    }]
+  }, //TODO
   "priority": "", //TODO
   "text": {
     "status": "generated",
@@ -13,8 +19,7 @@
       "system" : "http://snomed.info/sct",
       "code" : "", //TODO
       "display" : ""
-    }],
-    "text" : ""
+    }]
   },
   "subject": {
     "reference": "Patient/cpvPat" //TODO
@@ -76,5 +81,5 @@
     }],
     "text" : ""
   }],
-  "note": "" //TODO
+  "note": [] //TODO
 }

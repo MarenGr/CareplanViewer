@@ -2,19 +2,24 @@
   "resourceType": "DeviceRequest",
   "id": "cpvDevReqTemplate",
   "status": "completed",
-  "intent": "instance-order",
+  "intent": {
+    "coding" : [{
+      "system" : "http://hl7.org/fhir/request-intent",
+      "code" : "instance-order",
+      "display" : "Instance Order"
+    }]
+  },
   "priority": "asap",
   "text": {
     "status": "generated",
-    "div": "Measurement of oxygen absorption in order to adjust exercises"
+    "div": "<div xmlns='http://www.w3.org/1999/xhtml'>Measurement of oxygen absorption in order to adjust exercises</div>"
   },
   "codeCodeableConcept": {
     "coding" : [{
       "system" : "http://snomed.info/sct",
       "code" : "303501006",
       "display" : "Spirometer"
-    }],
-    "text" : "Spirometer"
+    }]
   },
   "subject": {
     "reference": "Patient/cpvPat3"
@@ -41,5 +46,8 @@
     }],
     "text" : "Cardiac insufficiency"
   }],
-  "note": "Measurement of oxygen absorption in order to adjust exercises"
+  "note": [
+    {
+      "text": "Measurement of oxygen absorption in order to adjust exercises"
+    }]
 }
