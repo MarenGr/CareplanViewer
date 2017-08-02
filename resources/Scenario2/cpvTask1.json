@@ -6,7 +6,7 @@
   }],
   "status" : "accepted",
   "intent" : "proposal",
-  "priority" : "normal",
+  "priority" : "routine",
   "description" : "No nicotine intake (e.g smoking is not allowed)",
   "executionPeriod" : {
     "start" : "2004-01-13"
@@ -19,12 +19,12 @@
   "owner" : {
     "reference" : "Patient/cpvPat2"
   },
-  "reasonCode" : [{
+  "reason" : {
     "coding": [{
       "system": "http://snomed.info/sct",
       "code": "64859006",
       "display": "Osteoporosis"
     }],
     "text": "Osteoporosis"
-  }]
+  }
 }

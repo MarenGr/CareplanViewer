@@ -19,12 +19,12 @@
   "owner" : {
     "reference" : "Patient/cpvPat3"
   },
-  "reasonCode" : [{
+  "reason" : {
     "coding": [{
       "system": "http://snomed.info/sct",
       "code": "84114007",
       "display": "Cardiac insufficiency"
     }],
     "text": "Cardiac insufficiency"
-  }]
+  }
 }

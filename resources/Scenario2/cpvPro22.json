@@ -11,9 +11,9 @@
     "coding": [{
       "system": "http://snomed.info/sct",
       "code": "24642003",
-      "display": "Psychiatry procedure or service	"
+      "display": "Psychiatry procedure or service"
     }],
-    "text": "Psychiatry procedure or service	"
+    "text": "Psychiatry procedure or service"
   }],
   "code" : {
     "coding": [{

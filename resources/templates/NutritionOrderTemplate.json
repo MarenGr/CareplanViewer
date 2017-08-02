@@ -2,6 +2,7 @@
   "resourceType" : "NutritionOrder",
   "id": "cpvNutTemplate",
   "status" : "<code>", // proposed | draft | planned | requested | active | on-hold | completed | cancelled | entered-in-error
+  "dateTime" : "<dateTime>", //1968-04-08T23:00:00.000Z
   "patient" : {
     "reference": "Patient/cvpPat"
   }, // R!  The person who requires the diet, formula or nutritional supplement

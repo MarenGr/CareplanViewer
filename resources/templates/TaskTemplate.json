@@ -14,7 +14,7 @@
     "text" : ""
   }, // Reason for current status
   "intent" : "<code>", // R!  proposal | plan | order +
-  "priority" : "<code>", // normal | urgent | asap | stat
+  "priority" : "<code>", // routine | urgent | asap | stat
   "code" : {
     "coding" : [{
       "system" : "http://snomed.info/sct",

@@ -2,6 +2,7 @@
   "resourceType" : "NutritionOrder",
   "id": "cpvNut2",
   "status" : "requested",
+  "dateTime" : "2015-03-04T08:03:00.000Z",
   "patient" : {
     "reference": "Patient/cvpPat1"
   },
@@ -91,13 +92,12 @@
       "code": {
         "coding": [
           {
-            "system": "http://snomed.info/sct",
-            "code": "69620002",
-            "display": "Daily"
-
+            "system": "http://hl7.org/fhir/v3/GTSAbbreviation",
+            "code": "QD",
+            "display": "QD"
           }
         ],
-        "text": "Daily"
+        "text": "Every Day at institution specified time"
       }
     }],
     "quantity" : {

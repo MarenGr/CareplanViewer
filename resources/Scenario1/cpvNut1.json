@@ -2,7 +2,7 @@
   "resourceType": "NutritionOrder",
   "id": "cpvNut1",
   "status": "completed",
-
+  "dateTime" : "2016-02-11T11:09:14.000Z",
   "patient": {
     "reference": "Patient/cvpPat1"
   },
@@ -43,17 +43,6 @@
             "dayOfWeek": [
               "fri"
             ]
-          },
-          "code": {
-            "coding": [
-              {
-                "system": "http://snomed.info/sct",
-                "code": "225769003",
-                "display": "Once weekly"
-
-              }
-            ],
-            "text": "Once weekly, on Friday morning"
           }
         }
       ],

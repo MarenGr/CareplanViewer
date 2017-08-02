@@ -2,6 +2,7 @@
   "resourceType" : "NutritionOrder",
   "id": "cpvNut4",
   "status" : "requested",
+  "dateTime" : "2016-10-11T14:33:46.000Z",
   "patient" : {
     "reference": "Patient/cvpPat3"
   },
@@ -43,8 +44,7 @@
         "text" : "Liquid substance"
       },
       "amount" : {
-        "value" : 3,
-        "comparator" : "<",
+        "value" : 2,
         "unit" : "Litre/day",
         "system" : "http://snomed.info/sct",
         "code" : "258857003"
