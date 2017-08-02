@@ -32,9 +32,8 @@
 
       "boundsDuration" : {
         "value" : 3,
-        "unit" : "months",
-        "system" : "http://snomed.info/sct",
-        "code" : "months"
+        "unit" : "mo",
+        "system" : "http://unitsofmeasure.org"
       },
       "frequency" : 1,
       "period" : 2,

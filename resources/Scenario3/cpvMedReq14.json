@@ -44,9 +44,8 @@
 
           "boundsDuration" : {
             "value" : 3,
-            "unit" : "weeks",
-            "system" : "http://snomed.info/sct",
-            "code" : "258705008"
+            "unit" : "wk",
+            "system" : "http://unitsofmeasure.org"
           },
           "frequency" : 2,
           "period" : 1,

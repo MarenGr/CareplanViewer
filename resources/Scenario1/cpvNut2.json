@@ -77,9 +77,8 @@
 
         "boundsDuration" : {
           "value" : 3,
-          "unit" : "months",
-          "system" : "http://snomed.info/sct",
-          "code" : "258706009"
+          "unit" : "mo",
+          "system" : "http://unitsofmeasure.org"
         },
         "boundsPeriod": {
           "start": "2015-03-05",
