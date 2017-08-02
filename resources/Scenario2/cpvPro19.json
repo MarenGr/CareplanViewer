@@ -27,7 +27,7 @@
     "reference": "Patient/cpvPat2"
   },
   "occurrenceTiming" : {
-    "resourceType" : "Timing",
+
     "repeat" : {
       "boundsPeriod" : {
         "start": "2004-01-13"

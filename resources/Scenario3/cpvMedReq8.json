@@ -34,10 +34,10 @@
   }],
   "dosageInstruction" : [
     {
-      "resourceType" : "Dosage",
+
       "text" : "with or directly after meal",
       "timing" : {
-        "resourceType" : "Timing",
+
 
         "repeat" : {
 
@@ -75,10 +75,10 @@
       }
     },
     {
-      "resourceType" : "Dosage",
+
       "text" : "with or directly after meal",
       "timing" : {
-        "resourceType" : "Timing",
+
 
         "repeat" : {
 

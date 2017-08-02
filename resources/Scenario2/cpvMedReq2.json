@@ -35,10 +35,10 @@
   "note" : [{ "text" : "Initial dosage. To be increased every 2 weeks" }],
   "dosageInstruction" : [
     {
-      "resourceType" : "Dosage",
+
 
       "timing" : {
-        "resourceType" : "Timing",
+
         "repeat" : {
           "boundsDuration" : {
             "value" : 2,

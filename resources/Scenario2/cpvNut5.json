@@ -26,7 +26,7 @@
       "text" : "Oral form calcium"
     },
     "schedule" : [{
-      "resourceType" : "Timing",
+
 
       "event" : ["<dateTime>"],
       "repeat" : {

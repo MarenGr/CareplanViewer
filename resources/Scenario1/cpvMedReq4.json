@@ -35,14 +35,14 @@
 
   "dosageInstruction" : [
     {
-      "resourceType" : "Dosage",
+
       "text" : "<string>",
       "additionalInstruction" : [{
         "text": "initial dosage"
       }],
 
       "timing" : {
-        "resourceType" : "Timing",
+
         "repeat" : {
 
           "boundsDuration" : {
@@ -68,7 +68,7 @@
           "text": "Once a day, in the morning"
         }
       },
-      "asNeededBoolean" : "false",
+      "asNeededBoolean" : false,
 
       "route" : {
         "coding": [{

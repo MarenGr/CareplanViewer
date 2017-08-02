@@ -22,7 +22,7 @@
       },
       "schedule": [
         {
-          "resourceType": "Timing",
+
           "repeat": {
             "boundsPeriod": {
               "start": "2004-01-13"

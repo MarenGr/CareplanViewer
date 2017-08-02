@@ -27,7 +27,7 @@
     "reference": "Patient/cpvPat1"
   },
   "occurrenceTiming" : {
-    "resourceType" : "Timing",
+
 
     "repeat" : {
 

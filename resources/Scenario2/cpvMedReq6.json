@@ -35,10 +35,10 @@
   "note" : [{ "text" : "To be increased after 2 weeks" }],
   "dosageInstruction" : [
     {
-      "resourceType" : "Dosage",
+
 
       "timing" : {
-        "resourceType" : "Timing",
+
         "repeat" : {
           "boundsDuration" : {
             "value" : 2,

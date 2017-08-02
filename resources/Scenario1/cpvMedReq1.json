@@ -38,10 +38,10 @@
 
   "dosageInstruction" : [
     {
-      "resourceType" : "Dosage",
+
 
       "timing" : {
-        "resourceType" : "Timing",
+
 
         "event" : ["<dateTime>"],
         "repeat" : {
@@ -65,7 +65,7 @@
           "text": "Once a day, in the evening"
         }
       },
-      "asNeededBoolean" : "false",
+      "asNeededBoolean" : false,
 
       "route" : {
         "coding": [{

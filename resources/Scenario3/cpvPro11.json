@@ -19,7 +19,7 @@
     "reference": "Patient/cpvPat3"
   },
   "occurrenceTiming" : {
-    "resourceType" : "Timing",
+
     "repeat" : {
       "boundsPeriod" : {
         "start": "2016-10-12"

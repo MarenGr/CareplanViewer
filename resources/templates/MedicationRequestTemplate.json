@@ -40,7 +40,7 @@
   "note" : [{ Annotation }], // Information about the prescription
   "dosageInstruction" : [
     {
-      "resourceType" : "Dosage",
+
       "text" : "<string>", // Free text dosage instructions e.g. SIG
       "additionalInstruction" : [{
         "coding": [{
@@ -52,7 +52,7 @@
       }],
       // Supplemental instruction - e.g. "with meals"
       "timing" : {
-        "resourceType" : "Timing",
+
         // from Element: extension
         "event" : ["<dateTime>"], // When the event occurs
         "repeat" : { // When the event is to occur

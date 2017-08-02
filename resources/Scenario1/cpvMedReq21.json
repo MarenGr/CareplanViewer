@@ -37,10 +37,10 @@
   "note" : [{ "text" : "Dosage adjustment" }],
   "dosageInstruction" : [
     {
-      "resourceType" : "Dosage",
+
 
       "timing" : {
-        "resourceType" : "Timing",
+
         "repeat" : {
 
           "boundsDuration" : {

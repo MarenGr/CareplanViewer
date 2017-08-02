@@ -35,10 +35,10 @@
   "note" : [{ "text" : "Initial Dose. To be adjusted after 5 weeks" }],
   "dosageInstruction" : [
     {
-      "resourceType" : "Dosage",
+
 
       "timing" : {
-        "resourceType" : "Timing",
+
         "repeat" : {
 
           "boundsDuration" : {

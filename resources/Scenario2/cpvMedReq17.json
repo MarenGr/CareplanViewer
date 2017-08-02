@@ -34,10 +34,10 @@
   }],
   "dosageInstruction" : [
     {
-      "resourceType" : "Dosage",
+
       "text" : "25mg/100mg tablet per dose",
       "timing" : {
-        "resourceType" : "Timing",
+
         "repeat" : {
           "boundsPeriod" : {
             "start" : "2017-06-30"

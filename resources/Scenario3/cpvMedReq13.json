@@ -36,10 +36,10 @@
   "note" : [{ "text" : "Dosage to be increased in thriweekly intervals" }],
   "dosageInstruction" : [
     {
-      "resourceType" : "Dosage",
+
 
       "timing" : {
-        "resourceType" : "Timing",
+
         "repeat" : {
 
           "boundsDuration" : {

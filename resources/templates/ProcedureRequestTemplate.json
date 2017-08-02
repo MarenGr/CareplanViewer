@@ -35,7 +35,7 @@
     "end": ""
   },
   "occurrenceTiming" : {
-    "resourceType" : "Timing",
+
     // from Element: extension
     "event" : ["<dateTime>"], // When the event occurs
     "repeat" : { // When the event is to occur

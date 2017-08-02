@@ -26,7 +26,7 @@
       "text" : "Prescribed dietary intake"
     }],
     "schedule" : [{
-      "resourceType" : "Timing",
+
       "repeat" : {
         "boundsPeriod" : {
           "start" : "2016-10-12"

@@ -30,7 +30,7 @@
     "reference": "Patient/cpvPat3"
   },
   "occurrenceTiming" : {
-    "resourceType" : "Timing",
+
 
     "repeat" : {
 

@@ -35,10 +35,10 @@
 
   "dosageInstruction" : [
     {
-      "resourceType" : "Dosage",
+
 
       "timing" : {
-        "resourceType" : "Timing",
+
         "repeat" : {
 
           "boundsPeriod" : {
