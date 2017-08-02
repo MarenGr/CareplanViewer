@@ -60,11 +60,11 @@
           },
         "code" : {
           "coding": [{
-            "system": "http://snomed.info/sct",
-            "code": "229797004",
-            "display": "OD"
+            "system": "https://www.hl7.org/fhir/v3/GTSAbbreviation/cs.html",
+            "code": "AM",
+            "display": "AM"
           }],
-          "text": "Once a day, in the morning"
+          "text": "Every morning at institution specified times"
         }
       },
       "asNeededBoolean" : false,

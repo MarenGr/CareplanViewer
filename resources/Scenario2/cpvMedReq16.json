@@ -50,11 +50,11 @@
         },
         "code" : {
           "coding": [{
-            "system": "http://snomed.info/sct",
-            "code": "229798009",
-            "display": "TD"
+            "system": "https://www.hl7.org/fhir/v3/GTSAbbreviation/cs.html",
+            "code": "TID",
+            "display": "TID"
           }],
-          "text": "Three times daily"
+          "text": "Three times a day at institution specified times"
         }
       },
       "route" : {

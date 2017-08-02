@@ -57,11 +57,11 @@
         },
         "code" : {
           "coding": [{
-            "system": "http://snomed.info/sct",
-            "code": "396147000",
-            "display": "QPM"
+            "system": "https://www.hl7.org/fhir/v3/GTSAbbreviation",
+            "code": "QD",
+            "display": "QD"
            }],
-          "text": "Once a day, in the evening"
+          "text": "Every Day at institution specified times"
         }
       },
       "asNeededBoolean" : false,

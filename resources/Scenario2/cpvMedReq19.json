@@ -48,11 +48,11 @@
         },
         "code" : {
           "coding": [{
-            "system": "http://snomed.info/sct",
-            "code": "229797004",
-            "display": "OD"
+            "system": "https://www.hl7.org/fhir/v3/GTSAbbreviation/cs.html",
+            "code": "QD",
+            "display": "QD"
           }],
-          "text": "Once daily"
+          "text": "Every Day at institution specified times"
         }
       },
       "route" : {

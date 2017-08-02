@@ -53,11 +53,11 @@
           },
         "code" : {
           "coding": [{
-            "system": "http://snomed.info/sct",
-            "code": "229797004",
-            "display": "BD"
+            "system": "https://www.hl7.org/fhir/v3/GTSAbbreviation/cs.html",
+            "code": "BID",
+            "display": "BID"
           }],
-          "text": "Twice daily"
+          "text": "Two times a day at institution specified times"
         }
       },
       "route" : {

@@ -48,11 +48,11 @@
         },
         "code" : {
           "coding": [{
-            "system": "http://snomed.info/sct",
-            "code": "396112008",
-            "display": "3-4x /day"
+            "system": "https://www.hl7.org/fhir/v3/GTSAbbreviation/cs.html",
+            "code": "QID",
+            "display": "QID"
           }],
-          "text": "Three to four times a day"
+          "text": "Four times a day at institution specified times"
         }
       },
       "asNeededBoolean" : true,

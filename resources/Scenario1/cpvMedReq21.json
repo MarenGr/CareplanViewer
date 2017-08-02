@@ -51,14 +51,6 @@
           "frequency" : 1,
           "period" : 1,
           "periodUnit" : "wk"
-        },
-        "code" : {
-          "coding": [{
-            "system": "http://snomed.info/sct",
-            "code": "Once weekly",
-            "display": "Once weekly"
-          }],
-          "text": "Once weekly"
         }
       },
       "route" : {

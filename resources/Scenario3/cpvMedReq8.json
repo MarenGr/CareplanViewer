@@ -35,7 +35,7 @@
   "dosageInstruction" : [
     {
 
-      "text" : "with or directly after meal",
+      "text" : "with or directly after breakfast",
       "timing" : {
 
 
@@ -50,11 +50,11 @@
         },
         "code" : {
           "coding": [{
-            "system": "http://snomed.info/sct",
-            "code": "1751000175104",
-            "display": "Daily with breakfast"
+            "system": "https://www.hl7.org/fhir/v3/GTSAbbreviation/cs.html",
+            "code": "AM",
+            "display": "AM"
           }],
-          "text": "Daily with breakfast"
+          "text": "Every morning at institution specified times"
         }
       },
 
