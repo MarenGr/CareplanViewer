@@ -46,13 +46,12 @@
         "repeat" : { // When the event is to occur
           // bounds[x]: Length/Range of lengths, or (Start and/or end) limits. One of these 3:
           "boundsPeriod" : {
-            "start" : "2016-05-12", // C? Starting time with inclusive boundary
-            "end" : "ongoing" // C? End time with inclusive boundary, if not ongoing
+            "start" : "2016-05-12" // C? Starting time with inclusive boundary
+             // C? End time with inclusive boundary, if not ongoing
           },
           "frequency" : 1, // Event occurs frequency times per period
           "period" : 1, // Event occurs frequency times per period
-          "periodUnit" : "d", // s | min | h | d | wk | mo | a - unit of time (UCUM)
-          "when" : ["Morning"] // Regular life events the event is tied to
+          "periodUnit" : "d"
           },
         "code" : {
           "coding": [{

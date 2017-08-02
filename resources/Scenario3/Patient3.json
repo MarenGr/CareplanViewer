@@ -14,7 +14,7 @@
   "name":
   [{
     "use": "official",
-    "family":[ "Hobbs"],
+    "family": "Hobbs",
     "given":[ "Harley"]
   }],
   "telecom":

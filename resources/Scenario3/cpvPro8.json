@@ -22,8 +22,7 @@
     "resourceType" : "Timing",
     "repeat" : { // When the event is to occur
       "boundsPeriod" : {
-        "start": "2017-06-10",
-        "end": "ongoing"
+        "start": "2017-06-10"
       },
       "duration" : 30, // How long when it happens
       "durationUnit" : "min", // s | min | h | d | wk | mo | a - unit of time (UCUM)

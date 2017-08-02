@@ -30,8 +30,7 @@
     "resourceType" : "Timing",
     "repeat" : {
       "boundsPeriod" : {
-        "start": "2004-01-13",
-        "end": "ongoing"
+        "start": "2004-01-13"
       },
       "frequency" : 1, // Event occurs frequency times per period
       "period" : 1, // Event occurs frequency times per period

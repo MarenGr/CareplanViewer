@@ -51,8 +51,8 @@
         "coding": [
           {
             "system": "http://snomed.info/sct",
-            "code":"", //TODO,
-            "display":"" //TODO
+            "code":"56397003",
+            "display":"Neurologist"
           }
         ]
       }

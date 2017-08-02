@@ -35,14 +35,12 @@
     "repeat" : { // When the event is to occur
       // bounds[x]: Length/Range of lengths, or (Start and/or end) limits. One of these 3:
       "boundsPeriod" : {
-        "start" : "2017-08-01",
-        "end" : "ongoing"
+        "start" : "2017-08-01"
       },
       "frequency" : 3, // Event occurs frequency times per period
       "period" : 1, // Event occurs frequency times per period
-      "periodUnit" : "d", // s | min | h | d | wk | mo | a - unit of time (UCUM)
-      "when" : ["before Breakfast", "before Lunch", "before Sleep"] // Regular life events the event is tied to
-      },
+      "periodUnit" : "d"
+    },
     "code" : {
       "coding" : [{
         "system" : "http://snomed.info/sct",

@@ -34,14 +34,6 @@
       //TODO
     }
   },
-  "performerType" : [{// requester | dispatcher | scheduler | performer | monitor | manager | acquirer | reviewer
-    "coding" : [{
-      "system" : "http://snomed.info/sct",
-      "code" : "", //TODO
-      "display" : ""
-    }],
-    "text" : ""
-  }],
   "owner" : {  // Responsible individual
     "reference" : "" //TODO
   },

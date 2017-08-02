@@ -32,8 +32,7 @@
             // When the event is to occur
             // bounds[x]: Length/Range of lengths, or (Start and/or end) limits. One of these 3:
             "boundsPeriod": {
-              "start": "2016-02-12",
-              "end": "ongoing"
+              "start": "2016-02-12"
             },
             "frequency": 1,
             // Event occurs frequency times per period
@@ -43,12 +42,7 @@
             // s | min | h | d | wk | mo | a - unit of time (UCUM)
             "dayOfWeek": [
               "fri"
-            ],
-            // mon | tue | wed | thu | fri | sat | sun
-            "when": [
-              "Morning"
             ]
-            // Regular life events the event is tied to
           },
           "code": {
             "coding": [

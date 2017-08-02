@@ -41,14 +41,12 @@
         "resourceType" : "Timing",
         "repeat" : {
           "boundsPeriod" : {
-            "start" : "2017-08-12",
-            "end" : "ongoing"
+            "start" : "2017-08-12"
           },
           "frequency" : 3, // Event occurs frequency times per period
           "period" : 1, // Event occurs frequency times per period
           "periodUnit" : "d", // s | min | h | d | wk | mo | a - unit of time (UCUM)
-          "timeOfDay" : ["18:00:00", "19:00:00", "20:00:00"], // Time of day for action
-          "when" : ["Evening"] // Regular life events the event is tied to
+          "timeOfDay" : ["18:00:00", "19:00:00", "20:00:00"]
         },
         "code" : {
           "coding": [{

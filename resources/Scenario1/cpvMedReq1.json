@@ -54,8 +54,7 @@
           },
           "frequency" : 1, // Event occurs frequency times per period
           "period" : 1, // Event occurs frequency times per period
-          "periodUnit" : "d", // s | min | h | d | wk | mo | a - unit of time (UCUM)
-          "when" : ["Evening"] // Regular life events the event is tied to
+          "periodUnit" : "d"
         },
         "code" : {
           "coding": [{
@@ -71,18 +70,17 @@
       "route" : {
         "coding": [{
           "system": "http://snomed.info/sct",
-          "code": "", //TODO
-          "display": "" //TODO
+          "code": "263887005",
+          "display": "Subcutaneous "
          }],
-        "text": "<string>"
+        "text": "Subcutaneous "
       },
-      // dose[x]: Amount of medication per dose. One of these 2:
-      "doseRange" : { Range },
-      "doseQuantity" : { Quantity(SimpleQuantity) },
-      // rate[x]: Amount of medication per unit of time. One of these 3:
-      "rateRatio" : { Ratio }
-      "rateRange" : { Range }
-      "rateQuantity" : { Quantity(SimpleQuantity)}
+      "doseQuantity" : {
+        "value" : 100,
+        "unit" : "mg", // Unit representation
+        "system" : "http://snomed.info/sct", // C? System that defines coded unit form
+        "code" : "258684004" // Coded form of the unit
+      }
     }
   ]
 }

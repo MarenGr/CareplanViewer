@@ -39,8 +39,7 @@
     "repeat" : { // When the event is to occur
       // bounds[x]: Length/Range of lengths, or (Start and/or end) limits. One of these 3:
       "boundsPeriod" : {
-        "start": "2017-08-01",
-        "end": "ongoing"
+        "start": "2017-08-01"
       },
       "frequency" : 1, // Event occurs frequency times per period
       "period" : 1, // Event occurs frequency times per period

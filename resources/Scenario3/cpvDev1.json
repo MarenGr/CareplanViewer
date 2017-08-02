@@ -39,13 +39,11 @@
     "repeat" : { // When the event is to occur
       // bounds[x]: Length/Range of lengths, or (Start and/or end) limits. One of these 3:
       "boundsPeriod" : {
-        "start": "2016-10-12",
-        "end": "ongoing"
+        "start": "2016-10-12"
       },
       "frequency" : 1, // Event occurs frequency times per period
       "period" : 1, // Event occurs frequency times per period
-      "periodUnit" : "d", // s | min | h | d | wk | mo | a - unit of time (UCUM)
-      "when": ["before Breakfast"] // Regular life events the event is tied to
+      "periodUnit" : "d"
     },
     "code" : {
       "coding" : [{

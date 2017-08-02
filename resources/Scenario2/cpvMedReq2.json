@@ -49,8 +49,7 @@
           "frequency" : 1, // Event occurs frequency times per period
           "period" : 1, // Event occurs frequency times per period
           "periodUnit" : "d", // s | min | h | d | wk | mo | a - unit of time (UCUM)
-          "timeOfDay" : ["19:00:00"], // Time of day for action
-          "when" : ["Evening"] // Regular life events the event is tied to
+          "timeOfDay" : ["19:00:00"]
         },
         "code" : {
           "coding": [{

@@ -58,8 +58,19 @@
         "coding": [
           {
             "system": "http://snomed.info/sct",
-            "code": "41672002",
-            "display": "Pulmonologist"
+            "code": "22731001",
+            "display": "Orthopedic surgeon"
+          }
+        ]
+      }
+    },
+    {
+      "code": {
+        "coding": [
+          {
+            "system": "http://snomed.info/sct",
+            "code": "45440000",
+            "display": "Rheumatologist"
           }
         ]
       }

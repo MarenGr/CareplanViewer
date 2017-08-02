@@ -47,8 +47,19 @@
         "coding": [
           {
             "system": "http://snomed.info/sct",
-            "code": //TODO,
-            "display": //TODO
+            "code": "40204001",
+            "display": "Hematologist"
+          }
+        ]
+      }
+    },
+    {
+      "code": {
+        "coding": [
+          {
+            "system": "http://snomed.info/sct",
+            "code": "17561000",
+            "display": "Cardiologist"
           }
         ]
       }

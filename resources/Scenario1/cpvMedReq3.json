@@ -46,22 +46,21 @@
         "repeat" : { // When the event is to occur
           // bounds[x]: Length/Range of lengths, or (Start and/or end) limits. One of these 3:
           "boundsPeriod" : {
-            "start" : "2017-08-26", // C? Starting time with inclusive boundary
-            "end" : "ongoing" // C? End time with inclusive boundary, if not ongoing
+            "start" : "2017-08-26" // C? Starting time with inclusive boundary
+             // C? End time with inclusive boundary, if not ongoing
           },
           "frequency" : 1, // Event occurs frequency times per period
           "period" : 1, // Event occurs frequency times per period
-          "periodUnit" : "d", // s | min | h | d | wk | mo | a - unit of time (UCUM)
-          "when" : ["Morning"] // Regular life events the event is tied to
+          "periodUnit" : "d"
           },
-        "code" : {
-          "coding": [{
-            "system": "http://snomed.info/sct",
-            "code": "229797004",
-            "display": "OD" //BID | TID | QID | AM | PM | QD | QOD | Q4H | Q6H +
-          }],
-          "text": "Once a day, in the morning"
-        }
+          "code" : {
+            "coding": [{
+              "system": "http://snomed.info/sct",
+              "code": "229797004",
+              "display": "OD" //BID | TID | QID | AM | PM | QD | QOD | Q4H | Q6H +
+            }],
+            "text": "Once a day, in the morning"
+          }
       },
       "asNeededBoolean" : "false",
       // How drug should enter body
