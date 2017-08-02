@@ -4,10 +4,10 @@
   "basedOn" : [{
     "reference": "CarePlan/cpvCar10"
   }],
-  "status": "active", // active | on-hold | cancelled | completed | entered-in-error | stopped | draft | unknown
-  "intent" : "order", // R!  proposal | plan | order | instance-order
-  "priority" : "routine", // routine | urgent | stat | asap
-  // medication[x]: Medication to be taken. One of these 2:
+  "status": "active",
+  "intent" : "order",
+  "priority" : "routine",
+
   "medicationCodeableConcept" : {
     "coding": [{
       "system": "http://snomed.info/sct",
@@ -18,11 +18,11 @@
   },
   "subject" : {
     "reference": "Patient/cpvPat3"
-  }, //  Who or group medication request is for
-  "requester" : { // Who/What requested the Request
+  },
+  "requester" : {
     "agent" : {
       "reference": "Practitioner/cpvPra3"
-    } // Who ordered the initial medication(s)
+    }
   },
   "reasonCode" : [{
     "coding" : [{
@@ -38,14 +38,14 @@
       "text" : "with or directly after meal",
       "timing" : {
         "resourceType" : "Timing",
-        // from Element: extension
-        "repeat" : { // When the event is to occur
-          // bounds[x]: Length/Range of lengths, or (Start and/or end) limits. One of these 3:
+
+        "repeat" : {
+
           "boundsPeriod" : {
             "start" : "2017-08-01"
           },
-          "frequency" : 1, // Event occurs frequency times per period
-          "period" : 1, // Event occurs frequency times per period
+          "frequency" : 1,
+          "period" : 1,
           "periodUnit" : "d"
         },
         "code" : {
@@ -57,7 +57,7 @@
           "text": "Daily with breakfast"
         }
       },
-      // How drug should enter body
+
       "route" : {
         "coding": [{
           "system": "http://snomed.info/sct",
@@ -66,12 +66,12 @@
         }],
         "text": "Oral"
       },
-      // dose[x]: Amount of medication per dose. One of these 2:
+
       "doseQuantity" : {
         "value" : 500,
-        "unit" : "mg", // Unit representation
-        "system" : "http://snomed.info/sct", // C? System that defines coded unit form
-        "code" : "258684004" // Coded form of the unit
+        "unit" : "mg",
+        "system" : "http://snomed.info/sct",
+        "code" : "258684004"
       }
     },
     {
@@ -79,16 +79,16 @@
       "text" : "with or directly after meal",
       "timing" : {
         "resourceType" : "Timing",
-        // from Element: extension
-        "repeat" : { // When the event is to occur
-          // bounds[x]: Length/Range of lengths, or (Start and/or end) limits. One of these 3:
+
+        "repeat" : {
+
           "boundsPeriod" : {
             "start" : "2017-08-01"
           },
-          "frequency" : 1, // Event occurs frequency times per period
-          "period" : 1, // Event occurs frequency times per period
-          "periodUnit" : "d", // s | min | h | d | wk | mo | a - unit of time (UCUM)
-          "when" : ["dinner"] // Regular life events the event is tied to
+          "frequency" : 1,
+          "period" : 1,
+          "periodUnit" : "d",
+          "when" : ["dinner"]
         },
         "code" : {
           "coding": [{
@@ -99,7 +99,7 @@
           "text": " Daily with dinner"
         }
       },
-      // How drug should enter body
+
       "route" : {
         "coding": [{
           "system": "http://snomed.info/sct",
@@ -108,12 +108,12 @@
         }],
         "text": "Oral"
       },
-      // dose[x]: Amount of medication per dose. One of these 2:
+
       "doseRange" : {
         "value" : 250,
-        "unit" : "mg", // Unit representation
-        "system" : "http://snomed.info/sct", // C? System that defines coded unit form
-        "code" : "258684004" // Coded form of the unit
+        "unit" : "mg",
+        "system" : "http://snomed.info/sct",
+        "code" : "258684004"
       }
     }
   ]

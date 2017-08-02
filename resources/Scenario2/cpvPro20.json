@@ -1,12 +1,12 @@
 {
   "resourceType" : "ProcedureRequest",
   "id": "cpvPro20",
-  "basedOn" : [{ // What request fulfills
+  "basedOn" : [{
     "reference": "CarePlan/cpvCar6"
   }],
-  "status" : "active", // R!  draft | active | suspended | completed | entered-in-error | cancelled
-  "intent" : "proposal", // R!  proposal | plan | order +
-  "priority" : "routine", // routine | urgent | asap | stat
+  "status" : "active",
+  "intent" : "proposal",
+  "priority" : "routine",
   "code" : {
     "coding": [{
       "system": "http://snomed.info/sct",
@@ -14,14 +14,14 @@
       "display": "Active physical exercise"
     }],
     "text": "Active physical exercise"
-  }, // R!  What is being requested/ordered
-  "subject" : {  //  Individual the service is ordered for
+  },
+  "subject" : {
     "reference": "Patient/cpvPat2"
   },
   "occurrencePeriod" : {
     "start": "2004-01-13"
   },
-  "requester" : { // Who/what is requesting procedure or diagnostic
+  "requester" : {
     "agent" : {
       "reference": "Practitioner/cpvPra4"
     }
@@ -33,8 +33,8 @@
       "display": "Patient"
     }],
     "text": "Patient"
-  }, // Performer role
-  "performer" : {  // Requested perfomer
+  },
+  "performer" : {
     "reference": "Patient/cpvPat2"
   },
   "reasonCode" : [{
@@ -47,5 +47,5 @@
   }],
   "note" : [{
     "text" : "Exercises to improve Coordination and Strength"
-  }] // Comments
+  }]
 }

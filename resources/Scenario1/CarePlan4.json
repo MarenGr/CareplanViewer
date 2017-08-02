@@ -28,25 +28,25 @@
   },
   "activity": [
     {
-      "reference": "MedicationRequest/cpvMedReq20" //MTX initial (oral)
+      "reference": "MedicationRequest/cpvMedReq20"
     },
     {
-      "reference": "MedicationRequest/cpvMedReq22" //MTX further (parenteral)
+      "reference": "MedicationRequest/cpvMedReq22"
     },
     {
-      "reference": "ProcedureRequest/cpvPro4"  // monitoring appointments
+      "reference": "ProcedureRequest/cpvPro4"
     },
     {
-      "reference": "ProcedureRequest/cpvPro5"  //radiological controling appointments
+      "reference": "ProcedureRequest/cpvPro5"
     },
     {
-      "reference": "MedicationRequest/cpvMedReq4"   //Glucocorticoids initial
+      "reference": "MedicationRequest/cpvMedReq4"
     },
     {
-      "reference": "MedicationRequest/cpvMedReq5"   //Glucocorticoids continueing
+      "reference": "MedicationRequest/cpvMedReq5"
     },
     {
-      "reference": "NutritionOrder/cvpNut1"   //Folic acid / folacin Substitution
+      "reference": "NutritionOrder/cvpNut1"
     }
   ]
 }

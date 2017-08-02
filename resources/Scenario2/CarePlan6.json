@@ -28,19 +28,19 @@
   },
   "activity": [
     {
-      "reference": "NutritionOrder/cpvNut5" //calcium supplement
+      "reference": "NutritionOrder/cpvNut5"
     },
     {
-      "reference": "NutritionOrder/cpvNut6" //Vitamin D3 supplement
+      "reference": "NutritionOrder/cpvNut6"
     },
     {
-      "reference": "ProcedureRequest/cpvPro19" //annual fall risk anamnesis
+      "reference": "ProcedureRequest/cpvPro19"
     },
     {
-      "reference": "ProcedureRequest/cpvPro19" //physical exercise
+      "reference": "ProcedureRequest/cpvPro19"
     },
     {
-      "reference": "Task/cpvTask1" //nicotine ban
+      "reference": "Task/cpvTask1"
     }
   ]
 }

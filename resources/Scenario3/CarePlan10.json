@@ -28,13 +28,13 @@
   },
   "activity": [
     {
-      "reference": "MedicationRequest/cpvMedReq8" //Metformin
+      "reference": "MedicationRequest/cpvMedReq8"
     },
     {
-      "reference": "DeviceRequest/cpvDev2" //daily weight measurements
+      "reference": "DeviceRequest/cpvDev2"
     },
     {
-      "reference": "DeviceRequest/cpvDev5" //self monitoring of blood sugar
+      "reference": "DeviceRequest/cpvDev5"
     }
   ]
 }

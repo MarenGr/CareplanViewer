@@ -1,8 +1,8 @@
 {
   "resourceType": "NutritionOrder",
   "id": "cpvNut6",
-  "status": "active",// proposed | draft | planned | requested | active | on-hold | completed | cancelled | entered-in-error
-  "patient": { // R!  The person who requires the diet, formula or nutritional supplement
+  "status": "active",
+  "patient": {
     "reference": "Patient/cvpPat2"
   },
   "orderer": {
@@ -43,7 +43,7 @@
           }
         }
       ],
-      // Scheduled frequency of supplement
+
       "quantity": {
         "value": 800,
         "unit": "IU",

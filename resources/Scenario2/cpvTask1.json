@@ -3,20 +3,20 @@
   "id" : "cpvTask1",
   "basedOn" : [{
     "reference" : "CarePlan/cpvCar1"
-  }], // Request fulfilled by this task
-  "status" : "accepted", //  draft | requested | received | accepted |
-  "intent" : "proposal", // R!  proposal | plan | order +
-  "priority" : "normal", // normal | urgent | asap | stat
-  "description" : "No nicotine intake (e.g smoking is not allowed)", // Human-readable explanation of task
+  }],
+  "status" : "accepted",
+  "intent" : "proposal",
+  "priority" : "normal",
+  "description" : "No nicotine intake (e.g smoking is not allowed)",
   "executionPeriod" : {
     "start" : "2004-01-13"
-  }, // Start and end time of execution
-  "requester" : { // Who is asking for task to be done
+  },
+  "requester" : {
     "agent" : {
       "reference": "Practitioner/cpvPra2"
     }
   },
-  "owner" : {  // Responsible individual
+  "owner" : {
     "reference" : "Patient/cpvPat2"
   },
   "reasonCode" : [{

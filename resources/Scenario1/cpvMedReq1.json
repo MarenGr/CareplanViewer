@@ -4,10 +4,10 @@
   "basedOn" : [{
     "reference": "CarePlan/cpvCar1"
   }],
-  "status": "draft", // active | on-hold | cancelled | completed | entered-in-error | stopped | draft | unknown
-  "intent" : "order", // R!  proposal | plan | order | instance-order
-  "priority" : "routine", // routine | urgent | stat | asap
-  // medication[x]: Medication to be taken. One of these 2:
+  "status": "draft",
+  "intent" : "order",
+  "priority" : "routine",
+
   "medicationCodeableConcept" : {
     "coding": [{
       "system": "http://snomed.info/sct",
@@ -22,7 +22,7 @@
   "subject" : {
     "reference": "Patient/cpvPat1"
   },
-  "requester" : { // Who/What requested the Request
+  "requester" : {
     "agent" : {
       "reference": "Practitioner/cpvPra1"
     }
@@ -35,38 +35,38 @@
      }],
     "text": "Rheumatoid arthritis"
   }],
-  // Reason or indication for writing the prescription
+
   "dosageInstruction" : [
     {
       "resourceType" : "Dosage",
-      // Supplemental instruction - e.g. "with meals"
+
       "timing" : {
         "resourceType" : "Timing",
-        // from Element: extension
-        "event" : ["<dateTime>"], // When the event occurs
-        "repeat" : { // When the event is to occur
-          // bounds[x]: Length/Range of lengths, or (Start and/or end) limits. One of these 3:
+
+        "event" : ["<dateTime>"],
+        "repeat" : {
+
           "boundsDuration" : {
-            "value" : 6, // Numerical value (with implicit precision)
-            "unit" : "months", // Unit representation
-            "system" : "http://snomed.info/sct", // C? System that defines coded unit form
-            "code" : "258706009" // Coded form of the unit
+            "value" : 6,
+            "unit" : "months",
+            "system" : "http://snomed.info/sct",
+            "code" : "258706009"
           },
-          "frequency" : 1, // Event occurs frequency times per period
-          "period" : 1, // Event occurs frequency times per period
+          "frequency" : 1,
+          "period" : 1,
           "periodUnit" : "d"
         },
         "code" : {
           "coding": [{
             "system": "http://snomed.info/sct",
             "code": "396147000",
-            "display": "QPM" //BID | TID | QID | AM | PM | QD | QOD | Q4H | Q6H +
+            "display": "QPM"
            }],
           "text": "Once a day, in the evening"
         }
       },
       "asNeededBoolean" : "false",
-      // How drug should enter body
+
       "route" : {
         "coding": [{
           "system": "http://snomed.info/sct",
@@ -77,9 +77,9 @@
       },
       "doseQuantity" : {
         "value" : 100,
-        "unit" : "mg", // Unit representation
-        "system" : "http://snomed.info/sct", // C? System that defines coded unit form
-        "code" : "258684004" // Coded form of the unit
+        "unit" : "mg",
+        "system" : "http://snomed.info/sct",
+        "code" : "258684004"
       }
     }
   ]

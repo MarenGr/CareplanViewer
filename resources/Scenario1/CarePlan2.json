@@ -29,19 +29,19 @@
   },
   "activity": [
     {
-      "reference": "NutritionOrder/cpvNut2" //initial iron substitution dose
+      "reference": "NutritionOrder/cpvNut2"
     },
     {
-      "reference": "NutritionOrder/cpvNut3" //later iron substitution dose
+      "reference": "NutritionOrder/cpvNut3"
     },
     {
-      "reference": "ProcedureRequest/cpvPro1"//app 14 days after beginning of treatment
+      "reference": "ProcedureRequest/cpvPro1"
     },
     {
-      "reference": "ProcedureRequest/cpvPro2"//app every 4 weeks
+      "reference": "ProcedureRequest/cpvPro2"
     },
     {
-      "reference": "ProcedureRequest/cpvPro3"//app every 3 months after stabilization
+      "reference": "ProcedureRequest/cpvPro3"
 
     }
   ]

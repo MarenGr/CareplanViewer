@@ -29,10 +29,10 @@
   },
   "activity": [
     {
-      "reference": "ProcedureRequest/cpvPro21" //Acceptance of illness Questionnaire
+      "reference": "ProcedureRequest/cpvPro21"
     },
     {
-      "reference": "ProcedureRequest/cpvPro22" //Regular appointments
+      "reference": "ProcedureRequest/cpvPro22"
     }
   ]
 }

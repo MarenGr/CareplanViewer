@@ -1,15 +1,15 @@
 {
   "resourceType" : "ProcedureRequest",
   "id": "cpvPro17",
-  "basedOn" : [{ // What request fulfills
+  "basedOn" : [{
     "reference": "CarePlan/cpvCar12"
   }],
-  "replaces" : [{ // Request(s) replaced by this request
+  "replaces" : [{
     "reference": "ProcedureRequest/cpvPro17"
   }],
-  "status" : "active", // R!  draft | active | suspended | completed | entered-in-error | cancelled
-  "intent" : "instance-order", // R!  proposal | plan | order +
-  "priority" : "routine", // routine | urgent | asap | stat
+  "status" : "active",
+  "intent" : "instance-order",
+  "priority" : "routine",
   "category" : [{
     "coding": [{
       "system": "http://snomed.info/sct",
@@ -17,7 +17,7 @@
       "display": "Diagnostic procedure"
     }],
     "text": "Diagnostic procedure"
-  }], // Classification of procedure
+  }],
   "code" : {
     "coding": [{
       "system": "http://snomed.info/sct",
@@ -25,34 +25,34 @@
       "display": "Laboratory test"
     }],
     "text": "Laboratory test"
-  }, // R!  What is being requested/ordered
-  "subject" : {  //  Individual the service is ordered for
+  },
+  "subject" : {
     "reference": "Patient/cpvPat3"
   },
   "occurrenceTiming" : {
     "resourceType" : "Timing",
-    "repeat" : { // When the event is to occur
-      // bounds[x]: Length/Range of lengths, or (Start and/or end) limits. One of these 3:
+    "repeat" : {
+
       "boundsPeriod" : {
         "start" : "2014-06-12",
         "end" : ""
       },
-      "frequency" : 1, // Event occurs frequency times per period
-      "period" : 6, // Event occurs frequency times per period
-      "periodUnit" : "mo", // s | min | h | d | wk | mo | a - unit of time (UCUM)
-      "dayOfWeek" : ["wed"] // mon | tue | wed | thu | fri | sat | sun
+      "frequency" : 1,
+      "period" : 6,
+      "periodUnit" : "mo",
+      "dayOfWeek" : ["wed"]
       },
     "code" : {
       "coding": [{
         "system": "http://snomed.info/sct",
         "code": "307456009",
-        "display": "Twice per year" // BID | TID | QID | AM | PM | QD | QOD | Q4H | Q6H +
+        "display": "Twice per year"
       }],
       "text": "Twice per year"
 
     }
   },
-  "requester" : { // Who/what is requesting procedure or diagnostic
+  "requester" : {
     "agent" : {
       "reference": "Practitioner/cpvPra3"
     }

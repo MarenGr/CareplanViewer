@@ -31,14 +31,14 @@
     "text" : "Patient"
   },
   "occurrenceTiming": {
-    "event" : ["<dateTime>"], // When the event occurs
-    "repeat" : { // When the event is to occur
-      // bounds[x]: Length/Range of lengths, or (Start and/or end) limits. One of these 3:
+    "event" : ["<dateTime>"],
+    "repeat" : {
+
       "boundsPeriod" : {
         "start" : "2017-08-01"
       },
-      "frequency" : 3, // Event occurs frequency times per period
-      "period" : 1, // Event occurs frequency times per period
+      "frequency" : 3,
+      "period" : 1,
       "periodUnit" : "d"
     },
     "code" : {

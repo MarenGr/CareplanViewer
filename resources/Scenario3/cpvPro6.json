@@ -1,12 +1,12 @@
 {
   "resourceType" : "ProcedureRequest",
   "id": "cpvPro6",
-  "basedOn" : [{ // What request fulfills
+  "basedOn" : [{
     "reference": "CarePlan/cpvCar11"
   }],
-  "status" : "completed", // R!  draft | active | suspended | completed | entered-in-error | cancelled
-  "intent" : "proposal", // R!  proposal | plan | order +
-  "priority" : "routine", // routine | urgent | asap | stat
+  "status" : "completed",
+  "intent" : "proposal",
+  "priority" : "routine",
   "category" : [{
     "coding": [{
       "system": "http://snomed.info/sct",
@@ -14,7 +14,7 @@
       "display": "Counselling"
     }],
     "text": "Counselling"
-  }], // Classification of procedure
+  }],
   "code" : {
     "coding": [{
       "system": "http://snomed.info/sct",
@@ -22,17 +22,17 @@
       "display": "Counseling about alcohol consumption"
     }],
     "text": "Counseling about alcohol consumption"
-  }, // R!  What is being requested/ordered
-  "subject" : {  //  Individual the service is ordered for
+  },
+  "subject" : {
     "reference": "Patient/cpvPat3"
   },
   "occurrenceDateTime" : "2016-11-03",
-  "requester" : { // Who/what is requesting procedure or diagnostic
+  "requester" : {
     "agent" : {
       "reference": "Practitioner/cpvPra2"
     }
   },
-  "reasonCode" : [{// Explanation/Justification for test
+  "reasonCode" : [{
     "coding": [{
       "system": "http://snomed.info/sct",
       "code": "84114007",
@@ -42,5 +42,5 @@
   }],
   "note" : [{
     "text": "Requested to avoid alcohol consumption."
-  }] // Comments
+  }]
 }

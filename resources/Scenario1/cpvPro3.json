@@ -1,24 +1,24 @@
 {
   "resourceType" : "ProcedureRequest",
   "id": "cpvPro3",
-  "basedOn" : [{ // What request fulfills
+  "basedOn" : [{
     "reference": "CarePlan/cpvCar2"
   }],
-  "replaces" : [{ // Request(s) replaced by this request
+  "replaces" : [{
     "reference": "ProcedureRequest/cpvPro2"
   }],
-  "status" : "active", // R!  draft | active | suspended | completed | entered-in-error | cancelled
-  "intent" : "proposal", // R!  proposal | plan | order +
-  "priority" : "routine", // routine | urgent | asap | stat
+  "status" : "active",
+  "intent" : "proposal",
+  "priority" : "routine",
   "category" : [{
-    "coding": [{// Classification of procedure
+    "coding": [{
       "system": "http://snomed.info/sct",
       "code": "103693007",
       "display": "Diagnostic procedure"
     }],
     "text": "Diagnostic procedure"
   }],
-  "code" : { // What is being requested/ordered
+  "code" : {
     "coding": [{
       "system": "http://snomed.info/sct",
       "code": "165197003",
@@ -26,21 +26,21 @@
     }],
     "text": "Diagnostic assessment (assessment of treatment effect)"
   },
-  "subject" : {  //  Individual the service is ordered for
+  "subject" : {
     "reference": "Patient/cpvPat1"
   },
   "occurrenceTiming" : {
     "resourceType" : "Timing",
-    // from Element: extension
-    "repeat" : { // When the event is to occur
-      // bounds[x]: Length/Range of lengths, or (Start and/or end) limits. One of these 3:
+
+    "repeat" : {
+
       "boundsPeriod" : {
         "start": "2016-11-05",
         "end": "2017-11-05"
       },
-      "frequency" : 1, // Event occurs frequency times per period
-      "period" : "3", // Event occurs frequency times per period
-      "periodUnit" : "mo" // s | min | h | d | wk | mo | a - unit of time (UCUM)
+      "frequency" : 1,
+      "period" : "3",
+      "periodUnit" : "mo"
     },
     "code" : {
       "coding": [{
@@ -52,7 +52,7 @@
 
     }
   },
-  "requester" : { // Who/what is requesting procedure or diagnostic
+  "requester" : {
     "agent" : {
       "reference": "Practitioner/cpvPra1"
     }
@@ -64,11 +64,11 @@
       "display": "Hematologist"
     }],
     "text": "Hematologist"
-  }, // Performer role
-  "performer" : {  // Requested perfomer
+  },
+  "performer" : {
     "reference": "Practitioner/cpvPra1"
   },
-  "reasonCode" : [{// Explanation/Justification for test
+  "reasonCode" : [{
     "coding": [{
       "system": "http://snomed.info/sct",
       "code": "87522002",
@@ -76,5 +76,5 @@
     }],
     "text": " Iron deficiency anemia"
   }],
-  "note" : [{ "text": "Routine check-ups after stabilization" }] // Comments
+  "note" : [{ "text": "Routine check-ups after stabilization" }]
 }

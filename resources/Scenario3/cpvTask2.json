@@ -3,23 +3,23 @@
   "id" : "cpvTask1",
   "basedOn" : [{
     "reference" : "CarePlan/cpvCar11"
-  }], // Request fulfilled by this task
-  "status" : "accepted", //  draft | requested | received | accepted |
-  "intent" : "order", // R!  proposal | plan | order +
-  "priority" : "urgent", // normal | urgent | asap | stat
-  "description" : "Smoking Ban", // Human-readable explanation of task
+  }],
+  "status" : "accepted",
+  "intent" : "order",
+  "priority" : "urgent",
+  "description" : "Smoking Ban",
   "executionPeriod" : {
     "start" : "2016-10-12"
-  }, // Start and end time of execution
-  "requester" : { // Who is asking for task to be done
+  },
+  "requester" : {
     "agent" : {
       "reference": "Practitioner/cpvPra2"
     }
   },
-  "owner" : {  // Responsible individual
+  "owner" : {
     "reference" : "Patient/cpvPat3"
   },
-  "reasonCode" : [{// Explanation/Justification for test
+  "reasonCode" : [{
     "coding": [{
       "system": "http://snomed.info/sct",
       "code": "84114007",

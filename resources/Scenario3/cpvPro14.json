@@ -1,12 +1,12 @@
 {
   "resourceType" : "ProcedureRequest",
   "id": "cpvPro14",
-  "basedOn" : [{ // What request fulfills
+  "basedOn" : [{
     "reference": "CarePlan/cpvCar12"
   }],
-  "status" : "active", // R!  draft | active | suspended | completed | entered-in-error | cancelled
-  "intent" : "plan", // R!  proposal | plan | order +
-  "priority" : "routine", // routine | urgent | asap | stat
+  "status" : "active",
+  "intent" : "plan",
+  "priority" : "routine",
   "category" : [{
     "coding": [{
       "system": "http://snomed.info/sct",
@@ -14,7 +14,7 @@
       "display": "Diagnostic procedure"
     }],
     "text": "Diagnostic procedure"
-  }], // Classification of procedure
+  }],
   "code" : {
     "coding": [{
       "system": "http://snomed.info/sct",
@@ -22,31 +22,31 @@
       "display": "EORTC - Quality of life questionnaire"
     }],
     "text": "EORTC - Quality of life questionnaire"
-  }, // R!  What is being requested/ordered
-  "subject" : {  //  Individual the service is ordered for
+  },
+  "subject" : {
     "reference": "Patient/cpvPat3"
   },
   "occurrenceTiming" : {
     "resourceType" : "Timing",
-    "repeat" : { // When the event is to occur
+    "repeat" : {
       "boundsPeriod" : {
         "start": "2014-03-12"
       },
-      "frequency" : 2, // Event occurs frequency times per period
-      "period" : 1, // Event occurs frequency times per period
-      "periodUnit" : "a" // s | min | h | d | wk | mo | a - unit of time (UCUM)
+      "frequency" : 2,
+      "period" : 1,
+      "periodUnit" : "a"
       },
     "code" : {
       "coding": [{
         "system": "http://snomed.info/sct",
         "code": "307456009",
-        "display": "Twice per year" // BID | TID | QID | AM | PM | QD | QOD | Q4H | Q6H +
+        "display": "Twice per year"
       }],
       "text": "Twice per year"
 
     }
   },
-  "requester" : { // Who/what is requesting procedure or diagnostic
+  "requester" : {
     "agent" : {
       "reference": "Practitioner/cpvPra3"
     }

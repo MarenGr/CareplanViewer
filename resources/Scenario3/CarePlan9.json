@@ -29,16 +29,16 @@
   },
   "activity": [
     {
-      "reference": "ProcedureRequest/cpvPro8"  //active physical exercise
+      "reference": "ProcedureRequest/cpvPro8"
     },
     {
-      "reference": "ProcedureRequest/cpvPro10"  //smoking cessation assistance
+      "reference": "ProcedureRequest/cpvPro10"
     },
     {
-      "reference": "ProcedureRequest/cpvPro12"  //dietary education
+      "reference": "ProcedureRequest/cpvPro12"
     },
     {
-      "reference": "ProcedureRequest/cpvPro13"  //diabetic care education
+      "reference": "ProcedureRequest/cpvPro13"
     }
   ]
 }

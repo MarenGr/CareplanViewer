@@ -1,12 +1,12 @@
 {
   "resourceType" : "ProcedureRequest",
   "id": "cpvPro8",
-  "basedOn" : [{ // What request fulfills
+  "basedOn" : [{
     "reference": "CarePlan/cpvCar11"
   }],
-  "status" : "active", // R!  draft | active | suspended | completed | entered-in-error | cancelled
-  "intent" : "proposal", // R!  proposal | plan | order +
-  "priority" : "routine", // routine | urgent | asap | stat
+  "status" : "active",
+  "intent" : "proposal",
+  "priority" : "routine",
   "code" : {
     "coding": [{
       "system": "http://snomed.info/sct",
@@ -14,33 +14,33 @@
       "display": " Kinetic activities for strengthening"
     }],
     "text": " Kinetic activities for strengthening"
-  }, // R!  What is being requested/ordered
-  "subject" : {  //  Individual the service is ordered for
+  },
+  "subject" : {
     "reference": "Patient/cpvPat3"
   },
   "occurrenceTiming" : {
     "resourceType" : "Timing",
-    "repeat" : { // When the event is to occur
+    "repeat" : {
       "boundsPeriod" : {
         "start": "2016-10-12"
       },
-      "duration" : 30, // How long when it happens
-      "durationUnit" : "min", // s | min | h | d | wk | mo | a - unit of time (UCUM)
-      "frequency" : 2, // Event occurs frequency times per period
-      "period" : 1, // Event occurs frequency times per period
-      "periodUnit" : "wk" // s | min | h | d | wk | mo | a - unit of time (UCUM)
+      "duration" : 30,
+      "durationUnit" : "min",
+      "frequency" : 2,
+      "period" : 1,
+      "periodUnit" : "wk"
     },
     "code" : {
       "coding": [{
         "system": "http://snomed.info/sct",
         "code": "225751007",
-        "display": "2-3 times a week" // BID | TID | QID | AM | PM | QD | QOD | Q4H | Q6H +
+        "display": "2-3 times a week"
       }],
       "text": "Two to three times a week"
 
     }
   },
-  "requester" : { // Who/what is requesting procedure or diagnostic
+  "requester" : {
     "agent" : {
       "reference": "Practitioner/cpvPra2"
     }
@@ -52,11 +52,11 @@
       "display": "Patient"
     }],
     "text": "Patient"
-  }, // Performer role
-  "performer" : {  // Requested perfomer
+  },
+  "performer" : {
     "reference": "Patient/cpvPat3"
   },
-  "reasonCode" : [{// Explanation/Justification for test
+  "reasonCode" : [{
     "coding": [{
       "system": "http://snomed.info/sct",
       "code": "84114007",

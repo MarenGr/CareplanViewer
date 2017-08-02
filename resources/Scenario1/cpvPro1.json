@@ -1,21 +1,21 @@
 {
   "resourceType" : "ProcedureRequest",
   "id": "cpvPro1",
-  "basedOn" : [{ // What request fulfills
+  "basedOn" : [{
     "reference": "CarePlan/cpvCar2"
   }],
-  "status" : "completed", // R!  draft | active | suspended | completed | entered-in-error | cancelled
-  "intent" : "order", // R!  proposal | plan | order +
-  "priority" : "stat", // routine | urgent | asap | stat
+  "status" : "completed",
+  "intent" : "order",
+  "priority" : "stat",
   "category" : [{
-    "coding": [{// Classification of procedure
+    "coding": [{
       "system": "http://snomed.info/sct",
       "code": "103693007",
       "display": "Diagnostic procedure"
     }],
     "text": "Diagnostic procedure"
   }],
-  "code" : { // What is being requested/ordered
+  "code" : {
     "coding": [{
       "system": "http://snomed.info/sct",
       "code": "79536006",
@@ -23,11 +23,11 @@
     }],
     "text": "Physical medicine, initial examination, evaluation and treatment program planning"
   },
-  "subject" : {  //  Individual the service is ordered for
+  "subject" : {
     "reference": "Patient/cpvPat1"
   },
   "occurrenceDateTime" : "2015-04-02",
-  "requester" : { // Who/what is requesting procedure or diagnostic
+  "requester" : {
     "agent" : {
       "reference": "Practitioner/cpvPra1"
     }
@@ -39,11 +39,11 @@
       "display": "Hematologist"
     }],
     "text": "Hematologist"
-  }, // Performer role
-  "performer" : {  // Requested perfomer
+  },
+  "performer" : {
     "reference": "Practitioner/cpvPra1"
   },
-  "reasonCode" : [{// Explanation/Justification for test
+  "reasonCode" : [{
     "coding": [{
       "system": "http://snomed.info/sct",
       "code": "87522002",

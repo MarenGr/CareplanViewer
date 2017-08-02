@@ -1,12 +1,12 @@
 {
   "resourceType" : "ProcedureRequest",
   "id": "cpvPro7",
-  "basedOn" : [{ // What request fulfills
+  "basedOn" : [{
     "reference": "CarePlan/cpvCar11"
   }],
-  "status" : "completed", // R!  draft | active | suspended | completed | entered-in-error | cancelled
-  "intent" : "instance-order", // R!  proposal | plan | order +
-  "priority" : "asap", // routine | urgent | asap | stat
+  "status" : "completed",
+  "intent" : "instance-order",
+  "priority" : "asap",
   "category" : [{
     "coding": [{
       "system": "http://snomed.info/sct",
@@ -14,7 +14,7 @@
       "display": "Diagnostic procedure"
     }],
     "text": "Diagnostic procedure"
-  }], // Classification of procedure
+  }],
   "code" : {
     "coding": [{
       "system": "http://snomed.info/sct",
@@ -22,17 +22,17 @@
       "display": "6-minute walk test"
     }],
     "text": "6-minute walk test"
-  }, // R!  What is being requested/ordered
-  "subject" : {  //  Individual the service is ordered for
+  },
+  "subject" : {
     "reference": "Patient/cpvPat3"
   },
   "occurrenceDateTime" : "2016-10-15",
-  "requester" : { // Who/what is requesting procedure or diagnostic
+  "requester" : {
     "agent" : {
       "reference": "Practitioner/cpvPra2"
     }
   },
-  "reasonCode" : [{// Explanation/Justification for test
+  "reasonCode" : [{
     "coding": [{
       "system": "http://snomed.info/sct",
       "code": "84114007",

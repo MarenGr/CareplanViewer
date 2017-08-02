@@ -5,10 +5,10 @@
       "reference": "CarePlan/cpvCar4"
     }
   ],
-  "status": "stopped", // active | on-hold | cancelled | completed | entered-in-error | stopped | draft | unknown
-  "intent" : "instance-order", // R!  proposal | plan | order | instance-order
-  "priority" : "routine", // routine | urgent | stat | asap
-  // medication[x]: Medication to be taken. One of these 2:
+  "status": "stopped",
+  "intent" : "instance-order",
+  "priority" : "routine",
+
   "medicationCodeableConcept" : {
     "coding": [{
       "system": "http://snomed.info/sct",
@@ -19,11 +19,11 @@
   },
   "subject" : {
     "reference": "Patient/cpvPat1"
-  }, //  Who or group medication request is for
-  "requester" : { // Who/What requested the Request
+  },
+  "requester" : {
     "agent" : {
       "reference": "Practitioner/cpvPra1"
-    } // Who ordered the initial medication(s)
+    }
   },
   "reasonCode": [{
     "coding": [{
@@ -33,24 +33,24 @@
     }],
     "text": "Rheumatoid arthritis"
   }],
-  "note" : [{ "text" : "Dosage adjustment" }], // Information about the prescription
+  "note" : [{ "text" : "Dosage adjustment" }],
   "dosageInstruction" : [
     {
       "resourceType" : "Dosage",
-      // Supplemental instruction - e.g. "with meals"
+
       "timing" : {
         "resourceType" : "Timing",
-        "repeat" : { // When the event is to occur
-          // bounds[x]: Length/Range of lengths, or (Start and/or end) limits. One of these 3:
+        "repeat" : {
+
           "boundsDuration" : {
-            "value" : 5, // Numerical value (with implicit precision)
-            "unit" : "wk", // Unit representation
-            "system" : "http://snomed.info/sct", // C? System that defines coded unit form
-            "code" : "258705008" // Coded form of the unit
+            "value" : 5,
+            "unit" : "wk",
+            "system" : "http://snomed.info/sct",
+            "code" : "258705008"
           },
-          "frequency" : 1, // Event occurs frequency times per period
-          "period" : 1, // Event occurs frequency times per period
-          "periodUnit" : "wk" // s | min | h | d | wk | mo | a - unit of time (UCUM)
+          "frequency" : 1,
+          "period" : 1,
+          "periodUnit" : "wk"
         },
         "code" : {
           "coding": [{
@@ -70,10 +70,10 @@
         "text": "Parenteral route"
       },
       "doseQuantity" : {
-        "value" : 1, // Numerical value (with implicit precision)
-        "unit" : "vial", // Unit representation
-        "system" : "http://snomed.info/sct", // C? System that defines coded unit form
-        "code" : "415818006" // Coded form of the unit
+        "value" : 1,
+        "unit" : "vial",
+        "system" : "http://snomed.info/sct",
+        "code" : "415818006"
       }
     }
   ],

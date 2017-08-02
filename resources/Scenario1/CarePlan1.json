@@ -29,22 +29,22 @@
   },
   "activity": [
     {
-      "reference": "MedicationRequest/cpvMedReq1" //Anakinra
+      "reference": "MedicationRequest/cpvMedReq1"
     },
     {
-      "reference": "MedicationRequest/cpvMedReq23" //MTX
+      "reference": "MedicationRequest/cpvMedReq23"
     },
     {
-      "reference": "ProcedureRequest/cpvPro4"  // monitoring appointments
+      "reference": "ProcedureRequest/cpvPro4"
     },
     {
-      "reference": "ProcedureRequest/cpvPro5"  //radiological controling appointments
+      "reference": "ProcedureRequest/cpvPro5"
     },
     {
-      "reference": "MedicationRequest/cpvMedReq3"   //Glucocorticoids
+      "reference": "MedicationRequest/cpvMedReq3"
     },
     {
-      "reference": "NutritionOrder/cvpNut1"   //Folic acid / folacin Substitution
+      "reference": "NutritionOrder/cvpNut1"
     }
   ]
 }

@@ -4,10 +4,10 @@
   "basedOn" : [{
     "reference": "CarePlan/cpvCar7"
   }],
-  "status": "draft", // active | on-hold | cancelled | completed | entered-in-error | stopped | draft | unknown
-  "intent" : "instance-order", // R!  proposal | plan | order | instance-order
-  "priority" : "routine", // routine | urgent | stat | asap
-  // medication[x]: Medication to be taken. One of these 2:
+  "status": "draft",
+  "intent" : "instance-order",
+  "priority" : "routine",
+
   "medicationCodeableConcept" : {
     "coding": [{
       "system": "http://snomed.info/sct",
@@ -18,11 +18,11 @@
   },
   "subject" : {
     "reference": "Patient/cpvPat2"
-  }, //  Who or group medication request is for
-  "requester" : { // Who/What requested the Request
+  },
+  "requester" : {
     "agent" : {
       "reference": "Practitioner/cpvPra2"
-    } // Who ordered the initial medication(s)
+    }
   },
   "reasonCode": [{
     "coding": [{
@@ -32,20 +32,20 @@
     }],
     "text": "Parkinson's disease"
   }],
-  "note" : [{ "text" : "Long-term dosis. Maximum of 150mg/day" }], // Information about the prescription
+  "note" : [{ "text" : "Long-term dosis. Maximum of 150mg/day" }],
   "dosageInstruction" : [
     {
       "resourceType" : "Dosage",
-      // Supplemental instruction - e.g. "with meals"
+
       "timing" : {
         "resourceType" : "Timing",
         "repeat" : {
           "boundsPeriod" : {
             "start" : "2017-08-12"
           },
-          "frequency" : 3, // Event occurs frequency times per period
-          "period" : 1, // Event occurs frequency times per period
-          "periodUnit" : "d", // s | min | h | d | wk | mo | a - unit of time (UCUM)
+          "frequency" : 3,
+          "period" : 1,
+          "periodUnit" : "d",
           "timeOfDay" : ["18:00:00", "19:00:00", "20:00:00"]
         },
         "code" : {
@@ -66,14 +66,14 @@
         "text": "Oral"
       },
       "doseQuantity" : {
-        "value" : 50, // Numerical value (with implicit precision)
-        "unit" : "mg", // Unit representation
-        "system" : "http://snomed.info/sct", // C? System that defines coded unit form
-        "code" : "258684004" // Coded form of the unit
+        "value" : 50,
+        "unit" : "mg",
+        "system" : "http://snomed.info/sct",
+        "code" : "258684004"
       }
     }
   ],
   "priorPrescription" : {
     "reference" : "MedicationRequest/cpvMedReq6"
-  } // An order/prescription that is being replaced
+  }
 }

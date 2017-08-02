@@ -1,13 +1,13 @@
 {
   "resourceType" : "NutritionOrder",
   "id": "cpvNut4",
-  "status" : "requested", // proposed | draft | planned | requested | active | on-hold | completed | cancelled | entered-in-error
+  "status" : "requested",
   "patient" : {
     "reference": "Patient/cvpPat3"
-  }, // R!  The person who requires the diet, formula or nutritional supplement
+  },
   "orderer" : {
     "reference": "Practitioner/cpvPra2"
-  }, // Who ordered the diet, formula or nutritional supplement
+  },
   "excludeFoodModifier" : [{
     "coding" : [{
       "system" : "http://snomed.info/sct",
@@ -15,8 +15,8 @@
       "display" : "Alcohol"
     }],
     "text" : "Alcohol"
-  }], // Order-specific modifier about the type of food that should not be given
-  "oralDiet" : { // C? Oral diet components
+  }],
+  "oralDiet" : {
     "type" : [{
       "coding" : [{
         "system" : "http://snomed.info/sct",
@@ -24,7 +24,7 @@
         "display" : "Prescribed dietary intake"
       }],
       "text" : "Prescribed dietary intake"
-    }], // Type of oral diet or diet restrictions that describe what can be consumed orally
+    }],
     "schedule" : [{
       "resourceType" : "Timing",
       "repeat" : {
@@ -32,8 +32,8 @@
           "start" : "2016-10-12"
         }
       }
-    }], // Scheduled frequency of diet
-    "nutrient" : [{ // Required  nutrient modifications
+    }],
+    "nutrient" : [{
       "modifier" : {
         "coding" : [{
           "system" : "http://snomed.info/sct",
@@ -41,14 +41,14 @@
           "display" : "Liquid substance"
         }],
         "text" : "Liquid substance"
-      }, // Type of nutrient that is being modified
+      },
       "amount" : {
-        "value" : 3, // Numerical value (with implicit precision)
-        "comparator" : "<", // < | <= | >= | > - how to understand the value
-        "unit" : "Litre/day", // Unit representation
-        "system" : "http://snomed.info/sct", // C? System that defines coded unit form
-        "code" : "258857003" // Coded form of the unit } // Quantity of the specified nutrient
+        "value" : 3,
+        "comparator" : "<",
+        "unit" : "Litre/day",
+        "system" : "http://snomed.info/sct",
+        "code" : "258857003"
     }}],
-    "instruction" : "Avoid excessive intake of fluids" // Instructions or additional information about the oral diet
+    "instruction" : "Avoid excessive intake of fluids"
   }
 }

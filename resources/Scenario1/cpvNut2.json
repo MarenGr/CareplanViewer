@@ -1,13 +1,13 @@
 {
   "resourceType" : "NutritionOrder",
   "id": "cpvNut2",
-  "status" : "requested", // proposed | draft | planned | requested | active | on-hold | completed | cancelled | entered-in-error
+  "status" : "requested",
   "patient" : {
     "reference": "Patient/cvpPat1"
-  }, // R!  The person who requires the diet, formula or nutritional supplement
+  },
   "orderer" : {
     "reference": "Practitioner/cpvPra1"
-  }, // Who ordered the diet, formula or nutritional supplement
+  },
   "excludeFoodModifier" : [
     {
       "coding" : [{
@@ -57,10 +57,10 @@
       }],
       "text" : "Antacid"
     }
-  ], // Order-specific modifier about the type of food that should not be given
-  "supplement" : [{ // C? Supplement components
+  ],
+  "supplement" : [{
     "type" : {
-      // Type of supplement product requested
+
       "coding": [
         {
           "system": "http://snomed.info/sct",
@@ -73,21 +73,21 @@
     "schedule" : [{
       "resourceType": "Timing",
       "repeat": {
-        // When the event is to occur
-        // bounds[x]: Length/Range of lengths, or (Start and/or end) limits. One of these 3:
+
+
         "boundsDuration" : {
-          "value" : 3, // Numerical value (with implicit precision)
-          "unit" : "months", // Unit representation
-          "system" : "http://snomed.info/sct", // C? System that defines coded unit form
-          "code" : "258706009" // Coded form of the unit
+          "value" : 3,
+          "unit" : "months",
+          "system" : "http://snomed.info/sct",
+          "code" : "258706009"
         },
         "boundsPeriod": {
           "start": "2015-03-05",
           "end": "2015-06-04"
         },
-        "frequency": 1, // Event occurs frequency times per period
-        "period": 1, // Event occurs frequency times per period
-        "periodUnit": "d"   // s | min | h | d | wk | mo | a - unit of time (UCUM)
+        "frequency": 1,
+        "period": 1,
+        "periodUnit": "d"
       },
       "code": {
         "coding": [
@@ -95,22 +95,22 @@
             "system": "http://snomed.info/sct",
             "code": "69620002",
             "display": "Daily"
-            //BID | TID | QID | AM | PM | QD | QOD | Q4H | Q6H +
+
           }
         ],
         "text": "Daily"
       }
-    }], // Scheduled frequency of supplement
+    }],
     "quantity" : {
-      // Amount of the nutritional supplement
+
       "value": 50,
-      // Numerical value (with implicit precision)
+
       "unit": "mg",
-      // Unit representation
+
       "system": "http://snomed.info/sct",
-      // C? System that defines coded unit form
-      "code": "258684004"// Coded form of the unit }, // Amount of the nutritional supplement
+
+      "code": "258684004"
     },
-    "instruction" : "To be taken on an empty stomach, at least 30 to 60 minutes before or after the meal." // Instructions or additional information about the oral supplement
+    "instruction" : "To be taken on an empty stomach, at least 30 to 60 minutes before or after the meal."
   }]
 }

@@ -2,20 +2,20 @@
   "resourceType": "NutritionOrder",
   "id": "cpvNut1",
   "status": "completed",
-  // proposed | draft | planned | requested | active | on-hold | completed | cancelled | entered-in-error
+
   "patient": {
     "reference": "Patient/cvpPat1"
   },
-  // R!  The person who requires the diet, formula or nutritional supplement
+
   "orderer": {
     "reference": "Practitioner/cpvPra1"
   },
-  // Who ordered the diet, formula or nutritional supplement
+
   "supplement": [
     {
-      // C? Supplement components
+
       "type": {
-        // Type of supplement product requested
+
         "coding": [
           {
             "system": "http://snomed.info/sct",
@@ -29,17 +29,17 @@
         {
           "resourceType": "Timing",
           "repeat": {
-            // When the event is to occur
-            // bounds[x]: Length/Range of lengths, or (Start and/or end) limits. One of these 3:
+
+
             "boundsPeriod": {
               "start": "2016-02-12"
             },
             "frequency": 1,
-            // Event occurs frequency times per period
+
             "period": 1,
-            // Event occurs frequency times per period
+
             "periodUnit": "wk",
-            // s | min | h | d | wk | mo | a - unit of time (UCUM)
+
             "dayOfWeek": [
               "fri"
             ]
@@ -50,7 +50,7 @@
                 "system": "http://snomed.info/sct",
                 "code": "225769003",
                 "display": "Once weekly"
-                //BID | TID | QID | AM | PM | QD | QOD | Q4H | Q6H +
+
               }
             ],
             "text": "Once weekly, on Friday morning"
@@ -58,15 +58,15 @@
         }
       ],
       "quantity": {
-        // Amount of the nutritional supplement
+
         "value": 5,
-        // Numerical value (with implicit precision)
+
         "unit": "mg",
-        // Unit representation
+
         "system": "http://snomed.info/sct",
-        // C? System that defines coded unit form
+
         "code": "258684004"
-        // Coded form of the unit
+
       }
     }
   ]

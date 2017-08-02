@@ -28,40 +28,40 @@
   },
   "activity": [
     {
-      "reference": "ProcedureRequest/cpvPro17" //labortatoy controls (initial)
+      "reference": "ProcedureRequest/cpvPro17"
     },
     {
-      "reference": "ProcedureRequest/cpvPro18" //labortatoy controls (continueing)
+      "reference": "ProcedureRequest/cpvPro18"
     },
     {
-      "reference": "ProcedureRequest/cpvPro15" //physical examinations (initial)
+      "reference": "ProcedureRequest/cpvPro15"
     },
     {
-      "reference": "ProcedureRequest/cpvPro16" //physical examinations (continueing)
+      "reference": "ProcedureRequest/cpvPro16"
     },
     {
-      "reference": "ProcedureRequest/cpvPro14" //quality of life questionnaire
+      "reference": "ProcedureRequest/cpvPro14"
     },
     {
-      "reference": "MedicationRequest/cpvMedReq9" //Lisinopril (initial)
+      "reference": "MedicationRequest/cpvMedReq9"
     },
     {
-      "reference": "MedicationRequest/cpvMedReq10" //Lisinopril (increased dosis)
+      "reference": "MedicationRequest/cpvMedReq10"
     },
     {
-      "reference": "MedicationRequest/cpvMedReq11" //Lisinopril (longterm)
+      "reference": "MedicationRequest/cpvMedReq11"
     },
     {
-      "reference": "MedicationRequest/cpvMedReq12" //Bisoprolol (initial)
+      "reference": "MedicationRequest/cpvMedReq12"
     },
     {
-      "reference": "MedicationRequest/cpvMedReq13" //Bisoprolol (increased dosis)
+      "reference": "MedicationRequest/cpvMedReq13"
     },
     {
-      "reference": "MedicationRequest/cpvMedReq14" //Bisoprolol (further increased dosis)
+      "reference": "MedicationRequest/cpvMedReq14"
     },
     {
-      "reference": "MedicationRequest/cpvMedReq15" //Bisoprolol (longterm)
+      "reference": "MedicationRequest/cpvMedReq15"
     }
   ]
 }

@@ -1,12 +1,12 @@
 {
   "resourceType" : "ProcedureRequest",
   "id": "cpvPro12",
-  "basedOn" : [{ // What request fulfills
+  "basedOn" : [{
     "reference": "CarePlan/cpvCar9"
   }],
-  "status" : "completed", // R!  draft | active | suspended | completed | entered-in-error | cancelled
-  "intent" : "order", // R!  proposal | plan | order +
-  "priority" : "routine", // routine | urgent | asap | stat
+  "status" : "completed",
+  "intent" : "order",
+  "priority" : "routine",
   "category" : [{
     "coding": [{
       "system": "http://snomed.info/sct",
@@ -14,7 +14,7 @@
       "display": "Education"
     }],
     "text": "Education"
-  }], // Classification of procedure
+  }],
   "code" : {
     "coding": [{
       "system": "http://snomed.info/sct",
@@ -22,13 +22,13 @@
       "display": "Dietary education for type II diabetes mellitus"
     }],
     "text": "Dietary education for type II diabetes mellitus"
-  }, // R!  What is being requested/ordered
-  "subject" : {  //  Individual the service is ordered for
+  },
+  "subject" : {
     "reference": "Patient/cpvPat3"
   },
   "occurrenceDateTime" : "2017-07-24",
 
-  "requester" : { // Who/what is requesting procedure or diagnostic
+  "requester" : {
     "agent" : {
       "reference": "Practitioner/cpvPra3"
     }
@@ -40,7 +40,7 @@
       "display": "Dietitian"
     }],
     "text": "Dietitian"
-  }, // Performer role
+  },
   "reasonCode" : [{
     "coding" : [{
       "system" : "http://snomed.info/sct",

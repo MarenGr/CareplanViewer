@@ -1,12 +1,12 @@
 {
   "resourceType" : "ProcedureRequest",
   "id": "cpvPro22",
-  "basedOn" : [{ // What request fulfills
+  "basedOn" : [{
     "reference": "CarePlan/cpvCar8"
   }],
-  "status" : "draft", // R!  draft | active | suspended | completed | entered-in-error | cancelled
-  "intent" : "proposal", // R!  proposal | plan | order +
-  "priority" : "routine", // routine | urgent | asap | stat
+  "status" : "draft",
+  "intent" : "proposal",
+  "priority" : "routine",
   "category" : [{
     "coding": [{
       "system": "http://snomed.info/sct",
@@ -14,7 +14,7 @@
       "display": "Psychiatry procedure or service	"
     }],
     "text": "Psychiatry procedure or service	"
-  }], // Classification of procedure
+  }],
   "code" : {
     "coding": [{
       "system": "http://snomed.info/sct",
@@ -22,15 +22,15 @@
       "display": "Psychiatric therapy"
     }],
     "text": "Psychiatric therapy"
-  }, // R!  What is being requested/ordered
-  "subject" : {  //  Individual the service is ordered for
+  },
+  "subject" : {
     "reference": "Patient/cpvPat2"
   },
   "occurrencePeriod" : {
     "start": "2017-09-15",
     "end": "2018-09-15"
   },
-  "requester" : { // Who/what is requesting procedure or diagnostic
+  "requester" : {
     "agent" : {
       "reference": "Practitioner/cpvPra4"
     }
@@ -42,8 +42,8 @@
       "display": "Psychiatrist"
     }],
     "text": "Psychiatrist"
-  }, // Performer role
-  "performer" : {  // Requested perfomer
+  },
+  "performer" : {
     "reference": "Practitioner/cpvPra3"
   },
   "reasonCode": [{
@@ -56,5 +56,5 @@
   }],
   "note" : [{
     "text" : "Regular appointments strongly recommended"
-  }] // Comments
+  }]
 }

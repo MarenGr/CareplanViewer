@@ -1,12 +1,12 @@
 {
   "resourceType" : "ProcedureRequest",
   "id": "cpvPro5",
-  "basedOn" : [{ // What request fulfills
+  "basedOn" : [{
     "reference": "CarePlan/cpvCar4"
   }],
-  "status" : "active", // R!  draft | active | suspended | completed | entered-in-error | cancelled
-  "intent" : "order", // R!  proposal | plan | order +
-  "priority" : "routine", // routine | urgent | asap | stat
+  "status" : "active",
+  "intent" : "order",
+  "priority" : "routine",
   "category" : [{
     "coding": [{
       "system": "http://snomed.info/sct",
@@ -14,7 +14,7 @@
       "display": "Diagnostic procedure"
     }],
     "text": "Diagnostic procedure"
-  }], // Classification of procedure
+  }],
   "code" : {
     "coding": [{
       "system": "http://snomed.info/sct",
@@ -22,21 +22,21 @@
       "display": "Radiographic imaging procedure"
     }],
     "text": "Radiographic imaging procedure"
-  }, // R!  What is being requested/ordered
-  "subject" : {  //  Individual the service is ordered for
+  },
+  "subject" : {
     "reference": "Patient/cpvPat1"
   },
   "occurrenceTiming" : {
     "resourceType" : "Timing",
-    // from Element: extension
-    "repeat" : { // When the event is to occur
-      // bounds[x]: Length/Range of lengths, or (Start and/or end) limits. One of these 3:
+
+    "repeat" : {
+
       "boundsPeriod" : {
         "start": "2016-02-12"
       },
-      "frequency" : 1, // Event occurs frequency times per period
-      "period" : 1, // Event occurs frequency times per period
-      "periodUnit" : "a" // s | min | h | d | wk | mo | a - unit of time (UCUM)
+      "frequency" : 1,
+      "period" : 1,
+      "periodUnit" : "a"
     },
     "code" : {
       "coding": [{
@@ -48,7 +48,7 @@
 
     }
   },
-  "requester" : { // Who/what is requesting procedure or diagnostic
+  "requester" : {
     "agent" : {
       "reference": "Practitioner/cpvPra1"
     }
@@ -60,11 +60,11 @@
       "display": "Rheumatologist"
     }],
     "text": "Rheumatologist"
-  }, // Performer role
-  "performer" : {  // Requested perfomer
+  },
+  "performer" : {
     "reference": "Practitioner/cpvPra1"
   },
-  "reasonCode" : [{// Explanation/Justification for test
+  "reasonCode" : [{
     "coding": [{
       "system": "http://snomed.info/sct",
       "code": "69896004",

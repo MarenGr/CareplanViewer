@@ -29,31 +29,31 @@
   },
   "activity": [
     {
-      "reference": "DeviceRequest/cpvDev1" //daily weight measurements
+      "reference": "DeviceRequest/cpvDev1"
     },
     {
-      "reference": "DeviceRequest/cpvDev3" //spirometer to measure oxygen intake
+      "reference": "DeviceRequest/cpvDev3"
     },
     {
-      "reference": "DeviceRequest/cpvDev4" //body elastic exerciser
+      "reference": "DeviceRequest/cpvDev4"
     },
     {
-      "reference": "NutritionOrder/cpvNut4" //avoid excessive fluid intatke (+alcohol restriction)
+      "reference": "NutritionOrder/cpvNut4"
     },
     {
-      "reference": "ProcedureRequest/cpvPro6" //Counselling about alcohol consumption
+      "reference": "ProcedureRequest/cpvPro6"
     },
     {
-      "reference": "ProcedureRequest/cpvPro7" //6-minute walk test
+      "reference": "ProcedureRequest/cpvPro7"
     },
     {
-      "reference": "ProcedureRequest/cpvPro11" //active physical exercise
+      "reference": "ProcedureRequest/cpvPro11"
     },
     {
-      "reference": "ProcedureRequest/cpvPro9" //smoking cessation assistance
+      "reference": "ProcedureRequest/cpvPro9"
     },
     {
-      "reference": "Task/cpvTask1" //smoking ban
+      "reference": "Task/cpvTask1"
     }
   ]
 }

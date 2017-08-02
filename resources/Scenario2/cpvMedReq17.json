@@ -4,10 +4,10 @@
   "basedOn" : [{
     "reference": "CarePlan/cpvCar7"
   }],
-  "status": "active", // active | on-hold | cancelled | completed | entered-in-error | stopped | draft | unknown
-  "intent" : "instance-order", // R!  proposal | plan | order | instance-order
-  "priority" : "routine", // routine | urgent | stat | asap
-  // medication[x]: Medication to be taken. One of these 2:
+  "status": "active",
+  "intent" : "instance-order",
+  "priority" : "routine",
+
   "medicationCodeableConcept" : {
     "coding": [{
       "system": "http://snomed.info/sct",
@@ -18,11 +18,11 @@
   },
   "subject" : {
     "reference": "Patient/cpvPat2"
-  }, //  Who or group medication request is for
-  "requester" : { // Who/What requested the Request
+  },
+  "requester" : {
     "agent" : {
       "reference": "Practitioner/cpvPra5"
-    } // Who ordered the initial medication(s)
+    }
   },
   "reasonCode": [{
     "coding": [{
@@ -42,9 +42,9 @@
           "boundsPeriod" : {
             "start" : "2017-06-30"
           },
-          "frequency" : 4, // Event occurs frequency times per period
-          "period" : 1, // Event occurs frequency times per period
-          "periodUnit" : "d" // s | min | h | d | wk | mo | a - unit of time (UCUM)
+          "frequency" : 4,
+          "period" : 1,
+          "periodUnit" : "d"
         },
         "code" : {
           "coding": [{
@@ -56,7 +56,7 @@
         }
       },
       "asNeededBoolean" : true,
-      // How drug should enter body
+
       "route" : {
         "coding": [{
           "system": "http://snomed.info/sct",
@@ -66,10 +66,10 @@
         "text": "Oral"
       },
       "doseQuantity" : {
-        "value" : 25, // Numerical value (with implicit precision)
-        "unit" : "mg", // Unit representation
-        "system" : "http://snomed.info/sct", // C? System that defines coded unit form
-        "code" : "258684004" // Coded form of the unit
+        "value" : 25,
+        "unit" : "mg",
+        "system" : "http://snomed.info/sct",
+        "code" : "258684004"
       }
     }
   ]

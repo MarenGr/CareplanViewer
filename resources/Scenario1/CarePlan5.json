@@ -29,19 +29,19 @@
   },
   "activity": [
     {
-      "reference": "MedicationRequest/cpvMedReq21" //MTX
+      "reference": "MedicationRequest/cpvMedReq21"
     },
     {
-      "reference": "ProcedureRequest/cpvPro4"  // monitoring appointments
+      "reference": "ProcedureRequest/cpvPro4"
     },
     {
-      "reference": "ProcedureRequest/cpvPro5"  //radiological controling appointments
+      "reference": "ProcedureRequest/cpvPro5"
     },
     {
-      "reference": "MedicationRequest/cpvMedReq7"   //Glucocorticoids continueing
+      "reference": "MedicationRequest/cpvMedReq7"
     },
     {
-      "reference": "NutritionOrder/cvpNut1"   //Folic acid / folacin Substitution
+      "reference": "NutritionOrder/cvpNut1"
     }
   ]
 }

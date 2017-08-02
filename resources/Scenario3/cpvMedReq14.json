@@ -4,10 +4,10 @@
   "basedOn" : [{
     "reference": "CarePlan/cpvCar12"
   }],
-  "status": "completed", // active | on-hold | cancelled | completed | entered-in-error | stopped | draft | unknown
-  "intent" : "instance-order", // R!  proposal | plan | order | instance-order
-  "priority" : "urgent", // routine | urgent | stat | asap
-  // medication[x]: Medication to be taken. One of these 2:
+  "status": "completed",
+  "intent" : "instance-order",
+  "priority" : "urgent",
+
   "medicationCodeableConcept" : {
     "coding": [{
       "system": "http://snomed.info/sct",
@@ -18,11 +18,11 @@
   },
   "subject" : {
     "reference": "Patient/cpvPat3"
-  }, //  Who or group medication request is for
-  "requester" : { // Who/What requested the Request
+  },
+  "requester" : {
     "agent" : {
       "reference": "Practitioner/cpvPra3"
-    } // Who ordered the initial medication(s)
+    }
   },
   "reasonCode" : [{
     "coding" : [{
@@ -32,25 +32,25 @@
     }],
     "text" : "Cardiac insufficiency"
   }],
-  // Reason or indication for writing the prescription
-  "note" : [{ "text" : "Dosage to be increased in thriweekly intervals" }], // Information about the prescription
+
+  "note" : [{ "text" : "Dosage to be increased in thriweekly intervals" }],
   "dosageInstruction" : [
     {
       "resourceType" : "Dosage",
-      // Supplemental instruction - e.g. "with meals"
+
       "timing" : {
         "resourceType" : "Timing",
-        "repeat" : { // When the event is to occur
-          // bounds[x]: Length/Range of lengths, or (Start and/or end) limits. One of these 3:
+        "repeat" : {
+
           "boundsDuration" : {
-            "value" : 3, // Numerical value (with implicit precision)
-            "unit" : "weeks", // Unit representation
-            "system" : "http://snomed.info/sct", // C? System that defines coded unit form
-            "code" : "258705008" // Coded form of the unit
+            "value" : 3,
+            "unit" : "weeks",
+            "system" : "http://snomed.info/sct",
+            "code" : "258705008"
           },
-          "frequency" : 2, // Event occurs frequency times per period
-          "period" : 1, // Event occurs frequency times per period
-          "periodUnit" : "d" // s | min | h | d | wk | mo | a - unit of time (UCUM)
+          "frequency" : 2,
+          "period" : 1,
+          "periodUnit" : "d"
           },
         "code" : {
           "coding": [{
@@ -70,23 +70,23 @@
         "text": "Oral"
       },
       "rateRatio" : {
-        // from Element: extension
+
         "numerator" : {
           "value" : 7.5,
-          "unit" : "mg", // Unit representation
-          "system" : "http://snomed.info/sct", // C? System that defines coded unit form
-          "code" : "258684004" // Coded form of the unit
+          "unit" : "mg",
+          "system" : "http://snomed.info/sct",
+          "code" : "258684004"
         },
         "denominator" : {
           "value" : 1,
-          "unit" : "d", // Unit representation
-          "system" : "http://snomed.info/sct", // C? System that defines coded unit form
-          "code" : "258703001" // Coded form of the unit
+          "unit" : "d",
+          "system" : "http://snomed.info/sct",
+          "code" : "258703001"
         }
       }
     }
   ],
   "priorPrescription" : {
     "reference" : "MedicationRequest/cpvMedReq13"
-  } // An order/prescription that is being replaced
+  }
 }

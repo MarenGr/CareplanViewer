@@ -1,15 +1,15 @@
 {
   "resourceType" : "ProcedureRequest",
   "id": "cpvPro15",
-  "basedOn" : [{ // What request fulfills
+  "basedOn" : [{
     "reference": "CarePlan/cpvCar12"
   }],
-  "replaces" : [{ // Request(s) replaced by this request
+  "replaces" : [{
     "reference": "ProcedureRequest/cpvPro15"
   }],
-  "status" : "active", // R!  draft | active | suspended | completed | entered-in-error | cancelled
-  "intent" : "instance-order", // R!  proposal | plan | order +
-  "priority" : "routine", // routine | urgent | asap | stat
+  "status" : "active",
+  "intent" : "instance-order",
+  "priority" : "routine",
   "category" : [{
     "coding": [{
       "system": "http://snomed.info/sct",
@@ -17,7 +17,7 @@
       "display": "Diagnostic procedure"
     }],
     "text": "Diagnostic procedure"
-  }], // Classification of procedure
+  }],
   "code" : {
     "coding": [{
       "system": "http://snomed.info/sct",
@@ -25,33 +25,33 @@
       "display": "Physical examination"
     }],
     "text": "Physical examination"
-  }, // R!  What is being requested/ordered
-  "subject" : {  //  Individual the service is ordered for
+  },
+  "subject" : {
     "reference": "Patient/cpvPat3"
   },
   "occurrenceTiming" : {
     "resourceType" : "Timing",
-    // from Element: extension
-    "repeat" : { // When the event is to occur
-      // bounds[x]: Length/Range of lengths, or (Start and/or end) limits. One of these 3:
+
+    "repeat" : {
+
       "boundsPeriod" : {
         "start" : "2014-06-12"
       },
-      "frequency" : 3, // Event occurs frequency times per period
-      "period" : 1, // Event occurs frequency times per period
-      "periodUnit" : "a" // s | min | h | d | wk | mo | a - unit of time (UCUM)
+      "frequency" : 3,
+      "period" : 1,
+      "periodUnit" : "a"
     },
     "code" : {
       "coding": [{
         "system": "http://snomed.info/sct",
         "code": "307457000",
-        "display": "Three times per year" // BID | TID | QID | AM | PM | QD | QOD | Q4H | Q6H +
+        "display": "Three times per year"
       }],
       "text": "Three times per year"
 
     }
   },
-  "requester" : { // Who/what is requesting procedure or diagnostic
+  "requester" : {
     "agent" : {
       "reference": "Practitioner/cpvPra3"
     }
@@ -63,8 +63,8 @@
       "display": "Medical assistant"
     }],
     "text": "Medical assistant"
-  }, // Performer role
-  "performer" : {  // Requested perfomer
+  },
+  "performer" : {
     "reference": "Practitioner/cpvPra3"
   },
   "reasonCode" : [{

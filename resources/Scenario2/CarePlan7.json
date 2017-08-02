@@ -28,22 +28,22 @@
   },
   "activity": [
     {
-      "reference": "MedicationRequest/cpvMedReq2" //inital dosage Piribedil
+      "reference": "MedicationRequest/cpvMedReq2"
     },
     {
-      "reference": "MedicationRequest/cpvMedReq6" //continueing dosage Piribedil
+      "reference": "MedicationRequest/cpvMedReq6"
     },
     {
-      "reference": "MedicationRequest/cpvMedReq16" //longterm dosage Piribedil
+      "reference": "MedicationRequest/cpvMedReq16"
     },
     {
-      "reference": "MedicationRequest/cpvMedReq17" //Levodopa
+      "reference": "MedicationRequest/cpvMedReq17"
     },
     {
-      "reference": "MedicationRequest/cpvMedReq18" //Tolcapone
+      "reference": "MedicationRequest/cpvMedReq18"
     },
     {
-      "reference": "MedicationRequest/cpvMedReq19" //Selegiline
+      "reference": "MedicationRequest/cpvMedReq19"
     }
   ]
 }

@@ -1,12 +1,12 @@
 {
   "resourceType" : "ProcedureRequest",
   "id": "cpvPro19",
-  "basedOn" : [{ // What request fulfills
+  "basedOn" : [{
     "reference": "CarePlan/cpvCar6"
   }],
-  "status" : "active", // R!  draft | active | suspended | completed | entered-in-error | cancelled
-  "intent" : "plan", // R!  proposal | plan | order +
-  "priority" : "routine", // routine | urgent | asap | stat
+  "status" : "active",
+  "intent" : "plan",
+  "priority" : "routine",
   "category" : [{
     "coding": [{
       "system": "http://snomed.info/sct",
@@ -14,7 +14,7 @@
       "display": "Diagnostic procedure"
     }],
     "text": "Diagnostic procedure"
-  }], // Classification of procedure
+  }],
   "code" : {
     "coding": [{
       "system": "http://snomed.info/sct",
@@ -22,8 +22,8 @@
       "display": "Fall risk assessment"
     }],
     "text": "Fall risk assessment"
-  }, // R!  What is being requested/ordered
-  "subject" : {  //  Individual the service is ordered for
+  },
+  "subject" : {
     "reference": "Patient/cpvPat2"
   },
   "occurrenceTiming" : {
@@ -32,9 +32,9 @@
       "boundsPeriod" : {
         "start": "2004-01-13"
       },
-      "frequency" : 1, // Event occurs frequency times per period
-      "period" : 1, // Event occurs frequency times per period
-      "periodUnit" : "a" // s | min | h | d | wk | mo | a - unit of time (UCUM)
+      "frequency" : 1,
+      "period" : 1,
+      "periodUnit" : "a"
     },
     "code" : {
       "coding": [{
@@ -46,7 +46,7 @@
 
     }
   },
-  "requester" : { // Who/what is requesting procedure or diagnostic
+  "requester" : {
     "agent" : {
       "reference": "Practitioner/cpvPra4"
     }
