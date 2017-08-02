@@ -10,6 +10,7 @@
     "reference": "Patient/cpvPat1"
   },
   "status": "completed",
+  "intent" : "order",
   "category": {
     "coding" : [{
       "system" : "http://snomed.info/sct",

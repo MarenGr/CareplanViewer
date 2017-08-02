@@ -10,6 +10,7 @@
     "reference": "Patient/cpvPat1"
   },
   "status": "cancelled",
+  "intent" : "order",
   "category": {
     "coding" : [{
       "system" : "http://snomed.info/sct",

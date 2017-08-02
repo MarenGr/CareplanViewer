@@ -10,6 +10,7 @@
     "reference": "Patient/cpvPat2"
   },
   "status": "draft",
+  "intent" : "proposal",
   "category": {
     "coding" : [{
       "system" : "http://snomed.info/sct",

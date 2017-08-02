@@ -10,6 +10,7 @@
     "reference": //TODO
   },
   "status": "Active",
+  "intent" : "<code>", //TODO  proposal | plan | order | option
   "category": //TODO
   "replaces": //TODO
   "period": {

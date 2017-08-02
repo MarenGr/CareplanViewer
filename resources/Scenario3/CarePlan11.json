@@ -10,6 +10,7 @@
     "reference": "Patient/cpvPat3"
   },
   "status": "active",
+  "intent" : "plan",
   "category": {
     "coding" : [{
       "system" : "http://snomed.info/sct",
