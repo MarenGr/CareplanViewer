@@ -1,6 +1,10 @@
 {
   "resourceType" : "ProcedureRequest",
   "id": "cpvPro19",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Fall risk assessment</div>"
+  },
   "basedOn" : [],
   "status" : "active",
   "intent" : "plan",

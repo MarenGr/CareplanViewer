@@ -1,6 +1,10 @@
 {
   "resourceType" : "NutritionOrder",
   "id": "cpvNut5",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Calcium supplement</div>"
+  },
   "status" : "active",
   "dateTime" : "2004-01-12T16:34:12.000Z",
   "foodPreferenceModifier" : [{

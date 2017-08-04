@@ -1,6 +1,10 @@
 {
   "resourceType" : "MedicationRequest",
   "id": "cpvMedReq6",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Piribedil medication - dosage adjustment 1</div>"
+  },
   "basedOn" : [],
   "status": "active",
   "intent" : "instance-order",

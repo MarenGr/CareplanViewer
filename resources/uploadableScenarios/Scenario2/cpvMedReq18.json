@@ -1,6 +1,10 @@
 {
   "resourceType" : "MedicationRequest",
   "id": "cpvMedReq17",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Tolcapone medication</div>"
+  },
   "basedOn" : [],
   "status": "active",
   "intent" : "instance-order",

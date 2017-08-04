@@ -1,6 +1,10 @@
 {
   "resourceType" : "ProcedureRequest",
   "id": "cpvPro22",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Psychiatric therapy</div>"
+  },
   "basedOn" : [],
   "status" : "draft",
   "intent" : "proposal",

@@ -1,6 +1,10 @@
 {
   "resourceType" : "ProcedureRequest",
   "id": "cpvPro21",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Acceptance of Illness Assessment</div>"
+  },
   "basedOn" : [],
   "status" : "draft",
   "intent" : "proposal",

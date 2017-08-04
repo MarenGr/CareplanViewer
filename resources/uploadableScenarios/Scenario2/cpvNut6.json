@@ -1,6 +1,10 @@
 {
   "resourceType": "NutritionOrder",
   "id": "cpvNut6",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Vitamin D supplement</div>"
+  },
   "status": "active",
   "dateTime" : "2004-01-12T16:35:45.000Z",
   "supplement": [
