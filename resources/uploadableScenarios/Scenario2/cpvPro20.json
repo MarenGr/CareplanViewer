@@ -1,0 +1,38 @@
+{
+  "resourceType" : "ProcedureRequest",
+  "id": "cpvPro20",
+  "basedOn" : [],
+  "status" : "active",
+  "intent" : "proposal",
+  "priority" : "routine",
+  "code" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "86047003",
+      "display": "Active physical exercise"
+    }],
+    "text": "Active physical exercise"
+  },
+  "occurrencePeriod" : {
+    "start": "2004-01-13"
+  },
+  "performerType" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "116154003",
+      "display": "Patient"
+    }],
+    "text": "Patient"
+  },
+  "reasonCode" : [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "64859006",
+      "display": "Osteoporosis"
+    }],
+    "text": "Osteoporosis"
+  }],
+  "note" : [{
+    "text" : "Exercises to improve Coordination and Strength"
+  }]
+}

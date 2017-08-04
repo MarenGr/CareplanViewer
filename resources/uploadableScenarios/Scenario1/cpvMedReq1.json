@@ -1,9 +1,7 @@
 {
   "resourceType" : "MedicationRequest",
   "id": "cpvMedReq1",
-  "basedOn" : [{
-    "reference": "CarePlan/cpvCar1"
-  }],
+  "basedOn" : [],
   "status": "draft",
   "intent" : "order",
   "priority" : "routine",
@@ -15,14 +13,6 @@
       "display": "Anakinra"
      }],
     "text": "Anakinra"
-  },
-  "subject" : {
-    "reference": "Patient/cpvPat1"
-  },
-  "requester" : {
-    "agent" : {
-      "reference": "Practitioner/cpvPra1"
-    }
   },
   "reasonCode": [{
     "coding": [{

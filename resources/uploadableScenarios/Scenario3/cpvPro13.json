@@ -1,0 +1,41 @@
+{
+  "resourceType" : "ProcedureRequest",
+  "id": "cpvPro12",
+  "basedOn" : [],
+  "status" : "completed",
+  "intent" : "order",
+  "priority" : "asap",
+  "category" : [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "409073007",
+      "display": "Education"
+    }],
+    "text": "Education"
+  }],
+  "code" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "385805005",
+      "display": "Diabetic care education"
+    }],
+    "text": "Diabetic care education"
+  },
+  "occurrenceDateTime" : "2017-06-20",
+  "performerType" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "309350005",
+      "display": "Diabetologist"
+    }],
+    "text": "Diabetologist"
+  },
+  "reasonCode" : [{
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "44054006",
+      "display" : "Diabetes mellitus type 2"
+    }],
+    "text" : "Diabetes mellitus type 2"
+  }]
+}

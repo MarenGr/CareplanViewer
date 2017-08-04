@@ -1,0 +1,47 @@
+{
+  "resourceType" : "ProcedureRequest",
+  "id": "cpvPro22",
+  "basedOn" : [],
+  "status" : "draft",
+  "intent" : "proposal",
+  "priority" : "routine",
+  "category" : [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "24642003",
+      "display": "Psychiatry procedure or service"
+    }],
+    "text": "Psychiatry procedure or service"
+  }],
+  "code" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "31205005",
+      "display": "Psychiatric therapy"
+    }],
+    "text": "Psychiatric therapy"
+  },
+  "occurrencePeriod" : {
+    "start": "2017-09-15",
+    "end": "2018-09-15"
+  },
+  "performerType" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "80584001",
+      "display": "Psychiatrist"
+    }],
+    "text": "Psychiatrist"
+  },
+  "reasonCode": [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "49049000",
+      "display": "Parkinson's disease"
+    }],
+    "text": "Parkinson's disease"
+  }],
+  "note" : [{
+    "text" : "Regular appointments strongly recommended"
+  }]
+}

@@ -1,0 +1,26 @@
+{
+  "resourceType": "CarePlan",
+  "id": "cpvCar2",
+  "author": [
+  ],
+  "status": "active",
+  "intent" : "order",
+  "category": {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "412777005",
+      "display" : "Diabetes clinical management plan"
+    }],
+    "text" : "Diabetes clinical management plan"
+  },
+  "period": {
+    "start": "2017-08-01"
+  },
+  "description": "Basic Diabetes Mellitus Type 2 Therapy",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Basic Diabetes Mellitus Type 2 Therapy</p></div>"
+  },
+  "activity": [
+  ]
+}

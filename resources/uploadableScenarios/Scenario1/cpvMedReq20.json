@@ -1,0 +1,62 @@
+{
+  "resourceType" : "MedicationRequest",
+  "id": "cpvMedReqTemplate",
+  "basedOn" : [],
+  "status": "completed",
+  "intent" : "instance-order",
+  "priority" : "urgent",
+
+  "medicationCodeableConcept" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "326875008",
+      "display": "Methotrexate 10mg tablet"
+    }],
+    "text": "Methotrexate 10mg tablet"
+  },
+  "reasonCode": [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "69896004",
+      "display": "Rheumatoid arthritis"
+    }],
+    "text": "Rheumatoid arthritis"
+  }],
+  "note" : [{ "text" : "Initial Dose. To be adjusted after 5 weeks" }],
+  "dosageInstruction" : [
+    {
+
+
+      "timing" : {
+
+        "repeat" : {
+
+          "boundsDuration" : {
+            "value" : 5,
+            "unit" : "wk",
+            "system" : "http://unitsofmeasure.org"
+          },
+          "frequency" : 1,
+          "period" : 1,
+          "periodUnit" : "wk"
+        }
+      },
+      "route" : {
+        "coding": [{
+          "system": "http://snomed.info/sct",
+          "code": "260548002",
+          "display": "Oral"
+        }],
+        "text": "Oral"
+      },
+
+
+      "doseQuantity" : {
+        "value" : 1,
+        "unit" : "Tablet",
+        "system" : "http://snomed.info/sct",
+        "code" : "428673006"
+      }
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "resourceType": "CarePlan",
+  "id": "cpvCar5",
+  "author": [
+  ],
+  "status": "active",
+  "intent" : "order",
+  "category": {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "412774003",
+      "display" : "Clinical management plan"
+    }],
+    "text" : "Clinical management plan"
+  },
+  "period": {
+    "start": "2016-05-12"
+  },
+  "description": "Adjusted DMARD Combination for Rheumatoic Arthritis",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Adjusted DMARD Combination for Rheumatoic Arthritis<p></p></div>"
+  },
+  "activity": [
+  ]
+}

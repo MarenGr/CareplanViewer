@@ -1,0 +1,27 @@
+{
+  "resourceType": "CarePlan",
+  "id": "cpvCar3",
+  "author": [
+  ],
+  "status": "completed",
+  "intent" : "order",
+  "category": {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "412774003",
+      "display" : "Clinical management plan"
+    }],
+    "text" : "Clinical management plan"
+  },
+  "period": {
+    "start": "2015-03-05",
+    "end": "2016-03-05"
+  },
+  "description": "Improvement of Iron Resorption because of Iron Deficiency Anemia",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Improvement of Iron Resorption because of Iron Deficiency Anemia</p></div>"
+  },
+  "activity": [
+  ]
+}

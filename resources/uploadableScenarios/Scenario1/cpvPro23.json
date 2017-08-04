@@ -1,0 +1,28 @@
+{
+  "resourceType" : "ProcedureRequest",
+  "id": "ProcedureRequestTemplate",
+  "basedOn" : [],
+  "status" : "completed",
+  "intent" : "plan",
+  "priority" : "asap",
+  "code" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "281897000",
+      "display": "Helicobacter eradication therapy"
+    }],
+    "text": "Helicobacter eradication therapy"
+  },
+  "occurrencePeriod" : {
+    "start": "2015-03-05",
+    "end": "2016-03-05"
+  },
+  "reasonCode" : [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "721730009",
+      "display": "Infection caused by Helicobacter pylori"
+    }],
+    "text": "Infection caused by Helicobacter pylori"
+  }]
+}

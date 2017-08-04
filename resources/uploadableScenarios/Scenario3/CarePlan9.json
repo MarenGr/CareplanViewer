@@ -1,0 +1,27 @@
+{
+  "resourceType": "CarePlan",
+  "id": "cpvCar2",
+  "author": [
+  ],
+  "status": "active",
+  "intent" : "proposal",
+  "category": {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "698360004",
+      "display" : "Diabetes self management plan"
+    }],
+    "text" : "Diabetes self management plan"
+  },
+  "period": {
+    "start": "2017-06-10",
+    "end": "2017-10-30"
+  },
+  "description": "Lifestyle changes",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Lifestyle changes</p></div>"
+  },
+  "activity": [
+  ]
+}

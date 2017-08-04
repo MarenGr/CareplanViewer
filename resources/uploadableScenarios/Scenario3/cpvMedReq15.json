@@ -1,0 +1,79 @@
+{
+  "resourceType" : "MedicationRequest",
+  "id": "cpvMedReq15",
+  "basedOn" : [],
+  "status": "completed",
+  "intent" : "instance-order",
+  "priority" : "urgent",
+
+  "medicationCodeableConcept" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "386868003",
+      "display": "Bisoprolol"
+    }],
+    "text": "Bisoprolol"
+  },
+  "reasonCode" : [{
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "84114007",
+      "display" : "Cardiac insufficiency"
+    }],
+    "text" : "Cardiac insufficiency"
+  }],
+
+  "note" : [{ "text" : "Dosage to be increased in thriweekly intervals" }],
+  "dosageInstruction" : [
+    {
+
+
+      "timing" : {
+
+        "repeat" : {
+
+          "boundsPeriod" : {
+            "start" : "2014-05-12"
+          },
+          "frequency" : 2,
+          "period" : 1,
+          "periodUnit" : "d"
+          },
+        "code" : {
+          "coding": [{
+            "system": "https://www.hl7.org/fhir/v3/GTSAbbreviation/cs.html",
+            "code": "BID",
+            "display": "BID"
+          }],
+          "text": "Two times a day at institution specified times"
+        }
+      },
+      "route" : {
+        "coding": [{
+          "system": "http://snomed.info/sct",
+          "code": "260548002",
+          "display": "Oral"
+        }],
+        "text": "Oral"
+      },
+      "rateRatio" : {
+
+        "numerator" : {
+          "value" : 10,
+          "unit" : "mg",
+          "system" : "http://snomed.info/sct",
+          "code" : "258684004"
+        },
+        "denominator" : {
+          "value" : 1,
+          "unit" : "d",
+          "system" : "http://snomed.info/sct",
+          "code" : "258703001"
+        }
+      }
+    }
+  ],
+  "priorPrescription" : {
+    "reference" : "MedicationRequest/cpvMedReq14"
+  }
+}

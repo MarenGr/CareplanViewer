@@ -1,0 +1,59 @@
+{
+  "resourceType" : "ProcedureRequest",
+  "id": "cpvPro17",
+  "basedOn" : [],
+  "status" : "completed",
+  "intent" : "instance-order",
+  "priority" : "urgent",
+  "category" : [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "103693007",
+      "display": "Diagnostic procedure"
+    }],
+    "text": "Diagnostic procedure"
+  }],
+  "code" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "15220000",
+      "display": "Laboratory test"
+    }],
+    "text": "Laboratory test"
+  },
+  "occurrenceTiming" : {
+
+    "repeat" : {
+
+      "boundsDuration" : {
+        "value" : 3,
+        "unit" : "mo",
+        "system" : "http://unitsofmeasure.org"
+      },
+      "frequency" : 1,
+      "period" : 2,
+      "periodUnit" : "wk",
+      "dayOfWeek" : ["wed"]
+      },
+    "code" : {
+      "coding": [{
+        "system": "http://snomed.info/sct",
+        "code": "20050000",
+        "display": "Biweekly"
+      }],
+      "text": "Biweekly"
+
+    }
+  },
+  "reasonCode" : [{
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "84114007",
+      "display" : "Cardiac insufficiency"
+    }],
+    "text" : "Cardiac insufficiency"
+  }],
+  "note" : [{
+    "text" : "1-2 weeks after every dosage increase"
+  }]
+}

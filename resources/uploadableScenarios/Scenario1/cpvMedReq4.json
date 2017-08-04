@@ -1,64 +1,60 @@
 {
   "resourceType" : "MedicationRequest",
-  "id": "cpvMedReq1",
-  "basedOn" : [{
-    "reference": "CarePlan/cpvCar1"
-  }],
-  "status": "draft",
-  "intent" : "order",
+  "id": "cpvMedReq4",
+  "basedOn" : [],
+  "status": "active",
+  "intent" : "instance-order",
   "priority" : "routine",
 
   "medicationCodeableConcept" : {
     "coding": [{
       "system": "http://snomed.info/sct",
-      "code": "395279009",
-      "display": "Anakinra"
-     }],
-    "text": "Anakinra"
-  },
-  "subject" : {
-    "reference": "Patient/cpvPat1"
-  },
-  "requester" : {
-    "agent" : {
-      "reference": "Practitioner/cpvPra1"
-    }
+      "code": "116601002",
+      "display": "Prednisolone"
+    }],
+    "text": "Prednisolone"
   },
   "reasonCode": [{
     "coding": [{
       "system": "http://snomed.info/sct",
       "code": "69896004",
       "display": "Rheumatoid arthritis"
-     }],
+    }],
     "text": "Rheumatoid arthritis"
   }],
 
   "dosageInstruction" : [
     {
 
+      "text" : "<string>",
+      "additionalInstruction" : [{
+        "text": "initial dosage"
+      }],
 
       "timing" : {
 
-
-        "event" : ["<dateTime>"],
         "repeat" : {
 
           "boundsDuration" : {
-            "value" : 6,
-            "unit" : "mo",
+            "value" : 8,
+            "unit" : "wk",
             "system" : "http://unitsofmeasure.org"
+          },
+          "boundsPeriod" : {
+            "start" : "2016-02-12",
+            "end" : "2016-04-07"
           },
           "frequency" : 1,
           "period" : 1,
           "periodUnit" : "d"
-        },
+          },
         "code" : {
           "coding": [{
-            "system": "https://www.hl7.org/fhir/v3/GTSAbbreviation",
-            "code": "QD",
-            "display": "QD"
-           }],
-          "text": "Every Day at institution specified times"
+            "system": "https://www.hl7.org/fhir/v3/GTSAbbreviation/cs.html",
+            "code": "AM",
+            "display": "AM"
+          }],
+          "text": "Every morning at institution specified times"
         }
       },
       "asNeededBoolean" : false,
@@ -67,12 +63,13 @@
         "coding": [{
           "system": "http://snomed.info/sct",
           "code": "263887005",
-          "display": "Subcutaneous "
-         }],
-        "text": "Subcutaneous "
+          "display": "Subcutaneous"
+        }],
+        "text": "Subcutaneous"
       },
+
       "doseQuantity" : {
-        "value" : 100,
+        "value" : 20,
         "unit" : "mg",
         "system" : "http://snomed.info/sct",
         "code" : "258684004"

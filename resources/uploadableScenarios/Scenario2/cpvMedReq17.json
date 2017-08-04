@@ -1,0 +1,66 @@
+{
+  "resourceType" : "MedicationRequest",
+  "id": "cpvMedReq17",
+  "basedOn" : [],
+  "status": "active",
+  "intent" : "instance-order",
+  "priority" : "routine",
+
+  "medicationCodeableConcept" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "15383004",
+      "display": "Levodopa"
+    }],
+    "text": "Levodopa"
+  },
+  "reasonCode": [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "49049000",
+      "display": "Parkinson's disease"
+    }],
+    "text": "Parkinson's disease"
+  }],
+  "dosageInstruction" : [
+    {
+
+      "text" : "25mg/100mg tablet per dose",
+      "timing" : {
+
+        "repeat" : {
+          "boundsPeriod" : {
+            "start" : "2017-06-30"
+          },
+          "frequency" : 4,
+          "period" : 1,
+          "periodUnit" : "d"
+        },
+        "code" : {
+          "coding": [{
+            "system": "https://www.hl7.org/fhir/v3/GTSAbbreviation/cs.html",
+            "code": "QID",
+            "display": "QID"
+          }],
+          "text": "Four times a day at institution specified times"
+        }
+      },
+      "asNeededBoolean" : true,
+
+      "route" : {
+        "coding": [{
+          "system": "http://snomed.info/sct",
+          "code": "260548002",
+          "display": "Oral"
+        }],
+        "text": "Oral"
+      },
+      "doseQuantity" : {
+        "value" : 25,
+        "unit" : "mg",
+        "system" : "http://snomed.info/sct",
+        "code" : "258684004"
+      }
+    }
+  ]
+}

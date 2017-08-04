@@ -1,0 +1,65 @@
+{
+  "resourceType" : "ProcedureRequest",
+  "id": "cpvPro2",
+  "basedOn" : [],
+  "status" : "completed",
+  "intent" : "order",
+  "priority" : "routine",
+  "category" : [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "103693007",
+      "display": "Diagnostic procedure"
+    }],
+    "text": "Diagnostic procedure"
+  }],
+  "code" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "165197003",
+      "display": "Diagnostic assessment"
+    }],
+    "text": "Diagnostic assessment (assessment of treatment effect)"
+  },
+ "occurrenceTiming" : {
+
+
+    "repeat" : {
+
+      "boundsPeriod" : {
+        "start": "2015-04-02"
+      },
+     "frequency" : 1,
+      "period" : 4,
+      "periodUnit" : "wk"
+      },
+    "code" : {
+      "coding": [{
+        "system": "http://snomed.info/sct",
+        "code": "396134005",
+        "display": "q4wk"
+      }],
+      "text": "Every four weeks"
+
+    }
+  },
+  "performerType" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "40204001",
+      "display": "Hematologist"
+    }],
+    "text": "Hematologist"
+  },
+  "reasonCode" : [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "87522002",
+      "display": " Iron deficiency anemia"
+    }],
+    "text": " Iron deficiency anemia"
+  }],
+  "note" : [{
+    "text" : "Last appointment 4 weeks after last iron substitution intake"
+  }]
+}

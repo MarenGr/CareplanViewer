@@ -1,0 +1,20 @@
+{
+  "resourceType" : "Task",
+  "id" : "cpvTask1",
+  "basedOn" : [],
+  "status" : "accepted",
+  "intent" : "proposal",
+  "priority" : "routine",
+  "description" : "No nicotine intake (e.g smoking is not allowed)",
+  "executionPeriod" : {
+    "start" : "2004-01-13"
+  },
+  "reason" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "64859006",
+      "display": "Osteoporosis"
+    }],
+    "text": "Osteoporosis"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "resourceType" : "ProcedureRequest",
+  "id": "cpvPro6",
+  "basedOn" : [],
+  "status" : "completed",
+  "intent" : "proposal",
+  "priority" : "routine",
+  "category" : [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "409063005",
+      "display": "Counselling"
+    }],
+    "text": "Counselling"
+  }],
+  "code" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "413473000",
+      "display": "Counseling about alcohol consumption"
+    }],
+    "text": "Counseling about alcohol consumption"
+  },
+  "occurrenceDateTime" : "2016-11-03",
+  "reasonCode" : [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "84114007",
+      "display": "Cardiac insufficiency"
+    }],
+    "text": "Cardiac insufficiency"
+  }],
+  "note" : [{
+    "text": "Requested to avoid alcohol consumption."
+  }]
+}

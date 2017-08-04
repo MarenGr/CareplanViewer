@@ -1,0 +1,27 @@
+{
+  "resourceType": "CarePlan",
+  "id": "cpvCar8",
+  "author": [
+  ],
+  "status": "draft",
+  "intent" : "proposal",
+  "category": {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "415213008",
+      "display" : "Psychiatry care plan"
+    }],
+    "text" : "Psychiatry care plan"
+  },
+  "period": {
+    "start": "2017-07-14",
+    "end": "2018-09-15"
+  },
+  "description": "Psychiatric therapy due to Parkinson's disease",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Psychiatric therapy due to Parkinson's disease</p></div>"
+  },
+  "activity": [
+  ]
+}

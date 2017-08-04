@@ -1,0 +1,104 @@
+{
+  "resourceType" : "NutritionOrder",
+  "id": "cpvNut2",
+  "status" : "requested",
+  "dateTime" : "2015-03-04T08:05:78.000Z",
+  "excludeFoodModifier" : [
+    {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "29263009",
+        "display" : "Coffee"
+      }],
+      "text" : "Coffee"
+    },
+    {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "16313001",
+        "display" : "Tea"
+      }],
+      "text" : "Tea"
+    },
+    {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "70813002",
+        "display" : "Milk"
+      }],
+      "text" : "Milk"
+    },
+    {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "34208006",
+        "display" : "Oxalate"
+      }],
+      "text" : "Oxalate"
+    },
+    {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "259296007",
+        "display" : "Phosphate"
+      }],
+      "text" : "Phosphate"
+    },
+    {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "372794006",
+        "display" : "Antacid"
+      }],
+      "text" : "Antacid"
+    }
+  ],
+  "supplement" : [{
+    "type" : {
+
+      "coding": [
+        {
+          "system": "http://snomed.info/sct",
+          "code": "3829006",
+          "display": "Iron"
+        }
+      ],
+      "text": "Iron"
+    },
+    "schedule" : [{
+
+      "repeat": {
+
+
+        "boundsPeriod": {
+          "start": "2015-06-04",
+          "end": "2017-10-01"
+        },
+        "frequency": 1,
+        "period": 1,
+        "periodUnit": "d"
+      },
+      "code": {
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/v3/GTSAbbreviation",
+            "code": "QD",
+            "display": "QD"
+          }
+        ],
+        "text": "Every Day at institution specified time"
+      }
+    }],
+    "quantity" : {
+
+      "value": 10,
+
+      "unit": "mg",
+
+      "system": "http://snomed.info/sct",
+
+      "code": "258684004"
+    },
+    "instruction" : "To be taken on an empty stomach, at least 30 to 60 minutes before or after the meal."
+  }]
+}

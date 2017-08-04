@@ -1,0 +1,66 @@
+{
+  "resourceType" : "MedicationRequest",
+  "id": "cpvMedReq16",
+  "basedOn" : [],
+  "status": "draft",
+  "intent" : "instance-order",
+  "priority" : "routine",
+
+  "medicationCodeableConcept" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "713435009",
+      "display": "Piribedil"
+    }],
+    "text": "Piribedil"
+  },
+  "reasonCode": [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "49049000",
+      "display": "Parkinson's disease"
+    }],
+    "text": "Parkinson's disease"
+  }],
+  "note" : [{ "text" : "Long-term dosis. Maximum of 150mg/day" }],
+  "dosageInstruction" : [
+    {
+
+
+      "timing" : {
+
+        "repeat" : {
+          "boundsPeriod" : {
+            "start" : "2017-08-12"
+          },
+          "frequency" : 3,
+          "period" : 1,
+          "periodUnit" : "d",
+          "timeOfDay" : ["18:00:00", "19:00:00", "20:00:00"]
+        },
+        "code" : {
+          "coding": [{
+            "system": "https://www.hl7.org/fhir/v3/GTSAbbreviation/cs.html",
+            "code": "TID",
+            "display": "TID"
+          }],
+          "text": "Three times a day at institution specified times"
+        }
+      },
+      "route" : {
+        "coding": [{
+          "system": "http://snomed.info/sct",
+          "code": "260548002",
+          "display": "Oral"
+        }],
+        "text": "Oral"
+      },
+      "doseQuantity" : {
+        "value" : 50,
+        "unit" : "mg",
+        "system" : "http://snomed.info/sct",
+        "code" : "258684004"
+      }
+    }
+  ]
+}

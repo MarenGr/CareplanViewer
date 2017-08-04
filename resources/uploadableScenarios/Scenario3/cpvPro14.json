@@ -1,0 +1,60 @@
+{
+  "resourceType" : "ProcedureRequest",
+  "id": "cpvPro14",
+  "basedOn" : [],
+  "status" : "active",
+  "intent" : "plan",
+  "priority" : "routine",
+  "category" : [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "103693007",
+      "display": "Diagnostic procedure"
+    }],
+    "text": "Diagnostic procedure"
+  }],
+  "code" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "273446001",
+      "display": "EORTC - Quality of life questionnaire"
+    }],
+    "text": "EORTC - Quality of life questionnaire"
+  },
+  "occurrenceTiming" : {
+
+    "repeat" : {
+      "boundsPeriod" : {
+        "start": "2014-03-12"
+      },
+      "frequency" : 2,
+      "period" : 1,
+      "periodUnit" : "a"
+      },
+    "code" : {
+      "coding": [{
+        "system": "http://snomed.info/sct",
+        "code": "307456009",
+        "display": "Twice per year"
+      }],
+      "text": "Twice per year"
+
+    }
+  },
+  "performerType" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "224577009",
+      "display": "Healthcare assistant"
+    }],
+    "text": "Healthcare assistant"
+  },
+  "reasonCode" : [{
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "84114007",
+      "display" : "Cardiac insufficiency"
+    }],
+    "text" : "Cardiac insufficiency"
+  }]
+}

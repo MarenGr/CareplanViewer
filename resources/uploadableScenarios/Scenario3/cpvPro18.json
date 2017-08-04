@@ -1,0 +1,56 @@
+{
+  "resourceType" : "ProcedureRequest",
+  "id": "cpvPro17",
+  "basedOn" : [],
+  "replaces" : [],
+  "status" : "active",
+  "intent" : "instance-order",
+  "priority" : "routine",
+  "category" : [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "103693007",
+      "display": "Diagnostic procedure"
+    }],
+    "text": "Diagnostic procedure"
+  }],
+  "code" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "15220000",
+      "display": "Laboratory test"
+    }],
+    "text": "Laboratory test"
+  },
+  "occurrenceTiming" : {
+
+    "repeat" : {
+
+      "boundsPeriod" : {
+        "start" : "2014-06-12",
+        "end" : ""
+      },
+      "frequency" : 1,
+      "period" : 6,
+      "periodUnit" : "mo",
+      "dayOfWeek" : ["wed"]
+      },
+    "code" : {
+      "coding": [{
+        "system": "http://snomed.info/sct",
+        "code": "307456009",
+        "display": "Twice per year"
+      }],
+      "text": "Twice per year"
+
+    }
+  },
+  "reasonCode" : [{
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "84114007",
+      "display" : "Cardiac insufficiency"
+    }],
+    "text" : "Cardiac insufficiency"
+  }]
+}

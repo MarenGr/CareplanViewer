@@ -1,0 +1,63 @@
+{
+  "resourceType" : "ProcedureRequest",
+  "id": "cpvPro15",
+  "basedOn" : [],
+  "replaces" : [],
+  "status" : "active",
+  "intent" : "instance-order",
+  "priority" : "routine",
+  "category" : [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "103693007",
+      "display": "Diagnostic procedure"
+    }],
+    "text": "Diagnostic procedure"
+  }],
+  "code" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "5880005",
+      "display": "Physical examination"
+    }],
+    "text": "Physical examination"
+  },
+  "occurrenceTiming" : {
+
+
+    "repeat" : {
+
+      "boundsPeriod" : {
+        "start" : "2014-06-12"
+      },
+      "frequency" : 3,
+      "period" : 1,
+      "periodUnit" : "a"
+    },
+    "code" : {
+      "coding": [{
+        "system": "http://snomed.info/sct",
+        "code": "307457000",
+        "display": "Three times per year"
+      }],
+      "text": "Three times per year"
+
+    }
+  },
+  "performerType" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "22515006",
+      "display": "Medical assistant"
+    }],
+    "text": "Medical assistant"
+  },
+  "reasonCode" : [{
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "84114007",
+      "display" : "Cardiac insufficiency"
+    }],
+    "text" : "Cardiac insufficiency"
+  }]
+}

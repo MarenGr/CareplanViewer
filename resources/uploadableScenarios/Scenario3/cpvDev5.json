@@ -1,0 +1,60 @@
+{
+  "resourceType": "DeviceRequest",
+  "id": "cpvDev5",
+  "status": "active",
+  "intent": {
+    "coding" : [{
+      "system" : "http://hl7.org/fhir/request-intent",
+      "code" : "order",
+      "display" : "Order"
+    }]
+  },
+  "priority": "routine",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns='http://www.w3.org/1999/xhtml'>Self monitoring of blood sugar</div>"
+  },
+  "codeCodeableConcept": {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "337414009",
+      "display" : "Blood glucose meters"
+    }]
+  },
+  "performerType": {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "116154003",
+      "display" : "Patient"
+    }],
+    "text" : "Patient"
+  },
+  "occurrenceTiming": {
+    "event" : ["<dateTime>"],
+    "repeat" : {
+
+      "boundsPeriod" : {
+        "start" : "2017-08-01"
+      },
+      "frequency" : 3,
+      "period" : 1,
+      "periodUnit" : "d"
+    },
+    "code" : {
+      "coding" : [{
+        "system" : "http://hl7.org/fhir/v3/GTSAbbreviation",
+        "code" : "TID",
+        "display" : "TID"
+      }],
+      "text" : "Three times a day at institution specified times"
+    }
+  },
+  "reasonCode" : [{
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "44054006",
+      "display" : "Diabetes mellitus type 2"
+    }],
+    "text" : "Diabetes mellitus type 2"
+  }]
+}

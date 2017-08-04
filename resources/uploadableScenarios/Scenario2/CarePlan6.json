@@ -1,0 +1,26 @@
+{
+  "resourceType": "CarePlan",
+  "id": "cpvCar6",
+  "author": [
+  ],
+  "status": "active",
+  "intent" : "proposal",
+  "category": {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "288832002",
+      "display" : "CPA care plans"
+    }],
+    "text" : "CPA care plan"
+  },
+  "period": {
+    "start": "2004-01-13"
+  },
+  "description": "Fracture prophylaxis",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Fracture prophylaxis</p></div>"
+  },
+  "activity": [
+  ]
+}

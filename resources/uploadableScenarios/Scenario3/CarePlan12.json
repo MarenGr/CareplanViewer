@@ -1,0 +1,26 @@
+{
+  "resourceType": "CarePlan",
+  "id": "cpvCar2",
+  "author": [
+  ],
+  "status": "active",
+  "intent" : "order",
+  "category": {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "412774003",
+      "display" : "Clinical management plan"
+    }],
+    "text" : "Clinical management plan"
+  },
+  "period": {
+    "start": "2014-03-12"
+  },
+  "description": "Clinical treatment for heart insufficiency",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Clinical treatment for heart insufficiency</p></div>"
+  },
+  "activity": [
+  ]
+}

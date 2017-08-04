@@ -1,0 +1,41 @@
+{
+  "resourceType" : "ProcedureRequest",
+  "id": "cpvPro12",
+  "basedOn" : [],
+  "status" : "completed",
+  "intent" : "order",
+  "priority" : "routine",
+  "category" : [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "409073007",
+      "display": "Education"
+    }],
+    "text": "Education"
+  }],
+  "code" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "428274007",
+      "display": "Dietary education for type II diabetes mellitus"
+    }],
+    "text": "Dietary education for type II diabetes mellitus"
+  },
+  "occurrenceDateTime" : "2017-07-24",
+  "performerType" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "159033005",
+      "display": "Dietitian"
+    }],
+    "text": "Dietitian"
+  },
+  "reasonCode" : [{
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "44054006",
+      "display" : "Diabetes mellitus type 2"
+    }],
+    "text" : "Diabetes mellitus type 2"
+  }]
+}

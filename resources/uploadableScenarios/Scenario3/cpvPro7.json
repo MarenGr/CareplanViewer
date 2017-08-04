@@ -1,0 +1,33 @@
+{
+  "resourceType" : "ProcedureRequest",
+  "id": "cpvPro7",
+  "basedOn" : [],
+  "status" : "completed",
+  "intent" : "instance-order",
+  "priority" : "asap",
+  "category" : [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "103693007",
+      "display": "Diagnostic procedure"
+    }],
+    "text": "Diagnostic procedure"
+  }],
+  "code" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "252478000",
+      "display": "6-minute walk test"
+    }],
+    "text": "6-minute walk test"
+  },
+  "occurrenceDateTime" : "2016-10-15",
+  "reasonCode" : [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "84114007",
+      "display": "Cardiac insufficiency"
+    }],
+    "text": "Cardiac insufficiency"
+  }]
+}

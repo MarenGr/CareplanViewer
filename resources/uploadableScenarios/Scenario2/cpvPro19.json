@@ -1,0 +1,60 @@
+{
+  "resourceType" : "ProcedureRequest",
+  "id": "cpvPro19",
+  "basedOn" : [],
+  "status" : "active",
+  "intent" : "plan",
+  "priority" : "routine",
+  "category" : [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "103693007",
+      "display": "Diagnostic procedure"
+    }],
+    "text": "Diagnostic procedure"
+  }],
+  "code" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "414191008",
+      "display": "Fall risk assessment"
+    }],
+    "text": "Fall risk assessment"
+  },
+  "occurrenceTiming" : {
+
+    "repeat" : {
+      "boundsPeriod" : {
+        "start": "2004-01-13"
+      },
+      "frequency" : 1,
+      "period" : 1,
+      "periodUnit" : "a"
+    },
+    "code" : {
+      "coding": [{
+        "system": "http://snomed.info/sct",
+        "code": "53281000",
+        "display": "Annual"
+      }],
+      "text": "Annual"
+
+    }
+  },
+  "performerType" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "62247001",
+      "display": "General practitioner"
+    }],
+    "text": "General practitioner"
+  },
+  "reasonCode" : [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "64859006",
+      "display": "Osteoporosis"
+    }],
+    "text": "Osteoporosis"
+  }]
+}

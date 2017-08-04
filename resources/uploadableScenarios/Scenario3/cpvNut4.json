@@ -1,0 +1,48 @@
+{
+  "resourceType" : "NutritionOrder",
+  "id": "cpvNut4",
+  "status" : "requested",
+  "dateTime" : "2016-10-11T14:33:46.000Z",
+  "excludeFoodModifier" : [{
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "53041004",
+      "display" : "Alcohol"
+    }],
+    "text" : "Alcohol"
+  }],
+  "oralDiet" : {
+    "type" : [{
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "361231003Prescribed dietary intake",
+        "display" : "Prescribed dietary intake"
+      }],
+      "text" : "Prescribed dietary intake"
+    }],
+    "schedule" : [{
+
+      "repeat" : {
+        "boundsPeriod" : {
+          "start" : "2016-10-12"
+        }
+      }
+    }],
+    "nutrient" : [{
+      "modifier" : {
+        "coding" : [{
+          "system" : "http://snomed.info/sct",
+          "code" : "33463005",
+          "display" : "Liquid substance"
+        }],
+        "text" : "Liquid substance"
+      },
+      "amount" : {
+        "value" : 2,
+        "unit" : "Litre/day",
+        "system" : "http://snomed.info/sct",
+        "code" : "258857003"
+    }}],
+    "instruction" : "Avoid excessive intake of fluids"
+  }
+}

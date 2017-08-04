@@ -1,0 +1,27 @@
+{
+  "resourceType": "CarePlan",
+  "id": "cpvCar1",
+  "author": [
+  ],
+  "status": "entered-in-error",
+  "intent" : "order",
+  "category": {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "412774003",
+      "display" : "Clinical management plan"
+    }],
+    "text" : "Clinical management plan"
+  },
+  "period": {
+    "start": "2017-07-01"
+
+  },
+  "description": "Biological Therapy for Rheumatoic Arthritis",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Biological Therapy for Rheumatoic Arthritis</p></div>"
+  },
+  "activity": [
+  ]
+}

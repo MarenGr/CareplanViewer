@@ -1,0 +1,64 @@
+{
+  "resourceType" : "MedicationRequest",
+  "id": "cpvMedReqTemplate",
+  "basedOn" : [
+  ],
+  "status": "active",
+  "intent" : "instance-order",
+  "priority" : "routine",
+
+  "medicationCodeableConcept" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "326879002",
+      "display": " Methotrexate 25mg/mL injection solution 2mL vial"
+    }],
+    "text": " Methotrexate 25mg/mL injection solution 2mL vial"
+  },
+  "reasonCode": [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "69896004",
+      "display": "Rheumatoid arthritis"
+    }],
+    "text": "Rheumatoid arthritis"
+  }],
+  "note" : [{ "text" : "Dosage adjustment" }],
+  "dosageInstruction" : [
+    {
+
+
+      "timing" : {
+
+        "repeat" : {
+
+          "boundsDuration" : {
+            "value" : 3,
+            "unit" : "mo",
+            "system" : "http://unitsofmeasure.org"
+          },
+          "frequency" : 1,
+          "period" : 1,
+          "periodUnit" : "wk"
+        }
+      },
+      "route" : {
+        "coding": [{
+          "system": "http://snomed.info/sct",
+          "code": "447202000",
+          "display": "Parenteral route"
+        }],
+        "text": "Parenteral route"
+      },
+      "doseQuantity" : {
+        "value" : 1,
+        "unit" : "vial",
+        "system" : "http://snomed.info/sct",
+        "code" : "415818006"
+      }
+    }
+  ],
+  "priorPrescription" : {
+    "reference" : "MedicationRequest/cpvMedReq22"
+  }
+}

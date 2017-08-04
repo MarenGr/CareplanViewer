@@ -1,0 +1,41 @@
+{
+  "resourceType" : "ProcedureRequest",
+  "id": "cpvPro1",
+  "basedOn" : [],
+  "status" : "completed",
+  "intent" : "order",
+  "priority" : "stat",
+  "category" : [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "103693007",
+      "display": "Diagnostic procedure"
+    }],
+    "text": "Diagnostic procedure"
+  }],
+  "code" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "79536006",
+      "display": "Physical medicine, initial examination, evaluation and treatment program planning"
+    }],
+    "text": "Physical medicine, initial examination, evaluation and treatment program planning"
+  },
+  "occurrenceDateTime" : "2015-04-02",
+  "performerType" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "40204001",
+      "display": "Hematologist"
+    }],
+    "text": "Hematologist"
+  },
+  "reasonCode" : [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "87522002",
+      "display": " Iron deficiency anemia"
+    }],
+    "text": " Iron deficiency anemia"
+  }]
+}

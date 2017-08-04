@@ -1,0 +1,36 @@
+{
+  "resourceType" : "ProcedureRequest",
+  "id": "cpvPro9",
+  "basedOn" : [],
+  "status" : "completed",
+  "intent" : "plan",
+  "priority" : "routine",
+  "code" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "384742004",
+      "display": "Smoking cessation assistance"
+    }],
+    "text": "Smoking cessation assistance"
+  },
+  "occurrencePeriod" : {
+    "start": "2016-11-12",
+    "end": "2017-02-12"
+  },
+  "performerType" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "224583007",
+      "display": "Behaviour therapist"
+    }],
+    "text": "Behaviour therapist"
+  },
+  "reasonCode" : [{
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "84114007",
+      "display" : "Cardiac insufficiency"
+    }],
+    "text" : "Cardiac insufficiency"
+  }]
+}

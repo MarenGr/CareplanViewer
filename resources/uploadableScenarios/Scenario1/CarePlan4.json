@@ -1,0 +1,27 @@
+{
+  "resourceType": "CarePlan",
+  "id": "cpvCar4",
+  "author": [
+  ],
+  "status": "cancelled",
+  "intent" : "order",
+  "category": {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "412774003",
+      "display" : "Clinical management plan"
+    }],
+    "text" : "Clinical management plan"
+  },
+  "period": {
+    "start": "2016-02-12",
+    "end": "2016-05-12"
+  },
+  "description": "Classical DMARD for Rheumatoic Arthritis",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Remission of Rheumatoic Arthritis Activity</p></div>"
+  },
+  "activity": [
+  ]
+}

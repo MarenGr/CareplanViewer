@@ -1,0 +1,64 @@
+{
+  "resourceType" : "MedicationRequest",
+  "id": "cpvMedReq17",
+  "basedOn" : [],
+  "status": "active",
+  "intent" : "instance-order",
+  "priority" : "routine",
+
+  "medicationCodeableConcept" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "108466000",
+      "display": "Selegiline"
+    }],
+    "text": "Selegiline"
+  },
+  "reasonCode": [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "49049000",
+      "display": "Parkinson's disease"
+    }],
+    "text": "Parkinson's disease"
+  }],
+  "dosageInstruction" : [
+    {
+
+      "text" : "1.25mg per dose",
+      "timing" : {
+
+        "repeat" : {
+          "boundsPeriod" : {
+            "start" : "2017-06-30"
+          },
+          "frequency" : 1,
+          "period" : 1,
+          "periodUnit" : "d"
+        },
+        "code" : {
+          "coding": [{
+            "system": "https://www.hl7.org/fhir/v3/GTSAbbreviation/cs.html",
+            "code": "QD",
+            "display": "QD"
+          }],
+          "text": "Every Day at institution specified times"
+        }
+      },
+      "route" : {
+        "coding": [{
+          "system": "http://snomed.info/sct",
+          "code": "225780003",
+          "display": "Sublingual"
+        }],
+        "text": "Sublingual"
+      },
+      "doseQuantity" : {
+        "value" : 1.25,
+        "unit" : "mg",
+        "system" : "http://snomed.info/sct",
+        "code" : "258684004"
+      }
+    }
+  ]
+}

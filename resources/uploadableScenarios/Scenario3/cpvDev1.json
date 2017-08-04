@@ -1,0 +1,63 @@
+{
+  "resourceType": "DeviceRequest",
+  "id": "cpvDev1",
+  "status": "active",
+  "intent": {
+    "coding" : [{
+      "system" : "http://hl7.org/fhir/request-intent",
+      "code" : "plan",
+      "display" : "Plan"
+    }]
+  },
+  "priority": "routine",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns='http://www.w3.org/1999/xhtml'>Daily weight measurements</div>"
+  },
+  "codeCodeableConcept": {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "19892000",
+      "display" : "Scale"
+    }]
+  },
+  "performerType": {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "116154003",
+      "display" : "Patient"
+    }],
+    "text" : "Patient"
+  },
+  "occurrenceTiming": {
+    "repeat" : {
+
+      "boundsPeriod" : {
+        "start": "2016-10-12"
+      },
+      "frequency" : 1,
+      "period" : 1,
+      "periodUnit" : "d"
+    },
+    "code" : {
+      "coding" : [{
+        "system" : "http://hl7.org/fhir/v3/GTSAbbreviation",
+        "code" : "QD",
+        "display" : "QD"
+      }],
+      "text" : "Every Day at institution specified time"
+    }
+  },
+  "reasonCode" : [{
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "84114007",
+      "display" : "Cardiac insufficiency"
+    }],
+    "text" : "Cardiac insufficiency"
+  }],
+  "note": [
+    {
+      "text": "Inform Practitioner in case of unusual increase of weight (1kg/night, >2kg/2-3 days, >2.5kg/week)"
+    }]
+}

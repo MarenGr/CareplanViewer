@@ -1,0 +1,54 @@
+{
+  "resourceType" : "ProcedureRequest",
+  "id": "cpvPro8",
+  "basedOn" : [],
+  "status" : "active",
+  "intent" : "proposal",
+  "priority" : "routine",
+  "code" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "61502001",
+      "display": " Kinetic activities for strengthening"
+    }],
+    "text": " Kinetic activities for strengthening"
+  },
+  "occurrenceTiming" : {
+
+    "repeat" : {
+      "boundsPeriod" : {
+        "start": "2016-10-12"
+      },
+      "duration" : 30,
+      "durationUnit" : "min",
+      "frequency" : 2,
+      "period" : 1,
+      "periodUnit" : "wk"
+    },
+    "code" : {
+      "coding": [{
+        "system": "http://snomed.info/sct",
+        "code": "225751007",
+        "display": "2-3 times a week"
+      }],
+      "text": "Two to three times a week"
+
+    }
+  },
+  "performerType" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "116154003",
+      "display": "Patient"
+    }],
+    "text": "Patient"
+  },
+  "reasonCode" : [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "84114007",
+      "display": "Cardiac insufficiency"
+    }],
+    "text": "Cardiac insufficiency"
+  }]
+}

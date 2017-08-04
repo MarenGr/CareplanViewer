@@ -1,0 +1,52 @@
+{
+  "resourceType" : "NutritionOrder",
+  "id": "cpvNut5",
+  "status" : "active",
+  "dateTime" : "2004-01-12T16:34:12.000Z",
+  "foodPreferenceModifier" : [{
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "228026001",
+      "display" : "High calcium food"
+    }],
+    "text" : "High calcium food"
+  }],
+  "supplement" : [{
+    "type" : {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "430128005",
+        "display" : "Oral form calcium"
+      }],
+      "text" : "Oral form calcium"
+    },
+    "schedule" : [{
+      "repeat" : {
+
+        "boundsPeriod" : {
+          "start" : "2004-01-13"
+        },
+        "frequency" : 1,
+        "period" : 1,
+        "periodUnit" : "d"
+        },
+      "code": {
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/v3/GTSAbbreviation",
+            "code": "QD",
+            "display": "QD"
+          }
+        ],
+        "text": "Every Day at institution specified time"
+      }
+    }],
+    "quantity" : {
+      "value" : 200,
+      "unit" : "mg",
+      "system" : "http://snomed.info/sct",
+      "code" : "258684004"
+    },
+    "instruction" : "At least 1000 mg Calcium daily, including intake through meals."
+  }]
+}

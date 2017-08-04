@@ -1,0 +1,68 @@
+{
+  "resourceType" : "MedicationRequest",
+  "id": "cpvMedReq6",
+  "basedOn" : [],
+  "status": "active",
+  "intent" : "instance-order",
+  "priority" : "urgent",
+
+  "medicationCodeableConcept" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "713435009",
+      "display": "Piribedil"
+    }],
+    "text": "Piribedil"
+  },
+  "reasonCode": [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "49049000",
+      "display": "Parkinson's disease"
+    }],
+    "text": "Parkinson's disease"
+  }],
+  "note" : [{ "text" : "To be increased after 2 weeks" }],
+  "dosageInstruction" : [
+    {
+
+
+      "timing" : {
+
+        "repeat" : {
+          "boundsDuration" : {
+            "value" : 2,
+            "unit" : "wk",
+            "system" : "http://unitsofmeasure.org"
+          },
+          "frequency" : 2,
+          "period" : 1,
+          "periodUnit" : "d",
+          "timeOfDay" : ["19:00:00", "20:00:00"]
+        },
+        "code" : {
+          "coding": [{
+            "system": "https://www.hl7.org/fhir/v3/GTSAbbreviation/cs.html",
+            "code": "BID",
+            "display": "BID"
+          }],
+          "text": "Two times a day at institution specified times"
+        }
+      },
+      "route" : {
+        "coding": [{
+          "system": "http://snomed.info/sct",
+          "code": "260548002",
+          "display": "Oral"
+        }],
+        "text": "Oral"
+      },
+      "doseQuantity" : {
+        "value" : 50,
+        "unit" : "mg",
+        "system" : "http://snomed.info/sct",
+        "code" : "258684004"
+      }
+    }
+  ]
+}

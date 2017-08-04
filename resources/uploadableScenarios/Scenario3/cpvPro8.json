@@ -1,0 +1,54 @@
+{
+  "resourceType" : "ProcedureRequest",
+  "id": "cpvPro8",
+  "basedOn" : [],
+  "status" : "active",
+  "intent" : "proposal",
+  "priority" : "routine",
+  "code" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "86047003",
+      "display": "Active physical exercise"
+    }],
+    "text": "Active physical exercise"
+  },
+  "occurrenceTiming" : {
+
+    "repeat" : {
+      "boundsPeriod" : {
+        "start": "2017-06-10"
+      },
+      "duration" : 30,
+      "durationUnit" : "min",
+      "frequency" : 3,
+      "period" : 1,
+      "periodUnit" : "wk"
+    },
+    "code" : {
+      "coding": [{
+        "system": "http://snomed.info/sct",
+        "code": "396113003",
+        "display": "3-4x /wk"
+      }],
+      "text": "Three to four times a week"
+
+    }
+  },
+  "performerType" : {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "116154003",
+      "display": "Patient"
+    }],
+    "text": "Patient"
+  },
+  "reasonCode" : [{
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "44054006",
+      "display" : "Diabetes mellitus type 2"
+    }],
+    "text" : "Diabetes mellitus type 2"
+  }]
+}

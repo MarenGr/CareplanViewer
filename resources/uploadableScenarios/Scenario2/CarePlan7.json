@@ -1,0 +1,26 @@
+{
+  "resourceType": "CarePlan",
+  "id": "cpvCar7",
+  "author": [
+  ],
+  "status": "active",
+  "intent" : "order",
+  "category": {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "412774003",
+      "display" : "Clinical management plan"
+    }],
+    "text" : "Clinical management plan"
+  },
+  "period": {
+    "start": "2017-06-30"
+  },
+  "description": "Medicinal Treatment of Parkinson's disease",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Medicinal Treatment of Parkinson's disease</p></div>"
+  },
+  "activity": [
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "resourceType": "DeviceRequest",
+  "id": "cpvDev4",
+  "status": "active",
+  "intent": {
+    "coding" : [{
+      "system" : "http://hl7.org/fhir/request-intent",
+      "code" : "plan",
+      "display" : "Plan"
+    }]
+  },
+  "priority": "routine",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns='http://www.w3.org/1999/xhtml'>Use body elastic exerciser at home</div>"
+  },
+  "codeCodeableConcept": {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "467120005",
+      "display" : "Body elastic exerciser"
+    }]
+  },
+  "performerType": {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "116154003",
+      "display" : "Patient"
+    }],
+    "text" : "Patient"
+  },
+  "occurrenceTiming": {
+    "event": [
+      "<dateTime>"
+    ],
+
+    "repeat": {
+
+      "boundsPeriod": {
+        "start": "2016-10-12"
+      },
+      "duration": 30,
+
+      "durationUnit": "min",
+
+      "frequency": 3,
+
+      "period": 1,
+
+      "periodUnit": "wk"
+
+    },
+    "code" : {
+      "coding" : [{
+        "system" : "http://hl7.org/fhir/v3/GTSAbbreviation",
+        "code" : "TID",
+        "display" : "TID"
+      }],
+      "text" : "Three times a day at institution specified times"
+    }
+  },
+  "reasonCode" : [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "84114007",
+      "display": "Cardiac insufficiency"
+    }],
+    "text": "Cardiac insufficiency"
+  }]
+}
