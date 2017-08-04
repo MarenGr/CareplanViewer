@@ -1,6 +1,10 @@
 {
   "resourceType": "CarePlan",
   "id": "cpvCar1",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Biological Therapy for Rheumatoic Arthritis</div>"
+  },
   "author": [
   ],
   "status": "entered-in-error",
@@ -18,10 +22,6 @@
 
   },
   "description": "Biological Therapy for Rheumatoic Arthritis",
-  "text": {
-    "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Biological Therapy for Rheumatoic Arthritis</p></div>"
-  },
   "activity": [
   ]
 }

@@ -1,18 +1,13 @@
 {
   "resourceType" : "Task",
   "id" : "cpvTask1",
-  "basedOn" : [{
-    "reference" : "CarePlan/cpvCar11"
-  }],
+  "basedOn" : [],
   "status" : "accepted",
   "intent" : "order",
   "priority" : "urgent",
   "description" : "Smoking Ban",
   "executionPeriod" : {
     "start" : "2016-10-12"
-  },
-  "owner" : {
-    "reference" : "Patient/cpvPat3"
   },
   "reason" : {
     "coding": [{

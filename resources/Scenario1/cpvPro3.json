@@ -1,6 +1,10 @@
 {
   "resourceType" : "ProcedureRequest",
   "id": "cpvPro3",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Diagnostic assessment of treatment effect</div>"
+  },
   "basedOn" : [{
     "reference": "CarePlan/cpvCar2"
   }],

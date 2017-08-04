@@ -1,6 +1,10 @@
 {
   "resourceType" : "MedicationRequest",
   "id": "cpvMedReqTemplate",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">MTX medication - final dosage adjustment</div>"
+  },
   "basedOn" : [
   ],
   "status": "entered-in-error",
@@ -23,7 +27,7 @@
     }],
     "text": "Rheumatoid arthritis"
   }],
-  "note" : [{ "text" : "Dosage adjustment" }],
+  "note" : [{ "text" : "final dosage adjustment" }],
   "dosageInstruction" : [
     {
 
@@ -51,14 +55,11 @@
         "text": "Parenteral route"
       },
       "doseQuantity" : {
-        "value" : 50,
+        "value" : 2,
         "unit" : "vial",
         "system" : "http://snomed.info/sct",
         "code" : "415818006"
       }
     }
-  ],
-  "priorPrescription" : {
-    "reference" : "MedicationRequest/cpvMedReq22"
-  }
+  ]
 }

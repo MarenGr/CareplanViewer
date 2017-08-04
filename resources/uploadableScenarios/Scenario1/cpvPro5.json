@@ -1,6 +1,10 @@
 {
   "resourceType" : "ProcedureRequest",
   "id": "cpvPro5",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Radiographic imaging procedure</div>"
+  },
   "basedOn" : [],
   "status" : "active",
   "intent" : "order",

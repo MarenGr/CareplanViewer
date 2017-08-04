@@ -1,6 +1,10 @@
 {
   "resourceType": "CarePlan",
   "id": "cpvCar5",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Adjusted DMARD Combination for Rheumatoic Arthritis<p></p></div>"
+  },
   "author": [
   ],
   "status": "active",
@@ -17,10 +21,6 @@
     "start": "2016-05-12"
   },
   "description": "Adjusted DMARD Combination for Rheumatoic Arthritis",
-  "text": {
-    "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Adjusted DMARD Combination for Rheumatoic Arthritis<p></p></div>"
-  },
   "activity": [
   ]
 }

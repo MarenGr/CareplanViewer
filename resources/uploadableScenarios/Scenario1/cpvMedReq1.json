@@ -1,6 +1,10 @@
 {
   "resourceType" : "MedicationRequest",
   "id": "cpvMedReq1",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Anakinra medication</div>"
+  },
   "basedOn" : [],
   "status": "draft",
   "intent" : "order",
@@ -29,8 +33,6 @@
 
       "timing" : {
 
-
-        "event" : ["<dateTime>"],
         "repeat" : {
 
           "boundsDuration" : {

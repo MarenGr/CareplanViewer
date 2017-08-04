@@ -65,8 +65,5 @@
         "code" : "258684004"
       }
     }
-  ],
-  "priorPrescription" : {
-    "reference" : "MedicationRequest/cpvMedReq12"
-  }
+  ]
 }

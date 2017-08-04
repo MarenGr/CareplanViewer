@@ -35,8 +35,6 @@
 
   "dosageInstruction" : [
     {
-
-      "text" : "<string>",
       "additionalInstruction" : [{
         "text": "full dosage"
       }],

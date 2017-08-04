@@ -1,6 +1,10 @@
 {
   "resourceType" : "MedicationRequest",
   "id": "cpvMedReq7",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Prednisolone medication - full dosage</div>"
+  },
   "basedOn" : [],
   "status": "active",
   "intent" : "instance-order",
@@ -25,10 +29,8 @@
 
   "dosageInstruction" : [
     {
-
-      "text" : "<string>",
       "additionalInstruction" : [{
-        "text": "initial dosage"
+        "text": "full dosage"
       }],
 
       "timing" : {

@@ -1,6 +1,10 @@
 {
   "resourceType": "CarePlan",
   "id": "cpvCar2",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Substitution for Iron Deficiency Anemia</div>"
+  },
   "author": [
   ],
   "status": "active",
@@ -18,10 +22,6 @@
     "end": "2018-03-05"
   },
   "description": "Substitution for Iron Deficiency Anemia",
-  "text": {
-    "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Substitution for Iron Deficiency Anemia</p></div>"
-  },
   "activity": [
   ]
 }

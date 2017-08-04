@@ -1,6 +1,10 @@
 {
   "resourceType" : "MedicationRequest",
   "id": "cpvMedReqTemplate",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">MTX medication - intitial dosage</div>"
+  },
   "basedOn" : [],
   "status": "completed",
   "intent" : "instance-order",

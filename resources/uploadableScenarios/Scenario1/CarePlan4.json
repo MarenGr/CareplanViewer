@@ -1,6 +1,10 @@
 {
   "resourceType": "CarePlan",
   "id": "cpvCar4",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Remission of Rheumatoic Arthritis Activity</p></div>"
+  },
   "author": [
   ],
   "status": "cancelled",
@@ -18,10 +22,6 @@
     "end": "2016-05-12"
   },
   "description": "Classical DMARD for Rheumatoic Arthritis",
-  "text": {
-    "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Remission of Rheumatoic Arthritis Activity</p></div>"
-  },
   "activity": [
   ]
 }

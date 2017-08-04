@@ -72,8 +72,5 @@
         }
       }
     }
-  ],
-  "priorPrescription" : {
-    "reference" : "MedicationRequest/cpvMedReq14"
-  }
+  ]
 }

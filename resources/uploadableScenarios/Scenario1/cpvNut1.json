@@ -1,6 +1,10 @@
 {
   "resourceType": "NutritionOrder",
   "id": "cpvNut1",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Folic acid supplement</div>"
+  },
   "status": "completed",
   "dateTime" : "2016-02-11T11:09:14.000Z",
   "supplement": [

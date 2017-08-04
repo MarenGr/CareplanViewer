@@ -1,6 +1,10 @@
 {
   "resourceType" : "MedicationRequest",
   "id": "cpvMedReqTemplate",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">MTX medication - dosage adjustment 2</div>"
+  },
   "basedOn" : [
   ],
   "status": "active",
@@ -23,7 +27,7 @@
     }],
     "text": "Rheumatoid arthritis"
   }],
-  "note" : [{ "text" : "Dosage adjustment" }],
+  "note" : [{ "text" : "Dosage adjustment 2" }],
   "dosageInstruction" : [
     {
 
@@ -57,8 +61,5 @@
         "code" : "415818006"
       }
     }
-  ],
-  "priorPrescription" : {
-    "reference" : "MedicationRequest/cpvMedReq22"
-  }
+  ]
 }
