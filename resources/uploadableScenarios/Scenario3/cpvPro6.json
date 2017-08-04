@@ -1,6 +1,10 @@
 {
   "resourceType" : "ProcedureRequest",
   "id": "cpvPro6",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Alcohol consumption counselling</div>"
+  },
   "basedOn" : [],
   "status" : "completed",
   "intent" : "proposal",

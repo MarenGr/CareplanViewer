@@ -1,6 +1,10 @@
 {
   "resourceType" : "ProcedureRequest",
   "id": "cpvPro7",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">6-minute walk test</div>"
+  },
   "basedOn" : [],
   "status" : "completed",
   "intent" : "instance-order",

@@ -1,6 +1,10 @@
 {
   "resourceType" : "ProcedureRequest",
   "id": "cpvPro12",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Dietary education for diabetes 2</div>"
+  },
   "basedOn" : [],
   "status" : "completed",
   "intent" : "order",

@@ -1,6 +1,10 @@
 {
   "resourceType" : "MedicationRequest",
   "id": "cpvMedReq8",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Metformin medication</div>"
+  },
   "basedOn" : [],
   "status": "active",
   "intent" : "order",

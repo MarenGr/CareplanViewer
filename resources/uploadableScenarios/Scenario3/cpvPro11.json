@@ -1,6 +1,10 @@
 {
   "resourceType" : "ProcedureRequest",
   "id": "cpvPro8",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Kinetic activities for strengthening</div>"
+  },
   "basedOn" : [],
   "status" : "active",
   "intent" : "proposal",

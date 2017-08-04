@@ -1,6 +1,10 @@
 {
   "resourceType" : "NutritionOrder",
   "id": "cpvNut4",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Avoid excessive intake of fluids</div>"
+  },
   "status" : "requested",
   "dateTime" : "2016-10-11T14:33:46.000Z",
   "excludeFoodModifier" : [{

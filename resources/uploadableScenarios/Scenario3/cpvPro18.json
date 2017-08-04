@@ -1,6 +1,10 @@
 {
   "resourceType" : "ProcedureRequest",
   "id": "cpvPro17",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Laboratory tests - ongoing</div>"
+  },
   "basedOn" : [],
   "replaces" : [],
   "status" : "active",
@@ -27,8 +31,7 @@
     "repeat" : {
 
       "boundsPeriod" : {
-        "start" : "2014-06-12",
-        "end" : ""
+        "start" : "2014-06-12"
       },
       "frequency" : 1,
       "period" : 6,

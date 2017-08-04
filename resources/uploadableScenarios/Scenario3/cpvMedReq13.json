@@ -1,6 +1,10 @@
 {
   "resourceType" : "MedicationRequest",
   "id": "cpvMedReq13",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Bisoprolol medication - dosage adjustment 1</div>"
+  },
   "basedOn" : [],
   "status": "completed",
   "intent" : "instance-order",

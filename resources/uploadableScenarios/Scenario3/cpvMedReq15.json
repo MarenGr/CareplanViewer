@@ -1,6 +1,10 @@
 {
   "resourceType" : "MedicationRequest",
   "id": "cpvMedReq15",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Bisoprolol medication - full dosage</div>"
+  },
   "basedOn" : [],
   "status": "completed",
   "intent" : "instance-order",

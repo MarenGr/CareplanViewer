@@ -1,6 +1,10 @@
 {
   "resourceType" : "ProcedureRequest",
   "id": "cpvPro8",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Active Physical Exercise</div>"
+  },
   "basedOn" : [],
   "status" : "active",
   "intent" : "proposal",

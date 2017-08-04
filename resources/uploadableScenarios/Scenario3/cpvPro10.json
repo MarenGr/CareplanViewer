@@ -1,6 +1,10 @@
 {
   "resourceType" : "ProcedureRequest",
   "id": "cpvPro10",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Smoking cessation assistance</div>"
+  },
   "basedOn" : [],
   "status" : "draft",
   "intent" : "plan",
