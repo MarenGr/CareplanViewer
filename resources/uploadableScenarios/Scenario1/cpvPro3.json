@@ -3,7 +3,7 @@
   "id": "cpvPro3",
   "text": {
     "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Diagnostic assessment of treatment effect</div>"
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Diagnostic assessment of treatment effect 2</div>"
   },
   "basedOn" : [],
   "replaces" : [],
@@ -27,26 +27,14 @@
     "text": "Diagnostic assessment (assessment of treatment effect)"
   },
   "occurrenceTiming" : {
-
-
     "repeat" : {
-
       "boundsPeriod" : {
         "start": "2016-11-05",
         "end": "2017-11-05"
       },
       "frequency" : 1,
-      "period" : "3",
+      "period" : 3,
       "periodUnit" : "mo"
-    },
-    "code" : {
-      "coding": [{
-        "system": "http://snomed.info/sct",
-        "code": "3015006",
-        "display": "q3mo"
-      }],
-      "text": " Every three months"
-
     }
   },
   "performerType" : {
@@ -61,9 +49,9 @@
     "coding": [{
       "system": "http://snomed.info/sct",
       "code": "87522002",
-      "display": " Iron deficiency anemia"
+      "display": "Iron deficiency anemia"
     }],
-    "text": " Iron deficiency anemia"
+    "text": "Iron deficiency anemia"
   }],
   "note" : [{ "text": "Routine check-ups after stabilization" }]
 }

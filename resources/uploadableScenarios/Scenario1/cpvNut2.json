@@ -79,10 +79,6 @@
           "unit" : "mo",
           "system" : "http://unitsofmeasure.org"
         },
-        "boundsPeriod": {
-          "start": "2015-03-05",
-          "end": "2015-06-04"
-        },
         "frequency": 1,
         "period": 1,
         "periodUnit": "d"

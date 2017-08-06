@@ -30,10 +30,6 @@
     "text" : "Patient"
   },
   "occurrenceTiming": {
-    "event": [
-      "<dateTime>"
-    ],
-
     "repeat": {
 
       "boundsPeriod": {

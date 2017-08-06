@@ -19,7 +19,7 @@
     "type" : [{
       "coding" : [{
         "system" : "http://snomed.info/sct",
-        "code" : "361231003Prescribed dietary intake",
+        "code" : "361231003",
         "display" : "Prescribed dietary intake"
       }],
       "text" : "Prescribed dietary intake"

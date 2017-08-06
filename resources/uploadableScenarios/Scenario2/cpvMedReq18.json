@@ -41,7 +41,7 @@
         },
         "code" : {
           "coding": [{
-            "system": "https://www.hl7.org/fhir/v3/GTSAbbreviation/cs.html",
+            "system": "https://www.hl7.org/fhir/v3/GTSAbbreviation",
             "code": "QD",
             "display": "QD"
           }],

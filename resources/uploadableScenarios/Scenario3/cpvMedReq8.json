@@ -28,13 +28,9 @@
   }],
   "dosageInstruction" : [
     {
-
       "text" : "with or directly after breakfast",
       "timing" : {
-
-
         "repeat" : {
-
           "boundsPeriod" : {
             "start" : "2017-08-01"
           },
@@ -44,14 +40,13 @@
         },
         "code" : {
           "coding": [{
-            "system": "https://www.hl7.org/fhir/v3/GTSAbbreviation/cs.html",
+            "system": "https://www.hl7.org/fhir/v3/GTSAbbreviation",
             "code": "AM",
             "display": "AM"
           }],
           "text": "Every morning at institution specified times"
         }
       },
-
       "route" : {
         "coding": [{
           "system": "http://snomed.info/sct",
@@ -60,7 +55,6 @@
         }],
         "text": "Oral"
       },
-
       "doseQuantity" : {
         "value" : 500,
         "unit" : "mg",
@@ -69,31 +63,25 @@
       }
     },
     {
-
-      "text" : "with or directly after meal",
+      "text" : "with or directly after dinner",
       "timing" : {
-
-
         "repeat" : {
-
           "boundsPeriod" : {
             "start" : "2017-08-01"
           },
           "frequency" : 1,
           "period" : 1,
-          "periodUnit" : "d",
-          "when" : ["dinner"]
+          "periodUnit" : "d"
         },
         "code" : {
           "coding": [{
-            "system": "http://snomed.info/sct",
-            "code": "1771000175105",
-            "display": " Daily with dinner"
+            "system": "https://www.hl7.org/fhir/v3/GTSAbbreviation",
+            "code": "QD",
+            "display": "QD"
           }],
-          "text": " Daily with dinner"
+          "text": "Every day at institution specified times"
         }
       },
-
       "route" : {
         "coding": [{
           "system": "http://snomed.info/sct",
@@ -102,8 +90,7 @@
         }],
         "text": "Oral"
       },
-
-      "doseRange" : {
+      "doseQuantity" : {
         "value" : 250,
         "unit" : "mg",
         "system" : "http://snomed.info/sct",
