@@ -46,7 +46,6 @@ function parseDataL(){
         }
     }
     performer(data, performerArray);
-    console.log(data);
     return data;
 }
 
@@ -54,7 +53,7 @@ function insertActivityReference(data, resource, performerArray){
     var title, purpose, end, specialty, requester;
 
     if("text" in resource){
-        title = resource.text.div;
+        title = resource.text.div.replace(new RegExp(' xmlns="http://www.w3.org/1999/xhtml"', 'g'), "");
     }else{
         title = "Unspecified " + resource.resourceType;
         //title = "Unspecified "+getCategory(getGlyphicon(resource.resourceType));
@@ -118,9 +117,8 @@ function insertActivityReference(data, resource, performerArray){
         case "Blood Measurement": {specificData = getBloodMData(resource); break;}
         case "Weight Measurement": {specificData = getWeightMData(resource); break;}
         case "Procedure": {specificData = getProcedureData(resource); break;}
-        default: specificData = {};
+        default: specificData = [];
     }
-    console.log(specificData);
     data[category]['children'].push({"title": title,
         "performer": {"reference": requester},
         "end": end, "purpose": purpose, "specific": specificData});
@@ -219,20 +217,22 @@ function sortData(data){
 
 function buildList(data){
     $('.list').remove();
-    $('#patientCentric').append('<div class="row head">' +
-        '<div class="col-sm-1"></div>' +
-        '<div class="col-sm-11">' +
-        '<div class="row">' +
+    if($('.head').length === 0) {
+        $('#patientCentric').append('<div class="row head">' +
+            '<div class="col-sm-1"></div>' +
+            '<div class="col-sm-11">' +
+            '<div class="row">' +
             '<div class="col-sm-2">TITLE</div>' +
-            '<div class="col-sm-6">SPECIFIC DATA</div>' +
+            '<div class="col-sm-7">SPECIFIC DATA</div>' +
             '<div class="col-sm-1"><span class="fa fa-bullseye" style="font-size:20px;"></span> END</div>' +
-            '<div class="col-sm-2"><span class="fa fa-user-md" style="font-size:20px;"></span> PERFORMER </div>' +
+            '<div class="col-sm-1"><span class="fa fa-user-md" style="font-size:20px;"></span> OWNER </div>' +
             '<div class="col-sm-1">NOTES</span></div>' +
-        '</div></div></div>');
+            '</div></div></div>');
+    }
 
     var categoryElement = [
         '<div class="row list" id="', //Spot for Category
-        '"><div class="col-sm-1">',  //Spot for icon
+        '"><div class="col-sm-1" style="background-color:white;">',  //Spot for icon
         '</div><div class="col-sm-11">',            //Spot for List of Acitivity Details
         '</div></div>'];
 
@@ -241,13 +241,12 @@ function buildList(data){
         categories.push(key);
     });
     categories.sort(function(a,b){
-        return getPriority(a["name"]) - getPriority(b["name"]);
+        return getPriority(a) - getPriority(b);
     });
-
     for(var i = 0; i < categories.length; i++){
         var build = categoryElement[0];
         build += data[categories[i]]["name"]+ categoryElement[1];
-        build += '<span class="'+getCategory(categories[i])+' fa-3x"></span>';
+        build += '<span class="'+getGlyphicon(categories[i].toLowerCase())+' fa-3x"></span>';
         build += categoryElement[2];
         for(var j = 0; j < data[categories[i]]["children"].length; j++){
             build += buildActivityRow(data[categories[i]]["children"][j], data[categories[i]]["name"]);
@@ -264,10 +263,16 @@ function buildActivityRow(activity, category){
     }
     var elements = getActivityRow(category, withDetails);
     var string = '';
-    string += elements[0] + activity["purpose"] + elements[1] + activity["title"] + elements[2];
-    var index = 3;
+    string += elements[0];
+    if(withDetails){
+        var opacity = getOpacity(activity.specific[0].status);
+        string += ' style="opacity:'+opacity+';filter: alpha(opacity='+opacity*100+');background-color:lightgrey;"';
+    }else{
+        string += ' style="background-color:lightgrey;"';
+    }
+    string += elements[1] + activity["purpose"] + elements[2] + activity["title"] + elements[3];
+    var index = 4;
     if(withDetails) {
-        console.log("here");
         switch (category) {
             case "Medicine": {
                 for (var i = 0; i < activity["specific"].length; i++) {
@@ -293,11 +298,12 @@ function buildActivityRow(activity, category){
                     }
                     string += elements[index+5];
                     if ("dose" in activity["specific"][i]) {
-                        string += activity["specific"][i]["dose"];
+                        string += activity["specific"][i]["dose"] +
+                            ' (' +activity["specific"][i]["route"]+ ')';
                     }
                     string += elements[index+6];
                 }
-                index = index + (6 * activity.specific.length) +1;
+                index = index + 6 +1;
                 break;
             }
             case "Procedure": {
@@ -324,7 +330,7 @@ function buildActivityRow(activity, category){
                     }
                     string += elements[index+5];
                 }
-                index = index + (5 * activity.specific.length) +1;
+                index = index + 5 +1;
                 break;
             }
             case "Exercise": case "Blood Measurement": case "Weight Measurement": {
@@ -354,26 +360,26 @@ function buildActivityRow(activity, category){
                         string += activity["specific"][i]["status"];
                     }
                     string += elements[index + 1];
+                    if ("texture" in activity["specific"][i]) {
+                        string += activity["specific"][i]["texture"];
+                    }
+                    string += elements[index + 2];
                     if ("schedule" in activity["specific"][i]) {
                         string += activity["specific"][i]["schedule"];
                     }
-                    string += elements[index + 2];
+                    string += elements[index + 3];
                     if ("type" in activity["specific"][i]) {
                         string += activity["specific"][i]["type"];
                     }
-                    string += elements[index + 3];
+                    string += elements[index + 4];
                     if ("nutrient" in activity["specific"][i]) {
                         string += activity["specific"][i]["nutrient"];
                     } else if ("quantity" in activity["specific"][i]) {
                         string += activity["specific"][i]["quantity"];
                     }
-                    string += elements[index + 4];
-                    if ("texture" in activity["specific"][i]) {
-                        string += activity["specific"][i]["texture"];
-                    }
                     string += elements[index + 5];
                 }
-                index = index + (5 * activity.specific.length) +1;
+                index = index + 5 +1;
                 break;
             }
         }
@@ -382,16 +388,16 @@ function buildActivityRow(activity, category){
     string += elements[index++] + activity["performer"]["specialty"] + elements[index++] + activity["performer"]["name"];
     /*TODO activity["note"] */
     string += elements[index++] + elements[index++];
-    //console.log(string);
     return string;
 }
 
 function getActivityRow(category, withDetails){
-    var all = ['<div class="row"><div class="col-sm-2 title" data-purpose="',
+    var all = ['<div class="row"',
+                '><div class="col-sm-2 title" data-purpose="',
                 '">',
-                '</div><div class="col-sm-6 specific">',
+                '</div><div class="col-sm-7 specific">',
                 '</div><div class="col-sm-1 end">',
-                '</div><div class="col-sm-2 performer" data-specialty="',
+                '</div><div class="col-sm-1 performer" data-specialty="',
                 '">',
                 '</div><div class="col-sm-1 note" data-details="',
                 '"><span class="fa fa-sticky-note-o"></span></div></div>'];
@@ -414,8 +420,8 @@ function getActivityRow(category, withDetails){
                     '<div class="col-sm-1">');
                 specific.push('</div><div class="col-sm-3">');
                 specific.push('</div><div class="col-sm-3">');
-                specific.push('</div><div class="col-sm-2">');
                 specific.push('</div><div class="col-sm-3">');
+                specific.push('</div><div class="col-sm-2">');
                 specific.push('</div></div>');
                 break;
             }
@@ -441,7 +447,7 @@ function getActivityRow(category, withDetails){
             }
         }
         for (var i = 0; i < specific.length; i++) {
-            all.splice(3 + i, 0, specific[i]);
+            all.splice(4 + i, 0, specific[i]);
         }
     }
     return all;
@@ -513,12 +519,17 @@ function getMedicineData(activity){
             } else if ("asNeededBoolean" in activity["dosageInstruction"][p] && activity["dosageInstruction"][p]["asNeededBoolean"]) {
                 specific[p]["timing"] = "as Needed";
             }
+            if("route" in activity["dosageInstruction"][p]){
+                specific[p]["route"] = activity["dosageInstruction"][p]["route"]["text"];
+            }
             if ("doseQuantity" in activity["dosageInstruction"][p]) {
                 specific[p]["dose"] = parseQuantity(activity["dosageInstruction"][p]["doseQuantity"]);
             } else if ("doseRange" in activity["dosageInstruction"][p]) {
                 specific[p]["dose"] = activity["dosageInstruction"][p]["doseRange"];//TODO
             } else if("rateRatio" in activity["dosageInstruction"][p]){
-                //TODO
+                var temp = activity["dosageInstruction"][p]["rateRatio"];
+                specific[p]["dose"] = temp["numerator"]["value"] + temp["numerator"]["unit"] + ' / ' +
+                                        temp["denominator"]["value"] + temp["denominator"]["unit"];
             }
         }
     }
@@ -551,7 +562,6 @@ function getDietData(activity){
     var specific = [];
     var status;
     if("status" in activity){
-        console.log(activity["status"]);
         status = activity["status"];
     }
     if("oralDiet" in activity){
@@ -695,6 +705,10 @@ function getProcedureData(activity){
     }
     if("occurrenceTiming" in activity){
         timing = parseSchedule(activity["occurrenceTiming"]);
+    }else if("occurrencePeriod" in activity){
+        timing = "From " + activity["occurrencePeriod"]["start"];
+    }else if("occurrenceDateTime" in activity){
+        timing = "On " + activity["occurrenceDateTime"];
     }
     specific.push({"status": status, "priority": priority, "intent": intent, "procedure": procedure, "timing": timing});
     return specific;
@@ -720,6 +734,16 @@ function parseSchedule(schedule){
         }
         if("code" in schedule[i]){
             string += schedule[i].code.text;
+            if("repeat" in schedule[i]){
+                if("timeOfDay" in schedule[i].repeat){
+                    var temp = '';
+                    for(var q = 0; q < schedule[i].repeat.timeOfDay.length; q++){
+                        temp += schedule[i].repeat.timeOfDay[q] +', ';
+                    }
+                    temp = temp.substring(0, temp.length-2);
+                    string = string.replace("institution specified times", temp);
+                }
+            }
         }else{
             if("repeat" in schedule[i]){
                 string += schedule[i].repeat.frequency +" time(s) per "+ schedule[i].repeat.period+schedule[i].repeat.periodUnit; //2 times per 1d

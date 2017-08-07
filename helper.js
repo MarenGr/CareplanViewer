@@ -40,8 +40,13 @@ function getResource(input){
 
 function getCarePlanDescription(reference){
     var careplan = gCareplans[reference];
-    if("text" in careplan){
-        return careplan.text.div.replace('xmlns="http://www.w3.org/1999/xhtml"', '');
+    if("text" in careplan && "div" in careplan.text){
+        var temp = careplan.text.div;
+        temp = temp.replace(new RegExp(' xmlns="http://www.w3.org/1999/xhtml"', 'g'), "");
+        temp = temp.replace(new RegExp('\<a name="mm"\/\>', 'g'), "");
+        return temp;
+    }else if("description" in careplan){
+        return careplan.description.replace(new RegExp(' xmlns="http://www.w3.org/1999/xhtml"', 'g'), "");
     }else{
         return "";
     }
@@ -62,20 +67,21 @@ function getGlyphicon(code){
         //inline Codes
         case "diet": return "fa fa-cutlery";
         case "exercise": return "fa fa-soccer-ball-o";
-        case "drug": return "fa fa-minus-circle fa-rotate-140 fa-inverse";
+        case "drug": case "medicine": return "fa fa-minus-circle fa-rotate-140";
         case "encounter": return "fa fa-calendar";
         case "observation": return "fa fa-eye";
         case "procedure": return "fa fa-stethoscope";
         case "supply": return "fa fa-shopping-cart";
         case "plus": return "glyphicon glyphicon-plus";
         case "other": return "fa fa-circle-o";
+        case "measurement": return "fa fa-thermometer-half";
         //references
         case "Task": return "fa fa-circle-o";
         case "Appointment": return "fa fa-calendar";
         case "NutritionOrder": return "fa fa-cutlery";
-        case "MedicationRequest": return "fa fa-minus-circle fa-rotate-140 fa-inverse";
+        case "MedicationRequest": return "fa fa-minus-circle fa-rotate-140";
         case "ProcedureRequest": return "fa fa-stethoscope";
-        case "DeviceRequest": return "" //TODO  unterscheidung exercise & measurement
+        case "DeviceRequest": return "fa fa-thermometer-half" //TODO  unterscheidung exercise & measurement
         default: return "fa fa-circle-o";
     }
 }
@@ -84,12 +90,13 @@ function getCategory(code){
     switch(code){
         case "fa fa-cutlery": return "Diet";
         case "fa fa-soccer-ball-o": return "Exercise";
-        case "fa fa-minus-circle fa-rotate-140 fa-inverse": return "Medicine";
+        case "fa fa-minus-circle fa-rotate-140": return "Medicine";
         case "fa fa-calendar": return "Apppointment";
         case "fa fa-circle-o": return "Other";
         case "fa fa-eye": return "Observation";
         case "fa fa-shopping-cart": return "Supply";
         case "fa fa-stethoscope": return "Procedure";
+        case "fa fa-thermometer-half": return "Measurement";
 
         /*TODO:
          case "fa fa-": return "Blood Measurement";
@@ -108,12 +115,13 @@ function getPriority(category){
         case "Diet": return 1;
         case "Procedure": return 2;
         case "Exercise": return 3;
-        case "Blood Measurement": return 4;
-        case "Weight Measurement": return 5;
-        case "Appointment": return 6;
-        case "Observation": return 7;
-        case "Supply": return 8;
-        case "Other": return 9;
+        case "Measurement": return 4;
+        case "Blood Measurement": return 5;
+        case "Weight Measurement": return 6;
+        case "Appointment": return 7;
+        case "Observation": return 8;
+        case "Supply": return 9;
+        case "Other": return 10;
     }
 }
 
@@ -221,5 +229,18 @@ function getPerformerIcon(){
         '<i class="fa fa-square fa-stack-1x"></i>' +
         '<i class="fa fa-user-md fa-stack-1x fa-inverse"></i>' +
         '</span>';
+}
+
+function getOpacity(status){
+    switch(status){
+        case "active": return 1;
+        case "on-hold": return 0.9;
+        case "cancelled": return 0.3;
+        case "completed": return 0.3;
+        case "entered-in-error": return 0.2;
+        case "stopped": return 0.3;
+        case "draft": return 0.6;
+        case "unknown": return 1;
+    }
 }
 

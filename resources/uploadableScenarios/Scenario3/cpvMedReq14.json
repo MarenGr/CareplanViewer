@@ -6,7 +6,7 @@
     "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Bisoprolol medication - dosage adjustment 2</div>"
   },
   "basedOn" : [],
-  "status": "completed",
+  "status": "active",
   "intent" : "instance-order",
   "priority" : "urgent",
 
