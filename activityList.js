@@ -1,8 +1,8 @@
 /**
  * Created by Maren on 18.07.2017.
  */
-function makeList(entries){
-    var data = parseDataL(entries);
+function makeList(){
+    var data = parseDataL();
     sortData(data);
     console.log(data);
     buildList(data);
@@ -10,14 +10,15 @@ function makeList(entries){
 }
 
 
-function parseDataL(rawdata){
-    var data = [];
+function parseDataL(){
+    var data = {};
     var typeList = [];
     var performerArray = [];
     var activityArray = [];
 
-    for(var i = 0; i < rawdata.length; i++){
-        var current = rawdata[i]['resource'];
+    var keys = gCareplans.keys;
+    for(var i in gCareplans){
+        var current = gCareplans[i];
 
         if("activity" in current) {
             for(var j = 0; j < current["activity"].length; j++) {
@@ -37,15 +38,13 @@ function parseDataL(rawdata){
                     data[category] = {"name": category, "category": icon, "children": []};
                 }
                 if("reference" in current.activity[j]) {
-                    data[category]['children'][current.activity[j].reference.reference] = {};
-                    activityArray.push(current.activity[j].reference.reference);
+                    insertActivityReference(data, gActivities[current.activity[j].reference.reference], performerArray);
                 }else{
                     insertActivityDetail(data, current, i, j, category, performerArray, type[1]);
                 }
             }
         }
     }
-    activities(data, activityArray, performerArray);
     performer(data, performerArray);
     console.log(data);
     return data;
@@ -61,6 +60,7 @@ function insertActivityReference(data, resource, performerArray){
         //title = "Unspecified "+getCategory(getGlyphicon(resource.resourceType));
     }
 
+    purpose = "";
     if("basedOn" in resource){
         if(jQuery.type(resource.basedOn) === 'array'){
             for(var i = 0; i < resource.basedOn.length; i++) {
@@ -93,14 +93,14 @@ function insertActivityReference(data, resource, performerArray){
         if("end" in resource["period"]){
             end = resource["period"]["end"];
         }else{
-            end = "unknown";
+            end = "ongoing";
         }
     }else{
-        end = "unknown";
+        end = "ongoing";
     }
 
     if("requester" in resource) {
-        requester = resource["requester"]["reference"];
+        requester = resource.requester.agent.reference;
     }else{
         requester = "n/a";
     }
@@ -108,21 +108,22 @@ function insertActivityReference(data, resource, performerArray){
         performerArray.push(requester);
     }
 
-    var specificData;
+    var specificData = [];
     var category = getCategory(getGlyphicon(resource.resourceType));
 
-    /*switch(category){
-        case "Medicine": specificData = getMedicineData(resource);
-        case "Exercise": specificData = getExerciseData(resource);
-        case "Diet": specificData = getDietData(resource['activity']);
-        case "Blood Measurement": specificData = getBloodMData(resource);
-        case "Weight Measurement": specificData = getWeightMData(resource);
+    switch(category){
+        case "Medicine": {specificData = getMedicineData(resource); break;}
+        case "Exercise": {specificData = getExerciseData(resource); break;}
+        case "Diet": {specificData = getDietData(resource); break;}
+        case "Blood Measurement": {specificData = getBloodMData(resource); break;}
+        case "Weight Measurement": {specificData = getWeightMData(resource); break;}
+        case "Procedure": {specificData = getProcedureData(resource); break;}
         default: specificData = {};
-    }*/
-
-    data[category]['children']["0"] = {"title": title,
+    }
+    console.log(specificData);
+    data[category]['children'].push({"title": title,
         "performer": {"reference": requester},
-        "end": end, "purpose": purpose, "specific": specificData};
+        "end": end, "purpose": purpose, "specific": specificData});
 
 }
 
@@ -164,13 +165,6 @@ function insertActivityDetail(data, rawdata, resCount, actIndex, category, perfo
     }
 
     var specificData;
-    var resource;
-
-    if("detail" in rawdata['activity'][actIndex]){
-        resource = rawdata['activity'][actIndex]["detail"];
-    }else if("reference" in rawdata['activity'][actIndex]) {
-        resource = getActResource(rawdata['activity'][actIndex]["reference"]);
-    }
     switch(category){
         case "Medicine": specificData = getMedicineData(rawdata['activity'][actIndex]);
         case "Exercise": specificData = getExerciseData(rawdata['activity'][actIndex]);
@@ -180,9 +174,9 @@ function insertActivityDetail(data, rawdata, resCount, actIndex, category, perfo
         default: specificData = {};
     }
 
-    data[category]['children']["0"] = {"title": title,
+    data[category]['children'].push({"title": title,
         "performer": {"reference": performer, "specialty": specialty},
-        "end": end, "purpose": name, "specific": specificData};
+        "end": end, "purpose": name, "specific": specificData});
 
 }
 
@@ -198,65 +192,7 @@ function parseActivities(data, response, performerArray){
     }
 }
 
-function getActResource(reference){
-    $.ajax({
-        url: 'scriptUrl.php',
-        type: 'POST',
-        dataType: 'JSON',
-        data: {
-            "data": reference
-        },
-        async: false,
-        success: function (response) {
-            $button.button('reset');
-            //Error Handling
-            if (typeof response.result.issue !== 'undefined') {
-                console.log(response);
-                /*if (response.result.issue["0"].severity === "error") {
-                    $('#error-alert-content').append(response.result.issue["0"].diagnostics);
-                    $("#error-alert-content").fadeIn();
-                }*/
-                return null;
-            } else {
-                console.log(response);
-                if ("entry" in response['result']) {
-                    return response['result']['entry'][0]['resource'];
-                } else {
-                    $('#res').html("No results found for this query.");
-                    $('#res').fadeIn();
-                }
-            }
-
-        },
-        error: function (xhr, ajaxOptions, thrownError) {
-            alert(xhr.status + " " + thrownError);
-            moreToSearch = false;
-        }
-    });
-}
-
-
-
 function sortData(data){
-    //sort activity types by their priority
-    data.sort(function(a,b){
-        return getPriority(a["name"]) - getPriority(b["name"]);
-    });
-
-    //push clicked category to first position on site
-    /*if(clicked !== null){
-        var index = 0;
-        for(var i = 0; i<data.length; i++){
-            if(data[i]['category'] === clicked){
-                index = i;
-                break;
-            }
-        }
-        var temp = data[index];
-        data.splice(index, 1);
-        data.splice(0, 0, temp);
-    }*/
-
     //sort entries of each list by performer
     for(var j = 0; j < data.length; j++){
         var index = [];
@@ -300,14 +236,21 @@ function buildList(data){
         '</div><div class="col-sm-11">',            //Spot for List of Acitivity Details
         '</div></div>'];
 
-    for(var i = 0; i < data.length; i++){
+    var categories = [];
+    jQuery.each(data, function(key, value) {
+        categories.push(key);
+    });
+    categories.sort(function(a,b){
+        return getPriority(a["name"]) - getPriority(b["name"]);
+    });
+
+    for(var i = 0; i < categories.length; i++){
         var build = categoryElement[0];
-        build += data[i]["name"]+ categoryElement[1];
-        build += '<span class="'+data[i]["category"]+' fa-3x"></span>';
+        build += data[categories[i]]["name"]+ categoryElement[1];
+        build += '<span class="'+getCategory(categories[i])+' fa-3x"></span>';
         build += categoryElement[2];
-        for(var j = 0; j < data[i]["children"].length; j++){
-            console.log(i + " " + j);
-            build += buildActivityRow(data[i]["children"][j], data[i]["name"]);
+        for(var j = 0; j < data[categories[i]]["children"].length; j++){
+            build += buildActivityRow(data[categories[i]]["children"][j], data[categories[i]]["name"]);
         }
         build += categoryElement[3];
         $('#patientCentric').append(build);
@@ -323,31 +266,65 @@ function buildActivityRow(activity, category){
     var string = '';
     string += elements[0] + activity["purpose"] + elements[1] + activity["title"] + elements[2];
     var index = 3;
-    if(activity.specific.length > 0) {
+    if(withDetails) {
         console.log("here");
         switch (category) {
             case "Medicine": {
-                string += elements[index++];
-                if ("status" in activity["specific"][i]) {
-                    string += activity["specific"][i]["status"];
+                for (var i = 0; i < activity["specific"].length; i++) {
+                    string += elements[index];
+                    if ("status" in activity["specific"][i]) {
+                        string += activity["specific"][i]["status"];
+                    }
+                    string += elements[index+1];
+                    if ("priority" in activity["specific"][i]) {
+                        string += activity["specific"][i]["priority"];
+                    }
+                    string += elements[index+2];
+                    if ("intent" in activity["specific"][i]) {
+                        string += activity["specific"][i]["intent"];
+                    }
+                    string += elements[index+3];
+                    if ("timing" in activity["specific"][i]) {
+                        string += activity["specific"][i]["timing"];
+                    }
+                    string += elements[index+4];
+                    if ("medicine" in activity["specific"][i]) {
+                        string += activity["specific"][i]["medicine"];
+                    }
+                    string += elements[index+5];
+                    if ("dose" in activity["specific"][i]) {
+                        string += activity["specific"][i]["dose"];
+                    }
+                    string += elements[index+6];
                 }
-                string += elements[index++];
-                if ("priority" in activity["specific"][i]) {
-                    string += activity["specific"][i]["priority"];
+                index = index + (6 * activity.specific.length) +1;
+                break;
+            }
+            case "Procedure": {
+                for (var i = 0; i < activity["specific"].length; i++) {
+                    string += elements[index];
+                    if ("status" in activity["specific"][i]) {
+                        string += activity["specific"][i]["status"];
+                    }
+                    string += elements[index+1];
+                    if ("priority" in activity["specific"][i]) {
+                        string += activity["specific"][i]["priority"];
+                    }
+                    string += elements[index+2];
+                    if ("intent" in activity["specific"][i]) {
+                        string += activity["specific"][i]["intent"];
+                    }
+                    string += elements[index+3];
+                    if ("timing" in activity["specific"][i]) {
+                        string += activity["specific"][i]["timing"];
+                    }
+                    string += elements[index+4];
+                    if ("procedure" in activity["specific"][i]) {
+                        string += activity["specific"][i]["procedure"];
+                    }
+                    string += elements[index+5];
                 }
-                string += elements[index++];
-                if ("intent" in activity["specific"][i]) {
-                    string += activity["specific"][i]["intent"];
-                }
-                string += elements[index++];
-                if ("timing" in activity["specific"][i]) {
-                    string += activity["specific"][i]["timing"];
-                }
-                string += elements[index++];
-                if ("dose" in activity["specific"][i]) {
-                    string += activity["specific"][i]["dose"];
-                }
-                string += elements[index++];
+                index = index + (5 * activity.specific.length) +1;
                 break;
             }
             case "Exercise": case "Blood Measurement": case "Weight Measurement": {
@@ -372,31 +349,31 @@ function buildActivityRow(activity, category){
             }
             case "Diet": {
                 for (var i = 0; i < activity["specific"].length; i++) {
-                    string += elements[index + 1];
+                    string += elements[index];
                     if ("status" in activity["specific"][i]) {
                         string += activity["specific"][i]["status"];
+                    }
+                    string += elements[index + 1];
+                    if ("schedule" in activity["specific"][i]) {
+                        string += activity["specific"][i]["schedule"];
                     }
                     string += elements[index + 2];
                     if ("type" in activity["specific"][i]) {
                         string += activity["specific"][i]["type"];
                     }
                     string += elements[index + 3];
-                    if ("schedule" in activity["specific"][i]) {
-                        string += activity["specific"][i]["schedule"];
-                    }
-                    string += elements[index + 4];
                     if ("nutrient" in activity["specific"][i]) {
                         string += activity["specific"][i]["nutrient"];
                     } else if ("quantity" in activity["specific"][i]) {
                         string += activity["specific"][i]["quantity"];
                     }
-                    string += elements[index + 5];
+                    string += elements[index + 4];
                     if ("texture" in activity["specific"][i]) {
                         string += activity["specific"][i]["texture"];
                     }
-                    string += elements[index + 6];
+                    string += elements[index + 5];
                 }
-                index = index + (6 * activity.specific.length);
+                index = index + (5 * activity.specific.length) +1;
                 break;
             }
         }
@@ -405,6 +382,7 @@ function buildActivityRow(activity, category){
     string += elements[index++] + activity["performer"]["specialty"] + elements[index++] + activity["performer"]["name"];
     /*TODO activity["note"] */
     string += elements[index++] + elements[index++];
+    //console.log(string);
     return string;
 }
 
@@ -420,13 +398,23 @@ function getActivityRow(category, withDetails){
     if(withDetails) {
         var specific = [];
         switch (category) {
-            case "Medicine":
-            case "Diet": {
+            case "Medicine": {
                 specific.push('<div class="row">' +
-                    '<div class="col-sm-2">');
-                specific.push('</div><div class="col-sm-2">');
+                    '<div class="col-sm-1">');
+                specific.push('</div><div class="col-sm-1">');
                 specific.push('</div><div class="col-sm-2">');
                 specific.push('</div><div class="col-sm-3">');
+                specific.push('</div><div class="col-sm-3">');
+                specific.push('</div><div class="col-sm-2">');
+                specific.push('</div></div>');
+                break;
+            }
+            case "Diet": {
+                specific.push('<div class="row">' +
+                    '<div class="col-sm-1">');
+                specific.push('</div><div class="col-sm-3">');
+                specific.push('</div><div class="col-sm-3">');
+                specific.push('</div><div class="col-sm-2">');
                 specific.push('</div><div class="col-sm-3">');
                 specific.push('</div></div>');
                 break;
@@ -441,6 +429,15 @@ function getActivityRow(category, withDetails){
                 specific.push('</div><div class="col-sm-6">');
                 specific.push('</div></div>');
                 break;
+            }
+            case "Procedure":{
+                specific.push('<div class="row">' +
+                    '<div class="col-sm-1">');
+                specific.push('</div><div class="col-sm-1">');
+                specific.push('</div><div class="col-sm-2">');
+                specific.push('</div><div class="col-sm-3">');
+                specific.push('</div><div class="col-sm-5">');
+                specific.push('</div></div>');
             }
         }
         for (var i = 0; i < specific.length; i++) {
@@ -483,52 +480,45 @@ function addHoverList(){
 }
 
 
-function fillPerformer2(data, response){
-    var urlLookup = {};
-    for(var p = 0; p < response.result.length; p++){
-        if(typeof response.result[p].issue !== 'undefined'){
-            urlLookup[response.url[p]] = ["not found", "not found"];
-        }else if(response.result[p] === "n/a"){
-            urlLookup[response.url[p]] = ["n/a", "n/a"];
-        }else{
-            var name = getName(response.result[p]);
-            var specialty = getSpecialty(response.result[p]);
-            urlLookup[response.url[p]] = [name, specialty];
-        }
-
-    }
-
-    for(var i = 0; i < data.length; i++){
+function fillPerformer2(data){
+    for(var i in data){
         for(var j = 0; j < data[i]["children"].length; j++){
-            data[i]["children"][j]["performer"]["name"] = urlLookup[data[i]["children"][j]["performer"]["reference"]][0];
-            data[i]["children"][j]["performer"]["specialty"] = urlLookup[data[i]["children"][j]["performer"]["reference"]][1];
+            var current = data[i]["children"][j]["performer"];
+            current["name"] = gPerformer[current["reference"]].name;
+            current["specialty"] = gPerformer[current["reference"]].specialty;
         }
     }
-
 }
 
 function getMedicineData(activity){
-    var specific = {};
+    var specific = [];
+    var status, priority, intent, medicine;
     if("status" in activity){
-        specific["status"] = activity["status"];
+        status = activity["status"];
     }
     if("priority" in activity){
-        specific["priority"] = activity["priority"];
+        priority = activity["priority"];
     }
     if("intent" in activity){
-        specific["intent"] = activity["intent"];
+        intent = activity["intent"];
+    }
+    if("medicationCodeableConcept" in activity){
+        medicine = activity.medicationCodeableConcept.text;
     }
     if("dosageInstruction" in activity){
-        if("timing" in activity["dosageInstruction"]){
-            specific["timing"] = activity["dosageInstruction"]["timing"];
-        }else if("asNeededBoolean"){
-            specific["timing"] = "as Needed";
-        }
-        if("dose" in activity["dosageInstruction"]) {
-            if ("doseQuantity" in activity["dosageInstruction"]["dose"]) {
-                specific["dose"] = activity["dosageInstruction"]["dose"]["doseQuantity"];
-            } else if ("doseRate" in activity["dosageInstruction"]["dose"]) {
-                specific["dose"] = activity["dosageInstruction"]["dose"]["doseRate"];
+        for(var p = 0; p < activity["dosageInstruction"].length; p++) {
+            specific.push({"status": status, "priority": priority, "intent": intent, "medicine": medicine});
+            if ("timing" in activity["dosageInstruction"][p]) {
+                specific[p]["timing"] = parseSchedule(activity["dosageInstruction"][p]["timing"]);
+            } else if ("asNeededBoolean" in activity["dosageInstruction"][p] && activity["dosageInstruction"][p]["asNeededBoolean"]) {
+                specific[p]["timing"] = "as Needed";
+            }
+            if ("doseQuantity" in activity["dosageInstruction"][p]) {
+                specific[p]["dose"] = parseQuantity(activity["dosageInstruction"][p]["doseQuantity"]);
+            } else if ("doseRange" in activity["dosageInstruction"][p]) {
+                specific[p]["dose"] = activity["dosageInstruction"][p]["doseRange"];//TODO
+            } else if("rateRatio" in activity["dosageInstruction"][p]){
+                //TODO
             }
         }
     }
@@ -561,6 +551,7 @@ function getDietData(activity){
     var specific = [];
     var status;
     if("status" in activity){
+        console.log(activity["status"]);
         status = activity["status"];
     }
     if("oralDiet" in activity){
@@ -603,17 +594,19 @@ function getDietData(activity){
     }
     if("supplement" in activity){
         var index = specific.length;
-        specific.push({"status": status});
-        if("productName" in activity["supplement"]){
-            specific[index]["type"] = activity["supplement"]["productName"];
-        }else if("type" in activity["supplement"]){
-            specific[index]["type"] = activity["supplement"]["type"]["coding"][0]["display"];
-        }
-        if("schedule" in activity["supplemennt"]){
-            specific[index]["schedule"] = activity["supplemennt"]["schedule"];
-        }
-        if("quantity" in activity["supplement"]){
-            specific[index]["quantity"] = activity["supplemennt"]["quantity"];
+        for(var p = 0; p < activity.supplement.length; p++) {
+            specific.push({"status": status});
+            if ("productName" in activity["supplement"][p]) {
+                specific[index]["type"] = activity["supplement"][p]["productName"];
+            } else if ("type" in activity["supplement"][p]) {
+                specific[index]["type"] = activity["supplement"][p]["type"]["coding"][0]["display"];
+            }
+            if ("schedule" in activity["supplement"][p]) {
+                specific[index]["schedule"] = parseSchedule(activity["supplement"][p]["schedule"]);
+            }
+            if ("quantity" in activity["supplement"][p]) {
+                specific[index]["quantity"] = parseQuantity(activity["supplement"][p]["quantity"]);
+            }
         }
     }
     if("enteralFormular" in activity){
@@ -683,4 +676,60 @@ function getWeightMData(activity){
         specific["occurrence"] = activity["occurrencTiming"];
     }
     return specific;
+}
+
+function getProcedureData(activity){
+    var specific = [];
+    var status, priority, intent, procedure, timing;
+    if("status" in activity){
+        status = activity["status"];
+    }
+    if("priority" in activity){
+        priority = activity["priority"];
+    }
+    if("intent" in activity){
+        intent = activity["intent"];
+    }
+    if("code" in activity){
+        procedure = activity.code.text;
+    }
+    if("occurrenceTiming" in activity){
+        timing = parseSchedule(activity["occurrenceTiming"]);
+    }
+    specific.push({"status": status, "priority": priority, "intent": intent, "procedure": procedure, "timing": timing});
+    return specific;
+}
+
+function parseSchedule(schedule){
+    if(jQuery.type(schedule) === "object"){
+        schedule = [schedule];
+    }
+    var string = "";
+    for(var i = 0; i < schedule.length; i++){
+        if("repeat" in schedule[i]){
+            if("boundsPeriod" in schedule[i].repeat){               //1994-11-12 - ongoing:
+                string += "From "+schedule[i].repeat.boundsPeriod.start +": ";
+                /*if("end" in schedule[i].repeat.boundsPeriod){
+                    string += schedule[i].repeat.boundsPeriod.end +": ";
+                }else{
+                    string += "ongoing: ";
+                }*/
+            }else if("boundsDuration" in schedule[i].repeat){
+                string += "For "+schedule[i].repeat.boundsDuration.value+" "+schedule[i].repeat.boundsDuration.unit+":"; //For 4 weeks:
+            }
+        }
+        if("code" in schedule[i]){
+            string += schedule[i].code.text;
+        }else{
+            if("repeat" in schedule[i]){
+                string += schedule[i].repeat.frequency +" time(s) per "+ schedule[i].repeat.period+schedule[i].repeat.periodUnit; //2 times per 1d
+            }
+        }
+        string += "<br>";
+    }
+    return string.substring(0, string.length-4) //-<br>
+}
+
+function parseQuantity(quantity){
+    return quantity.value + quantity.unit;
 }

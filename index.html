@@ -235,8 +235,9 @@
 	<script>
 
 		var gLoggedUser = "Practitioner/29223"; //format: Patient/234643 or Practitioner/316480
-        var gCareplans = null, gPatient = null, gPerformer = [], gActivities = [];
+        var gCareplans = {}, gPatient = null, gPerformer = {}, gActivities = {};
         var layout;
+        var baseAddress = "http://fhirtest.uhn.ca/baseDstu3/";
 
         function init(){
             fillPatientSelector();
@@ -251,10 +252,10 @@
 
             $('#submit').on('click', function () {
                 $('#careplanMap').remove();
-                gCareplans = null;
+                gCareplans = {};
                 gPatient = null;
-                gPerformer = [];
-                gActivities = [];
+                gPerformer = {};
+                gActivities = {};
 
                 $("#error-alert-content").fadeOut();
                 $('#error-alert-content').html('');
@@ -266,8 +267,7 @@
                 $('#patientSelectModal').modal('toggle');
 
                 var url = [
-                    "CarePlan?subject="+id,
-                    "Patient?_id="+id
+                    "CarePlan?subject="+id+"&_include=CarePlan:activity-reference&_include=CarePlan:subject"
 				];
                 /*if (id == "local") {
                     url.push("manyCareplans.json");
@@ -303,12 +303,11 @@
                             $('#res').hide();
                             console.log(response);
 
-                            if ("entry" in response['result'][0] && "entry" in response['result'][1]) {
-                                makeList(response['result'][0]['entry']);
-                                buildCarePlanMap(response['result'][0]['entry']);
-                                gCareplans = response['result'][0]['entry'];
-                                gPatient = response['result'][1]['entry'][0]['resource'];
-                                displayPatientInfo(response['result'][1]['entry'][0]['resource']);
+                            if ("entry" in response['result'][0]) {
+                                splitAndSafe(response['result'][0]['entry']);
+                                makeList();
+                                buildCarePlanMap();
+                                displayPatientInfo();
                             } else {
                                 $('#res').html("No results found for this query.");
                                 $('#res').fadeIn();

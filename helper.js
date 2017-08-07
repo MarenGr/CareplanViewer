@@ -1,6 +1,19 @@
 /**
  * Created by Maren on 18.07.2017.
  */
+function splitAndSafe(resources){
+    for(var i = 0; i < resources.length; i++){
+        if(resources[i].search.mode === "match"){
+            gCareplans[resources[i].fullUrl.replace(baseAddress, '')] = resources[i].resource;
+        }else if(resources[i].resource.resourceType === "Patient"){
+            gPatient = resources[i].resource;
+        }else{
+            gActivities[resources[i].fullUrl.replace(baseAddress, '')] = resources[i].resource;
+        }
+    }
+}
+
+
 
 function getActivityType(reference, input){
     var type;
@@ -26,15 +39,11 @@ function getResource(input){
 }
 
 function getCarePlanDescription(reference){
-    var temp = reference.split("/");
-    for(var i = 0; i < gActivities.length; i++){
-        if(gActivites[i].id = temp[1]){
-            if("text" in gActivities[i]){
-                return gActivities[i].text.div;
-            }else{
-                return "";
-            }
-        }
+    var careplan = gCareplans[reference];
+    if("text" in careplan){
+        return careplan.text.div.replace('xmlns="http://www.w3.org/1999/xhtml"', '');
+    }else{
+        return "";
     }
 }
 
@@ -61,9 +70,12 @@ function getGlyphicon(code){
         case "plus": return "glyphicon glyphicon-plus";
         case "other": return "fa fa-circle-o";
         //references
-        case "Task": return "fa fa-soccer-ball-o";
+        case "Task": return "fa fa-circle-o";
         case "Appointment": return "fa fa-calendar";
         case "NutritionOrder": return "fa fa-cutlery";
+        case "MedicationRequest": return "fa fa-minus-circle fa-rotate-140 fa-inverse";
+        case "ProcedureRequest": return "fa fa-stethoscope";
+        case "DeviceRequest": return "" //TODO  unterscheidung exercise & measurement
         default: return "fa fa-circle-o";
     }
 }
@@ -121,12 +133,13 @@ function fillPatientSelector(){
     $('#patientSelect').append(patients);
 }
 
-function activities(array, urlArray, resCount, performerArray){
-    if(gActivities.length !== 0){
+function performer(array, urlArray){
+    if(!jQuery.isEmptyObject(gPerformer)){
         if(layout === 'cpCentric'){
-            //TODO
+            //TODO verbessern mit gPerformer
+            fillPerformer(array);
         }else{
-            parseActivities(array, response, resCount, performerArray);
+            fillPerformer2(array);
         }
     }else {
         $.ajax({
@@ -138,13 +151,12 @@ function activities(array, urlArray, resCount, performerArray){
                 "data": urlArray
             },
             success: function (response) {
-                gActivities = response;
+                savePerformer(response);
+                //TODO page distinction
                 if(layout === "cpCentric") {
-                    //TODO
+                    fillPerformer(array);
                 }else {
-                    console.log("pCentric");
-                    parseActivities(array, response, resCount, performerArray);
-
+                    fillPerformer2(array);
                 }
             },
             error: function (xhr, ajaxOptions, thrownError) {
@@ -154,35 +166,20 @@ function activities(array, urlArray, resCount, performerArray){
     }
 }
 
-function performer(array, urlArray){
-    if(gPerformer.length !== 0){
-        if(layout === 'cpCentric'){
-            fillPerformer(array, gPerformer['result']);
+function savePerformer(response){
+    for(var p = 0; p < response.result.length; p++){
+        if(typeof response.result[p].issue !== 'undefined'){
+            gPerformer[response.url[p]] = { "resource": {},
+                "name": "notFound", "specialty": "notFound"};
+        }else if(response.result[p] === "n/a"){
+            gPerformer[response.url[p]] = { "resource": {},
+                "name": "n/a", "specialty": "n/a"};
         }else{
-            fillPerformer2(array, gPerformer);
+            var name = getName(response.result[p]);
+            var specialty = getSpecialty(response.result[p]);
+            gPerformer[response.url[p]] = { "resource": response.result[p],
+                                            "name": name, "specialty": specialty};
         }
-    }else {
-        $.ajax({
-            url: 'scriptManyUrls.php',
-            type: 'POST',
-            dataType: 'JSON',
-            async: false,
-            data: {
-                "data": urlArray
-            },
-            success: function (response) {
-                gPerformer = response;
-                //TODO page distinction
-                if(layout === "cpCentric") {
-                    fillPerformer(array, response['result']);
-                }else {
-                    fillPerformer2(array, response);
-                }
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-                alert(xhr.status + " " + thrownError);
-            }
-        });
     }
 }
 
@@ -208,9 +205,9 @@ function getName(resource){
 
 function getSpecialty(resource){
     var specialty = '';
-    if( 'qualification' in resource){
+    if('qualification' in resource){
         for(var i = 0; i < resource['qualification'].length; i++){
-            specialty += resource.qualification[i].code.coding.display + ' ';
+            specialty += resource.qualification[i]["code"]["coding"][0]["display"] + ' ';
         }
     }
     if(specialty.length === 0){
