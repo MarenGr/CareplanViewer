@@ -5,7 +5,7 @@
 function getActivityType(reference, input){
     var type;
     if(reference){
-        type = [getRescoure(input), ""];
+        type = [getResource(input), ""];
     }else{ //inline definition
         if("category" in input){
             type = [input["category"]["code"]];
@@ -18,6 +18,24 @@ function getActivityType(reference, input){
         }
     }
     return type;
+}
+
+function getResource(input){
+    var temp = input.reference.split("/");
+    return temp[0];
+}
+
+function getCarePlanDescription(reference){
+    var temp = reference.split("/");
+    for(var i = 0; i < gActivities.length; i++){
+        if(gActivites[i].id = temp[1]){
+            if("text" in gActivities[i]){
+                return gActivities[i].text.div;
+            }else{
+                return "";
+            }
+        }
+    }
 }
 
 function checkContent(display){
@@ -95,18 +113,45 @@ function wrapperAndInserter(type, text){
     return "<xhtml:span class='"+type+"'> "+text+"</xhtml:span><br>";
 }
 
-function getResource(input){
-    var array = input.split("/");
-    return array[array.length -2];
-}
-
 function fillPatientSelector(){
-    var patients = '<option data-id="local">Patient 1 (medium local)</option>' +
-        '<option data-id="5024">Patient 2 (medium)</option>' +
-        '<option data-id="large">Patient 3 (large)</option>' +
-        '<option data-id="many">Patient 4(many)</option>';
+    var patients =  '<option data-id="cf-1501883394767">Maisie Hurst</option>' +
+                    '<option data-id="cf-1502036237033">Tom Buckley</option>' +
+                    '<option data-id="cf-1502030067739">Harley Hobbs</option>';
 
     $('#patientSelect').append(patients);
+}
+
+function activities(array, urlArray, resCount, performerArray){
+    if(gActivities.length !== 0){
+        if(layout === 'cpCentric'){
+            //TODO
+        }else{
+            parseActivities(array, response, resCount, performerArray);
+        }
+    }else {
+        $.ajax({
+            url: 'scriptManyUrls.php',
+            type: 'POST',
+            dataType: 'JSON',
+            async: false,
+            data: {
+                "data": urlArray
+            },
+            success: function (response) {
+                gActivities = response;
+                if(layout === "cpCentric") {
+                    //TODO
+                }else {
+                    console.log("pCentric");
+                    parseActivities(array, response, resCount, performerArray);
+
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + " " + thrownError);
+            }
+        });
+    }
 }
 
 function performer(array, urlArray){
@@ -159,6 +204,19 @@ function getName(resource){
         }
     }
     return name;
+}
+
+function getSpecialty(resource){
+    var specialty = '';
+    if( 'qualification' in resource){
+        for(var i = 0; i < resource['qualification'].length; i++){
+            specialty += resource.qualification[i].code.coding.display + ' ';
+        }
+    }
+    if(specialty.length === 0){
+        specialty = 'n/a';
+    }
+    return specialty;
 }
 
 function getPerformerIcon(){

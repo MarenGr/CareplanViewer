@@ -9,10 +9,12 @@ function makeList(entries){
     addHoverList();
 }
 
+
 function parseDataL(rawdata){
     var data = [];
     var typeList = [];
     var performerArray = [];
+    var activityArray = [];
 
     for(var i = 0; i < rawdata.length; i++){
         var current = rawdata[i]['resource'];
@@ -32,19 +34,99 @@ function parseDataL(rawdata){
                 var category = getCategory(icon);
                 if (index < 0) {
                     typeList.push(icon);
-                    data.push({"name": category, "category": icon, "children": []});
-                    index = data.length - 1;
+                    data[category] = {"name": category, "category": icon, "children": []};
                 }
-
-                insertActivity(data, index, current, i, j,  category, performerArray, type[1]);
+                if("reference" in current.activity[j]) {
+                    data[category]['children'][current.activity[j].reference.reference] = {};
+                    activityArray.push(current.activity[j].reference.reference);
+                }else{
+                    insertActivityDetail(data, current, i, j, category, performerArray, type[1]);
+                }
             }
         }
     }
+    activities(data, activityArray, performerArray);
     performer(data, performerArray);
+    console.log(data);
     return data;
 }
 
-function insertActivity(data, index, rawdata, resCount, actIndex, category, performerArray, title){
+function insertActivityReference(data, resource, performerArray){
+    var title, purpose, end, specialty, requester;
+
+    if("text" in resource){
+        title = resource.text.div;
+    }else{
+        title = "Unspecified " + resource.resourceType;
+        //title = "Unspecified "+getCategory(getGlyphicon(resource.resourceType));
+    }
+
+    if("basedOn" in resource){
+        if(jQuery.type(resource.basedOn) === 'array'){
+            for(var i = 0; i < resource.basedOn.length; i++) {
+                purpose += getCarePlanDescription(resource.basedOn[i].reference) + " ";
+            }
+        }else{
+            purpose = getCarePlanDescription(resource.basedOn.reference);
+        }
+        if(purpose.length === 0){
+            if("reason" in resource){
+                purpose = resource.reason.coding.display;
+            }else if("reasonCode" in resource){
+                purpose = resource.reasonCode.coding.display;
+            }else{
+                //TODO for NutritionOrder for example
+            }
+        }
+    }else{
+        if("reason" in resource){
+            purpose = resource.reason.coding.display;
+        }else if("reasonCode" in resource){
+            purpose = resource.reasonCode.coding.display;
+        }else{
+            //TODO
+        }
+    }
+
+    //TODO
+    if("period" in resource){
+        if("end" in resource["period"]){
+            end = resource["period"]["end"];
+        }else{
+            end = "unknown";
+        }
+    }else{
+        end = "unknown";
+    }
+
+    if("requester" in resource) {
+        requester = resource["requester"]["reference"];
+    }else{
+        requester = "n/a";
+    }
+    if(jQuery.inArray(requester, performerArray) < 0){
+        performerArray.push(requester);
+    }
+
+    var specificData;
+    var category = getCategory(getGlyphicon(resource.resourceType));
+
+    /*switch(category){
+        case "Medicine": specificData = getMedicineData(resource);
+        case "Exercise": specificData = getExerciseData(resource);
+        case "Diet": specificData = getDietData(resource['activity']);
+        case "Blood Measurement": specificData = getBloodMData(resource);
+        case "Weight Measurement": specificData = getWeightMData(resource);
+        default: specificData = {};
+    }*/
+
+    data[category]['children']["0"] = {"title": title,
+        "performer": {"reference": requester},
+        "end": end, "purpose": purpose, "specific": specificData};
+
+}
+
+function insertActivityDetail(data, rawdata, resCount, actIndex, category, performerArray, title){
     var name, end, specialty, performer;
     if("title" in rawdata){
         name = rawdata["title"];
@@ -98,10 +180,22 @@ function insertActivity(data, index, rawdata, resCount, actIndex, category, perf
         default: specificData = {};
     }
 
-    data[index]['children'].push({"title": title,
+    data[category]['children']["0"] = {"title": title,
         "performer": {"reference": performer, "specialty": specialty},
-        "end": end, "purpose": name, "specific": specificData});
+        "end": end, "purpose": name, "specific": specificData};
 
+}
+
+function parseActivities(data, response, performerArray){
+    for(var i = 0; i < response.result.length; i++){
+        if(typeof response.result[i].issue !== 'undefined' || response.result[i] === "n/a"){
+            console.log("undefined activites");
+        }//actual parseActivities
+        else{
+            var current = response.result[i];
+            insertActivityReference(data, current, performerArray);
+        }
+    }
 }
 
 function getActResource(reference){
@@ -393,19 +487,21 @@ function fillPerformer2(data, response){
     var urlLookup = {};
     for(var p = 0; p < response.result.length; p++){
         if(typeof response.result[p].issue !== 'undefined'){
-            urlLookup[response.url[p]] = "not found";
+            urlLookup[response.url[p]] = ["not found", "not found"];
         }else if(response.result[p] === "n/a"){
-            urlLookup[response.url[p]] = "n/a";
+            urlLookup[response.url[p]] = ["n/a", "n/a"];
         }else{
             var name = getName(response.result[p]);
-            urlLookup[response.url[p]] = name;
+            var specialty = getSpecialty(response.result[p]);
+            urlLookup[response.url[p]] = [name, specialty];
         }
 
     }
 
     for(var i = 0; i < data.length; i++){
         for(var j = 0; j < data[i]["children"].length; j++){
-            data[i]["children"][j]["performer"]["name"] = urlLookup[data[i]["children"][j]["performer"]["reference"]];
+            data[i]["children"][j]["performer"]["name"] = urlLookup[data[i]["children"][j]["performer"]["reference"]][0];
+            data[i]["children"][j]["performer"]["specialty"] = urlLookup[data[i]["children"][j]["performer"]["reference"]][1];
         }
     }
 

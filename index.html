@@ -235,7 +235,7 @@
 	<script>
 
 		var gLoggedUser = "Practitioner/29223"; //format: Patient/234643 or Practitioner/316480
-        var gCareplans = null, gPatient = null, gPerformer = [];
+        var gCareplans = null, gPatient = null, gPerformer = [], gActivities = [];
         var layout;
 
         function init(){
@@ -254,6 +254,7 @@
                 gCareplans = null;
                 gPatient = null;
                 gPerformer = [];
+                gActivities = [];
 
                 $("#error-alert-content").fadeOut();
                 $('#error-alert-content').html('');
@@ -264,8 +265,11 @@
 
                 $('#patientSelectModal').modal('toggle');
 
-                var url = [];
-                if (id == "local") {
+                var url = [
+                    "CarePlan?subject="+id,
+                    "Patient?_id="+id
+				];
+                /*if (id == "local") {
                     url.push("manyCareplans.json");
                     url.push("patientLocal.json");
                 } else {
@@ -276,8 +280,8 @@
                     } else {
                         url.push("CarePlan?subject=5024");
                     }
-                    url.push("Patient?_id=5024");
-                }
+                    url.push("");
+                }*/
 
                 $.ajax({
                     url: 'scriptManyUrls.php',
