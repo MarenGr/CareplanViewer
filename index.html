@@ -23,7 +23,6 @@
 	<script type="text/javascript" src="helper.js"></script>
 	<script type="text/javascript" src="activityList.js"></script>
 	<script type="text/javascript" src="treemap.js"></script>
-	<script type="text/javascript" src="patient.js"></script>
 
 	<style>
 		div.row > #effect {
@@ -269,19 +268,6 @@
                 var url = [
                     "CarePlan?subject="+id+"&_include=CarePlan:activity-reference&_include=CarePlan:subject"
 				];
-                /*if (id == "local") {
-                    url.push("manyCareplans.json");
-                    url.push("patientLocal.json");
-                } else {
-                    if (id == "many") {
-                        url.push("manyCareplans.json");
-                    } else if (id == "large") {
-                        url.push("largeCareplan.json");
-                    } else {
-                        url.push("CarePlan?subject=5024");
-                    }
-                    url.push("");
-                }*/
 
                 $.ajax({
                     url: 'scriptManyUrls.php',
@@ -305,9 +291,9 @@
 
                             if ("entry" in response['result'][0]) {
                                 splitAndSafe(response['result'][0]['entry']);
+                                displayPatientInfo();
                                 makeList();
                                 buildCarePlanMap();
-                                displayPatientInfo();
                             } else {
                                 $('#res').html("No results found for this query.");
                                 $('#res').fadeIn();

@@ -13,7 +13,14 @@ function splitAndSafe(resources){
     }
 }
 
-
+function displayPatientInfo(){
+    var name = getName(gPatient);
+    console.log(name);
+    $("#name").html(name);
+    $("#birthdate").html(" "+gPatient['birthDate']);
+    $("#gender").html(" "+gPatient['gender']);
+    $("#phone").html(" "+gPatient['telecom'][0]['value']);
+}
 
 function getActivityType(reference, input){
     var type;
@@ -200,23 +207,33 @@ function savePerformer(response){
 }
 
 function getName(resource){
-    var name = 'n/a';
     if( 'name' in resource){
-        if(jQuery.type(resource['name']) == "array"){
-            if('text' in resource['name']['0']){
-                name = resource['name']['0']['text'];
-            } else {
-                name = resource['name']['0']['family'];
-            }
-        }else{
-            if('text' in resource['name']){
-                name = resource['name']['text'];
-            } else {
-                name = resource['name']['family'];
+        if(jQuery.type(resource['name']) !== "array") {
+            resource['name'] = [resource["name"]];
+        }
+        for(var i = 0; i < resource['name'].length; i++){
+            if(resource['name'][i]['use'] == "official"){
+                if('display' in resource['name'][i]){
+                    return resource['name'][i]['display'];
+                }else if('text' in resource['name'][i]){
+                    return resource['name'][i]['text'];
+                }else {
+                    return resource['name'][i]['given'][0] +" "+ resource['name'][i]['family'];
+                }
             }
         }
+        if(resource.resourceType === "Patient") {
+            return "John Doe";
+        }else{
+            return "n/a";
+        }
+    }else{
+        if(resource.resourceType === "Patient") {
+            return "John Doe";
+        }else{
+            return "n/a";
+        }
     }
-    return name;
 }
 
 function getSpecialty(resource){
@@ -254,7 +271,6 @@ function getOpacity(status){
 }
 
 function parseNotes(note){
-    console.log(note);
     var string = '';
     for(var i = 0; i < note.length; i++){
         if(jQuery.type(note[i] !== 'array')){
@@ -279,10 +295,8 @@ function getEnd(period, timing){
         }
     }
     if(jQuery.type(timing) !== "undefined" && timing !== ""){
-        console.log("timing");
         if(jQuery.type(timing) !== 'array'){
             timing = [timing];
-            console.log(timing);
         }
         var max;
         for(var i = 0; i < timing.length; i++) {

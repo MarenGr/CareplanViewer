@@ -100,7 +100,6 @@ function insertActivityReference(data, resource, performerArray){
         for(var i = 0; i < resource.dosageInstruction.length; i++) {
             if("timing" in resource.dosageInstruction[i]) {
                 var temp = getEnd("", resource.dosageInstruction[i].timing);
-                console.log(temp);
                 if(temp === "ongoing"){
                     max = temp;
                     break;
@@ -583,7 +582,6 @@ function fillPerformer2(data){
             var current = data[i]["children"][j]["performer"];
             current["name"] = gPerformer[current["reference"]].name;
             current["specialty"] = gPerformer[current["reference"]].specialty;
-            console.log(current["specialty"]);
         }
     }
 }
@@ -597,7 +595,7 @@ function getMeasurementData(activity){
         specific["priority"] = activity["priority"];
     }
     if("intent" in activity){
-        specific["intent"] = activity.intent.coding[0].display;
+        specific["intent"] = activity.intent.coding[0].code;
     }
     var note = [];
     if("note" in activity){
