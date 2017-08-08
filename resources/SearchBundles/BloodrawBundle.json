@@ -1,0 +1,85 @@
+{
+  "resourceType": "Bundle",
+  "id": "80ae4921-8d8c-44cb-b9d0-449a2f5814b8",
+  "meta": {
+    "lastUpdated": "2017-08-08T11:19:54.649-04:00"
+  },
+  "type": "searchset",
+  "total": 1,
+  "link": [
+    {
+      "relation": "self",
+      "url": "http://fhirtest.uhn.ca/baseDstu3/Practitioner?_id=cf-1501883162477&_pretty=true"
+    }
+  ],
+  "entry": [
+    {
+      "fullUrl": "http://fhirtest.uhn.ca/baseDstu3/Practitioner/cf-1501883162477",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "cf-1501883162477",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2017-08-07T04:17:46.970-04:00"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Doctor Bloodraw, Neurologist</div>"
+        },
+        "active": true,
+        "name": [
+          {
+            "use": "official",
+            "text": "Doctor Bloodraw",
+            "family": "Bloodraw",
+            "given": [
+              "Leanard",
+              "T"
+            ],
+            "prefix": [
+              "Dr."
+            ],
+            "suffix": [
+              "Jr"
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "+31714276789",
+            "use": "work"
+          }
+        ],
+        "address": [
+          {
+            "use": "work",
+            "line": [
+              "Palmer Street 44"
+            ],
+            "city": "Holtsville",
+            "postalCode": "631"
+          }
+        ],
+        "gender": "male",
+        "birthDate": "1968-06-11",
+        "qualification": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "56397003",
+                  "display": "Neurologist"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    }
+  ]
+}

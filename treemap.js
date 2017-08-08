@@ -22,12 +22,10 @@ function parseDataT(){
         insertCarePlan(data, gCareplans[i], indexPerformer, indexCategory);
     }
 
-    console.log(data);
     layout = "cpCentric";
     performer(data, urlArray);
     layout = "pCentric";
     //sort(data['children']);
-    console.log(data['children']);
     return data;
 }
 
@@ -91,9 +89,7 @@ function parseCarePlanData(entries){
 
 function insertPerformer(data, rawdata, urlArray){
     var performer;
-    console.log(rawdata);
     if("author" in rawdata){
-        console.log(rawdata["author"][0]["reference"]);
         performer = rawdata["author"][0]["reference"];
     }else{
         performer = "n/a";
@@ -112,9 +108,7 @@ function insertPerformer(data, rawdata, urlArray){
 
 function insertCategory(data, rawdata, performer){
     var category;
-    console.log(rawdata);
     if("category" in rawdata){
-        console.log(rawdata.category);
         if("text" in rawdata.category[0]) {
             category = rawdata["category"][0]["text"];
         }else if("display" in rawdata["category"][0]["coding"][0]){
@@ -144,7 +138,7 @@ function insertCategory(data, rawdata, performer){
 }
 
 function insertCarePlan(data, rawdata, performer, category){
-    var name, size, end, specialty;
+    var name, size, end, specialty, status;
     if("description" in rawdata){
         name = rawdata["description"];
     }else if("text" in rawdata && "div" in rawdata.text){
@@ -161,20 +155,41 @@ function insertCarePlan(data, rawdata, performer, category){
     }else{
         end = "ongoing";
     }
-    if("performer" in rawdata){
-        if("specialty" in rawdata['performer']){
-            specialty = rawdata['performer']['specialty'];
-        }else{
-            specialty = "n/a";
-        }
-    }else{
-        specialty = "n/a";
+    if("status" in rawdata){
+        status = rawdata.status;
     }
-    size = calculatePriority(rawdata, data['children'][performer]['reference']);
 
-    var object = {"name": name, "size": size, "id": rawdata["id"], "activity": rawdata["activity"], "end": end, "specialty": specialty};
+    var activity = parseActs(rawdata);
+    size = calculatePriority(rawdata, data['children'][performer]['reference'], activity);
+
+    var object = {"name": name, "size": size, "id": rawdata["id"], "activity": activity, "end": end, "status": status};
     data["children"][performer]["children"][category]["children"].push(object);
     data["numberCP"]++;
+}
+
+
+function parseActs(resource){
+    var acts = {};
+    var listCategories = [];
+    if("activity" in resource){
+        for(var i = 0; i < resource.activity.length; i++){
+            if("reference" in resource.activity[i]){
+                var current = gActivities[resource.activity[i].reference.reference];
+                var icon = getGlyphicon(current.resourceType);
+                var title = getActivityTitle(current) + '<br>';
+                if(jQuery.inArray(icon, listCategories) < 0){
+                    listCategories.push(icon);
+                    acts[icon] = title;
+                }else{
+                    acts[icon] += title;
+                }
+            }
+        }
+    }
+    for(var i in acts){
+        acts[i] = acts[i].substring(0, acts[i].length - 4);
+    }
+    return acts;
 }
 
 /**Calculates Priority btwn 1 and 5 for specific care plan, depending on
@@ -184,9 +199,10 @@ function insertCarePlan(data, rawdata, performer, category){
  * - period of careplan
  * @param careplan care plan for which priority is calculated
  * @param loggedUser the user who is logged in (physician or patient)
+ * @param activity the parsed activity infos
  * @returns priority
  */
-function calculatePriority(careplan, performer){
+function calculatePriority(careplan, performer, activity){
     var priority = 0;
     var weights = {"user": 0.2, "status": 0.3, "activities": 0.2, "period": 0.3}; //TODO play with weights
     switch(careplan["status"]){
@@ -211,11 +227,16 @@ function calculatePriority(careplan, performer){
      .domain([1, 20])   //TODO überprüfe ob Obergrenze sinnvoll
      .range([1, 10]);
      priority += weights["activities"] * scale(careplan["activity"].length);*/
-    if("activity" in careplan) {
+    var count = 0;
+    for(var i in activity){
+        count++;
+    }
+    priority += weights["activities"] * (careplan["activity"].length / 4 );
+    /*if("activity" in careplan) {
         priority += weights["activities"] * (careplan["activity"].length / 4 );
     }else{
         priority += weights["activities"] * 5;
-    }
+    }*/
 
     var today = new Date();
     var parseDate = d3.time.format("%Y-%m-%d").parse;
@@ -430,6 +451,8 @@ function buildTreeMap(data){
             return d.id;
         });
 
+
+
     $('#careplanCentric').show();
     var oMarginTop = 10, oMarginLeft = 10, oMarginBottom = 15, oMarginRight = 10;
     var content = cell.append("foreignObject")
@@ -461,6 +484,8 @@ function buildTreeMap(data){
                     //return d.children ? null : d.name;
                 });
     $('#careplanCentric').hide();
+
+    
 
     d3.selectAll("#row1").append("xhtml:div")
         .attr("class", "col-sm-4")
@@ -500,23 +525,8 @@ function buildTreeMap(data){
         if(!d.children) {
             var listElements = [];
             var listCategories = [];
-            for (var i = 0; i < d.activity.length; i++) {
-                var type = "";
-                if ("reference" in d.activity[i]) {
-                    type = getActivityType(true, d.activity[i]["reference"]);
-                } else {
-                    type = getActivityType(false, d.activity[i]["detail"]);
-                }
-                var icon = getGlyphicon(type[0]);
-                var index;
-                if(jQuery.inArray(icon, listCategories) < 0) {
-                    listCategories.push(icon);
-                    listElements.push(wrapper(icon));
-                    index = listElements.length-1;
-                }else{
-                    index = jQuery.inArray(icon, listCategories);
-                }
-                insertDetails(listElements, index, type[1]);
+            for (var i in d.activity) {
+                listElements.push(wrapper(i, d.activity[i]));
             }
             var height = row.parent("foreignObject").height() - row.prevAll().height() - 30;
             var width = row.parent("foreignObject").width() - 20;
@@ -525,7 +535,6 @@ function buildTreeMap(data){
     });
     $('#careplanCentric').hide();
 
-    console.log(data['categories']);
 
 
     var legend = svg.selectAll('.legend')
@@ -699,11 +708,7 @@ function addHover(){
     $('.icon').on("mouseover", function(){
         var current = $(this);
         var coords = current.offset();
-        var details = "";
-        for(var i = 0; jQuery.type(current.data(""+i)) !== "undefined"; i++){
-            details += current.data(""+i);
-            details += "<br>";
-        }
+        var details = current.data("titles");
         if(details.length > 0){
             hover.show()
                 .html(details)

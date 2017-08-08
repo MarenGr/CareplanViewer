@@ -52,12 +52,15 @@ function parseDataL(){
 function insertActivityReference(data, resource, performerArray){
     var title, purpose, end, specialty, requester;
 
-    if("text" in resource){
+    title = getActivityTitle(resource);
+    /*if("text" in resource){
         title = resource.text.div.replace(new RegExp(' xmlns="http://www.w3.org/1999/xhtml"', 'g'), "");
+    }else if("description" in resource){
+        title = resource.description.replace(new RegExp(' xmlns="http://www.w3.org/1999/xhtml"', 'g'), "");
     }else{
         title = "Unspecified " + resource.resourceType;
         //title = "Unspecified "+getCategory(getGlyphicon(resource.resourceType));
-    }
+    }*/
 
     purpose = "";
     if("basedOn" in resource){

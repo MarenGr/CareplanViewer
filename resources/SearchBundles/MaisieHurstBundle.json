@@ -1,0 +1,1428 @@
+{
+  "resourceType": "Bundle",
+  "id": "5c407f25-f02a-4f8f-8a6a-772c7b49085f",
+  "meta": {
+    "lastUpdated": "2017-08-08T11:11:25.979-04:00"
+  },
+  "type": "searchset",
+  "total": 3,
+  "link": [
+    {
+      "relation": "self",
+      "url": "http://fhirtest.uhn.ca/baseDstu3/CarePlan?_include=CarePlan%3Aactivity-reference&_include=CarePlan%3Asubject&_pretty=true&subject=cf-1501883394767"
+    }
+  ],
+  "entry": [
+    {
+      "fullUrl": "http://fhirtest.uhn.ca/baseDstu3/CarePlan/cf-1501883195889",
+      "resource": {
+        "resourceType": "CarePlan",
+        "id": "cf-1501883195889",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2017-08-07T04:17:46.970-04:00"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Fracture prophylaxis</p></div>"
+        },
+        "status": "active",
+        "intent": "proposal",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "288832002",
+                "display": "CPA care plans"
+              }
+            ],
+            "text": "CPA care plan"
+          }
+        ],
+        "description": "Fracture prophylaxis",
+        "subject": {
+          "reference": "Patient/cf-1501883394767"
+        },
+        "period": {
+          "start": "2004-01-13"
+        },
+        "author": [
+          {
+            "reference": "Practitioner/cf-1501883141107"
+          }
+        ],
+        "activity": [
+          {
+            "reference": {
+              "reference": "NutritionOrder/cf-1501883321504"
+            }
+          },
+          {
+            "reference": {
+              "reference": "NutritionOrder/cf-1501883330461"
+            }
+          },
+          {
+            "reference": {
+              "reference": "Task/cf-1501883386222"
+            }
+          },
+          {
+            "reference": {
+              "reference": "ProcedureRequest/cf-1501883339552"
+            }
+          },
+          {
+            "reference": {
+              "reference": "ProcedureRequest/cf-1501883348511"
+            }
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "http://fhirtest.uhn.ca/baseDstu3/CarePlan/cf-1501883206088",
+      "resource": {
+        "resourceType": "CarePlan",
+        "id": "cf-1501883206088",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2017-08-07T04:17:46.970-04:00"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Medicinal Treatment of Parkinson's disease</p></div>"
+        },
+        "status": "active",
+        "intent": "order",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "412774003",
+                "display": "Clinical management plan"
+              }
+            ],
+            "text": "Clinical management plan"
+          }
+        ],
+        "description": "Medicinal Treatment of Parkinson's disease",
+        "subject": {
+          "reference": "Patient/cf-1501883394767"
+        },
+        "period": {
+          "start": "2017-06-30"
+        },
+        "author": [
+          {
+            "reference": "Practitioner/cf-1501883162477"
+          }
+        ],
+        "activity": [
+          {
+            "reference": {
+              "reference": "MedicationRequest/cf-1502029398067"
+            }
+          },
+          {
+            "reference": {
+              "reference": "MedicationRequest/cf-1502029445958"
+            }
+          },
+          {
+            "reference": {
+              "reference": "MedicationRequest/cf-1502029484069"
+            }
+          },
+          {
+            "reference": {
+              "reference": "MedicationRequest/cf-1502029527102"
+            }
+          },
+          {
+            "reference": {
+              "reference": "MedicationRequest/cf-1502029574678"
+            }
+          },
+          {
+            "reference": {
+              "reference": "MedicationRequest/cf-1502029631928"
+            }
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "http://fhirtest.uhn.ca/baseDstu3/CarePlan/cf-1501883218421",
+      "resource": {
+        "resourceType": "CarePlan",
+        "id": "cf-1501883218421",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2017-08-07T04:17:46.970-04:00"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Psychiatric therapy due to Parkinson's disease</p></div>"
+        },
+        "status": "draft",
+        "intent": "proposal",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "415213008",
+                "display": "Psychiatry care plan"
+              }
+            ],
+            "text": "Psychiatry care plan"
+          }
+        ],
+        "description": "Psychiatric therapy due to Parkinson's disease",
+        "subject": {
+          "reference": "Patient/cf-1501883394767"
+        },
+        "period": {
+          "start": "2017-07-14",
+          "end": "2018-09-15"
+        },
+        "author": [
+          {
+            "reference": "Practitioner/cf-1501883162477"
+          }
+        ],
+        "activity": [
+          {
+            "reference": {
+              "reference": "ProcedureRequest/cf-1501883364839"
+            }
+          },
+          {
+            "reference": {
+              "reference": "ProcedureRequest/cf-1501883376153"
+            }
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "http://fhirtest.uhn.ca/baseDstu3/Task/cf-1501883386222",
+      "resource": {
+        "resourceType": "Task",
+        "id": "cf-1501883386222",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2017-08-07T04:17:46.970-04:00"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Nicotine Ban</div>"
+        },
+        "basedOn": [
+          {
+            "reference": "CarePlan/cf-1501883195889"
+          }
+        ],
+        "status": "accepted",
+        "intent": "proposal",
+        "priority": "routine",
+        "description": "No nicotine intake (e.g smoking is not allowed)",
+        "executionPeriod": {
+          "start": "2004-01-13"
+        },
+        "requester": {
+          "agent": {
+            "reference": "Practitioner/cf-1501883141107"
+          }
+        },
+        "owner": {
+          "reference": "Patient/cf-1501883394767"
+        },
+        "reason": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "64859006",
+              "display": "Osteoporosis"
+            }
+          ],
+          "text": "Osteoporosis"
+        }
+      },
+      "search": {
+        "mode": "include"
+      }
+    },
+    {
+      "fullUrl": "http://fhirtest.uhn.ca/baseDstu3/MedicationRequest/cf-1502029484069",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "cf-1502029484069",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2017-08-07T04:17:46.970-04:00"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Levodopa medication</div>"
+        },
+        "basedOn": [
+          {
+            "reference": "CarePlan/cf-1501883206088"
+          }
+        ],
+        "status": "active",
+        "intent": "instance-order",
+        "priority": "routine",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "15383004",
+              "display": "Levodopa"
+            }
+          ],
+          "text": "Levodopa"
+        },
+        "subject": {
+          "reference": "Patient/cf-1501883394767"
+        },
+        "requester": {
+          "agent": {
+            "reference": "Practitioner/cf-1501883162477"
+          }
+        },
+        "reasonCode": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "49049000",
+                "display": "Parkinson's disease"
+              }
+            ],
+            "text": "Parkinson's disease"
+          }
+        ],
+        "dosageInstruction": [
+          {
+            "text": "25mg/100mg tablet per dose",
+            "timing": {
+              "repeat": {
+                "boundsPeriod": {
+                  "start": "2017-06-30"
+                },
+                "frequency": 4,
+                "period": 1,
+                "periodUnit": "d"
+              },
+              "code": {
+                "coding": [
+                  {
+                    "system": "https://www.hl7.org/fhir/v3/GTSAbbreviation",
+                    "code": "QID",
+                    "display": "QID"
+                  }
+                ],
+                "text": "Four times a day at institution specified times"
+              }
+            },
+            "asNeededBoolean": true,
+            "route": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "260548002",
+                  "display": "Oral"
+                }
+              ],
+              "text": "Oral"
+            },
+            "doseQuantity": {
+              "value": 25,
+              "unit": "mg",
+              "system": "http://snomed.info/sct",
+              "code": "258684004"
+            }
+          }
+        ]
+      },
+      "search": {
+        "mode": "include"
+      }
+    },
+    {
+      "fullUrl": "http://fhirtest.uhn.ca/baseDstu3/MedicationRequest/cf-1502029445958",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "cf-1502029445958",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2017-08-07T04:17:46.970-04:00"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Tolcapone medication</div>"
+        },
+        "basedOn": [
+          {
+            "reference": "CarePlan/cf-1501883206088"
+          }
+        ],
+        "status": "active",
+        "intent": "instance-order",
+        "priority": "routine",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "386851002",
+              "display": "Tolcapone"
+            }
+          ],
+          "text": "Tolcapone"
+        },
+        "subject": {
+          "reference": "Patient/cf-1501883394767"
+        },
+        "requester": {
+          "agent": {
+            "reference": "Practitioner/cf-1501883162477"
+          }
+        },
+        "reasonCode": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "49049000",
+                "display": "Parkinson's disease"
+              }
+            ],
+            "text": "Parkinson's disease"
+          }
+        ],
+        "dosageInstruction": [
+          {
+            "timing": {
+              "repeat": {
+                "boundsPeriod": {
+                  "start": "2017-06-30"
+                },
+                "frequency": 1,
+                "period": 1,
+                "periodUnit": "d"
+              },
+              "code": {
+                "coding": [
+                  {
+                    "system": "https://www.hl7.org/fhir/v3/GTSAbbreviation",
+                    "code": "QD",
+                    "display": "QD"
+                  }
+                ],
+                "text": "Every Day at institution specified times"
+              }
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "260548002",
+                  "display": "Oral"
+                }
+              ],
+              "text": "Oral"
+            },
+            "doseQuantity": {
+              "value": 50,
+              "unit": "mg",
+              "system": "http://snomed.info/sct",
+              "code": "258684004"
+            }
+          }
+        ]
+      },
+      "search": {
+        "mode": "include"
+      }
+    },
+    {
+      "fullUrl": "http://fhirtest.uhn.ca/baseDstu3/MedicationRequest/cf-1502029398067",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "cf-1502029398067",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2017-08-07T04:17:46.970-04:00"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Selegiline medication</div>"
+        },
+        "basedOn": [
+          {
+            "reference": "CarePlan/cf-1501883206088"
+          }
+        ],
+        "status": "active",
+        "intent": "instance-order",
+        "priority": "routine",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "108466000",
+              "display": "Selegiline"
+            }
+          ],
+          "text": "Selegiline"
+        },
+        "subject": {
+          "reference": "Patient/cf-1501883394767"
+        },
+        "requester": {
+          "agent": {
+            "reference": "Practitioner/cf-1501883162477"
+          }
+        },
+        "reasonCode": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "49049000",
+                "display": "Parkinson's disease"
+              }
+            ],
+            "text": "Parkinson's disease"
+          }
+        ],
+        "dosageInstruction": [
+          {
+            "text": "1.25mg per dose",
+            "timing": {
+              "repeat": {
+                "boundsPeriod": {
+                  "start": "2017-06-30"
+                },
+                "frequency": 1,
+                "period": 1,
+                "periodUnit": "d"
+              },
+              "code": {
+                "coding": [
+                  {
+                    "system": "https://www.hl7.org/fhir/v3/GTSAbbreviation",
+                    "code": "QD",
+                    "display": "QD"
+                  }
+                ],
+                "text": "Every Day at institution specified times"
+              }
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "225780003",
+                  "display": "Sublingual"
+                }
+              ],
+              "text": "Sublingual"
+            },
+            "doseQuantity": {
+              "value": 1.25,
+              "unit": "mg",
+              "system": "http://snomed.info/sct",
+              "code": "258684004"
+            }
+          }
+        ]
+      },
+      "search": {
+        "mode": "include"
+      }
+    },
+    {
+      "fullUrl": "http://fhirtest.uhn.ca/baseDstu3/NutritionOrder/cf-1501883321504",
+      "resource": {
+        "resourceType": "NutritionOrder",
+        "id": "cf-1501883321504",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2017-08-07T04:17:46.970-04:00"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Calcium supplement</div>"
+        },
+        "status": "active",
+        "patient": {
+          "reference": "Patient/cf-1501883394767"
+        },
+        "dateTime": "2004-01-12T16:34:12.000Z",
+        "orderer": {
+          "reference": "Practitioner/cf-1501883141107"
+        },
+        "foodPreferenceModifier": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "228026001",
+                "display": "High calcium food"
+              }
+            ],
+            "text": "High calcium food"
+          }
+        ],
+        "supplement": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "430128005",
+                  "display": "Oral form calcium"
+                }
+              ],
+              "text": "Oral form calcium"
+            },
+            "schedule": [
+              {
+                "repeat": {
+                  "boundsPeriod": {
+                    "start": "2004-01-13"
+                  },
+                  "frequency": 1,
+                  "period": 1,
+                  "periodUnit": "d"
+                },
+                "code": {
+                  "coding": [
+                    {
+                      "system": "http://hl7.org/fhir/v3/GTSAbbreviation",
+                      "code": "QD",
+                      "display": "QD"
+                    }
+                  ],
+                  "text": "Every Day at institution specified time"
+                }
+              }
+            ],
+            "quantity": {
+              "value": 200,
+              "unit": "mg",
+              "system": "http://snomed.info/sct",
+              "code": "258684004"
+            },
+            "instruction": "At least 1000 mg Calcium daily, including intake through meals."
+          }
+        ]
+      },
+      "search": {
+        "mode": "include"
+      }
+    },
+    {
+      "fullUrl": "http://fhirtest.uhn.ca/baseDstu3/MedicationRequest/cf-1502029631928",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "cf-1502029631928",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2017-08-07T04:17:46.970-04:00"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Piribedil medication - initial dosage</div>"
+        },
+        "basedOn": [
+          {
+            "reference": "CarePlan/cf-1501883206088"
+          }
+        ],
+        "status": "completed",
+        "intent": "instance-order",
+        "priority": "urgent",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "713435009",
+              "display": "Piribedil"
+            }
+          ],
+          "text": "Piribedil"
+        },
+        "subject": {
+          "reference": "Patient/cf-1501883394767"
+        },
+        "requester": {
+          "agent": {
+            "reference": "Practitioner/cf-1501883162477"
+          }
+        },
+        "reasonCode": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "49049000",
+                "display": "Parkinson's disease"
+              }
+            ],
+            "text": "Parkinson's disease"
+          }
+        ],
+        "note": [
+          {
+            "text": "Initial dosage. To be increased every 2 weeks"
+          }
+        ],
+        "dosageInstruction": [
+          {
+            "timing": {
+              "repeat": {
+                "boundsDuration": {
+                  "value": 2,
+                  "unit": "wk",
+                  "system": "http://unitsofmeasure.org"
+                },
+                "frequency": 1,
+                "period": 1,
+                "periodUnit": "d",
+                "timeOfDay": [
+                  "19:00:00"
+                ]
+              },
+              "code": {
+                "coding": [
+                  {
+                    "system": "https://www.hl7.org/fhir/v3/GTSAbbreviation",
+                    "code": "QD",
+                    "display": "QD"
+                  }
+                ],
+                "text": "Every Day at institution specified times"
+              }
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "260548002",
+                  "display": "Oral"
+                }
+              ],
+              "text": "Oral"
+            },
+            "doseQuantity": {
+              "value": 50,
+              "unit": "mg",
+              "system": "http://snomed.info/sct",
+              "code": "258684004"
+            }
+          }
+        ]
+      },
+      "search": {
+        "mode": "include"
+      }
+    },
+    {
+      "fullUrl": "http://fhirtest.uhn.ca/baseDstu3/MedicationRequest/cf-1502029574678",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "cf-1502029574678",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2017-08-07T04:17:46.970-04:00"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Piribedil medication - dosage adjustment 1</div>"
+        },
+        "basedOn": [
+          {
+            "reference": "CarePlan/cf-1501883206088"
+          }
+        ],
+        "status": "active",
+        "intent": "instance-order",
+        "priority": "urgent",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "713435009",
+              "display": "Piribedil"
+            }
+          ],
+          "text": "Piribedil"
+        },
+        "subject": {
+          "reference": "Patient/cf-1501883394767"
+        },
+        "requester": {
+          "agent": {
+            "reference": "Practitioner/cf-1501883162477"
+          }
+        },
+        "reasonCode": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "49049000",
+                "display": "Parkinson's disease"
+              }
+            ],
+            "text": "Parkinson's disease"
+          }
+        ],
+        "note": [
+          {
+            "text": "To be increased after 2 weeks"
+          }
+        ],
+        "dosageInstruction": [
+          {
+            "timing": {
+              "repeat": {
+                "boundsDuration": {
+                  "value": 2,
+                  "unit": "wk",
+                  "system": "http://unitsofmeasure.org"
+                },
+                "frequency": 2,
+                "period": 1,
+                "periodUnit": "d",
+                "timeOfDay": [
+                  "19:00:00",
+                  "20:00:00"
+                ]
+              },
+              "code": {
+                "coding": [
+                  {
+                    "system": "https://www.hl7.org/fhir/v3/GTSAbbreviation",
+                    "code": "BID",
+                    "display": "BID"
+                  }
+                ],
+                "text": "Two times a day at institution specified times"
+              }
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "260548002",
+                  "display": "Oral"
+                }
+              ],
+              "text": "Oral"
+            },
+            "doseQuantity": {
+              "value": 50,
+              "unit": "mg",
+              "system": "http://snomed.info/sct",
+              "code": "258684004"
+            }
+          }
+        ],
+        "priorPrescription": {
+          "reference": "MedicationRequest/cf-1502029631928"
+        }
+      },
+      "search": {
+        "mode": "include"
+      }
+    },
+    {
+      "fullUrl": "http://fhirtest.uhn.ca/baseDstu3/MedicationRequest/cf-1502029527102",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "cf-1502029527102",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2017-08-07T04:17:46.970-04:00"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Piribedil medication - full dosage</div>"
+        },
+        "basedOn": [
+          {
+            "reference": "CarePlan/cf-1501883206088"
+          }
+        ],
+        "status": "draft",
+        "intent": "instance-order",
+        "priority": "routine",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "713435009",
+              "display": "Piribedil"
+            }
+          ],
+          "text": "Piribedil"
+        },
+        "subject": {
+          "reference": "Patient/cf-1501883394767"
+        },
+        "requester": {
+          "agent": {
+            "reference": "Practitioner/cf-1501883162477"
+          }
+        },
+        "reasonCode": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "49049000",
+                "display": "Parkinson's disease"
+              }
+            ],
+            "text": "Parkinson's disease"
+          }
+        ],
+        "note": [
+          {
+            "text": "Long-term dosis. Maximum of 150mg/day"
+          }
+        ],
+        "dosageInstruction": [
+          {
+            "timing": {
+              "repeat": {
+                "boundsPeriod": {
+                  "start": "2017-08-12"
+                },
+                "frequency": 3,
+                "period": 1,
+                "periodUnit": "d",
+                "timeOfDay": [
+                  "18:00:00",
+                  "19:00:00",
+                  "20:00:00"
+                ]
+              },
+              "code": {
+                "coding": [
+                  {
+                    "system": "https://www.hl7.org/fhir/v3/GTSAbbreviation",
+                    "code": "TID",
+                    "display": "TID"
+                  }
+                ],
+                "text": "Three times a day at institution specified times"
+              }
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "260548002",
+                  "display": "Oral"
+                }
+              ],
+              "text": "Oral"
+            },
+            "doseQuantity": {
+              "value": 50,
+              "unit": "mg",
+              "system": "http://snomed.info/sct",
+              "code": "258684004"
+            }
+          }
+        ],
+        "priorPrescription": {
+          "reference": "MedicationRequest/cf-1502029574678"
+        }
+      },
+      "search": {
+        "mode": "include"
+      }
+    },
+    {
+      "fullUrl": "http://fhirtest.uhn.ca/baseDstu3/Patient/cf-1501883394767",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "cf-1501883394767",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2017-08-07T04:17:46.970-04:00"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Maisie Hurst, Ostheoporosis and Parkinson<a name=\"mm\"/></div>"
+        },
+        "active": true,
+        "name": [
+          {
+            "use": "official",
+            "family": "Hurst",
+            "given": [
+              "Maisie"
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "077 2136 8255",
+            "use": "home"
+          }
+        ],
+        "gender": "female",
+        "birthDate": "1947-09-23",
+        "deceasedBoolean": false,
+        "address": [
+          {
+            "use": "home",
+            "text": "40 Whitchurch Road, Enfield, EN2 3IE",
+            "line": [
+              "40 Whitchurch Road"
+            ],
+            "city": "Enfield",
+            "postalCode": "EN2 3IE"
+          }
+        ]
+      },
+      "search": {
+        "mode": "include"
+      }
+    },
+    {
+      "fullUrl": "http://fhirtest.uhn.ca/baseDstu3/NutritionOrder/cf-1501883330461",
+      "resource": {
+        "resourceType": "NutritionOrder",
+        "id": "cf-1501883330461",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2017-08-07T04:17:46.970-04:00"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Vitamin D supplement</div>"
+        },
+        "status": "active",
+        "patient": {
+          "reference": "Patient/cf-1501883394767"
+        },
+        "dateTime": "2004-01-12T16:35:45.000Z",
+        "orderer": {
+          "reference": "Practitioner/cf-1501883141107"
+        },
+        "supplement": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "714607006",
+                  "display": "Oral form cholecalciferol"
+                }
+              ],
+              "text": "Oral form cholecalciferol"
+            },
+            "schedule": [
+              {
+                "repeat": {
+                  "boundsPeriod": {
+                    "start": "2004-01-13"
+                  },
+                  "frequency": 1,
+                  "period": 1,
+                  "periodUnit": "d"
+                },
+                "code": {
+                  "coding": [
+                    {
+                      "system": "http://hl7.org/fhir/v3/GTSAbbreviation",
+                      "code": "QD",
+                      "display": "QD"
+                    }
+                  ],
+                  "text": "Every Day at institution specified time"
+                }
+              }
+            ],
+            "quantity": {
+              "value": 800,
+              "unit": "IU",
+              "system": "http://snomed.info/sct",
+              "code": "258997004"
+            },
+            "instruction": "During times of low sunlight exposure"
+          }
+        ]
+      },
+      "search": {
+        "mode": "include"
+      }
+    },
+    {
+      "fullUrl": "http://fhirtest.uhn.ca/baseDstu3/ProcedureRequest/cf-1501883376153",
+      "resource": {
+        "resourceType": "ProcedureRequest",
+        "id": "cf-1501883376153",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2017-08-07T04:17:46.970-04:00"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Psychiatric therapy</div>"
+        },
+        "basedOn": [
+          {
+            "reference": "CarePlan/cf-1501883218421"
+          }
+        ],
+        "status": "draft",
+        "intent": "proposal",
+        "priority": "routine",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "24642003",
+                "display": "Psychiatry procedure or service"
+              }
+            ],
+            "text": "Psychiatry procedure or service"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "31205005",
+              "display": "Psychiatric therapy"
+            }
+          ],
+          "text": "Psychiatric therapy"
+        },
+        "subject": {
+          "reference": "Patient/cf-1501883394767"
+        },
+        "occurrencePeriod": {
+          "start": "2017-09-15",
+          "end": "2018-09-15"
+        },
+        "requester": {
+          "agent": {
+            "reference": "Practitioner/cf-1501883162477"
+          }
+        },
+        "performerType": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "80584001",
+              "display": "Psychiatrist"
+            }
+          ],
+          "text": "Psychiatrist"
+        },
+        "reasonCode": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "49049000",
+                "display": "Parkinson's disease"
+              }
+            ],
+            "text": "Parkinson's disease"
+          }
+        ],
+        "note": [
+          {
+            "text": "Regular appointments strongly recommended"
+          }
+        ]
+      },
+      "search": {
+        "mode": "include"
+      }
+    },
+    {
+      "fullUrl": "http://fhirtest.uhn.ca/baseDstu3/ProcedureRequest/cf-1501883364839",
+      "resource": {
+        "resourceType": "ProcedureRequest",
+        "id": "cf-1501883364839",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2017-08-07T04:17:46.970-04:00"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Acceptance of Illness Assessment</div>"
+        },
+        "basedOn": [
+          {
+            "reference": "CarePlan/cf-1501883218421"
+          }
+        ],
+        "status": "draft",
+        "intent": "proposal",
+        "priority": "routine",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "24642003",
+                "display": "Psychiatry procedure or service"
+              }
+            ],
+            "text": "Psychiatry procedure or service"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "718332009",
+              "display": "Assessment using AIS (Acceptance of Illness Scale)"
+            }
+          ],
+          "text": "Assessment using AIS (Acceptance of Illness Scale)"
+        },
+        "subject": {
+          "reference": "Patient/cf-1501883394767"
+        },
+        "occurrenceDateTime": "2017-09-01",
+        "requester": {
+          "agent": {
+            "reference": "Practitioner/cf-1501883162477"
+          }
+        },
+        "performerType": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "80584001",
+              "display": "Psychiatrist"
+            }
+          ],
+          "text": "Psychiatrist"
+        },
+        "reasonCode": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "49049000",
+                "display": "Parkinson's disease"
+              }
+            ],
+            "text": "Parkinson's disease"
+          }
+        ]
+      },
+      "search": {
+        "mode": "include"
+      }
+    },
+    {
+      "fullUrl": "http://fhirtest.uhn.ca/baseDstu3/ProcedureRequest/cf-1501883348511",
+      "resource": {
+        "resourceType": "ProcedureRequest",
+        "id": "cf-1501883348511",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2017-08-07T04:17:46.970-04:00"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Active Physical Exercises</div>"
+        },
+        "basedOn": [
+          {
+            "reference": "CarePlan/cf-1501883195889"
+          }
+        ],
+        "status": "active",
+        "intent": "proposal",
+        "priority": "routine",
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "86047003",
+              "display": "Active physical exercise"
+            }
+          ],
+          "text": "Active physical exercise"
+        },
+        "subject": {
+          "reference": "Patient/cf-1501883394767"
+        },
+        "occurrencePeriod": {
+          "start": "2004-01-13"
+        },
+        "requester": {
+          "agent": {
+            "reference": "Practitioner/cf-1501883141107"
+          }
+        },
+        "performerType": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "116154003",
+              "display": "Patient"
+            }
+          ],
+          "text": "Patient"
+        },
+        "performer": {
+          "reference": "Patient/cf-1501883394767"
+        },
+        "reasonCode": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "64859006",
+                "display": "Osteoporosis"
+              }
+            ],
+            "text": "Osteoporosis"
+          }
+        ],
+        "note": [
+          {
+            "text": "Exercises to improve Coordination and Strength"
+          }
+        ]
+      },
+      "search": {
+        "mode": "include"
+      }
+    },
+    {
+      "fullUrl": "http://fhirtest.uhn.ca/baseDstu3/ProcedureRequest/cf-1501883339552",
+      "resource": {
+        "resourceType": "ProcedureRequest",
+        "id": "cf-1501883339552",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2017-08-07T04:17:46.970-04:00"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Fall risk assessment</div>"
+        },
+        "basedOn": [
+          {
+            "reference": "CarePlan/cf-1501883195889"
+          }
+        ],
+        "status": "active",
+        "intent": "plan",
+        "priority": "routine",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "103693007",
+                "display": "Diagnostic procedure"
+              }
+            ],
+            "text": "Diagnostic procedure"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "414191008",
+              "display": "Fall risk assessment"
+            }
+          ],
+          "text": "Fall risk assessment"
+        },
+        "subject": {
+          "reference": "Patient/cf-1501883394767"
+        },
+        "occurrenceTiming": {
+          "repeat": {
+            "boundsPeriod": {
+              "start": "2004-01-13"
+            },
+            "frequency": 1,
+            "period": 1,
+            "periodUnit": "a"
+          },
+          "code": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "53281000",
+                "display": "Annual"
+              }
+            ],
+            "text": "Annual"
+          }
+        },
+        "requester": {
+          "agent": {
+            "reference": "Practitioner/cf-1501883141107"
+          }
+        },
+        "performerType": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "62247001",
+              "display": "General practitioner"
+            }
+          ],
+          "text": "General practitioner"
+        },
+        "performer": {
+          "reference": "Practitioner/cf-1501883141107"
+        },
+        "reasonCode": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "64859006",
+                "display": "Osteoporosis"
+              }
+            ],
+            "text": "Osteoporosis"
+          }
+        ]
+      },
+      "search": {
+        "mode": "include"
+      }
+    }
+  ]
+}

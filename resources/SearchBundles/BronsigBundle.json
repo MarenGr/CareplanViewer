@@ -1,0 +1,103 @@
+{
+  "resourceType": "Bundle",
+  "id": "ee20502b-e3c5-4e70-90e2-9368f935e8e4",
+  "meta": {
+    "lastUpdated": "2017-08-08T11:17:11.666-04:00"
+  },
+  "type": "searchset",
+  "total": 1,
+  "link": [
+    {
+      "relation": "self",
+      "url": "http://fhirtest.uhn.ca/baseDstu3/Practitioner?_id=cf-1501883141107&_pretty=true"
+    }
+  ],
+  "entry": [
+    {
+      "fullUrl": "http://fhirtest.uhn.ca/baseDstu3/Practitioner/cf-1501883141107",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "cf-1501883141107",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2017-08-07T04:17:46.970-04:00"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div xmlns=\"http://www.w3.org/1999/xhtml\">Doctor Bronsig, Orthopedic surgeon and Rheumatologist</div><a name=\"mm\"/></div>"
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "type": {
+              "text": "UZI-nummer"
+            },
+            "system": "urn:oid:2.16.528.1.1007.3.1",
+            "value": "12345678901"
+          }
+        ],
+        "active": true,
+        "name": [
+          {
+            "use": "official",
+            "text": "Doctor Bronsig",
+            "family": "Bronsig",
+            "given": [
+              "Arend"
+            ],
+            "prefix": [
+              "Dr."
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "+31715269111",
+            "use": "work"
+          }
+        ],
+        "address": [
+          {
+            "use": "work",
+            "line": [
+              "Walvisbaai 3",
+              "C4 - Automatisering"
+            ],
+            "city": "Den helder",
+            "postalCode": "2333ZA"
+          }
+        ],
+        "gender": "male",
+        "birthDate": "1956-12-24",
+        "qualification": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "22731001",
+                  "display": "Orthopedic surgeon"
+                }
+              ]
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "45440000",
+                  "display": "Rheumatologist"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    }
+  ]
+}

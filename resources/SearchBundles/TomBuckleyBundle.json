@@ -1,0 +1,2101 @@
+{
+  "resourceType": "Bundle",
+  "id": "eda35db2-ca4e-4072-b33e-26bfd0c78dcf",
+  "meta": {
+    "lastUpdated": "2017-08-08T11:12:43.793-04:00"
+  },
+  "type": "searchset",
+  "total": 5,
+  "link": [
+    {
+      "relation": "self",
+      "url": "http://fhirtest.uhn.ca/baseDstu3/CarePlan?_include=CarePlan%3Aactivity-reference&_include=CarePlan%3Asubject&_pretty=true&subject=cf-1502036237033"
+    }
+  ],
+  "entry": [
+    {
+      "fullUrl": "http://fhirtest.uhn.ca/baseDstu3/CarePlan/cf-1502036273866",
+      "resource": {
+        "resourceType": "CarePlan",
+        "id": "cf-1502036273866",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2017-08-07T04:29:34.341-04:00"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Improvement of Iron Resorption because of Iron Deficiency Anemia</p></div>"
+        },
+        "status": "completed",
+        "intent": "order",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "412774003",
+                "display": "Clinical management plan"
+              }
+            ],
+            "text": "Clinical management plan"
+          }
+        ],
+        "description": "Improvement of Iron Resorption because of Iron Deficiency Anemia",
+        "subject": {
+          "reference": "Patient/cf-1502036237033"
+        },
+        "period": {
+          "start": "2015-03-05",
+          "end": "2016-03-05"
+        },
+        "author": [
+          {
+            "reference": "Practitioner/cf-1502036207970"
+          }
+        ],
+        "activity": [
+          {
+            "reference": {
+              "reference": "ProcedureRequest/cf-1502092177809"
+            }
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "http://fhirtest.uhn.ca/baseDstu3/CarePlan/cf-1502036296849",
+      "resource": {
+        "resourceType": "CarePlan",
+        "id": "cf-1502036296849",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2017-08-07T04:29:34.341-04:00"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Biological Therapy for Rheumatoic Arthritis</div>"
+        },
+        "basedOn": [
+          {
+            "reference": "CarePlan/cf-1502036251058"
+          }
+        ],
+        "replaces": [
+          {
+            "reference": "CarePlan/cf-1502036251058"
+          }
+        ],
+        "status": "entered-in-error",
+        "intent": "order",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "412774003",
+                "display": "Clinical management plan"
+              }
+            ],
+            "text": "Clinical management plan"
+          }
+        ],
+        "description": "Biological Therapy for Rheumatoic Arthritis",
+        "subject": {
+          "reference": "Patient/cf-1502036237033"
+        },
+        "period": {
+          "start": "2017-07-01"
+        },
+        "author": [
+          {
+            "reference": "Practitioner/cf-1502093191509"
+          }
+        ],
+        "activity": [
+          {
+            "reference": {
+              "reference": "ProcedureRequest/cf-1502092098902"
+            }
+          },
+          {
+            "reference": {
+              "reference": "ProcedureRequest/cf-1502092139429"
+            }
+          },
+          {
+            "reference": {
+              "reference": "MedicationRequest/cf-1502092760422"
+            }
+          },
+          {
+            "reference": {
+              "reference": "MedicationRequest/cf-1502092487059"
+            }
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "http://fhirtest.uhn.ca/baseDstu3/CarePlan/cf-1502036251058",
+      "resource": {
+        "resourceType": "CarePlan",
+        "id": "cf-1502036251058",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2017-08-07T04:29:34.341-04:00"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Adjusted DMARD Combination for Rheumatoic Arthritis<p/></div>"
+        },
+        "basedOn": [
+          {
+            "reference": "CarePlan/cf-1502036260551"
+          }
+        ],
+        "replaces": [
+          {
+            "reference": "CarePlan/cf-1502036260551"
+          }
+        ],
+        "status": "active",
+        "intent": "order",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "412774003",
+                "display": "Clinical management plan"
+              }
+            ],
+            "text": "Clinical management plan"
+          }
+        ],
+        "description": "Adjusted DMARD Combination for Rheumatoic Arthritis",
+        "subject": {
+          "reference": "Patient/cf-1502036237033"
+        },
+        "period": {
+          "start": "2016-05-12"
+        },
+        "author": [
+          {
+            "reference": "Practitioner/cf-1502036220003"
+          }
+        ],
+        "activity": [
+          {
+            "reference": {
+              "reference": "ProcedureRequest/cf-1502092098902"
+            }
+          },
+          {
+            "reference": {
+              "reference": "ProcedureRequest/cf-1502092139429"
+            }
+          },
+          {
+            "reference": {
+              "reference": "NutritionOrder/cf-1502091828774"
+            }
+          },
+          {
+            "reference": {
+              "reference": "MedicationRequest/cf-1502092676684"
+            }
+          },
+          {
+            "reference": {
+              "reference": "MedicationRequest/cf-1502092434951"
+            }
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "http://fhirtest.uhn.ca/baseDstu3/CarePlan/cf-1502036283013",
+      "resource": {
+        "resourceType": "CarePlan",
+        "id": "cf-1502036283013",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2017-08-07T04:29:34.341-04:00"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Substitution for Iron Deficiency Anemia</div>"
+        },
+        "status": "active",
+        "intent": "plan",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "288832002",
+                "display": "CPA care plan"
+              }
+            ],
+            "text": "CPA care plan"
+          }
+        ],
+        "description": "Substitution for Iron Deficiency Anemia",
+        "subject": {
+          "reference": "Patient/cf-1502036237033"
+        },
+        "period": {
+          "start": "2015-03-05",
+          "end": "2018-03-05"
+        },
+        "author": [
+          {
+            "reference": "Practitioner/cf-1502036207970"
+          }
+        ],
+        "activity": [
+          {
+            "reference": {
+              "reference": "NutritionOrder/cf-1502036392540"
+            }
+          },
+          {
+            "reference": {
+              "reference": "NutritionOrder/cf-1502091797821"
+            }
+          },
+          {
+            "reference": {
+              "reference": "ProcedureRequest/cf-1502091898635"
+            }
+          },
+          {
+            "reference": {
+              "reference": "ProcedureRequest/cf-1502092000142"
+            }
+          },
+          {
+            "reference": {
+              "reference": "ProcedureRequest/cf-1502092058382"
+            }
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "http://fhirtest.uhn.ca/baseDstu3/CarePlan/cf-1502036260551",
+      "resource": {
+        "resourceType": "CarePlan",
+        "id": "cf-1502036260551",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2017-08-07T04:29:34.341-04:00"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Remission of Rheumatoic Arthritis Activity</p></div>"
+        },
+        "status": "cancelled",
+        "intent": "order",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "412774003",
+                "display": "Clinical management plan"
+              }
+            ],
+            "text": "Clinical management plan"
+          }
+        ],
+        "description": "Classical DMARD for Rheumatoic Arthritis",
+        "subject": {
+          "reference": "Patient/cf-1502036237033"
+        },
+        "period": {
+          "start": "2016-02-12",
+          "end": "2016-05-12"
+        },
+        "author": [
+          {
+            "reference": "Practitioner/cf-1502036220003"
+          }
+        ],
+        "activity": [
+          {
+            "reference": {
+              "reference": "ProcedureRequest/cf-1502092098902"
+            }
+          },
+          {
+            "reference": {
+              "reference": "ProcedureRequest/cf-1502092139429"
+            }
+          },
+          {
+            "reference": {
+              "reference": "NutritionOrder/cf-1502091828774"
+            }
+          },
+          {
+            "reference": {
+              "reference": "MedicationRequest/cf-1502092542186"
+            }
+          },
+          {
+            "reference": {
+              "reference": "MedicationRequest/cf-1502092612276"
+            }
+          },
+          {
+            "reference": {
+              "reference": "MedicationRequest/cf-1502092280478"
+            }
+          },
+          {
+            "reference": {
+              "reference": "MedicationRequest/cf-1502092386865"
+            }
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "http://fhirtest.uhn.ca/baseDstu3/ProcedureRequest/cf-1502091898635",
+      "resource": {
+        "resourceType": "ProcedureRequest",
+        "id": "cf-1502091898635",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2017-08-07T04:29:34.341-04:00"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Physical examination</div>"
+        },
+        "basedOn": [
+          {
+            "reference": "CarePlan/cf-1502036283013"
+          }
+        ],
+        "status": "completed",
+        "intent": "order",
+        "priority": "stat",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "103693007",
+                "display": "Diagnostic procedure"
+              }
+            ],
+            "text": "Diagnostic procedure"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "79536006",
+              "display": "Physical medicine, initial examination, evaluation and treatment program planning"
+            }
+          ],
+          "text": "Physical medicine, initial examination, evaluation and treatment program planning"
+        },
+        "subject": {
+          "reference": "Patient/cf-1502036237033"
+        },
+        "occurrenceDateTime": "2015-04-02",
+        "requester": {
+          "agent": {
+            "reference": "Practitioner/cf-1502036207970"
+          }
+        },
+        "performerType": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "40204001",
+              "display": "Hematologist"
+            }
+          ],
+          "text": "Hematologist"
+        },
+        "performer": {
+          "reference": "Practitioner/cf-1502036207970"
+        },
+        "reasonCode": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "87522002",
+                "display": " Iron deficiency anemia"
+              }
+            ],
+            "text": " Iron deficiency anemia"
+          }
+        ]
+      },
+      "search": {
+        "mode": "include"
+      }
+    },
+    {
+      "fullUrl": "http://fhirtest.uhn.ca/baseDstu3/ProcedureRequest/cf-1502092139429",
+      "resource": {
+        "resourceType": "ProcedureRequest",
+        "id": "cf-1502092139429",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2017-08-07T04:29:34.341-04:00"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Radiographic imaging procedure</div>"
+        },
+        "basedOn": [
+          {
+            "reference": "CarePlan/cf-1502036260551"
+          }
+        ],
+        "status": "active",
+        "intent": "order",
+        "priority": "routine",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "103693007",
+                "display": "Diagnostic procedure"
+              }
+            ],
+            "text": "Diagnostic procedure"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "363680008",
+              "display": "Radiographic imaging procedure"
+            }
+          ],
+          "text": "Radiographic imaging procedure"
+        },
+        "subject": {
+          "reference": "Patient/cf-1502036237033"
+        },
+        "occurrenceTiming": {
+          "repeat": {
+            "boundsPeriod": {
+              "start": "2016-02-12"
+            },
+            "frequency": 1,
+            "period": 1,
+            "periodUnit": "a"
+          },
+          "code": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "53281000",
+                "display": "Annual"
+              }
+            ],
+            "text": "Annual"
+          }
+        },
+        "requester": {
+          "agent": {
+            "reference": "Practitioner/cf-1502036220003"
+          }
+        },
+        "performerType": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "45440000",
+              "display": "Rheumatologist"
+            }
+          ],
+          "text": "Rheumatologist"
+        },
+        "reasonCode": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "69896004",
+                "display": "Chronic rheumatic arthritis"
+              }
+            ],
+            "text": "Chronic rheumatic arthritis"
+          }
+        ]
+      },
+      "search": {
+        "mode": "include"
+      }
+    },
+    {
+      "fullUrl": "http://fhirtest.uhn.ca/baseDstu3/ProcedureRequest/cf-1502092098902",
+      "resource": {
+        "resourceType": "ProcedureRequest",
+        "id": "cf-1502092098902",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2017-08-07T04:29:34.341-04:00"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">General treatment</div>"
+        },
+        "basedOn": [
+          {
+            "reference": "CarePlan/cf-1502036260551"
+          }
+        ],
+        "status": "active",
+        "intent": "order",
+        "priority": "routine",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "103693007",
+                "display": "Diagnostic procedure"
+              }
+            ],
+            "text": "Diagnostic procedure"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "7922000",
+              "display": "General treatment"
+            }
+          ],
+          "text": "General treatment"
+        },
+        "subject": {
+          "reference": "Patient/cf-1502036237033"
+        },
+        "occurrenceTiming": {
+          "repeat": {
+            "boundsPeriod": {
+              "start": "2016-02-12"
+            },
+            "frequency": 1,
+            "period": 1,
+            "periodUnit": "mo"
+          },
+          "code": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "89185003",
+                "display": "Monthly"
+              }
+            ],
+            "text": "Monthly"
+          }
+        },
+        "requester": {
+          "agent": {
+            "reference": "Practitioner/cf-1502036220003"
+          }
+        },
+        "performerType": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "45440000",
+              "display": "Rheumatologist"
+            }
+          ],
+          "text": "Rheumatologist"
+        },
+        "performer": {
+          "reference": "Practitioner/cf-1502036220003"
+        },
+        "reasonCode": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "69896004",
+                "display": "Chronic rheumatic arthritis"
+              }
+            ],
+            "text": "Chronic rheumatic arthritis"
+          }
+        ]
+      },
+      "search": {
+        "mode": "include"
+      }
+    },
+    {
+      "fullUrl": "http://fhirtest.uhn.ca/baseDstu3/ProcedureRequest/cf-1502092058382",
+      "resource": {
+        "resourceType": "ProcedureRequest",
+        "id": "cf-1502092058382",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2017-08-07T04:29:34.341-04:00"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Diagnostic assessment of treatment effect 2</div>"
+        },
+        "basedOn": [
+          {
+            "reference": "CarePlan/cf-1502036283013"
+          }
+        ],
+        "replaces": [
+          {
+            "reference": "ProcedureRequest/cf-1502092000142"
+          }
+        ],
+        "status": "active",
+        "intent": "proposal",
+        "priority": "routine",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "103693007",
+                "display": "Diagnostic procedure"
+              }
+            ],
+            "text": "Diagnostic procedure"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "165197003",
+              "display": "Diagnostic assessment"
+            }
+          ],
+          "text": "Diagnostic assessment (assessment of treatment effect)"
+        },
+        "subject": {
+          "reference": "Patient/cf-1502036237033"
+        },
+        "occurrenceTiming": {
+          "repeat": {
+            "boundsPeriod": {
+              "start": "2016-11-05",
+              "end": "2017-11-05"
+            },
+            "frequency": 1,
+            "period": 3,
+            "periodUnit": "mo"
+          }
+        },
+        "requester": {
+          "agent": {
+            "reference": "Practitioner/cf-1502036207970"
+          }
+        },
+        "performerType": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "40204001",
+              "display": "Hematologist"
+            }
+          ],
+          "text": "Hematologist"
+        },
+        "performer": {
+          "reference": "Practitioner/cf-1502036207970"
+        },
+        "reasonCode": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "87522002",
+                "display": "Iron deficiency anemia"
+              }
+            ],
+            "text": "Iron deficiency anemia"
+          }
+        ],
+        "note": [
+          {
+            "text": "Routine check-ups after stabilization"
+          }
+        ]
+      },
+      "search": {
+        "mode": "include"
+      }
+    },
+    {
+      "fullUrl": "http://fhirtest.uhn.ca/baseDstu3/ProcedureRequest/cf-1502092000142",
+      "resource": {
+        "resourceType": "ProcedureRequest",
+        "id": "cf-1502092000142",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2017-08-07T04:29:34.341-04:00"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Diagnostic assessment of treatment effect 1</div>"
+        },
+        "basedOn": [
+          {
+            "reference": "CarePlan/cf-1502036283013"
+          }
+        ],
+        "status": "completed",
+        "intent": "order",
+        "priority": "routine",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "103693007",
+                "display": "Diagnostic procedure"
+              }
+            ],
+            "text": "Diagnostic procedure"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "165197003",
+              "display": "Diagnostic assessment"
+            }
+          ],
+          "text": "Diagnostic assessment (assessment of treatment effect)"
+        },
+        "subject": {
+          "reference": "Patient/cf-1502036237033"
+        },
+        "occurrenceTiming": {
+          "repeat": {
+            "boundsPeriod": {
+              "start": "2015-04-02"
+            },
+            "frequency": 1,
+            "period": 4,
+            "periodUnit": "wk"
+          },
+          "code": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "396134005",
+                "display": "q4wk"
+              }
+            ],
+            "text": "Every four weeks"
+          }
+        },
+        "requester": {
+          "agent": {
+            "reference": "Practitioner/cf-1502036207970"
+          }
+        },
+        "performerType": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "40204001",
+              "display": "Hematologist"
+            }
+          ],
+          "text": "Hematologist"
+        },
+        "performer": {
+          "reference": "Practitioner/cf-1502036207970"
+        },
+        "reasonCode": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "87522002",
+                "display": " Iron deficiency anemia"
+              }
+            ],
+            "text": " Iron deficiency anemia"
+          }
+        ],
+        "note": [
+          {
+            "text": "Last appointment 4 weeks after last iron substitution intake"
+          }
+        ]
+      },
+      "search": {
+        "mode": "include"
+      }
+    },
+    {
+      "fullUrl": "http://fhirtest.uhn.ca/baseDstu3/ProcedureRequest/cf-1502092177809",
+      "resource": {
+        "resourceType": "ProcedureRequest",
+        "id": "cf-1502092177809",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2017-08-07T04:29:34.341-04:00"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Helicobacter eradiction therapy</div>"
+        },
+        "basedOn": [
+          {
+            "reference": "CarePlan/cf-1502036273866"
+          }
+        ],
+        "status": "completed",
+        "intent": "plan",
+        "priority": "asap",
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "281897000",
+              "display": "Helicobacter eradication therapy"
+            }
+          ],
+          "text": "Helicobacter eradication therapy"
+        },
+        "subject": {
+          "reference": "Patient/cf-1502036237033"
+        },
+        "occurrencePeriod": {
+          "start": "2015-03-05",
+          "end": "2016-03-05"
+        },
+        "requester": {
+          "agent": {
+            "reference": "Practitioner/cf-1502036207970"
+          }
+        },
+        "reasonCode": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "721730009",
+                "display": "Infection caused by Helicobacter pylori"
+              }
+            ],
+            "text": "Infection caused by Helicobacter pylori"
+          }
+        ]
+      },
+      "search": {
+        "mode": "include"
+      }
+    },
+    {
+      "fullUrl": "http://fhirtest.uhn.ca/baseDstu3/MedicationRequest/cf-1502092487059",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "cf-1502092487059",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2017-08-07T04:29:34.341-04:00"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Prednisolone medication - full dosage 3</div>"
+        },
+        "basedOn": [
+          {
+            "reference": "CarePlan/cf-1502036296849"
+          }
+        ],
+        "status": "active",
+        "intent": "instance-order",
+        "priority": "routine",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "116601002",
+              "display": "Prednisolone"
+            }
+          ],
+          "text": "Prednisolone"
+        },
+        "subject": {
+          "reference": "Patient/cf-1502036237033"
+        },
+        "requester": {
+          "agent": {
+            "reference": "Practitioner/cf-1502093191509"
+          }
+        },
+        "reasonCode": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "69896004",
+                "display": "Rheumatoid arthritis"
+              }
+            ],
+            "text": "Rheumatoid arthritis"
+          }
+        ],
+        "dosageInstruction": [
+          {
+            "additionalInstruction": [
+              {
+                "text": "full dosage"
+              }
+            ],
+            "timing": {
+              "repeat": {
+                "boundsPeriod": {
+                  "start": "2017-08-26"
+                },
+                "frequency": 1,
+                "period": 1,
+                "periodUnit": "d"
+              },
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://snomed.info/sct",
+                    "code": "229797004",
+                    "display": "OD"
+                  }
+                ],
+                "text": "Once a day, in the morning"
+              }
+            },
+            "asNeededBoolean": false,
+            "route": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "263887005",
+                  "display": "Subcutaneous"
+                }
+              ],
+              "text": "Subcutaneous"
+            },
+            "doseQuantity": {
+              "value": 75,
+              "unit": "mg",
+              "system": "http://snomed.info/sct",
+              "code": "258684004"
+            }
+          }
+        ],
+        "priorPrescription": {
+          "reference": "MedicationRequest/cf-1502092434951"
+        }
+      },
+      "search": {
+        "mode": "include"
+      }
+    },
+    {
+      "fullUrl": "http://fhirtest.uhn.ca/baseDstu3/MedicationRequest/cf-1502092434951",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "cf-1502092434951",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2017-08-07T04:29:34.341-04:00"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Prednisolone medication - full dosage 2</div>"
+        },
+        "basedOn": [
+          {
+            "reference": "CarePlan/cf-1502036251058"
+          }
+        ],
+        "status": "active",
+        "intent": "instance-order",
+        "priority": "routine",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "116601002",
+              "display": "Prednisolone"
+            }
+          ],
+          "text": "Prednisolone"
+        },
+        "subject": {
+          "reference": "Patient/cf-1502036237033"
+        },
+        "requester": {
+          "agent": {
+            "reference": "Practitioner/cf-1502036220003"
+          }
+        },
+        "reasonCode": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "69896004",
+                "display": "Rheumatoid arthritis"
+              }
+            ],
+            "text": "Rheumatoid arthritis"
+          }
+        ],
+        "dosageInstruction": [
+          {
+            "additionalInstruction": [
+              {
+                "text": "full dosage"
+              }
+            ],
+            "timing": {
+              "repeat": {
+                "boundsPeriod": {
+                  "start": "2016-05-12"
+                },
+                "frequency": 1,
+                "period": 1,
+                "periodUnit": "d"
+              },
+              "code": {
+                "coding": [
+                  {
+                    "system": "https://www.hl7.org/fhir/v3/GTSAbbreviation/cs.html",
+                    "code": "AM",
+                    "display": "AM"
+                  }
+                ],
+                "text": "Every morning at institution specified times"
+              }
+            },
+            "asNeededBoolean": false,
+            "route": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "263887005",
+                  "display": "Subcutaneous"
+                }
+              ],
+              "text": "Subcutaneous"
+            },
+            "doseQuantity": {
+              "value": 75,
+              "unit": "mg",
+              "system": "http://snomed.info/sct",
+              "code": "258684004"
+            }
+          }
+        ],
+        "priorPrescription": {
+          "reference": "MedicationRequest/cf-1502092386865"
+        }
+      },
+      "search": {
+        "mode": "include"
+      }
+    },
+    {
+      "fullUrl": "http://fhirtest.uhn.ca/baseDstu3/MedicationRequest/cf-1502092386865",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "cf-1502092386865",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2017-08-07T04:29:34.341-04:00"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Prednisolone medication - full dosage 1</div>"
+        },
+        "basedOn": [
+          {
+            "reference": "CarePlan/cf-1502036260551"
+          }
+        ],
+        "status": "active",
+        "intent": "instance-order",
+        "priority": "routine",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "116601002",
+              "display": "Prednisolone"
+            }
+          ],
+          "text": "Prednisolone"
+        },
+        "subject": {
+          "reference": "Patient/cf-1502036237033"
+        },
+        "requester": {
+          "agent": {
+            "reference": "Practitioner/cf-1502036220003"
+          }
+        },
+        "reasonCode": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "69896004",
+                "display": "Rheumatoid arthritis"
+              }
+            ],
+            "text": "Rheumatoid arthritis"
+          }
+        ],
+        "dosageInstruction": [
+          {
+            "additionalInstruction": [
+              {
+                "text": "full dosage"
+              }
+            ],
+            "timing": {
+              "repeat": {
+                "boundsPeriod": {
+                  "start": "2016-04-07"
+                },
+                "frequency": 1,
+                "period": 1,
+                "periodUnit": "d"
+              },
+              "code": {
+                "coding": [
+                  {
+                    "system": "https://www.hl7.org/fhir/v3/GTSAbbreviation/cs.html",
+                    "code": "AM",
+                    "display": "AM"
+                  }
+                ],
+                "text": "Every morning at institution specified times"
+              }
+            },
+            "asNeededBoolean": false,
+            "route": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "263887005",
+                  "display": "Subcutaneous"
+                }
+              ],
+              "text": "Subcutaneous"
+            },
+            "doseQuantity": {
+              "value": 70,
+              "unit": "mg",
+              "system": "http://snomed.info/sct",
+              "code": "258684004"
+            }
+          }
+        ],
+        "priorPrescription": {
+          "reference": "MedicationRequest/cf-1502092280478"
+        }
+      },
+      "search": {
+        "mode": "include"
+      }
+    },
+    {
+      "fullUrl": "http://fhirtest.uhn.ca/baseDstu3/MedicationRequest/cf-1502092280478",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "cf-1502092280478",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2017-08-07T04:29:34.341-04:00"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Prednisolone medication - initial dosage</div>"
+        },
+        "basedOn": [
+          {
+            "reference": "CarePlan/cf-1502036260551"
+          }
+        ],
+        "status": "active",
+        "intent": "instance-order",
+        "priority": "routine",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "116601002",
+              "display": "Prednisolone"
+            }
+          ],
+          "text": "Prednisolone"
+        },
+        "subject": {
+          "reference": "Patient/cf-1502036237033"
+        },
+        "requester": {
+          "agent": {
+            "reference": "Practitioner/cf-1502036220003"
+          }
+        },
+        "reasonCode": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "69896004",
+                "display": "Rheumatoid arthritis"
+              }
+            ],
+            "text": "Rheumatoid arthritis"
+          }
+        ],
+        "dosageInstruction": [
+          {
+            "additionalInstruction": [
+              {
+                "text": "initial dosage"
+              }
+            ],
+            "timing": {
+              "repeat": {
+                "boundsDuration": {
+                  "value": 8,
+                  "unit": "wk",
+                  "system": "http://unitsofmeasure.org"
+                },
+                "frequency": 1,
+                "period": 1,
+                "periodUnit": "d"
+              },
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/v3/GTSAbbreviation",
+                    "code": "AM",
+                    "display": "AM"
+                  }
+                ],
+                "text": "Every morning at institution specified times"
+              }
+            },
+            "asNeededBoolean": false,
+            "route": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "263887005",
+                  "display": "Subcutaneous"
+                }
+              ],
+              "text": "Subcutaneous"
+            },
+            "doseQuantity": {
+              "value": 20,
+              "unit": "mg",
+              "system": "http://snomed.info/sct",
+              "code": "258684004"
+            }
+          }
+        ]
+      },
+      "search": {
+        "mode": "include"
+      }
+    },
+    {
+      "fullUrl": "http://fhirtest.uhn.ca/baseDstu3/MedicationRequest/cf-1502092760422",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "cf-1502092760422",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2017-08-07T04:29:34.341-04:00"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">MTX medication - final dosage adjustment</div>"
+        },
+        "basedOn": [
+          {
+            "reference": "CarePlan/cf-1502036296849"
+          }
+        ],
+        "status": "entered-in-error",
+        "intent": "instance-order",
+        "priority": "routine",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "326879002",
+              "display": " Methotrexate 25mg/mL injection solution 2mL vial"
+            }
+          ],
+          "text": " Methotrexate 25mg/mL injection solution 2mL vial"
+        },
+        "subject": {
+          "reference": "Patient/cf-1502036237033"
+        },
+        "requester": {
+          "agent": {
+            "reference": "Practitioner/cf-1502093191509"
+          }
+        },
+        "reasonCode": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "69896004",
+                "display": "Rheumatoid arthritis"
+              }
+            ],
+            "text": "Rheumatoid arthritis"
+          }
+        ],
+        "note": [
+          {
+            "text": "final dosage adjustment"
+          }
+        ],
+        "dosageInstruction": [
+          {
+            "timing": {
+              "repeat": {
+                "boundsDuration": {
+                  "value": 4,
+                  "unit": "mo",
+                  "system": "http://unitsofmeasure.org"
+                },
+                "frequency": 1,
+                "period": 1,
+                "periodUnit": "wk"
+              }
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "447202000",
+                  "display": "Parenteral route"
+                }
+              ],
+              "text": "Parenteral route"
+            },
+            "doseQuantity": {
+              "value": 2,
+              "unit": "vial",
+              "system": "http://snomed.info/sct",
+              "code": "415818006"
+            }
+          }
+        ],
+        "priorPrescription": {
+          "reference": "MedicationRequest/cf-1502092676684"
+        }
+      },
+      "search": {
+        "mode": "include"
+      }
+    },
+    {
+      "fullUrl": "http://fhirtest.uhn.ca/baseDstu3/MedicationRequest/cf-1502092676684",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "cf-1502092676684",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2017-08-07T04:29:34.341-04:00"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">MTX medication - dosage adjustment 2</div>"
+        },
+        "basedOn": [
+          {
+            "reference": "CarePlan/cf-1502036251058"
+          }
+        ],
+        "status": "active",
+        "intent": "instance-order",
+        "priority": "routine",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "326879002",
+              "display": " Methotrexate 25mg/mL injection solution 2mL vial"
+            }
+          ],
+          "text": " Methotrexate 25mg/mL injection solution 2mL vial"
+        },
+        "subject": {
+          "reference": "Patient/cf-1502036237033"
+        },
+        "requester": {
+          "agent": {
+            "reference": "Practitioner/cf-1502036220003"
+          }
+        },
+        "reasonCode": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "69896004",
+                "display": "Rheumatoid arthritis"
+              }
+            ],
+            "text": "Rheumatoid arthritis"
+          }
+        ],
+        "note": [
+          {
+            "text": "Dosage adjustment 2"
+          }
+        ],
+        "dosageInstruction": [
+          {
+            "timing": {
+              "repeat": {
+                "boundsDuration": {
+                  "value": 3,
+                  "unit": "mo",
+                  "system": "http://unitsofmeasure.org"
+                },
+                "frequency": 1,
+                "period": 1,
+                "periodUnit": "wk"
+              }
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "447202000",
+                  "display": "Parenteral route"
+                }
+              ],
+              "text": "Parenteral route"
+            },
+            "doseQuantity": {
+              "value": 1,
+              "unit": "vial",
+              "system": "http://snomed.info/sct",
+              "code": "415818006"
+            }
+          }
+        ],
+        "priorPrescription": {
+          "reference": "MedicationRequest/cf-1502092612276"
+        }
+      },
+      "search": {
+        "mode": "include"
+      }
+    },
+    {
+      "fullUrl": "http://fhirtest.uhn.ca/baseDstu3/MedicationRequest/cf-1502092612276",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "cf-1502092612276",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2017-08-07T04:29:34.341-04:00"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">MTX medication - dosage adjustment 1</div>"
+        },
+        "basedOn": [
+          {
+            "reference": "CarePlan/cf-1502036260551"
+          }
+        ],
+        "status": "stopped",
+        "intent": "instance-order",
+        "priority": "routine",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "326879002",
+              "display": " Methotrexate 25mg/mL injection solution 2mL vial"
+            }
+          ],
+          "text": " Methotrexate 25mg/mL injection solution 2mL vial"
+        },
+        "subject": {
+          "reference": "Patient/cf-1502036237033"
+        },
+        "requester": {
+          "agent": {
+            "reference": "Practitioner/cf-1502036220003"
+          }
+        },
+        "reasonCode": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "69896004",
+                "display": "Rheumatoid arthritis"
+              }
+            ],
+            "text": "Rheumatoid arthritis"
+          }
+        ],
+        "note": [
+          {
+            "text": "Dosage adjustment 1"
+          }
+        ],
+        "dosageInstruction": [
+          {
+            "timing": {
+              "repeat": {
+                "boundsDuration": {
+                  "value": 5,
+                  "unit": "wk",
+                  "system": "http://unitsofmeasure.org"
+                },
+                "frequency": 1,
+                "period": 1,
+                "periodUnit": "wk"
+              }
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "447202000",
+                  "display": "Parenteral route"
+                }
+              ],
+              "text": "Parenteral route"
+            },
+            "doseQuantity": {
+              "value": 1,
+              "unit": "vial",
+              "system": "http://snomed.info/sct",
+              "code": "415818006"
+            }
+          }
+        ],
+        "priorPrescription": {
+          "reference": "MedicationRequest/cf-1502092542186"
+        }
+      },
+      "search": {
+        "mode": "include"
+      }
+    },
+    {
+      "fullUrl": "http://fhirtest.uhn.ca/baseDstu3/MedicationRequest/cf-1502092542186",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "cf-1502092542186",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2017-08-07T04:29:34.341-04:00"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">MTX medication - intitial dosage</div>"
+        },
+        "basedOn": [
+          {
+            "reference": "CarePlan/cf-1502036260551"
+          }
+        ],
+        "status": "completed",
+        "intent": "instance-order",
+        "priority": "urgent",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "326875008",
+              "display": "Methotrexate 10mg tablet"
+            }
+          ],
+          "text": "Methotrexate 10mg tablet"
+        },
+        "subject": {
+          "reference": "Patient/cf-1502036237033"
+        },
+        "requester": {
+          "agent": {
+            "reference": "Practitioner/cf-1502036220003"
+          }
+        },
+        "reasonCode": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "69896004",
+                "display": "Rheumatoid arthritis"
+              }
+            ],
+            "text": "Rheumatoid arthritis"
+          }
+        ],
+        "note": [
+          {
+            "text": "Initial Dose. To be adjusted after 5 weeks"
+          }
+        ],
+        "dosageInstruction": [
+          {
+            "timing": {
+              "repeat": {
+                "boundsDuration": {
+                  "value": 5,
+                  "unit": "wk",
+                  "system": "http://unitsofmeasure.org"
+                },
+                "frequency": 1,
+                "period": 1,
+                "periodUnit": "wk"
+              }
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "260548002",
+                  "display": "Oral"
+                }
+              ],
+              "text": "Oral"
+            },
+            "doseQuantity": {
+              "value": 1,
+              "unit": "Tablet",
+              "system": "http://snomed.info/sct",
+              "code": "428673006"
+            }
+          }
+        ]
+      },
+      "search": {
+        "mode": "include"
+      }
+    },
+    {
+      "fullUrl": "http://fhirtest.uhn.ca/baseDstu3/Patient/cf-1502036237033",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "cf-1502036237033",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2017-08-07T04:29:34.341-04:00"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Tom H Buckley, Iron deficiancy anemia and rheumatioc arthritis<a name=\"mm\"/></div>"
+        },
+        "active": true,
+        "name": [
+          {
+            "use": "official",
+            "family": "Buckley",
+            "given": [
+              "Tom"
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "070 3725 3214",
+            "use": "home"
+          }
+        ],
+        "gender": "male",
+        "birthDate": "1957-05-20",
+        "deceasedBoolean": false,
+        "address": [
+          {
+            "use": "home",
+            "text": "67 Hounslow Rd, SOLLERS HOPE, HR1 2JV",
+            "line": [
+              "67 Hounslow Rd"
+            ],
+            "city": "SOLLERS HOPE",
+            "postalCode": "HR1 2JV"
+          }
+        ]
+      },
+      "search": {
+        "mode": "include"
+      }
+    },
+    {
+      "fullUrl": "http://fhirtest.uhn.ca/baseDstu3/NutritionOrder/cf-1502091828774",
+      "resource": {
+        "resourceType": "NutritionOrder",
+        "id": "cf-1502091828774",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2017-08-07T04:29:34.341-04:00"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Folic acid supplement</div>"
+        },
+        "status": "completed",
+        "patient": {
+          "reference": "Patient/cf-1502036237033"
+        },
+        "dateTime": "2016-02-11T11:09:14.000Z",
+        "orderer": {
+          "reference": "Practitioner/cf-1502036220003"
+        },
+        "supplement": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "6247001",
+                  "display": "  Folic acid product"
+                }
+              ],
+              "text": "  Folic acid product"
+            },
+            "schedule": [
+              {
+                "repeat": {
+                  "boundsPeriod": {
+                    "start": "2016-02-12"
+                  },
+                  "frequency": 1,
+                  "period": 1,
+                  "periodUnit": "wk",
+                  "dayOfWeek": [
+                    "fri"
+                  ]
+                }
+              }
+            ],
+            "quantity": {
+              "value": 5,
+              "unit": "mg",
+              "system": "http://snomed.info/sct",
+              "code": "258684004"
+            }
+          }
+        ]
+      },
+      "search": {
+        "mode": "include"
+      }
+    },
+    {
+      "fullUrl": "http://fhirtest.uhn.ca/baseDstu3/NutritionOrder/cf-1502091797821",
+      "resource": {
+        "resourceType": "NutritionOrder",
+        "id": "cf-1502091797821",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2017-08-07T04:29:34.341-04:00"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Further Iron supplement and Food exclusions</div>"
+        },
+        "status": "requested",
+        "patient": {
+          "reference": "Patient/cf-1502036237033"
+        },
+        "dateTime": "2015-03-04T08:05:23.000Z",
+        "orderer": {
+          "reference": "Practitioner/cf-1502036207970"
+        },
+        "excludeFoodModifier": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "29263009",
+                "display": "Coffee"
+              }
+            ],
+            "text": "Coffee"
+          },
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "16313001",
+                "display": "Tea"
+              }
+            ],
+            "text": "Tea"
+          },
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "70813002",
+                "display": "Milk"
+              }
+            ],
+            "text": "Milk"
+          },
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "34208006",
+                "display": "Oxalate"
+              }
+            ],
+            "text": "Oxalate"
+          },
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "259296007",
+                "display": "Phosphate"
+              }
+            ],
+            "text": "Phosphate"
+          },
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "372794006",
+                "display": "Antacid"
+              }
+            ],
+            "text": "Antacid"
+          }
+        ],
+        "supplement": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "3829006",
+                  "display": "Iron"
+                }
+              ],
+              "text": "Iron"
+            },
+            "schedule": [
+              {
+                "repeat": {
+                  "boundsPeriod": {
+                    "start": "2015-06-04",
+                    "end": "2017-10-01"
+                  },
+                  "frequency": 1,
+                  "period": 1,
+                  "periodUnit": "d"
+                },
+                "code": {
+                  "coding": [
+                    {
+                      "system": "http://hl7.org/fhir/v3/GTSAbbreviation",
+                      "code": "QD",
+                      "display": "QD"
+                    }
+                  ],
+                  "text": "Every Day at institution specified time"
+                }
+              }
+            ],
+            "quantity": {
+              "value": 10,
+              "unit": "mg",
+              "system": "http://snomed.info/sct",
+              "code": "258684004"
+            },
+            "instruction": "To be taken on an empty stomach, at least 30 to 60 minutes before or after the meal."
+          }
+        ]
+      },
+      "search": {
+        "mode": "include"
+      }
+    },
+    {
+      "fullUrl": "http://fhirtest.uhn.ca/baseDstu3/NutritionOrder/cf-1502036392540",
+      "resource": {
+        "resourceType": "NutritionOrder",
+        "id": "cf-1502036392540",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2017-08-07T04:29:34.341-04:00"
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Initial Iron supplement and Food exclusions</div>"
+        },
+        "status": "requested",
+        "patient": {
+          "reference": "Patient/cf-1502036237033"
+        },
+        "dateTime": "2015-03-04T08:03:00.000Z",
+        "excludeFoodModifier": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "29263009",
+                "display": "Coffee"
+              }
+            ],
+            "text": "Coffee"
+          },
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "16313001",
+                "display": "Tea"
+              }
+            ],
+            "text": "Tea"
+          },
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "70813002",
+                "display": "Milk"
+              }
+            ],
+            "text": "Milk"
+          },
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "34208006",
+                "display": "Oxalate"
+              }
+            ],
+            "text": "Oxalate"
+          },
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "259296007",
+                "display": "Phosphate"
+              }
+            ],
+            "text": "Phosphate"
+          },
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "372794006",
+                "display": "Antacid"
+              }
+            ],
+            "text": "Antacid"
+          }
+        ],
+        "supplement": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "3829006",
+                  "display": "Iron"
+                }
+              ],
+              "text": "Iron"
+            },
+            "schedule": [
+              {
+                "repeat": {
+                  "boundsDuration": {
+                    "value": 3,
+                    "unit": "mo",
+                    "system": "http://unitsofmeasure.org"
+                  },
+                  "frequency": 1,
+                  "period": 1,
+                  "periodUnit": "d"
+                },
+                "code": {
+                  "coding": [
+                    {
+                      "system": "http://hl7.org/fhir/v3/GTSAbbreviation",
+                      "code": "QD",
+                      "display": "QD"
+                    }
+                  ],
+                  "text": "Every Day at institution specified time"
+                }
+              }
+            ],
+            "quantity": {
+              "value": 50,
+              "unit": "mg",
+              "system": "http://snomed.info/sct",
+              "code": "258684004"
+            },
+            "instruction": "To be taken on an empty stomach, at least 30 to 60 minutes before or after the meal."
+          }
+        ]
+      },
+      "search": {
+        "mode": "include"
+      }
+    }
+  ]
+}

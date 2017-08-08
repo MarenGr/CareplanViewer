@@ -140,8 +140,8 @@ function getPriority(category){
     }
 }
 
-function wrapper(type){
-    return "<xhtml:span class='icon "+type+"'></xhtml:span><br>";
+function wrapper(type, details){
+    return "<xhtml:span class='icon "+type+"' data-titles='"+details+"'></xhtml:span><br>";
 }
 
 function wrapperAndInserter(type, text){
@@ -314,5 +314,16 @@ function getEnd(period, timing){
             max = "";
         }
         return max;
+    }
+}
+
+function getActivityTitle(resource){
+    if("text" in resource){
+        return resource.text.div.replace(new RegExp(' xmlns="http://www.w3.org/1999/xhtml"', 'g'), "");
+    }else if("description" in resource){
+        return resource.description.replace(new RegExp(' xmlns="http://www.w3.org/1999/xhtml"', 'g'), "");
+    }else{
+        return "Unspecified " + resource.resourceType;
+        //title = "Unspecified "+getCategory(getGlyphicon(resource.resourceType));
     }
 }
