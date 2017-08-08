@@ -223,8 +223,9 @@ function getSpecialty(resource){
     var specialty = '';
     if('qualification' in resource){
         for(var i = 0; i < resource['qualification'].length; i++){
-            specialty += resource.qualification[i]["code"]["coding"][0]["display"] + ' ';
+            specialty += resource.qualification[i]["code"]["coding"][0]["display"] + ',<br>';
         }
+        specialty = specialty.substring(0, specialty.length-5);
     }
     if(specialty.length === 0){
         specialty = 'n/a';

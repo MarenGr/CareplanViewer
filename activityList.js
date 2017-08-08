@@ -553,7 +553,7 @@ function addHoverList(){
         if(details.length > 0){
             hover.show()
                 .html(details)
-                .offset({left: coords.left+100, top: coords.top-8});
+                .offset({left: coords.left-hover.width()-20, top: coords.top-8});
         }
     });
     $('.performer').on("mouseleave", function(){
@@ -567,7 +567,7 @@ function addHoverList(){
         if(details.length > 0){
             hover.show()
                 .html(details)
-                .offset({left: coords.left-125, top: coords.top-8});
+                .offset({left: coords.left-hover.width()-20, top: coords.top-8});
         }
     });
     $('.note').on("mouseleave", function(){
@@ -583,6 +583,7 @@ function fillPerformer2(data){
             var current = data[i]["children"][j]["performer"];
             current["name"] = gPerformer[current["reference"]].name;
             current["specialty"] = gPerformer[current["reference"]].specialty;
+            console.log(current["specialty"]);
         }
     }
 }
@@ -653,7 +654,9 @@ function getMedicineData(activity){
                 specific[p]["note"].push(activity.dosageInstruction[p].text);
             }
             if("additionalInstruction" in activity.dosageInstruction[p]){
-                specific[p]["note"].push(activity.dosageInstruction[p].additionalInstruction.text);
+                for(var z = 0; z < activity.dosageInstruction[p].additionalInstruction.length; z++) {
+                    specific[p]["note"].push(activity.dosageInstruction[p].additionalInstruction[z].text);
+                }
             }
         }
     }
