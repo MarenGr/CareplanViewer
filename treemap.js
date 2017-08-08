@@ -204,7 +204,7 @@ function parseActs(resource){
  */
 function calculatePriority(careplan, performer, activity){
     var priority = 0;
-    var weights = {"user": 0.2, "status": 0.3, "activities": 0.2, "period": 0.3}; //TODO play with weights
+    var weights = {"user": 0.2, "status": 0.2, "activities": 0.4, "period": 0.2}; //TODO play with weights
     switch(careplan["status"]){
         case "active":{
             priority += weights["status"]*10;
@@ -223,33 +223,26 @@ function calculatePriority(careplan, performer, activity){
         break;
     }
     }
-    /**var scale = d3.scale.linear()
-     .domain([1, 20])   //TODO überprüfe ob Obergrenze sinnvoll
-     .range([1, 10]);
-     priority += weights["activities"] * scale(careplan["activity"].length);*/
+
     var count = 0;
     for(var i in activity){
         count++;
     }
-    priority += weights["activities"] * (careplan["activity"].length / 4 );
-    /*if("activity" in careplan) {
-        priority += weights["activities"] * (careplan["activity"].length / 4 );
-    }else{
-        priority += weights["activities"] * 5;
-    }*/
+    priority += weights["activities"] * (careplan["activity"].length);
 
     var today = new Date();
     var parseDate = d3.time.format("%Y-%m-%d").parse;
     if("period" in careplan) {
-        if ( !("end" in careplan["period"]) || today <= parseDate(careplan["period"]["end"])) {
+        if (!("end" in careplan["period"]) || today <= parseDate(careplan["period"]["end"])){
             if ("start" in careplan["period"] && today < parseDate(careplan["period"]["start"])) {
                 priority += weights["period"] * 6;
-            } else {
+            }else{
                 priority += weights["period"] * 10;
             }
         } else {
-            priority += weights["period"] * 2;
+            priority += weights["period"] * 3;
         }
+
     }else{
         priority += weights["period"]*7;
     }
@@ -448,7 +441,6 @@ function buildTreeMap(data){
                 return color(d.name);
             }else if(!d.children){
                 var opacity = getOpacity(d.status);
-                console.log(d.status + " " + opacity);
                 return 'white';
             }else if(d.reference === gLoggedUser){
                 return 'black';
@@ -487,26 +479,55 @@ function buildTreeMap(data){
         .attr("class", "row")
         .attr("id", "row1")
         .append("xhtml:div")
-            .attr("class", "col-sm-8")
+            .attr("class", function(){
+                var div = jQuery(this);
+                var width = div.parent("div").parent("foreignObject").width();
+                var col;
+                var count = 1;
+                for(col = 8; width/12*(12-col) < 82 && col >= 6; col--);{
+                    //console.log(count + " "+width/12*(12-col));
+                    count++;
+                }
+                return "col-sm-"+col;
+            })
             .attr("id", "titel")
             .append("xhtml:label")
                 .attr("class", "titel")
                 .text(function (d) {
                     if(!d.children){
                         number++;
-                        console.log(d.status);
                         jQuery(this).parent("div").parent("div").parent("foreignObject").parent("g").addClass("field").data("opacity", getOpacity(d.status));
                         //rects.push(this.parentElement);
                         return d.name;
                     }else{return null;}
                     //return d.children ? null : d.name;
                 });
-    $('#careplanCentric').hide();
+
+    for(var i = 17; i > 10; i--) {
+        var titel = $('.titel').css("font-size", function () {
+            var cur = jQuery(this);
+            //console.log(cur.width() + " " + cur.parent("div").width());
+            if(cur.width()*2 < cur.height()){
+                cur.css("font-size", i);
+            }
+        });
+    }
 
 
-
+    console.log("next");
     d3.selectAll("#row1").append("xhtml:div")
-        .attr("class", "col-sm-4")
+        .attr("class", function(){
+            var div = jQuery(this);
+            var width = div.parent("div").parent("foreignObject").width();
+            //console.log(width);
+            var col;
+            var count = 1;
+            for(col = 4; width/12*col < 82 && col <= 6; col++);{
+                //console.log(count + " "+width/12*(12-col));
+                count++;
+            }
+            return "col-sm-"+col;
+        })
         .attr("style", "height:68px;")
         .html(function(d){
             if(!d.children) {
@@ -517,7 +538,7 @@ function buildTreeMap(data){
                 return string;
             }else{return null;}
         });
-
+    $('#careplanCentric').hide();
 
 
     var row2 = content.append("xhtml:div")
@@ -542,9 +563,16 @@ function buildTreeMap(data){
         var row = $(this);
         if(!d.children) {
             var listElements = [];
-            var listCategories = [];
-            for (var i in d.activity) {
-                listElements.push(wrapper(i, d.activity[i]));
+            var categories = [];
+            for(var i in d.activity){
+                categories.push(i);
+            }
+            categories.sort(function(a,b){
+                return getPriority(getCategory(a)) - getPriority(getCategory(b));
+            });
+            console.log(categories);
+            for(var i = 0; i < categories.length; i++) {
+                listElements.push(wrapper(categories[i], d.activity[categories[i]]));
             }
             var height = row.parent("foreignObject").height() - row.prevAll().height() - 30;
             var width = row.parent("foreignObject").width() - 20;
@@ -597,13 +625,13 @@ function fillEvenly(height, width, array){
     var verticalCount = Math.floor(height/limitH);
     if(verticalCount == 0) verticalCount = 1;
 
-    var fontSize = 30;
+    var fontSize = 50;
     var string = "<div class='container-fluid'>";
-    while(horizontalCount*verticalCount < amount && fontSize > 15){
-        limitW = limitW - 3.725, limitH = limitH - 1;
+    while(horizontalCount*verticalCount < amount && fontSize >= 15){
+        limitW = limitW - 11, limitH = limitH - 5;
         horizontalCount = Math.floor(width/limitW);
         verticalCount = Math.floor(height/limitH);
-        fontSize = fontSize-1;
+        fontSize = fontSize-5;
     }
     var ratioWH = width/height;
     var curRatio = ratio/ratioWH;
@@ -660,21 +688,27 @@ function fillEvenly(height, width, array){
             if(columns == 7 || columns == 8) {
                 for(var p = 0; p < 2 && count < amount; p++)
                 {
-                    string += '<div class="col-sm-' + 2 + '">' +
+                    var temp = '<div class="col-sm-' + 2 + '">' +
                         '<p class="center">' + applyFontSize(array[count], fontSize) + '</p>' +
                         '</div>';
+                    temp = center(temp, height, rows, fontSize);
+                    string += temp;
                     count++;
                 }
             }else if(columns == 9){
                 for(var p = 0; p < 3 && count < amount; p++)
                 {
-                    string += '<div class="col-sm-' + 3 + '">' +
+                    var temp = '<div class="col-sm-' + 3 + '">' +
                         '<p class="center">' + applyFontSize(array[count], fontSize) + '</p>' +
                         '</div>';
+                    temp = center(temp, height, rows, fontSize);
+                    string += temp;
                     count++;
                 }
             }else {
-                string += '<p class="center">' + applyFontSize(array[count], fontSize) + '</p>';
+                var temp = '<p class="center">' + applyFontSize(array[count], fontSize) + '</p>';
+                temp = center(temp, height, rows, fontSize);
+                string += temp;
                 count++;
             }
 
@@ -696,8 +730,15 @@ function applyFontSize(string, fontSize){
         return temp[0]+" style='font-size:"+fontSize[1]+"px;'> "+ temp[1];
     }else{*/
         temp = string.split('></x', string.length - 10);
-        return temp[0]+" style='font-size:"+fontSize+"px;'></x"+ temp[1];
+        return temp[0]+' style="font-size:'+fontSize+'px;"></x'+ temp[1];
     //}
+}
+
+function center(string, height, rows, fontSize){
+    var temp;
+    temp = string.split('style="');
+    var padding = (height/rows - fontSize)/2;
+    return temp[0]+'style="margin-top:'+padding+'px;'+temp[1];
 }
 
 
