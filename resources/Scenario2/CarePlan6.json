@@ -15,7 +15,7 @@
     "coding" : [{
       "system" : "http://snomed.info/sct",
       "code" : "288832002",
-      "display" : "CPA care plans"
+      "display" : "CPA care plan"
     }],
     "text" : "CPA care plan"
   },

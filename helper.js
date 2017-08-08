@@ -316,4 +316,3 @@ function getEnd(period, timing){
         return max;
     }
 }
-

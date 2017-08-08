@@ -251,6 +251,11 @@
 
             $('#submit').on('click', function () {
                 $('#careplanMap').remove();
+                if(layout === "cpCentric"){
+                    $('#pCentric').click();
+                }
+                $('.list').hide();
+                $('.head').hide();
                 gCareplans = {};
                 gPatient = null;
                 gPerformer = {};

@@ -2,30 +2,30 @@
  * Created by Maren on 07.06.2017.
  */
 
-function buildCarePlanMap(entries){
-    if(entries.length > 0) {
-        var json = parseDataT(entries);
+function buildCarePlanMap(){
+    if(!jQuery.isEmptyObject(gCareplans)) {
+        var json = parseDataT();
+        console.log(json);
         buildTreeMap(json);
     }
 }
 
-function parseDataT(entries){
+function parseDataT(){
     // all -> practitioners -> type -> care plans
     //var data = {"name": bundle["link"][0]["url"], "children": []};
     var data = {"name": "all", "children": [], "numberCP": 0, "categories": []};
-
-    for(var i = 0; i < entries.length; i++){
-        var indexPerformer = insertPerformer(data, entries, i);
-        var indexCategory = insertCategory(data, entries, i, indexPerformer);
-        insertCarePlan(data, entries, i, indexPerformer, indexCategory);
-    }
-
-
     var urlArray = [];
-    for(var j = 0; j < data['children'].length; j++){
-        urlArray.push(data['children'][j]['reference']);
+
+    for(var i in gCareplans){
+        var indexPerformer = insertPerformer(data, gCareplans[i], urlArray);
+        var indexCategory = insertCategory(data, gCareplans[i], indexPerformer);
+        insertCarePlan(data, gCareplans[i], indexPerformer, indexCategory);
     }
+
+    console.log(data);
+    layout = "cpCentric";
     performer(data, urlArray);
+    layout = "pCentric";
     //sort(data['children']);
     console.log(data['children']);
     return data;
@@ -89,33 +89,39 @@ function parseCarePlanData(entries){
     return array;
 }
 
-function insertPerformer(data, rawdata, index){
+function insertPerformer(data, rawdata, urlArray){
     var performer;
-    if("author" in rawdata[index]["resource"]){
-        performer = rawdata[index]["resource"]["author"][0]["reference"];
+    console.log(rawdata);
+    if("author" in rawdata){
+        console.log(rawdata["author"][0]["reference"]);
+        performer = rawdata["author"][0]["reference"];
     }else{
         performer = "n/a";
     }
     var i = 0;
-    var length = data["children"].length;
-    find:while(i < length){
-        if(performer == data["children"][i]["reference"]){
-            break;
-        }
-        i++;
-    }
 
-    if(i == length){
-        i = length;
+    var index = jQuery.inArray(performer, urlArray);
+    if(index < 0){
+        urlArray.push(performer);
         data["children"].push({"reference": performer, "children": []});
+        return data.children.length-1;
+    }else {
+        return index;
     }
-    return i;
 }
 
-function insertCategory(data, rawdata, index, performer){
+function insertCategory(data, rawdata, performer){
     var category;
-    if("category" in rawdata[index]["resource"]){
-        category = rawdata[index]["resource"]["category"][0]["coding"][0]["display"];
+    console.log(rawdata);
+    if("category" in rawdata){
+        console.log(rawdata.category);
+        if("text" in rawdata.category[0]) {
+            category = rawdata["category"][0]["text"];
+        }else if("display" in rawdata["category"][0]["coding"][0]){
+            category = rawdata["category"][0]["coding"][0]["display"];
+        }else{
+            category = "unspecified";
+        }
     }else{
         category = "n/a";
     }
@@ -137,34 +143,36 @@ function insertCategory(data, rawdata, index, performer){
     return i;
 }
 
-function insertCarePlan(data, rawdata, index, performer, category){
+function insertCarePlan(data, rawdata, performer, category){
     var name, size, end, specialty;
-    if("title" in rawdata[index]["resource"]){
-        name = rawdata[index]["resource"]["title"];
+    if("description" in rawdata){
+        name = rawdata["description"];
+    }else if("text" in rawdata && "div" in rawdata.text){
+        name = rawdata.text.div;
     }else{
-        name = "Care Plan "+index;
+        name = "Unspecified Care Plan";
     }
-    if("period" in rawdata[index]["resource"]){
-        if("end" in rawdata[index]["resource"]["period"]){
-            end = rawdata[index]["resource"]["period"]["end"];
+    if("period" in rawdata){
+        if("end" in rawdata["period"]){
+            end = rawdata["period"]["end"];
         }else{
-            end = "unknown";
+            end = "ongoing";
         }
     }else{
-        end = "unknown";
+        end = "ongoing";
     }
-    if("performer" in rawdata[index]['resource']){
-        if("specialty" in rawdata[index]['resource']['performer']){
-            specialty = rawdata[index]['resource']['performer']['specialty'];
+    if("performer" in rawdata){
+        if("specialty" in rawdata['performer']){
+            specialty = rawdata['performer']['specialty'];
         }else{
             specialty = "n/a";
         }
     }else{
         specialty = "n/a";
     }
-    size = calculatePriority(rawdata[index]["resource"], data['children'][performer]['reference']);
+    size = calculatePriority(rawdata, data['children'][performer]['reference']);
 
-    var object = {"name": name, "size": size, "id": rawdata[index]["resource"]["id"], "activity": rawdata[index]["resource"]["activity"], "end": end, "specialty": specialty};
+    var object = {"name": name, "size": size, "id": rawdata["id"], "activity": rawdata["activity"], "end": end, "specialty": specialty};
     data["children"][performer]["children"][category]["children"].push(object);
     data["numberCP"]++;
 }
@@ -666,18 +674,11 @@ function applyFontSize(string, fontSize){
 }
 
 
-function fillPerformer(data, response){
-    var result = response["result"];
-    for(var i = 0; i < result.length; i++){
-        if(typeof result[i].issue !== 'undefined'){
-            data['children'][i]['name'] = "not found";
-        }else if(result[i] === "n/a"){
-            data['children'][i]['name'] = "n/a";
-        }else{
-            var name = getName(result[i]);
-            data['children'][i]['name'] = name;
-        }
-
+function fillPerformer(data){
+    for(var i = 0; i < data["children"].length; i++){
+        var current = data["children"][i];
+        current["name"] = gPerformer[current["reference"]].name;
+        current["specialty"] = gPerformer[current["reference"]].specialty;
     }
 }
 

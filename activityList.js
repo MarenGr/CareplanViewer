@@ -270,6 +270,7 @@ function buildList(data){
             '<div class="col-sm-1">NOTES</span></div>' +
             '</div></div></div>');
     }
+    $('.head').show();
 
     var categoryElement = [
         '<div class="row list" id="', //Spot for Category
