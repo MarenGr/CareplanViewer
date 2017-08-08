@@ -470,7 +470,7 @@ function buildTreeMap(data){
                 var icon = ['<p class="center performer" data-specialty="', '">' +
                             getPerformerIcon() +'<br>', '</p>'];
 
-                var string =  icon[0] + d.specialty + icon[1] + d.parent.parent.name + icon[2];
+                var string =  icon[0] + d.parent.parent.specialty + icon[1] + d.parent.parent.name + icon[2];
                 return string;
             }else{return null;}
         });
