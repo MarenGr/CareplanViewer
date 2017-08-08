@@ -410,9 +410,9 @@ function buildTreeMap(data){
         })
         .sort(function(a,b){
             if(a.parent && !a.parent.parent && b.parent && !b.parent.parent){
-                if(a.reference === gLoggedUser && b.referennce !== gLoggedUser){
+                if(a.reference === gLoggedUser && b.reference !== gLoggedUser){
                     return 1;
-                }else if(b.reference === gLoggedUser && a.referennce !== gLoggedUser){
+                }else if(b.reference === gLoggedUser && a.reference !== gLoggedUser){
                     return -1;
                 }
             }
@@ -427,6 +427,12 @@ function buildTreeMap(data){
         .attr("class", "cell")
         .attr("transform", function (d) {
             return "translate(" + d.x + "," + d.y + ")";
+        })
+        .style("opacity", function(d){
+            if(!d.children){
+                return getOpacity(d.status);
+            }
+            return 1;
         });
 
     cell.append("rect")
@@ -440,12 +446,23 @@ function buildTreeMap(data){
         .style("fill", function (d) {
             if(d.children && d.parent && d.parent.parent){
                 return color(d.name);
+            }else if(!d.children){
+                var opacity = getOpacity(d.status);
+                console.log(d.status + " " + opacity);
+                return 'white';
             }else if(d.reference === gLoggedUser){
                 return 'black';
             }else{
                 return null;
             }
             //return "none";
+        })
+        .style("opacity", function(d){
+            if(!d.children){
+                var opacity = getOpacity(d.status);
+                return 1-opacity+(1-opacity)*0.25;
+            }
+            return 1;
         })
         .attr("data-id", function(d){
             return d.id;
@@ -477,7 +494,8 @@ function buildTreeMap(data){
                 .text(function (d) {
                     if(!d.children){
                         number++;
-                        jQuery(this).parent("div").parent("div").parent("foreignObject").parent("g").addClass("field");
+                        console.log(d.status);
+                        jQuery(this).parent("div").parent("div").parent("foreignObject").parent("g").addClass("field").data("opacity", getOpacity(d.status));
                         //rects.push(this.parentElement);
                         return d.name;
                     }else{return null;}
@@ -485,7 +503,7 @@ function buildTreeMap(data){
                 });
     $('#careplanCentric').hide();
 
-    
+
 
     d3.selectAll("#row1").append("xhtml:div")
         .attr("class", "col-sm-4")
@@ -731,8 +749,5 @@ function addHover(){
         hover.hide();
     });
 }
-
-
-
 
 
