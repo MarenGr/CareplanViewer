@@ -386,8 +386,15 @@ function buildActivityRow(activity, category){
     }
     string +=  elements[index++] + activity["end"];
     string += elements[index++] + activity["performer"]["specialty"] + elements[index++] + activity["performer"]["name"];
-    /*TODO activity["note"] */
-    string += elements[index++] + elements[index++];
+    string += elements[index++];
+    if(withDetails){
+        console.log(activity["specific"]);
+        if("note" in activity["specific"][0]) {
+            console.log("note");
+            string += parseNotes(activity["specific"][0]["note"]);
+        }
+    }
+    string += elements[index++];
     return string;
 }
 
@@ -463,7 +470,7 @@ function addHoverList(){
         if(details.length > 0){
             hover.show()
                 .html(details)
-                .offset({left: coords.left+100, top: coords.top-8});
+                .offset({left: coords.left+200, top: coords.top-8});
         }
     });
     $('.title').on("mouseleave", function(){
@@ -483,6 +490,20 @@ function addHoverList(){
     $('.performer').on("mouseleave", function(){
         hover.hide();
     });
+
+    $('.note').on("mouseover", function(){
+        var current = $(this);
+        var coords = current.offset();
+        var details = current.data("details");
+        if(details.length > 0){
+            hover.show()
+                .html(details)
+                .offset({left: coords.left-125, top: coords.top-8});
+        }
+    });
+    $('.note').on("mouseleave", function(){
+        hover.hide();
+    });
 }
 
 
@@ -498,7 +519,7 @@ function fillPerformer2(data){
 
 function getMedicineData(activity){
     var specific = [];
-    var status, priority, intent, medicine;
+    var status, priority, intent, medicine, note = [];
     if("status" in activity){
         status = activity["status"];
     }
@@ -511,9 +532,15 @@ function getMedicineData(activity){
     if("medicationCodeableConcept" in activity){
         medicine = activity.medicationCodeableConcept.text;
     }
+
+    if("note" in activity){
+        for(var i = 0; i < activity.note.length; i++){
+            note.push(activity.note[i].text);
+        }
+    }
     if("dosageInstruction" in activity){
         for(var p = 0; p < activity["dosageInstruction"].length; p++) {
-            specific.push({"status": status, "priority": priority, "intent": intent, "medicine": medicine});
+            specific.push({"status": status, "priority": priority, "intent": intent, "medicine": medicine, "note": note});
             if ("timing" in activity["dosageInstruction"][p]) {
                 specific[p]["timing"] = parseSchedule(activity["dosageInstruction"][p]["timing"]);
             } else if ("asNeededBoolean" in activity["dosageInstruction"][p] && activity["dosageInstruction"][p]["asNeededBoolean"]) {
@@ -530,6 +557,12 @@ function getMedicineData(activity){
                 var temp = activity["dosageInstruction"][p]["rateRatio"];
                 specific[p]["dose"] = temp["numerator"]["value"] + temp["numerator"]["unit"] + ' / ' +
                                         temp["denominator"]["value"] + temp["denominator"]["unit"];
+            }
+            if("text" in activity.dosageInstruction[p]){
+                specific[p]["note"].push(activity.dosageInstruction[p].text);
+            }
+            if("additionalInstruction" in activity.dosageInstruction[p]){
+                specific[p]["note"].push(activity.dosageInstruction[p].additionalInstruction.text);
             }
         }
     }
@@ -560,12 +593,24 @@ function getExerciseData(activity){
 
 function getDietData(activity){
     var specific = [];
-    var status;
+    var status, note=[];
     if("status" in activity){
         status = activity["status"];
     }
+    if("foodPreferenceModifier" in activity){
+        note.push("foodPreference",[])
+        for(var i = 0; i < activity.foodPreferenceModifier.length; i++){
+            note[note.length-1].push(activity.foodPreferenceModifier[i].text);
+        }
+    }
+    if("excludeFoodModifier" in activity){
+        note.push("excludeFood",[])
+        for(var i = 0; i < activity.excludeFoodModifier.length; i++){
+            note[note.length-1].push(activity.excludeFoodModifier[i].text);
+        }
+    }
     if("oralDiet" in activity){
-        specific.push({"status": status});
+        specific.push({"status": status, "note": note});
         if("type" in activity["oralDiet"]){
             specific[0]["type"] = activity["oralDiet"]["type"];
         }
@@ -605,7 +650,7 @@ function getDietData(activity){
     if("supplement" in activity){
         var index = specific.length;
         for(var p = 0; p < activity.supplement.length; p++) {
-            specific.push({"status": status});
+            specific.push({"status": status, "note": note});
             if ("productName" in activity["supplement"][p]) {
                 specific[index]["type"] = activity["supplement"][p]["productName"];
             } else if ("type" in activity["supplement"][p]) {
@@ -621,7 +666,7 @@ function getDietData(activity){
     }
     if("enteralFormular" in activity){
         var index = specific.length;
-        specific.push({"status": status});
+        specific.push({"status": status, "note": note});
         if("baseFormularProductName" in activity["enteralFormular"]){
             specific[index]["type"] = activity["enteralFormular"]["baseFormularProductName"];
         }else if("baseFormularType" in activity["enteralFormular"]){

@@ -244,3 +244,20 @@ function getOpacity(status){
     }
 }
 
+function parseNotes(note){
+    console.log(note);
+    var string = '';
+    for(var i = 0; i < note.length; i++){
+        if(jQuery.type(note[i] !== 'array')){
+            string += note[i] + '<br>';
+        }else{
+            string = string.substring(0, string.length-4) + ': ';
+            for(var p = 0; p < note[i].length; p++){
+                string += note[i][p] + ', ';
+            }
+            string = string.substring(0, string.length-2) + '<br>';
+        }
+    }
+    return string;
+}
+
