@@ -74,7 +74,7 @@ function insertActivityReference(data, resource, performerArray){
             }else if("reasonCode" in resource){
                 purpose = resource.reasonCode.coding.display;
             }else{
-                //TODO for NutritionOrder for example
+                purpose = "";
             }
         }
     }else{
@@ -83,19 +83,60 @@ function insertActivityReference(data, resource, performerArray){
         }else if("reasonCode" in resource){
             purpose = resource.reasonCode.coding.display;
         }else{
-            //TODO
+            purpose = "";
         }
     }
 
-    //TODO
-    if("period" in resource){
-        if("end" in resource["period"]){
-            end = resource["period"]["end"];
-        }else{
-            end = "ongoing";
+    if("period" in resource) {
+        end = getEnd(resource.period, "");
+    }else if("occurrenceTiming" in resource){           //DevReq, ProReq
+        end = getEnd("", resource.occurrenceTiming);
+    }else if("occurrencePeriod"  in resource){          //DevReq, ProReq
+        end = getEnd(resource.occurrencePeriod, "");
+    }else if("occurrenceDateTime" in resource){          //DevReq, ProReq
+        end = resource.occurrenceDateTime;
+    }else if("dosageInstruction" in resource){              //MedReq
+        var max;
+        for(var i = 0; i < resource.dosageInstruction.length; i++) {
+            if("timing" in resource.dosageInstruction[i]) {
+                var temp = getEnd("", resource.dosageInstruction[i].timing);
+                console.log(temp);
+                if(temp === "ongoing"){
+                    max = temp;
+                    break;
+                }
+                if(jQuery.type(max) === 'undefined' || Date(max) < Date(temp)){
+                    max = temp;
+                }
+            }
         }
-    }else{
-        end = "ongoing";
+        end = max;
+    }else if("oralDiet" in resource && "schedule" in resource.oralDiet){    //NutO
+        end = getEnd("", resource.oralDiet.schedule);
+    }else if("supplement" in resource){                                     //NutO
+        var max;
+        for(var i = 0; i < resource.supplement.length; i++) {
+            if("schedule" in resource.supplement[i]) {
+                var temp = getEnd("", resource.supplement.schedule);
+                if(temp === "ongoing"){
+                    max = temp;
+                    break;
+                }
+                if(jQuery.type(max) === 'undefined' || Date(max) < Date(temp)){
+                    max = temp;
+                }
+            }
+        }
+        end = max;
+        end = getEnd("", resource.supplement.schedule);
+    }else if("enteralFormular" in resource && "administration" in resource.enteralFormular && "schedule" in resource.enteralFormular.administration[0]) {    //NutO
+        end = getEnd("", resource.enteralFormular.administration[0].schedule);
+    }else if("executionPeriod" in resource){                                 //Task
+        end = getEnd(resource.executionPeriod, "");
+    }else if("basedOn" in resource && "reference" in resource.basedOn) {        //else
+            end = getCarePlanEnd(resource.basedOn.reference.reference);
+    }else{      //if not even Careplan found
+        end = "";
     }
 
     if("requester" in resource) {
@@ -117,6 +158,7 @@ function insertActivityReference(data, resource, performerArray){
         case "Blood Measurement": {specificData = getBloodMData(resource); break;}
         case "Weight Measurement": {specificData = getWeightMData(resource); break;}
         case "Procedure": {specificData = getProcedureData(resource); break;}
+        case "Measurement": {specificData = getMeasurementData(resource); break;}
         default: specificData = [];
     }
     data[category]['children'].push({"title": title,
@@ -307,30 +349,28 @@ function buildActivityRow(activity, category){
                 break;
             }
             case "Procedure": {
-                for (var i = 0; i < activity["specific"].length; i++) {
-                    string += elements[index];
-                    if ("status" in activity["specific"][i]) {
-                        string += activity["specific"][i]["status"];
-                    }
-                    string += elements[index+1];
-                    if ("priority" in activity["specific"][i]) {
-                        string += activity["specific"][i]["priority"];
-                    }
-                    string += elements[index+2];
-                    if ("intent" in activity["specific"][i]) {
-                        string += activity["specific"][i]["intent"];
-                    }
-                    string += elements[index+3];
-                    if ("timing" in activity["specific"][i]) {
-                        string += activity["specific"][i]["timing"];
-                    }
-                    string += elements[index+4];
-                    if ("procedure" in activity["specific"][i]) {
-                        string += activity["specific"][i]["procedure"];
-                    }
-                    string += elements[index+5];
+                string += elements[index];
+                if ("status" in activity["specific"][0]) {
+                    string += activity["specific"][0]["status"];
                 }
-                index = index + 5 +1;
+                string += elements[index+1];
+                if ("priority" in activity["specific"][0]) {
+                    string += activity["specific"][0]["priority"];
+                }
+                string += elements[index+2];
+                if ("intent" in activity["specific"][0]) {
+                    string += activity["specific"][0]["intent"];
+                }
+                string += elements[index+3];
+                if ("timing" in activity["specific"][0]) {
+                    string += activity["specific"][0]["timing"];
+                }
+                string += elements[index+4];
+                if ("procedure" in activity["specific"][0]) {
+                    string += activity["specific"][0]["procedure"];
+                }
+                string += elements[index+5];
+                index = index + 5 + 1;
                 break;
             }
             case "Exercise": case "Blood Measurement": case "Weight Measurement": {
@@ -382,19 +422,37 @@ function buildActivityRow(activity, category){
                 index = index + 5 +1;
                 break;
             }
+            case "Measurement":{
+                for (var i = 0; i < activity["specific"].length; i++) {
+                    string += elements[index];
+                    if ("status" in activity["specific"][i]) {
+                        string += activity["specific"][i]["status"];
+                    }
+                    string += elements[index+1];
+                    if ("priority" in activity["specific"][i]) {
+                        string += activity["specific"][i]["priority"];
+                    }
+                    string += elements[index+2];
+                    if ("intent" in activity["specific"][i]) {
+                        string += activity["specific"][i]["intent"];
+                    }
+                    string += elements[index+3];
+                }
+                index = index + 3 +1;
+                break;
+            }
         }
     }
-    string +=  elements[index++] + activity["end"];
+    string += elements[index++] + activity["end"];
     string += elements[index++] + activity["performer"]["specialty"] + elements[index++] + activity["performer"]["name"];
     string += elements[index++];
-    if(withDetails){
-        console.log(activity["specific"]);
-        if("note" in activity["specific"][0]) {
-            console.log("note");
-            string += parseNotes(activity["specific"][0]["note"]);
-        }
+    if(withDetails && "note" in activity["specific"][0] && activity.specific[0].note.length !== 0) {
+        string += parseNotes(activity["specific"][0]["note"]);
+        string += elements[index++] + elements[index++] ;
+    }else{
+        string += elements[index++];
     }
-    string += elements[index++];
+    string += elements[elements.length-1];
     return string;
 }
 
@@ -407,7 +465,9 @@ function getActivityRow(category, withDetails){
                 '</div><div class="col-sm-1 performer" data-specialty="',
                 '">',
                 '</div><div class="col-sm-1 note" data-details="',
-                '"><span class="fa fa-sticky-note-o"></span></div></div>'];
+                '">',
+                '<span class="fa fa-sticky-note-o"></span>',
+                '</div></div>'];
     if(withDetails) {
         var specific = [];
         switch (category) {
@@ -451,6 +511,15 @@ function getActivityRow(category, withDetails){
                 specific.push('</div><div class="col-sm-3">');
                 specific.push('</div><div class="col-sm-5">');
                 specific.push('</div></div>');
+                break;
+            }
+            case "Measurement":{
+                specific.push('<div class="row">' +
+                    '<div class="col-sm-1">');
+                specific.push('</div><div class="col-sm-1">');
+                specific.push('</div><div class="col-sm-10">');
+                specific.push('</div></div>');
+                break;
             }
         }
         for (var i = 0; i < specific.length; i++) {
@@ -507,6 +576,7 @@ function addHoverList(){
 }
 
 
+
 function fillPerformer2(data){
     for(var i in data){
         for(var j = 0; j < data[i]["children"].length; j++){
@@ -515,6 +585,27 @@ function fillPerformer2(data){
             current["specialty"] = gPerformer[current["reference"]].specialty;
         }
     }
+}
+
+function getMeasurementData(activity){
+    var specific = {};
+    if("status" in activity){
+        specific["status"] = activity["status"];
+    }
+    if("priority" in activity){
+        specific["priority"] = activity["priority"];
+    }
+    if("intent" in activity){
+        specific["intent"] = activity.intent.coding[0].display;
+    }
+    var note = [];
+    if("note" in activity){
+        for(var i = 0; i < activity.note.length; i++){
+            note.push(activity.note[i].text);
+        }
+    }
+    specific["note"] = note;
+    return [specific];
 }
 
 function getMedicineData(activity){

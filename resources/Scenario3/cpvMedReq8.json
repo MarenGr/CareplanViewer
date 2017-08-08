@@ -34,13 +34,9 @@
   }],
   "dosageInstruction" : [
     {
-
       "text" : "with or directly after breakfast",
       "timing" : {
-
-
         "repeat" : {
-
           "boundsPeriod" : {
             "start" : "2017-08-01"
           },

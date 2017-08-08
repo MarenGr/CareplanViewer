@@ -52,6 +52,14 @@ function getCarePlanDescription(reference){
     }
 }
 
+function getCarePlanEnd(reference){
+    var careplan = gCareplans[reference];
+    if("period" in careplan){
+        return getEnd(careplan.period);
+    }
+    return "";
+}
+
 function checkContent(display){
     var list = ["diet", "exercise", "drug", "medication", "immunization", "encounter", "appointment", "observation", "procedure", "supply"];
     for(var i = 0; i < list.length; i++){
@@ -259,5 +267,38 @@ function parseNotes(note){
         }
     }
     return string;
+}
+
+function getEnd(period, timing){
+    if(jQuery.type(period) !== "undefined" && period !== ""){
+        if ("end" in period) {
+            return period["end"];
+        } else {
+            return "ongoing";
+        }
+    }
+    if(jQuery.type(timing) !== "undefined" && timing !== ""){
+        console.log("timing");
+        if(jQuery.type(timing) !== 'array'){
+            timing = [timing];
+            console.log(timing);
+        }
+        var max;
+        for(var i = 0; i < timing.length; i++) {
+            if ("repeat" in timing[i] && "boundsPeriod" in timing[i].repeat) {
+                var end = getEnd(timing[i].repeat.boundsPeriod, "");
+                if(end === "ongoing"){
+                    return end;
+                }
+                if(jQuery.type(max) === 'undefined' || Date(max) < Date(end)){
+                    max = end;
+                }
+            }
+        }
+        if(jQuery.type(max) === "undefined"){   //if boundsDuration was in timing; TODO compute?
+            max = "";
+        }
+        return max;
+    }
 }
 
