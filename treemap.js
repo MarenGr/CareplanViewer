@@ -176,7 +176,8 @@ function parseActs(resource){
         for(var i = 0; i < resource.activity.length; i++){
             if("reference" in resource.activity[i]){
                 var current = gActivities[resource.activity[i].reference.reference];
-                var icon = getGlyphicon(current.resourceType);
+                var category = getActivityType(true, current);
+                var icon = getGlyphicon(category[0]);
                 var title = getActivityTitle(current) + '<br>';
                 if(jQuery.inArray(icon, listCategories) < 0){
                     listCategories.push(icon);
@@ -229,7 +230,7 @@ function calculatePriority(careplan, performer, activity){
     for(var i in activity){
         count++;
     }
-    priority += weights["activities"] * (careplan["activity"].length);
+    priority += weights["activities"] * (count);
 
     var today = new Date();
     var parseDate = d3.time.format("%Y-%m-%d").parse;
@@ -775,6 +776,7 @@ function addHover(){
                 .html(details)
                 .offset({left: coords.left+30, top: coords.top});
         }
+
     });
     $('.icon').on("mouseleave", function(){
         hover.hide();

@@ -64,9 +64,9 @@ function getCarePlanDescription(reference){
 function getCarePlanEnd(reference){
     var careplan = gCareplans[reference];
     if("period" in careplan){
-        return getEnd(careplan.period);
+        return getEnd(careplan.period, "");
     }
-    return "";
+    return "ongoing";
 }
 
 function checkContent(display){
@@ -98,7 +98,7 @@ function getGlyphicon(code){
         case "NutritionOrder": return "fa fa-cutlery";
         case "MedicationRequest": return "fa fa-minus-circle fa-rotate-140";
         case "ProcedureRequest": return "fa fa-stethoscope";
-        case "DeviceRequest": return "fa fa-thermometer-half"
+        case "DeviceRequest": return "fa fa-thermometer-half";
         case "Exercise": return "fa fa-soccer-ball-o";
         case "BloodMeasurement": return "fa fa-heart";
         case "WeightMeasurement": return "fa fa-balance-scale";
@@ -267,13 +267,28 @@ function getPerformerIcon(){
 function getOpacity(status){
     switch(status){
         case "active": return 1;
-        case "on-hold": return 0.9;
-        case "cancelled": return 0.3;
+        case "requested": return 0.9
+        case "on-hold": return 0.89;
         case "completed": return 0.3;
+        case "cancelled": return 0.29;
         case "entered-in-error": return 0.2;
-        case "stopped": return 0.3;
+        case "stopped": return 0.28;
         case "draft": return 0.6;
         case "unknown": return 1;
+    }
+}
+
+function getStatusIcon(code){
+    switch(code){
+        case "active": return "fa fa-spinner";
+        case "requested": return "fa fa-exclamation";
+        case "on-hold": return "fa fa-pause";
+        case "completed": return "fa fa-check";
+        case "cancelled": return "fa fa-ban";
+        case "entered-in-error": return "fa fa-bolt";
+        case "stopped": return "fa fa-stip";
+        case "draft": return "fa fa-send";
+        default: return "fa fa-question"
     }
 }
 
@@ -309,7 +324,9 @@ function getEnd(period, timing){
         for(var i = 0; i < timing.length; i++) {
             if ("repeat" in timing[i] && "boundsPeriod" in timing[i].repeat) {
                 var end = getEnd(timing[i].repeat.boundsPeriod, "");
+                console.log(end);
                 if(end === "ongoing"){
+                    console.log("here");
                     return end;
                 }
                 if(jQuery.type(max) === 'undefined' || Date(max) < Date(end)){
@@ -317,9 +334,9 @@ function getEnd(period, timing){
                 }
             }
         }
-        if(jQuery.type(max) === "undefined"){   //if boundsDuration was in timing; TODO compute?
-            max = "";
-        }
+        if(jQuery.type(max) === "undefined"){
+            max = "ongoing";
+        }console.log("max: "+max);
         return max;
     }
 }
@@ -364,12 +381,22 @@ function toString(actRows, status){
 function differentiate(type, resource){
     switch(type){
         case "DeviceRequest":{
-            if(/exercise/i.test(resource.codeCodeableConcept.text)){
-                return "Exercise";
-            }else if(/blood/i.test(resource.codeCodeableConcept.text)){
-                return "BloodMeasurement";
-            }else if(/[scale|weight]/i.test(resource.codeCodeableConcept.text)){
-                return "WeightMeasurement";
+            if("text" in resource.codeCodeableConcept) {
+                if (/exercise/i.test(resource.codeCodeableConcept.text)) {
+                    return "Exercise";
+                } else if (/(blood|heart)/i.test(resource.codeCodeableConcept.text)) {
+                    return "BloodMeasurement";
+                } else if (/(scale|weight)/i.test(resource.codeCodeableConcept.text)) {
+                    return "WeightMeasurement";
+                }
+            }else if("display" in resource.codeCodeableConcept.coding[0]){
+                if (/exercise/i.test(resource.codeCodeableConcept.coding[0].display)) {
+                    return "Exercise";
+                } else if (/(blood|heart)/i.test(resource.codeCodeableConcept.coding[0].display)) {
+                    return "BloodMeasurement";
+                } else if (/(scale|weight)/i.test(resource.codeCodeableConcept.coding[0].display)) {
+                    return "WeightMeasurement";
+                }
             }
             return "DeviceRequest";
         }
