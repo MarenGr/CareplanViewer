@@ -779,7 +779,7 @@ function addHover(){
         if(details.length > 0){
             hover.show()
                 .html(details)
-                .offset({left: coords.left+30, top: coords.top});
+                .offset({left: coords.left+60, top: coords.top});
         }
 
     });

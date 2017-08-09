@@ -341,7 +341,7 @@ function buildActivityRow(activity, category){
         withDetails = true;
         status[0] = activity.specific[0].status;
         opacity = getOpacity(status[0]);
-        status.push(wrapper(getStatusIcon(status[0]), status[0] + toggable));
+        status.push(wrapper(getStatusIcon(status[0]), status[0] + toggable).replace('icon', 'status'));
     }
 
     var elements = getActivityRow(category, withDetails, opacity);
@@ -605,6 +605,21 @@ function addHoverList(){
         }
     });
     $('.note').on("mouseleave", function(){
+        hover.hide();
+    });
+
+    $('.status').on("mouseover", function(){
+        var current = $(this);
+        var coords = current.offset();
+        var details = current.data("titles");
+        if(details.length > 0){
+            hover.show()
+                .html(details)
+                .offset({left: coords.left+30, top: coords.top - 5});
+        }
+
+    });
+    $('.status').on("mouseleave", function(){
         hover.hide();
     });
 }
