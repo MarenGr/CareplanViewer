@@ -293,9 +293,20 @@ function buildList(data){
         build += data[categories[i]]["name"]+ categoryElement[1];
         build += '<span class="'+getGlyphicon(categories[i].toLowerCase())+' fa-3x"></span>';
         build += categoryElement[2];
+        var actRows = {};
+        var status = [];
         for(var j = 0; j < data[categories[i]]["children"].length; j++){
-            build += buildActivityRow(data[categories[i]]["children"][j], data[categories[i]]["name"]);
+            var temp = buildActivityRow(data[categories[i]]["children"][j], data[categories[i]]["name"]);
+            if(!actRows.hasOwnProperty(temp[0])){
+                actRows[temp[0]] = [];
+                status.push(temp[0]);
+            }
+            actRows[temp[0]].push(temp[1]);
         }
+        status.sort(function(a,b){
+            return getOpacity(b) - getOpacity(a);
+        })
+        build += toString(actRows, status);
         build += categoryElement[3];
         $('#patientCentric').append(build);
     }
@@ -316,9 +327,11 @@ function buildActivityRow(activity, category){
     var withDetails = false;
     var opacity = 1;
     var elements;
+    var status = "active";
     if(activity["specific"].length > 0){
         withDetails = true;
-        opacity = getOpacity(activity.specific[0].status);
+        status = activity.specific[0].status;
+        opacity = getOpacity(status);
     }
 
     var elements = getActivityRow(category, withDetails, opacity);
@@ -467,7 +480,7 @@ function buildActivityRow(activity, category){
         string += elements[index++];
     }
     string += elements[elements.length-1];
-    return string;
+    return [status, string];
 }
 
 function getActivityRow(category, withDetails, opacity){

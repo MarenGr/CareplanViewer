@@ -343,3 +343,13 @@ function getRows(details){
         }
     }
 }
+
+function toString(actRows, status){
+    var string = "";
+    for(var p = 0; p < status.length; p++){
+        for(var q = 0; q < actRows[status[p]].length; q++){
+            string += actRows[status[p]][q];
+        }
+    }
+    return string;
+}
