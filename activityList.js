@@ -267,6 +267,7 @@ function sortData(data){
 }
 
 function buildList(data){
+    $('#res').hide();
     $('.list').remove();
     if($('.head').length === 0) {
         $('#patientCentric').append('<div class="row head">' +
