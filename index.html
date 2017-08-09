@@ -107,7 +107,7 @@
 			color: white;
 			margin-top:15px;
 			margin-bottom:15px;
-			padding-top:10px;
+			padding-top:5px;
 			padding-bottom:10px;
 		}
 		.box {
@@ -346,6 +346,7 @@
                 console.log(current);
                 var iconClass = current.attr("class").replace("icon ", "");
                 var category = getCategory(iconClass);
+                $('#'+category+'').scrollView();
                 console.log(iconClass);
                 var details = current.data("titles").split("<br>");
                 getRows(details);
@@ -361,10 +362,18 @@
                             console.log(rows[i].attributes[1].value);
                         }
                     }, 2000);*/
-                }, 1000);
-				$('#'+category).effect("highlight", {color: "#f7bb80"}, 2000);
+                }, 800);
+				$('#'+category).effect("highlight", {color: "#f7bb80"}, 4000);
 
             });
+
+            $.fn.scrollView = function () {
+                return this.each(function () {
+                    $('html, body').animate({
+                        scrollTop: $(this).offset().top-157
+                    }, 750);
+                });
+            }
         });
 	</script>
 
