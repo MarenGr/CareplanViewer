@@ -22,24 +22,17 @@ function parseDataL(){
 
         if("activity" in current) {
             for(var j = 0; j < current["activity"].length; j++) {
-                var icon;
-                var type;
-                if ("reference" in current.activity[j]) {
-                    type = getActivityType(true, current.activity[j]["reference"]);
-                    icon = getGlyphicon(type[0]);
-                } else {
-                    type = getActivityType(false, current.activity[j]["detail"]);
-                    icon = getGlyphicon(type[0]);
-                }
-                var index = jQuery.inArray(icon, typeList);
-                var category = getCategory(icon);
-                if (index < 0) {
-                    typeList.push(icon);
-                    data[category] = {"name": category, "category": icon, "children": []};
-                }
                 if("reference" in current.activity[j]) {
-                    insertActivityReference(data, gActivities[current.activity[j].reference.reference], performerArray);
+                    insertActivityReference(data, gActivities[current.activity[j].reference.reference], performerArray, typeList);
                 }else{
+                    var type = getActivityType(false, current.activity[j]["detail"]);
+                    var icon = getGlyphicon(type[0]);
+                    var index = jQuery.inArray(icon, typeList);
+                    var category = getCategory(icon);
+                    if (index < 0) {
+                        typeList.push(icon);
+                        data[category] = {"name": category, "category": icon, "children": []};
+                    }
                     insertActivityDetail(data, current, i, j, category, performerArray, type[1]);
                 }
             }
@@ -49,8 +42,17 @@ function parseDataL(){
     return data;
 }
 
-function insertActivityReference(data, resource, performerArray){
+function insertActivityReference(data, resource, performerArray, typeList){
     var title, purpose, end, specialty, requester;
+
+    var type = getActivityType(true, resource);
+    var icon = getGlyphicon(type[0]);
+    var index = jQuery.inArray(icon, typeList);
+    var category = getCategory(icon);
+    if (index < 0) {
+        typeList.push(icon);
+        data[category] = {"name": category, "category": icon, "children": []};
+    }
 
     title = getActivityTitle(resource);
     /*if("text" in resource){
@@ -151,16 +153,14 @@ function insertActivityReference(data, resource, performerArray){
     }
 
     var specificData = [];
-    var category = getCategory(getGlyphicon(resource.resourceType));
 
     switch(category){
         case "Medicine": {specificData = getMedicineData(resource); break;}
-        case "Exercise": {specificData = getExerciseData(resource); break;}
+        case "Exercise": {specificData = getExerciseData(resource);break;}
         case "Diet": {specificData = getDietData(resource); break;}
-        case "Blood Measurement": {specificData = getBloodMData(resource); break;}
-        case "Weight Measurement": {specificData = getWeightMData(resource); break;}
+        case "BloodMeasurement": case "WeightMeasurement": case "Measurement":{
+            specificData = getDevData(resource); break;}
         case "Procedure": {specificData = getProcedureData(resource); break;}
-        case "Measurement": {specificData = getMeasurementData(resource); break;}
         default: specificData = [];
     }
     data[category]['children'].push({"title": title,
@@ -291,7 +291,7 @@ function buildList(data){
     for(var i = 0; i < categories.length; i++){
         var build = categoryElement[0];
         build += data[categories[i]]["name"]+ categoryElement[1];
-        build += '<span class="'+getGlyphicon(categories[i].toLowerCase())+' fa-3x"></span>';
+        build += '<span class="'+getGlyphicon(categories[i])+' fa-3x"></span>';
         build += categoryElement[2];
         var actRows = {};
         var status = [];
@@ -312,7 +312,6 @@ function buildList(data){
     }
 
     while($(".list").length !== categories.length){}
-    console.log($(".list"));
     var list = $(".list");
     var keys = [];
     jQuery.each(list, function(key, value) {
@@ -400,24 +399,29 @@ function buildActivityRow(activity, category){
                 index = index + 5 + 1;
                 break;
             }
-            case "Exercise": case "Blood Measurement": case "Weight Measurement": {
-                string += elements[index++];
-                if ("status" in activity["specific"][i]) {
-                    string += activity["specific"][i]["status"];
+            case "Exercise": case "BloodMeasurement": case "WeightMeasurement": case "Measurement": {
+                string += elements[index];
+                if ("status" in activity["specific"][0]) {
+                    string += activity["specific"][0]["status"];
                 }
-                string += elements[index++];
-                if ("priority" in activity["specific"][i]) {
-                    string += activity["specific"][i]["priority"];
+                string += elements[index+1];
+                if ("priority" in activity["specific"][0]) {
+                    string += activity["specific"][0]["priority"];
                 }
-                string += elements[index++];
-                if ("intent" in activity["specific"][i]) {
-                    string += activity["specific"][i]["intent"];
+                string += elements[index+2];
+                if ("intent" in activity["specific"][0]) {
+                    string += activity["specific"][0]["intent"];
                 }
-                string += elements[index++];
-                if ("occurrence" in activity["specific"][i]) {
-                    string += activity["specific"][i]["occurrence"];
+                string += elements[index+3];
+                if ("occurrence" in activity["specific"][0]) {
+                    string += activity["specific"][0]["occurrence"];
                 }
-                string += elements[index++];
+                string += elements[index+4];
+                if("device" in activity["specific"][0]){
+                    string += activity["specific"][0]["device"];
+                }
+                string += elements[index+5];
+                index = index + 5 + 1;
                 break;
             }
             case "Diet": {
@@ -449,7 +453,7 @@ function buildActivityRow(activity, category){
                 index = index + 5 +1;
                 break;
             }
-            case "Measurement":{
+            /*case "Measurement":{
                 for (var i = 0; i < activity["specific"].length; i++) {
                     string += elements[index];
                     if ("status" in activity["specific"][i]) {
@@ -467,7 +471,7 @@ function buildActivityRow(activity, category){
                 }
                 index = index + 3 +1;
                 break;
-            }
+            }*/
         }
     }
     string += elements[index++] + activity["end"];
@@ -520,14 +524,13 @@ function getActivityRow(category, withDetails, opacity){
                 specific.push('</div></div>');
                 break;
             }
-            case "Exercise":
-            case "Blood Measurement":
-            case "Weight Measurement": {
+            case "BloodMeasurement": case "WeightMeasurement": case "Measurement": case "Exercise":{
                 specific.push('<div class="row">' +
-                    '<div class="col-sm-2">');
+                    '<div class="col-sm-1">');
+                specific.push('</div><div class="col-sm-1">');
                 specific.push('</div><div class="col-sm-2">');
-                specific.push('</div><div class="col-sm-2">');
-                specific.push('</div><div class="col-sm-6">');
+                specific.push('</div><div class="col-sm-3">');
+                specific.push('</div><div class="col-sm-5">');
                 specific.push('</div></div>');
                 break;
             }
@@ -538,14 +541,6 @@ function getActivityRow(category, withDetails, opacity){
                 specific.push('</div><div class="col-sm-2">');
                 specific.push('</div><div class="col-sm-3">');
                 specific.push('</div><div class="col-sm-5">');
-                specific.push('</div></div>');
-                break;
-            }
-            case "Measurement":{
-                specific.push('<div class="row">' +
-                    '<div class="col-sm-1">');
-                specific.push('</div><div class="col-sm-1">');
-                specific.push('</div><div class="col-sm-10">');
                 specific.push('</div></div>');
                 break;
             }
@@ -615,26 +610,6 @@ function fillPerformer2(data){
     }
 }
 
-function getMeasurementData(activity){
-    var specific = {};
-    if("status" in activity){
-        specific["status"] = activity["status"];
-    }
-    if("priority" in activity){
-        specific["priority"] = activity["priority"];
-    }
-    if("intent" in activity){
-        specific["intent"] = activity.intent.coding[0].code;
-    }
-    var note = [];
-    if("note" in activity){
-        for(var i = 0; i < activity.note.length; i++){
-            note.push(activity.note[i].text);
-        }
-    }
-    specific["note"] = note;
-    return [specific];
-}
 
 function getMedicineData(activity){
     var specific = [];
@@ -699,17 +674,26 @@ function getExerciseData(activity){
         specific["priority"] = activity["priority"];
     }
     if("intent" in activity){
-        specific["intent"] = activity["intent"];
+        if(jQuery.type(activity.intent) === "string"){
+            specific["intent"] = activity["intent"];
+        }else {
+            specific["intent"] = activity["intent"].coding[0].display;
+        }
     }
     if("occurrenceDateTime" in activity){
-        specific["occurrence"] = activity["occurrenceDateTime"];
+        specific["occurrence"] = "On "+activity["occurrenceDateTime"];
     }else if("occurrencePeriod" in activity){
-        specific["occurrence"] = c
-    }else if("occurrencTiming" in activity){
-        //TODO: https://www.hl7.org/fhir/datatypes.html#Timing
-        specific["occurrence"] = activity["occurrencTiming"];
+        specific["occurrence"] = "From "+activity.occurrencePeriod.start;
+    }else if("occurrenceTiming" in activity){
+        specific["occurrence"] = parseSchedule(activity["occurrenceTiming"]);
     }
-    return specific;
+    if("code" in activity){
+        specific["device"] = activity.code.text;
+    }else if("codeCodeableConcept" in activity){
+        specific["device"] = activity.codeCodeableConcept.coding[0].display;
+    }
+
+    return [specific];
 }
 
 function getDietData(activity){
@@ -810,7 +794,7 @@ function getDietData(activity){
     return specific;
 }
 
-function getBloodMData(activity){
+function getDevData(activity){
     var specific = {};
     if("status" in activity){
         specific["status"] = activity["status"];
@@ -819,39 +803,19 @@ function getBloodMData(activity){
         specific["priority"] = activity["priority"];
     }
     if("intent" in activity){
-        specific["intent"] = activity["intent"];
+        specific["intent"] = activity["intent"]["coding"][0]["code"];
     }
     if("occurrenceDateTime" in activity){
-        specific["occurrence"] = activity["occurrenceDateTime"];
+        specific["occurrence"] = "On " +activity["occurrenceDateTime"];
     }else if("occurrencePeriod" in activity){
-        specific["occurrence"] = activity["occurrencePeriod"]["start"] +" - "+ activity["occurrencePeriod"]["end"];
-    }else if("occurrencTiming" in activity){
-        //TODO: https://www.hl7.org/fhir/datatypes.html#Timing
-        specific["occurrence"] = activity["occurrencTiming"];
+        specific["occurrence"] = "From "+activity["occurrencePeriod"]["start"];
+    }else if("occurrenceTiming" in activity){
+        specific["occurrence"] = parseSchedule(activity["occurrenceTiming"]);
     }
-    return specific;
-}
-
-function getWeightMData(activity){
-    var specific = {};
-    if("status" in activity){
-        specific["status"] = activity["status"];
+    if("codeCodeableConcept" in activity){
+        specific["device"] = activity["codeCodeableConcept"]["coding"][0]["display"];
     }
-    if("priority" in activity){
-        specific["priority"] = activity["priority"];
-    }
-    if("intent" in activity){
-        specific["intent"] = activity["intent"];
-    }
-    if("occurrenceDateTime" in activity){
-        specific["occurrence"] = activity["occurrenceDateTime"];
-    }else if("occurrencePeriod" in activity){
-        specific["occurrence"] = activity["occurrencePeriod"]["start"] +" - "+ activity["occurrencePeriod"]["end"];
-    }else if("occurrencTiming" in activity){
-        //TODO: https://www.hl7.org/fhir/datatypes.html#Timing
-        specific["occurrence"] = activity["occurrencTiming"];
-    }
-    return specific;
+    return [specific];
 }
 
 function getProcedureData(activity){

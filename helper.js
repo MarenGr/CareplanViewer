@@ -25,7 +25,14 @@ function displayPatientInfo(){
 function getActivityType(reference, input){
     var type;
     if(reference){
-        type = [getResource(input), ""];
+        var resource = input.resourceType;
+        if(resource === "DeviceRequest" || resource === "ProcedureRequest"){
+            type = differentiate(resource, input);
+        }else{
+            type = resource;
+        }
+        type = [type, ""];
+
     }else{ //inline definition
         if("category" in input){
             type = [input["category"]["code"]];
@@ -38,11 +45,6 @@ function getActivityType(reference, input){
         }
     }
     return type;
-}
-
-function getResource(input){
-    var temp = input.reference.split("/");
-    return temp[0];
 }
 
 function getCarePlanDescription(reference){
@@ -80,23 +82,26 @@ function checkContent(display){
 function getGlyphicon(code){
     switch(code){
         //inline Codes
-        case "diet": return "fa fa-cutlery";
+        case "diet": case "Diet": return "fa fa-cutlery";
         case "exercise": return "fa fa-soccer-ball-o";
-        case "drug": case "medicine": return "fa fa-minus-circle fa-rotate-140";
+        case "drug": case "medicine": case "Medicine": return "fa fa-minus-circle fa-rotate-140";
         case "encounter": return "fa fa-calendar";
         case "observation": return "fa fa-eye";
-        case "procedure": return "fa fa-stethoscope";
+        case "procedure": case "Procedure": return "fa fa-stethoscope";
         case "supply": return "fa fa-shopping-cart";
         case "plus": return "glyphicon glyphicon-plus";
         case "other": return "fa fa-circle-o";
-        case "measurement": return "fa fa-thermometer-half";
+        case "measurement": case "Measurement": return "fa fa-thermometer-half";
         //references
         case "Task": return "fa fa-circle-o";
         case "Appointment": return "fa fa-calendar";
         case "NutritionOrder": return "fa fa-cutlery";
         case "MedicationRequest": return "fa fa-minus-circle fa-rotate-140";
         case "ProcedureRequest": return "fa fa-stethoscope";
-        case "DeviceRequest": return "fa fa-thermometer-half" //TODO  unterscheidung exercise & measurement
+        case "DeviceRequest": return "fa fa-thermometer-half"
+        case "Exercise": return "fa fa-soccer-ball-o";
+        case "BloodMeasurement": return "fa fa-heart";
+        case "WeightMeasurement": return "fa fa-balance-scale";
         default: return "fa fa-circle-o";
     }
 }
@@ -112,6 +117,8 @@ function getCategory(code){
         case "fa fa-shopping-cart": return "Supply";
         case "fa fa-stethoscope": return "Procedure";
         case "fa fa-thermometer-half": return "Measurement";
+        case "fa fa-heart": return "BloodMeasurement";
+        case "fa fa-balance-scale": return "WeightMeasurement";
 
         /*TODO:
          case "fa fa-": return "Blood Measurement";
@@ -131,8 +138,8 @@ function getPriority(category){
         case "Procedure": return 2;
         case "Exercise": return 3;
         case "Measurement": return 4;
-        case "Blood Measurement": return 5;
-        case "Weight Measurement": return 6;
+        case "BloodMeasurement": return 5;
+        case "WeightMeasurement": return 6;
         case "Appointment": return 7;
         case "Observation": return 8;
         case "Supply": return 9;
@@ -352,4 +359,25 @@ function toString(actRows, status){
         }
     }
     return string;
+}
+
+function differentiate(type, resource){
+    switch(type){
+        case "DeviceRequest":{
+            if(/exercise/i.test(resource.codeCodeableConcept.text)){
+                return "Exercise";
+            }else if(/blood/i.test(resource.codeCodeableConcept.text)){
+                return "BloodMeasurement";
+            }else if(/[scale|weight]/i.test(resource.codeCodeableConcept.text)){
+                return "WeightMeasurement";
+            }
+            return "DeviceRequest";
+        }
+        case "ProcedureRequest":{
+            if(/exercise/i.test(resource.code.text)){
+                return "Exercise";
+            }
+            return "ProcedureRequest";
+        }
+    }
 }
