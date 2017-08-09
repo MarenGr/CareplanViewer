@@ -277,7 +277,7 @@ function buildList(data){
 
     var categoryElement = [
         '<div class="row list" id="', //Spot for Category
-        '"><div class="col-sm-1" style="background-color:white;">',  //Spot for icon
+        '"><div class="col-sm-1">',  //Spot for icon
         '</div><div class="col-sm-11">',            //Spot for List of Acitivity Details
         '</div></div>'];
 
@@ -299,22 +299,33 @@ function buildList(data){
         build += categoryElement[3];
         $('#patientCentric').append(build);
     }
+
+    while($(".list").length !== categories.length){}
+    console.log($(".list"));
+    var list = $(".list");
+    var keys = [];
+    jQuery.each(list, function(key, value) {
+        keys.push(key);
+    });
+    for(var i = 0; i < keys.length; i++){
+        list[keys[i]].lastChild.lastChild.attributes[1].value += 'padding-bottom: 10px;';
+    }
 }
 
 function buildActivityRow(activity, category){
     var withDetails = false;
+    var opacity = 1;
+    var elements;
     if(activity["specific"].length > 0){
         withDetails = true;
+        opacity = getOpacity(activity.specific[0].status);
     }
-    var elements = getActivityRow(category, withDetails);
+
+    var elements = getActivityRow(category, withDetails, opacity);
+
     var string = '';
-    string += elements[0];
-    if(withDetails){
-        var opacity = getOpacity(activity.specific[0].status);
-        string += ' style="opacity:'+opacity+';filter: alpha(opacity='+opacity*100+');background-color:lightgrey;"';
-    }else{
-        string += ' style="background-color:lightgrey;"';
-    }
+    string += elements[0] + ' style="background-color: rgba(255,255,255,'+(1-opacity)+');"';
+
     string += elements[1] + activity["purpose"] + elements[2] + activity["title"] + elements[3];
     var index = 4;
     if(withDetails) {
@@ -459,16 +470,17 @@ function buildActivityRow(activity, category){
     return string;
 }
 
-function getActivityRow(category, withDetails){
+function getActivityRow(category, withDetails, opacity){
+    var o = ' style="opacity:'+opacity+';"'
     var all = ['<div class="row"',
                 '><div class="col-sm-2 title" data-purpose="',
-                '">',
-                '</div><div class="col-sm-7 specific">',
-                '</div><div class="col-sm-1 end">',
+                '"'+o+'>',
+                '</div><div class="col-sm-7 specific"'+o+'>',
+                '</div><div class="col-sm-1 end"'+o+'>',
                 '</div><div class="col-sm-1 performer" data-specialty="',
-                '">',
+                '"'+o+'>',
                 '</div><div class="col-sm-1 note" data-details="',
-                '">',
+                '"'+o+'>',
                 '<span class="fa fa-sticky-note-o"></span>',
                 '</div></div>'];
     if(withDetails) {

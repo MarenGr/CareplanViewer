@@ -39,6 +39,7 @@ function sort(performer){
     var temp = performer[i];
     performer.splice(i, 1);
     performer.push(temp);
+    console.log(performer);
 }
 
 function parseCarePlanData(entries){
@@ -247,7 +248,7 @@ function calculatePriority(careplan, performer, activity){
         priority += weights["period"]*7;
     }
 
-    if(gLoggedUser == performer){
+    if(gLoggedUser === performer){
         priority += weights["user"]*5;
     }
 
@@ -440,10 +441,9 @@ function buildTreeMap(data){
             if(d.children && d.parent && d.parent.parent){
                 return color(d.name);
             }else if(!d.children){
-                var opacity = getOpacity(d.status);
                 return 'white';
             }else if(d.reference === gLoggedUser){
-                return 'black';
+                return 'grey';
             }else{
                 return null;
             }
@@ -452,6 +452,9 @@ function buildTreeMap(data){
         .style("opacity", function(d){
             if(!d.children){
                 var opacity = getOpacity(d.status);
+                if(opacity = 1){
+                    return 0;
+                }
                 return 1-opacity+(1-opacity)*0.25;
             }
             return 1;
@@ -570,7 +573,6 @@ function buildTreeMap(data){
             categories.sort(function(a,b){
                 return getPriority(getCategory(a)) - getPriority(getCategory(b));
             });
-            console.log(categories);
             for(var i = 0; i < categories.length; i++) {
                 listElements.push(wrapper(categories[i], d.activity[categories[i]]));
             }

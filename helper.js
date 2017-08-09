@@ -327,3 +327,19 @@ function getActivityTitle(resource){
         //title = "Unspecified "+getCategory(getGlyphicon(resource.resourceType));
     }
 }
+
+function getRows(details){
+    rows = [];
+    var titles = $('.title');
+    var keys = [];
+    jQuery.each(titles, function(key, value) {
+        keys.push(key);
+    });
+    for(var i = 0; i < keys.length; i++){
+        for(var j = 0; j < details.length; j++) {
+            if (titles[keys[i]].innerHTML === details[j]) {
+                rows.push(titles[keys[i]].parentNode);
+            }
+        }
+    }
+}

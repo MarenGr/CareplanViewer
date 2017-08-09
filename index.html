@@ -13,7 +13,9 @@
 	
 	<script src="assets/js/jquery-3.1.1.min.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
+	<script src="assets/js/jquery-ui.min.js"></script>
 	<link rel="stylesheet" href="assets/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="assets/css/jquery-ui.css">
 
 	<script src="assets/d3/d3.js" charset="utf-8"></script>
 	<!--<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
@@ -96,10 +98,9 @@
 			text-align: center;
 		}
 		.list {
-
+			background-color:lightgrey;
 			margin-bottom:15px;
 			padding-top:10px;
-			padding-bottom:10px;
 		}
 		.head {
 			background-color: #428bca;
@@ -237,6 +238,7 @@
         var gCareplans = {}, gPatient = null, gPerformer = {}, gActivities = {};
         var layout;
         var baseAddress = "http://fhirtest.uhn.ca/baseDstu3/";
+        var rows = [];
 
         function init(){
             fillPatientSelector();
@@ -260,6 +262,7 @@
                 gPatient = null;
                 gPerformer = {};
                 gActivities = {};
+                rows = [];
 
                 $("#error-alert-content").fadeOut();
                 $('#error-alert-content').html('');
@@ -324,6 +327,10 @@
                         $('#cpCentric').removeClass("active");
                         $('#patientCentric').show();
                         $('#careplanCentric').hide();
+                        for(var i = 0; i < rows.length; i++){
+                            rows[i].attributes[1].value = rows[i].attributes[1].value.replace("bold", "normal");
+                            console.log(rows[i].attributes[1].value);
+                        }
                     } else {
                         layout = 'cpCentric';
                         $('#pCentric').removeClass("active");
@@ -335,22 +342,31 @@
 
             $('#careplanCentric').on("click", ".icon", function () {
                 var current = $(this);
+                $('#pCentric').click();
                 console.log(current);
                 var iconClass = current.attr("class").replace("icon ", "");
                 var category = getCategory(iconClass);
                 console.log(iconClass);
-                var details = [];
-                for(var i = 0; jQuery.type(current.data(""+i)) !== "undefined"; i++){
-                    details.push(current.data(""+i));
-                }
-                $('#pCentric').click();
-				//$('#'+category).effect("highlight", {}, 3000);
-
+                var details = current.data("titles").split("<br>");
+                getRows(details);
+                window.setTimeout(function() {
+                    for (var i = 0; i < rows.length; i++) {
+                        rows[i].attributes[1].value += "font-weight: bold;";
+                        console.log(rows[i].attributes[1].value);
+                    }
+                    /*window.setTimeout(function(){
+                        console.log("time out");
+                        for(var i = 0; i < rows.length; i++){
+                            rows[i].attributes[1].value = rows[i].attributes[1].value.replace("bold", "normal");
+                            console.log(rows[i].attributes[1].value);
+                        }
+                    }, 2000);*/
+                }, 1000);
+				$('#'+category).effect("highlight", {color: "#f7bb80"}, 2000);
 
             });
         });
 	</script>
-
 
 </body>
 </html>
