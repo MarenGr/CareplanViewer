@@ -654,8 +654,6 @@ function getMedicineData(activity){
                 speciific[p]["timing"] = "";
             }
             if(specific[p]["timing"] === "" && "basedOn" in activity){
-                console.log(activity["basedOn"][0]["reference"]);
-                console.log(gCareplans[activity["basedOn"][0]["reference"]])
                 specific[p]["timing"] = getCarePlanEnd(activity["basedOn"][0]["reference"]);
             }
             if("route" in activity["dosageInstruction"][p]){

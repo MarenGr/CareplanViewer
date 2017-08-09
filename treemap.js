@@ -373,17 +373,16 @@ function buildTreeMap(data){
         width = $('#content').width() - margin.left - margin.right,
         height = width/4*2*i,
         //color = ownColorScale();
-        domainCode = [  288832002, 395082007, 401276009, 412774003, 412775002,
-                        412776001, 412777005, 412778000, 412779008, 412780006,
-                        412781005, 414672009, 415213008, 698358001, 698359009,
-                        698360004, 698361000, 704127004, 3911000175103 /*, default*/ ],
-        domainName = [  'CPA care plan', 'Cancer care plan', 'Mental health crisis plan', 'Clinical management plan',
+
+        domainName = [  'Clinical management plan', 'Mental health personal health plan', 'Cancer care plan', 'Mental health crisis plan',
                         'Asthma clinical management plan', 'Chronic obstructive pulmonary disease clinical management plan',
-                        'Diabetes clinical management plan', 'Hyperlipidemia clinical management plan', 'Hypertension clinical management plan',
-                        'Hypothyroidism clinical management plan', 'Coronary heart disease risk clinical management plan',
-                        'Mental health personal health plan', 'Psychiatry care plan', 'Angina self management plan',
-                        'Ankle brachial pressure index management plan', 'Diabetes self management plan', 'Heart failure self management plan',
-                        'Transient ischemic attack clinical management plan', 'Patient written birth plan' /*,default*/],
+                        'Diabetes clinical management plan', 'Hyperlipidemia clinical management plan',
+                        'CPA care plan','Hypertension clinical management plan', 'Hypothyroidism clinical management plan',
+                        'Coronary heart disease risk clinical management plan',
+                        'Psychiatry care plan', 'Angina self management plan', 'Ankle brachial pressure index management plan',
+                        'Diabetes self management plan',
+                        'Transient ischemic attack clinical management plan', 'Patient written birth plan',
+                        'Heart failure self management plan'  /*,default*/],
         color = d3.scale.category20c().domain(domainName);
 
     var svg = d3.select("#careplanCentric").append("svg")
@@ -498,9 +497,16 @@ function buildTreeMap(data){
             .append("xhtml:label")
                 .attr("class", "titel")
                 .text(function (d) {
+                    var label = jQuery(this);
                     if(!d.children){
                         number++;
-                        jQuery(this).parent("div").parent("div").parent("foreignObject").parent("g").addClass("field").data("opacity", getOpacity(d.status));
+                        label.parent("div").parent("div").parent("foreignObject").parent("g").addClass("field").data("opacity", getOpacity(d.status));
+                        var g = label.parent("div").parent("div").parent("foreignObject").parent("g")
+                        var value = g[0].firstChild.attributes.style.value;
+                        console.log(value);
+                        g[0].firstChild.attributes.style.value = value.replace("0", 1-getOpacity(d.status));
+                        value = g[0].firstChild.attributes.style.value;
+                        console.log(value);
                         //rects.push(this.parentElement);
                         return d.name;
                     }else{return null;}
@@ -518,7 +524,6 @@ function buildTreeMap(data){
     }
 
 
-    console.log("next");
     d3.selectAll("#row1").append("xhtml:div")
         .attr("class", function(){
             var div = jQuery(this);

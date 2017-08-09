@@ -15,7 +15,6 @@ function splitAndSafe(resources){
 
 function displayPatientInfo(){
     var name = getName(gPatient);
-    console.log(name);
     $("#name").html(name);
     $("#birthdate").html(" "+gPatient['birthDate']);
     $("#gender").html(" "+gPatient['gender']);
@@ -324,9 +323,7 @@ function getEnd(period, timing){
         for(var i = 0; i < timing.length; i++) {
             if ("repeat" in timing[i] && "boundsPeriod" in timing[i].repeat) {
                 var end = getEnd(timing[i].repeat.boundsPeriod, "");
-                console.log(end);
                 if(end === "ongoing"){
-                    console.log("here");
                     return end;
                 }
                 if(jQuery.type(max) === 'undefined' || Date(max) < Date(end)){
@@ -336,7 +333,7 @@ function getEnd(period, timing){
         }
         if(jQuery.type(max) === "undefined"){
             max = "ongoing";
-        }console.log("max: "+max);
+        }
         return max;
     }
 }
