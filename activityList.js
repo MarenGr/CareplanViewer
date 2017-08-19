@@ -1,6 +1,10 @@
 /**
  * Created by Maren on 18.07.2017.
  */
+
+/**
+ * Initiates parsing of data and building layout for patient centric view
+ */
 function makeList(){
     var data = parseDataL();
     sortData(data);
@@ -9,7 +13,10 @@ function makeList(){
     addHoverList();
 }
 
-
+/**
+ * Parses careplan data for patient centric view
+ * @returns a preproccessed object containing cp data for p-view
+ */
 function parseDataL(){
     var data = {};
     var typeList = [];
@@ -42,9 +49,17 @@ function parseDataL(){
     return data;
 }
 
+/**
+ * Inserts information for a specific treatment resource into the resulting data object
+ * @param data              the data object the info is inserted into
+ * @param resource          the treatment resource to be parsed
+ * @param performerArray    a list of performer references that have yet been found
+ * @param typeList          a list of treatment categories that have yet been found
+ */
 function insertActivityReference(data, resource, performerArray, typeList){
     var title, purpose, end, specialty, requester;
 
+    //get Category of treatment
     var type = getActivityType(true, resource);
     var icon = getGlyphicon(type[0]);
     var index = jQuery.inArray(icon, typeList);
@@ -54,16 +69,9 @@ function insertActivityReference(data, resource, performerArray, typeList){
         data[category] = {"name": category, "category": icon, "children": []};
     }
 
-    title = getActivityTitle(resource);
-    /*if("text" in resource){
-        title = resource.text.div.replace(new RegExp(' xmlns="http://www.w3.org/1999/xhtml"', 'g'), "");
-    }else if("description" in resource){
-        title = resource.description.replace(new RegExp(' xmlns="http://www.w3.org/1999/xhtml"', 'g'), "");
-    }else{
-        title = "Unspecified " + resource.resourceType;
-        //title = "Unspecified "+getCategory(getGlyphicon(resource.resourceType));
-    }*/
+    title = getActivityTitle(resource); //get treatment title
 
+    //get treatment purpose
     purpose = "";
     if("basedOn" in resource){
         if(jQuery.type(resource.basedOn) === 'array'){
@@ -92,6 +100,7 @@ function insertActivityReference(data, resource, performerArray, typeList){
         }
     }
 
+    //get treatment period depending on resource type
     if("period" in resource) {
         end = getEnd(resource.period, "");
     }else if("occurrenceTiming" in resource){           //DevReq, ProReq
@@ -150,6 +159,7 @@ function insertActivityReference(data, resource, performerArray, typeList){
         end = "";
     }
 
+    //get requester/performer for treatment
     if("requester" in resource) {
         requester = resource.requester.agent.reference;
     }else{
@@ -159,8 +169,9 @@ function insertActivityReference(data, resource, performerArray, typeList){
         performerArray.push(requester);
     }
 
+    //get specific data with respect to supported treatment categories
+    //if no category applicable, no specific information will be processed
     var specificData = [];
-
     switch(category){
         case "Medicine": {specificData = getMedicineData(resource); break;}
         case "Exercise": {specificData = getExerciseData(resource);break;}
@@ -170,20 +181,37 @@ function insertActivityReference(data, resource, performerArray, typeList){
         case "Procedure": {specificData = getProcedureData(resource); break;}
         default: specificData = [];
     }
+
+    //all gathered information is inserted into the data object into the respecting category
     data[category]['children'].push({"title": title,
         "performer": {"reference": requester},
         "end": end, "purpose": purpose, "specific": specificData});
 
 }
 
+
+/**
+ * Inserts information for a specific treatment
+ * when implemented as the inline definition of a care plan
+ * @param data              the data object the info is inserted into
+ * @param rawdata           the current care plan that is parsed
+ * @param resCount          the resource counter
+ * @param actIndex          the index of the treatment to be parsed
+ * @param category          the category of the treatment to be parsed
+ * @param performerArray    a list of performer references that have yet been found
+ * @param title             the title of the treatment
+ */
 function insertActivityDetail(data, rawdata, resCount, actIndex, category, performerArray, title){
     var name, end, specialty, performer;
+
+    //get purpose of the treatment (here title of care plan)
     if("title" in rawdata){
         name = rawdata["title"];
     }else{
         name = "Care Plan "+resCount;
     }
 
+    //get period of treatment (here of care plan)
     if("period" in rawdata){
         if("end" in rawdata["period"]){
             end = rawdata["period"]["end"];
@@ -194,6 +222,7 @@ function insertActivityDetail(data, rawdata, resCount, actIndex, category, perfo
         end = "unknown";
     }
 
+    //get author/requester/performer of treatment (here of care plan)
     if("author" in rawdata){
         if("specialty" in rawdata['author'][0]){
             specialty = rawdata['author'][0]['specialty'];
@@ -213,34 +242,17 @@ function insertActivityDetail(data, rawdata, resCount, actIndex, category, perfo
         performerArray.push(performer);
     }
 
-    var specificData;
-    switch(category){
-        case "Medicine": specificData = getMedicineData(rawdata['activity'][actIndex]);
-        case "Exercise": specificData = getExerciseData(rawdata['activity'][actIndex]);
-        case "Diet": specificData = getDietData(rawdata['activity'][actIndex]);
-        case "Blood Measurement": specificData = getBloodMData(rawdata['activity'][actIndex]);
-        case "Weight Measurement": specificData = getWeightMData(rawdata['activity'][actIndex]);
-        default: specificData = {};
-    }
-
+    //gathered info is inserted into the data object into the respecting category
     data[category]['children'].push({"title": title,
         "performer": {"reference": performer, "specialty": specialty},
-        "end": end, "purpose": name, "specific": specificData});
+        "end": end, "purpose": name, "specific": {}});
 
 }
 
-function parseActivities(data, response, performerArray){
-    for(var i = 0; i < response.result.length; i++){
-        if(typeof response.result[i].issue !== 'undefined' || response.result[i] === "n/a"){
-            console.log("undefined activites");
-        }//actual parseActivities
-        else{
-            var current = response.result[i];
-            insertActivityReference(data, current, performerArray);
-        }
-    }
-}
-
+/**
+ * Sorts the preprocessed data regarding the performer
+ * @param data object that is being sorted
+ */
 function sortData(data){
     //sort entries of each list by performer
     for(var j = 0; j < data.length; j++){
@@ -266,9 +278,16 @@ function sortData(data){
 
 }
 
+/**
+ * Builds the lists for each category
+ * @param data the data foundation from which to build the lists/tables
+ */
 function buildList(data){
+    //removes lists for a previous patient
     $('#res').hide();
     $('.list').remove();
+
+    //build or show table head
     if($('.head').length === 0) {
         $('#patientCentric').append('<div class="row head">' +
             '<div class="col-sm-1"></div>' +
@@ -284,12 +303,14 @@ function buildList(data){
     }
     $('.head').show();
 
+    //foundation for each category list
     var categoryElement = [
         '<div class="row list" id="', //Spot for Category
         '"><div class="col-sm-1">',  //Spot for icon
         '</div><div class="col-sm-11">',            //Spot for List of Acitivity Details
         '</div></div>'];
 
+    //gets and sorts all categories found for the current patient history
     var categories = [];
     jQuery.each(data, function(key, value) {
         categories.push(key);
@@ -297,6 +318,8 @@ function buildList(data){
     categories.sort(function(a,b){
         return getPriority(a) - getPriority(b);
     });
+
+    //builds a list for each of the categories given
     for(var i = 0; i < categories.length; i++){
         var build = categoryElement[0];
         build += data[categories[i]]["name"]+ categoryElement[1];
@@ -320,6 +343,7 @@ function buildList(data){
         $('#patientCentric').append(build);
     }
 
+    //waits for all lists to be shown and enlarges bottom padding for last element of each list
     while($(".list").length !== categories.length){}
     var list = $(".list");
     var keys = [];
@@ -331,6 +355,12 @@ function buildList(data){
     }
 }
 
+/**
+ * Builds the string from which to build the HTML elements for the table content of a single treatment
+ * @param activity  the treatment data to be processed
+ * @param category  the category of the treatment
+ * @returns {[*,*]} an array containing the status of the treatment and the string of resulting HTML elements
+ */
 function buildActivityRow(activity, category){
     var withDetails = false;
     var opacity = 1;
@@ -338,6 +368,7 @@ function buildActivityRow(activity, category){
     var status = ["active"];
 
     var toggable = "' data-toggable='true";
+    //if status is applicable, get it, else set to 'active', get opacity factor
     if(activity["specific"].length > 0){
         withDetails = true;
         status[0] = activity.specific[0].status;
@@ -345,15 +376,16 @@ function buildActivityRow(activity, category){
         status.push(wrapper(getStatusIcon(status[0]), status[0] + toggable).replace('icon', 'status'));
     }
 
+    //gets the foundation of HTML elements for a treatment entry in the list without content
     var elements = getActivityRow(category, withDetails, opacity);
 
+    //build the list content inserting content into the string of HTML elements
     var string = '';
     string += elements[0] + ' style="background-color: rgba(255,255,255,'+(1-opacity)+');"';
-
     string += elements[1] + activity["purpose"] + elements[2] + activity["title"] + elements[3];
     var index = 4;
-    if(withDetails) {
-        switch (category) {
+    if(withDetails) {   //fills the part of the table for specific data
+        switch (category) {     //depending on the category
             case "Medicine": {
                 for (var i = 0; i < activity["specific"].length; i++) {
                     string += elements[index];
@@ -465,25 +497,6 @@ function buildActivityRow(activity, category){
                 index = index + 5 +1;
                 break;
             }
-            /*case "Measurement":{
-                for (var i = 0; i < activity["specific"].length; i++) {
-                    string += elements[index];
-                    if ("status" in activity["specific"][i]) {
-                        string += activity["specific"][i]["status"];
-                    }
-                    string += elements[index+1];
-                    if ("priority" in activity["specific"][i]) {
-                        string += activity["specific"][i]["priority"];
-                    }
-                    string += elements[index+2];
-                    if ("intent" in activity["specific"][i]) {
-                        string += activity["specific"][i]["intent"];
-                    }
-                    string += elements[index+3];
-                }
-                index = index + 3 +1;
-                break;
-            }*/
         }
     }
     string += elements[index++] + activity["end"];
@@ -491,14 +504,20 @@ function buildActivityRow(activity, category){
     string += elements[index++];
     if(withDetails && "note" in activity["specific"][0] && activity.specific[0].note.length !== 0) {
         string += parseNotes(activity["specific"][0]["note"]);
-        string += elements[index++] + elements[index++] ;
-    }else{
         string += elements[index++];
     }
-    string += elements[elements.length-1];
+    string += elements[index++] + elements[elements.length-1];
     return [status[0], string];
 }
 
+/**
+ * Return an array of strings that represent the HTML elements for
+ * a table entry depending on the treatment category
+ * @param category      the category for which the elements are requested
+ * @param withDetails   whether or not a table structure for specific data is necessary
+ * @param opacity       the opacity of the table entry
+ * @returns {[string,*,*,*,string]} the array of strings of HTML element strings
+ */
 function getActivityRow(category, withDetails, opacity){
     var o = ' style="opacity:'+opacity+';"'
     var all = ['<div class="row"',
@@ -536,17 +555,7 @@ function getActivityRow(category, withDetails, opacity){
                 specific.push('</div></div>');
                 break;
             }
-            case "BloodMeasurement": case "WeightMeasurement": case "Measurement": case "Exercise":{
-                specific.push('<div class="row">' +
-                    '<div class="col-sm-1">');
-                specific.push('</div><div class="col-sm-1">');
-                specific.push('</div><div class="col-sm-2">');
-                specific.push('</div><div class="col-sm-3">');
-                specific.push('</div><div class="col-sm-5">');
-                specific.push('</div></div>');
-                break;
-            }
-            case "Procedure":{
+            case "BloodMeasurement": case "WeightMeasurement": case "Measurement": case "Exercise": case "Procedure":{
                 specific.push('<div class="row">' +
                     '<div class="col-sm-1">');
                 specific.push('</div><div class="col-sm-1">');
@@ -557,6 +566,7 @@ function getActivityRow(category, withDetails, opacity){
                 break;
             }
         }
+        //table elements for specific entries is inserted into the general row elements
         for (var i = 0; i < specific.length; i++) {
             all.splice(4 + i, 0, specific[i]);
         }
@@ -564,6 +574,10 @@ function getActivityRow(category, withDetails, opacity){
     return all;
 }
 
+/**
+ * Adds the hover functionality for the table entries
+ * title, performer, note and status
+ */
 function addHoverList(){
     var hover = $('#hover');
 
@@ -625,8 +639,11 @@ function addHoverList(){
     });
 }
 
-
-
+/**
+ * Parses the data about performer (practitioners),
+ * filling name and specialty into the data object
+ * @param data  the data object the info is inserted into
+ */
 function fillPerformer2(data){
     for(var i in data){
         for(var j = 0; j < data[i]["children"].length; j++){
@@ -637,7 +654,11 @@ function fillPerformer2(data){
     }
 }
 
-
+/**
+ * Gets the specific data for treatments of category Medicine
+ * @param activity  treatment rawdata
+ * @returns {Array} array of specific data to be displayed
+ */
 function getMedicineData(activity){
     var specific = [];
     var status, priority, intent, medicine, note = [];
@@ -659,6 +680,8 @@ function getMedicineData(activity){
             note.push(activity.note[i].text);
         }
     }
+
+    //get timing and note
     if("dosageInstruction" in activity){
         for(var p = 0; p < activity["dosageInstruction"].length; p++) {
             specific.push({"status": status, "priority": priority, "intent": intent, "medicine": medicine, "note": note});
@@ -698,6 +721,11 @@ function getMedicineData(activity){
     return specific;
 }
 
+/**
+ * Gets the specific data for treatments of category Exercise
+ * @param activity  treatment rawdata
+ * @returns {Array} array of specific data to be displayed
+ */
 function getExerciseData(activity){
     var specific = {};
     if("status" in activity){
@@ -729,6 +757,11 @@ function getExerciseData(activity){
     return [specific];
 }
 
+/**
+ * Gets the specific data for treatments of category Diet
+ * @param activity  treatment rawdata
+ * @returns {Array} array of specific data to be displayed
+ */
 function getDietData(activity){
     var specific = [];
     var status, note=[];
@@ -827,6 +860,12 @@ function getDietData(activity){
     return specific;
 }
 
+/**
+ * Gets the specific data for treatments of category Measurement,
+ * Blood Measurement and Weight Measurement (from resource DeviceRequest)
+ * @param activity  treatment rawdata
+ * @returns {Array} array of specific data to be displayed
+ */
 function getDevData(activity){
     var specific = {};
     if("status" in activity){
@@ -851,6 +890,11 @@ function getDevData(activity){
     return [specific];
 }
 
+/**
+ * Gets the specific data for treatments of category Procedure
+ * @param activity  treatment rawdata
+ * @returns {Array} array of specific data to be displayed
+ */
 function getProcedureData(activity){
     var specific = [];
     var status, priority, intent, procedure, timing;
@@ -877,6 +921,11 @@ function getProcedureData(activity){
     return specific;
 }
 
+/**
+ * Parses the timing information (FHIR definition of Timing (data type))
+ * @param schedule      the timing rawdata
+ * @returns {string}    the displayed timing string
+ */
 function parseSchedule(schedule){
     if(jQuery.type(schedule) === "object"){
         schedule = [schedule];
@@ -917,6 +966,11 @@ function parseSchedule(schedule){
     return string.substring(0, string.length-4) //-<br>
 }
 
+/**
+ * Parses the quantity information (FHIR definition of Quantity (data type))
+ * @param quantity  the quantity rawdata
+ * @returns {*}     the displayed quantity string
+ */
 function parseQuantity(quantity){
     return quantity.value + quantity.unit;
 }
