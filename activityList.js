@@ -15,7 +15,7 @@ function makeList(){
 
 /**
  * Parses careplan data for patient centric view
- * @returns a preproccessed object containing cp data for p-view
+ * @returns {{}} a preproccessed object containing cp data for p-view
  */
 function parseDataL(){
     var data = {};
