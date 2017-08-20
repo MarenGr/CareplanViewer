@@ -2,15 +2,11 @@
 /**
  * Created by PhpStorm.
  * User: Maren
- * Date: 14.07.2017
+ * Date: 14.06.2017
  * Time: 19:51
  */
 
 	if(isset($_POST['data'])){
-	    /*echo $_POST['data'];
-        $input = array();
-        /*parse_str($_POST['data'], $input);
-        /*echo $input['data'];*/
         $response = array(
             'url' => $_POST['data'],
             'result' => ""
@@ -50,14 +46,6 @@
             }
         }
         unset($value);
-
-
-        //$result = file_get_contents("careplanBundleTest.json");
-        //$result = file_get_contents("appointment.json");
-
-
-
-        //$response = $result;
 
         header('Content-Type: application/json');
         echo json_encode($response);
