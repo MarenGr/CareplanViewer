@@ -1,6 +1,11 @@
 /**
  * Created by Maren on 18.07.2017.
  */
+
+/**
+ * Saves response from request for care plan and patient info
+ * @param resources entries of response bundle
+ */
 function splitAndSafe(resources){
     for(var i = 0; i < resources.length; i++){
         if(resources[i].search.mode === "match"){
@@ -13,6 +18,9 @@ function splitAndSafe(resources){
     }
 }
 
+/**
+ * Displays the patient information
+ */
 function displayPatientInfo(){
     var name = getName(gPatient);
     $("#name").html(name);
@@ -21,6 +29,12 @@ function displayPatientInfo(){
     $("#phone").html(" "+gPatient['telecom'][0]['value']);
 }
 
+/**
+ * Returns the activity/treatment category for a treatment
+ * @param reference whether or not current treatment is inline definition or referenced resource
+ * @param input     treatment (resource or inline definition attribute)
+ * @returns {*}     category
+ */
 function getActivityType(reference, input){
     var type;
     if(reference){
@@ -46,6 +60,11 @@ function getActivityType(reference, input){
     return type;
 }
 
+/**
+ * Returns Description of a care plan based on its reference
+ * @param reference reference of care plan
+ * @returns {*}     description (string)
+ */
 function getCarePlanDescription(reference){
     var careplan = gCareplans[reference];
     if("text" in careplan && "div" in careplan.text){
@@ -60,6 +79,11 @@ function getCarePlanDescription(reference){
     }
 }
 
+/**
+ * Returns End of a care plan period based on its reference
+ * @param reference reference of care plan
+ * @returns {*}     period end (string)
+ */
 function getCarePlanEnd(reference){
     var careplan = gCareplans[reference];
     if("period" in careplan){
@@ -68,6 +92,12 @@ function getCarePlanEnd(reference){
     return "ongoing";
 }
 
+/**
+ * For inline definition of activity/treatment, if no category is applicable
+ * the code is checked for category information
+ * @param display   string of treatment
+ * @returns {*}     array of category or empty string and string of treatment
+ */
 function checkContent(display){
     var list = ["diet", "exercise", "drug", "medication", "immunization", "encounter", "appointment", "observation", "procedure", "supply"];
     for(var i = 0; i < list.length; i++){
@@ -78,6 +108,11 @@ function checkContent(display){
     return ["", display];
 }
 
+/**
+ * Returns icon class attribute for a category
+ * @param code  category
+ * @returns {string} icon class
+ */
 function getGlyphicon(code){
     switch(code){
         //inline Codes
@@ -105,6 +140,11 @@ function getGlyphicon(code){
     }
 }
 
+/**
+ * Returns category for an icon class string
+ * @param code  icon class
+ * @returns {string} category
+ */
 function getCategory(code){
     switch(code){
         case "fa fa-cutlery": return "Diet";
@@ -118,17 +158,14 @@ function getCategory(code){
         case "fa fa-thermometer-half": return "Measurement";
         case "fa fa-heart": return "BloodMeasurement";
         case "fa fa-balance-scale": return "WeightMeasurement";
-
-        /*TODO:
-         case "fa fa-": return "Blood Measurement";
-         case "fa fa-": return "Weight Meassurement";*/
     }
 }
 
 /*
  * Defines the default ordering of the activity categories.
+ * (the lower the number, the higher the position)
  * @param category   The Category of the Activity
- * @return           The priority of the Category
+ * @return {number}  The priority of the Category
  */
 function getPriority(category){
     switch(category){
@@ -146,14 +183,19 @@ function getPriority(category){
     }
 }
 
+/**
+ * Wraps the icon class and treatment titles as data-attributes into a icon HTML element
+ * @param type      icon class
+ * @param details   treatment titles
+ * @returns {string}    resulting HTML icon element (string)
+ */
 function wrapper(type, details){
     return "<xhtml:span class='icon "+type+"' data-titles='"+details+"'></xhtml:span><br>";
 }
 
-function wrapperAndInserter(type, text){
-    return "<xhtml:span class='"+type+"'> "+text+"</xhtml:span><br>";
-}
-
+/**
+ * Fills the Patient Selector in Modal with Patients from Scenarios
+ */
 function fillPatientSelector(){
     var patients =  '<option data-id="cf-1501883394767">Maisie Hurst</option>' +
                     '<option data-id="cf-1502036237033">Tom Buckley</option>' +
@@ -162,10 +204,14 @@ function fillPatientSelector(){
     $('#patientSelect').append(patients);
 }
 
+/**
+ * Request for information about all performers
+ * @param array     data object the info is inserted into
+ * @param urlArray  array of performer references
+ */
 function performer(array, urlArray){
     if(!jQuery.isEmptyObject(gPerformer)){
         if(layout === 'cpCentric'){
-            //TODO verbessern mit gPerformer
             fillPerformer(array);
         }else{
             fillPerformer2(array);
@@ -181,7 +227,6 @@ function performer(array, urlArray){
             },
             success: function (response) {
                 savePerformer(response);
-                //TODO page distinction
                 if(layout === "cpCentric") {
                     fillPerformer(array);
                 }else {
@@ -195,6 +240,12 @@ function performer(array, urlArray){
     }
 }
 
+/**
+ * Saves performer information after request into an object
+ * with reference as key and an object containing reference,
+ * name and specialty as value
+ * @param response  response of performer request
+ */
 function savePerformer(response){
     for(var p = 0; p < response.result.length; p++){
         if(typeof response.result[p].issue !== 'undefined'){
@@ -212,6 +263,11 @@ function savePerformer(response){
     }
 }
 
+/**
+ * Returns name of a patient or practitioner
+ * @param resource  resource (e.g. Patient or Practitioner)
+ * @returns {string}     name
+ */
 function getName(resource){
     if( 'name' in resource){
         if(jQuery.type(resource['name']) !== "array") {
@@ -242,6 +298,11 @@ function getName(resource){
     }
 }
 
+/**
+ * Returns specialty of a patient or practitioner
+ * @param resource  resource (e.g. Patient or Practitioner)
+ * @returns {string}    specialty
+ */
 function getSpecialty(resource){
     var specialty = '';
     if('qualification' in resource){
@@ -256,6 +317,10 @@ function getSpecialty(resource){
     return specialty;
 }
 
+/**
+ * Returns string of HTML element of performer icon
+ * @returns {string} HTML icon element for performer
+ */
 function getPerformerIcon(){
     return '<span class="fa-stack fa-lg center">'+
         '<i class="fa fa-square fa-stack-1x"></i>' +
@@ -263,6 +328,11 @@ function getPerformerIcon(){
         '</span>';
 }
 
+/**
+ * Returns opacity (also be usable as priority) for status
+ * @param status    status to be assessed
+ * @returns {number}    opacity (or priority)
+ */
 function getOpacity(status){
     switch(status){
         case "active": return 1;
@@ -277,6 +347,11 @@ function getOpacity(status){
     }
 }
 
+/**
+ * Returns icon class attribute for a status
+ * @param code  status
+ * @returns {string} icon class
+ */
 function getStatusIcon(code){
     switch(code){
         case "active": return "fa fa-spinner";
@@ -291,6 +366,11 @@ function getStatusIcon(code){
     }
 }
 
+/**
+ * Put each note of the array into a line for HTML display
+ * @param note  array of notes
+ * @returns {string}    string of displayable notes
+ */
 function parseNotes(note){
     var string = '';
     for(var i = 0; i < note.length; i++){
@@ -307,6 +387,12 @@ function parseNotes(note){
     return string;
 }
 
+/**
+ * Returns the end for either a Period or a Timing (FHIR data types)
+ * @param period    period element, else empty string
+ * @param timing    timing element, else empty string
+ * @returns {string}    end of period or timing
+ */
 function getEnd(period, timing){
     if(jQuery.type(period) !== "undefined" && period !== ""){
         if ("end" in period) {
@@ -338,6 +424,11 @@ function getEnd(period, timing){
     }
 }
 
+/**
+ * Returns title of a treatment resource
+ * @param resource  treatment resource
+ * @returns {string}    title
+ */
 function getActivityTitle(resource){
     if("text" in resource){
         return resource.text.div.replace(new RegExp(' xmlns="http://www.w3.org/1999/xhtml"', 'g'), "");
@@ -345,10 +436,13 @@ function getActivityTitle(resource){
         return resource.description.replace(new RegExp(' xmlns="http://www.w3.org/1999/xhtml"', 'g'), "");
     }else{
         return "Unspecified " + resource.resourceType;
-        //title = "Unspecified "+getCategory(getGlyphicon(resource.resourceType));
     }
 }
 
+/**
+ * Pushes HTML rows with certain treatment titles into a global row array
+ * @param details   array of treatment titles
+ */
 function getRows(details){
     rows = [];
     var titles = $('.title');
@@ -365,6 +459,12 @@ function getRows(details){
     }
 }
 
+/**
+ * builds a string for an array of activity treatment row elements
+ * @param actRows   array of row strings
+ * @param status    array of status'
+ * @returns {string}    string of rows
+ */
 function toString(actRows, status){
     var string = "";
     for(var p = 0; p < status.length; p++){
@@ -375,6 +475,13 @@ function toString(actRows, status){
     return string;
 }
 
+/**
+ * Differentiates between specific categories for FHIR resources of the types
+ * DeviceRequest and ProcedureRequest
+ * @param type      resource type
+ * @param resource  resource rawdata
+ * @returns {string}    category
+ */
 function differentiate(type, resource){
     switch(type){
         case "DeviceRequest":{

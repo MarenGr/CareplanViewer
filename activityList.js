@@ -335,6 +335,7 @@ function buildList(data){
             }
             actRows[temp[0]].push(temp[1]);
         }
+        //sorts the entries of the list according to the status of the treatments
         status.sort(function(a,b){
             return getOpacity(b) - getOpacity(a);
         })
