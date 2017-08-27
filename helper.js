@@ -452,7 +452,7 @@ function getRows(details){
     });
     for(var i = 0; i < keys.length; i++){
         for(var j = 0; j < details.length; j++) {
-            if (titles[keys[i]].innerHTML === details[j]) {
+            if (titles[keys[i]].innerHTML.replace('<a name="mm"></a>', '') === details[j].replace('<a name="mm"/>', '')) {
                 rows.push(titles[keys[i]].parentNode);
             }
         }

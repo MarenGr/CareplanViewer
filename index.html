@@ -335,7 +335,6 @@
                         $('#careplanCentric').hide();
                         for(var i = 0; i < rows.length; i++){
                             rows[i].attributes[1].value = rows[i].attributes[1].value.replace("bold", "normal");
-                            console.log(rows[i].attributes[1].value);
                         }
                     } else {
                         layout = 'cpCentric';
@@ -351,17 +350,14 @@
             $('#careplanCentric').on("click", ".icon", function () {
                 var current = $(this);
                 $('#pCentric').click();
-                console.log(current);
                 var iconClass = current.attr("class").replace("icon ", "");
                 var category = getCategory(iconClass);
                 $('#'+category+'').scrollView();
-                console.log(iconClass);
                 var details = current.data("titles").split("<br>");
                 getRows(details);
                 window.setTimeout(function() {
                     for (var i = 0; i < rows.length; i++) {
                         rows[i].attributes[1].value += "font-weight: bold;";
-                        console.log(rows[i].attributes[1].value);
                     }
                 }, 800);
 				$('#'+category).effect("highlight", {color: "#f7bb80"}, 4000);

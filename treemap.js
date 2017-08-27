@@ -52,7 +52,6 @@ function sort(performer){
     var temp = performer[i];
     performer.splice(i, 1);
     performer.push(temp);
-    console.log(performer);
 }
 
 /**
@@ -403,10 +402,8 @@ function buildTreeMap(data){
                         label.parent("div").parent("div").parent("foreignObject").parent("g").addClass("field").data("opacity", getOpacity(d.status));
                         var g = label.parent("div").parent("div").parent("foreignObject").parent("g")
                         var value = g[0].firstChild.attributes.style.value;
-                        console.log(value);
                         g[0].firstChild.attributes.style.value = value.replace("0", 1-getOpacity(d.status));
                         value = g[0].firstChild.attributes.style.value;
-                        console.log(value);
                         return d.name;
                     }else{return null;}
                 });
